@@ -28,7 +28,7 @@ void Text::RenderUI(Renderer& renderer)
 
 	renderer.UI_RENDER_FUNCTIONS().emplace_back(
 		[text, fontName, pos, color, scale, depth]() {
-			Renderer::GetInstance().RenderTextUIPosition(
+			Renderer::GetInstance().RenderTextScreenPosition(
 				text.c_str(), pos, depth, color, scale, fontName
 			);
 		});
@@ -101,14 +101,12 @@ void Text::UpdateRect()
 	sizePixels.x *= GetFinalScale();
 	sizePixels.y *= GetFinalScale();
 
-	const XMFLOAT2 screenPos = Renderer::GetInstance().ToScreenPosition(GetWorldPosition());
-
 	m_UIRect =
 	{
-		static_cast<LONG>(screenPos.x),
-		static_cast<LONG>(screenPos.y),
-		static_cast<LONG>(screenPos.x + sizePixels.x),
-		static_cast<LONG>(screenPos.y + sizePixels.y)
+		static_cast<LONG>(GetWorldPosition().x),
+		static_cast<LONG>(GetWorldPosition().y),
+		static_cast<LONG>(GetWorldPosition().x + sizePixels.x),
+		static_cast<LONG>(GetWorldPosition().y + sizePixels.y)
 	};
 }
 
