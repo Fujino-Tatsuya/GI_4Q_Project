@@ -11,6 +11,8 @@ class TitleScene : public SceneBase
 	class Panel* Title_letterrbox_down = nullptr;
 	class Panel* Title_letterrbox_up = nullptr;
 
+	bool m_isPanel = false;
+
 	float m_time4MovingPanel = 0;
 	bool m_letterboxInit = false;
 	DirectX::XMFLOAT2 m_letterboxUpStartPos = {};

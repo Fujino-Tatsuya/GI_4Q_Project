@@ -17,6 +17,9 @@
 #include "Enemy.h"
 #include "RNG.h"
 
+#include "Panel.h"
+#include "Button.h"
+
 #include "Shared/Config/Option.h"
 
 REGISTER_TYPE(TestScene)
@@ -26,7 +29,7 @@ using namespace DirectX;
 
 void TestScene::Initialize()
 {
-	ShowCursor(FALSE);
+	GameManager::GetInstance().ForceShowCursor(FALSE);
 
 	m_player = dynamic_cast<Player*>(GetRootGameObject("Player"));
 
@@ -199,4 +202,32 @@ void TestScene::RenderSpawnPoints()
 			}
 		}
 	);
+}
+
+void TestScene::BindUIActions()
+{
+	for (const auto& uiPtr : m_UIList) {
+		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
+			if (panel->GetName() == "option") optionPanel = panel;
+		}
+	}
+
+
+	for (auto& uiPtr : m_UIList) {
+		// -------------------------------------------------------
+		// 1. Button bindings
+		// -------------------------------------------------------
+		if (auto* btn = dynamic_cast<Button*>(uiPtr.get())) {
+			std::string key = btn->GetActionKey();
+			if (key == "cheat") {
+				btn->SetOnClick([this]() { SceneManager::GetInstance().ChangeScene("EndingScene");  });
+			} else if (key == "open_option") {
+				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(true); });
+			} else if (key == "close_option") {
+				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(false); });
+			} 
+		}
+	}
+
+
 }

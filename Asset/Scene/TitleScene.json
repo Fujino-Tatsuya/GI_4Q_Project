@@ -305,7 +305,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.009999999776482582,
+            "depth": 0.019999999552965164,
             "name": "UI_Title_letterrbox_up",
             "parentIdx": -1,
             "pathIdle": "UI_Title_letterrbox_up.png",
@@ -341,7 +341,7 @@
             "type": "Panel"
         },
         {
-            "active": true,
+            "active": false,
             "animAutoPlay": true,
             "animCols": 1,
             "animFPS": 8.0,
@@ -404,7 +404,7 @@
             "handleScalePressed": 1.0,
             "max": 1.0,
             "min": 0.0,
-            "name": "sound",
+            "name": "SFX",
             "parentIdx": 10,
             "pathIdle": "",
             "pos": [
@@ -413,7 +413,7 @@
             ],
             "scale": 0.9300000071525574,
             "type": "Slider",
-            "value": 0.6430999040603638
+            "value": 0.5931589603424072
         },
         {
             "actionKey": "close_option",
@@ -624,19 +624,319 @@
             ],
             "depth": 0.3799999952316284,
             "fontName": "SuperCrawler",
-            "name": "Sound",
-            "parentIdx": 10,
+            "name": "SFX",
+            "parentIdx": 11,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.28999999165534973,
-                -0.25
+                -0.33000001311302185,
+                -0.019999999552965164
             ],
-            "scale": 1.5199999809265137,
-            "text": "Sound",
+            "scale": 1.4800000190734863,
+            "text": "SFX",
             "textColor": [
                 1.0,
                 1.0,
                 1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.014999999664723873,
+            "fontName": "SuperCrawler",
+            "name": "start_game",
+            "parentIdx": 1,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 1.0,
+            "text": "start_game",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.014999999664723873,
+            "fontName": "SuperCrawler",
+            "name": "open_option",
+            "parentIdx": 4,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 1.0,
+            "text": "open_option",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.014999999664723873,
+            "fontName": "SuperCrawler",
+            "name": "open_credit",
+            "parentIdx": 5,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 1.0,
+            "text": "open_credit",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.014999999664723873,
+            "fontName": "SuperCrawler",
+            "name": "quit_game",
+            "parentIdx": 6,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 1.0,
+            "text": "quit_game",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.3199999928474426,
+            "fontName": "SuperCrawler",
+            "name": "BGM",
+            "parentIdx": 24,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.33000001311302185,
+                0.0
+            ],
+            "scale": 1.4600000381469727,
+            "text": "BGM",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "actionKey": "BGM",
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "handleColorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "handleColorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "handleColorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "handlePathHover": "UI_Slider.png",
+            "handlePathIdle": "UI_Slider.png",
+            "handlePathPressed": "UI_Slider.png",
+            "handleScaleHover": 1.0,
+            "handleScaleIdle": 1.0,
+            "handleScalePressed": 1.0,
+            "max": 1.0,
+            "min": 0.0,
+            "name": "BGM",
+            "parentIdx": 10,
+            "pathIdle": "UI_Slider_box.png",
+            "pos": [
+                0.03999999910593033,
+                -0.05999999865889549
+            ],
+            "scale": 0.9300000071525574,
+            "type": "Slider",
+            "value": 0.2320476472377777
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "key",
+            "parentIdx": 10,
+            "pathIdle": "UI_Key.png",
+            "pos": [
+                0.0,
+                0.17000000178813934
+            ],
+            "scale": 0.7099999785423279,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.33000001311302185,
+            "fontName": "SuperCrawler",
+            "name": "Options1",
+            "parentIdx": 10,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.05999999865889549,
+                -0.4000000059604645
+            ],
+            "scale": 2.380000114440918,
+            "text": "Options",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "animAutoPlay": true,
+            "animCols": 1,
+            "animFPS": 8.0,
+            "animLoop": true,
+            "animRows": 1,
+            "colorIdle": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "depth": 0.3100000023841858,
+            "fontName": "SuperCrawler",
+            "name": "Options2",
+            "parentIdx": 10,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.09000000357627869,
+                -0.4099999964237213
+            ],
+            "scale": 3.1600000858306885,
+            "text": "Options",
+            "textColor": [
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "type": "Text"

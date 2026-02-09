@@ -5,6 +5,7 @@
 #include "CameraComponent.h"
 #include "SoundManager.h"
 #include "TimeManager.h"
+#include "GameManager.h"
 
 #include "UIBase.h"
 #include "Button.h"
@@ -17,10 +18,10 @@
 
 REGISTER_TYPE(TitleScene);
 
-//using
-
 void TitleScene::Initialize()
 {
+	GameManager::GetInstance().ForceShowCursor(TRUE);
+
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
 	if (optionPanel) optionPanel->SetActive(false);
@@ -108,13 +109,27 @@ void TitleScene::BindUIActions()
 			} else if (key == "quit_game") {
 				btn->SetOnClick([]() { PostQuitMessage(0); });
 			} else if (key == "open_option") {
-				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(true); });
+				if (optionPanel) btn->SetOnClick([this]() {
+					if (m_isPanel) return;
+					optionPanel->SetActive(true);
+					m_isPanel = true;
+					});
 			} else if (key == "close_option") {
-				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(false); });
+				if (optionPanel) btn->SetOnClick([this]() {
+					optionPanel->SetActive(false);
+					m_isPanel = false;
+					});
 			} else if (key == "open_credit") {
-				if (optionPanel) btn->SetOnClick([this]() { creditPanel->SetActive(true); });
+				if (optionPanel) btn->SetOnClick([this]() { 
+					if (m_isPanel) return;
+					creditPanel->SetActive(true); 
+					m_isPanel = true;
+					});
 			} else if (key == "close_credit") {
-				if (optionPanel) btn->SetOnClick([this]() { creditPanel->SetActive(false); });
+				if (optionPanel) btn->SetOnClick([this]() { 
+					creditPanel->SetActive(false);
+					m_isPanel = false;
+					});
 			}
 		}
 
