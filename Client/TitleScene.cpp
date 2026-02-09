@@ -142,8 +142,30 @@ void TitleScene::BindUIActions()
 
 void TitleScene::MovingPanel(float dt)
 {
+	if (!Title_letterrbox_down || !Title_letterrbox_up) return;
+
+	if (!m_letterboxInit)
+	{
+		m_letterboxUpStartPos = Title_letterrbox_up->GetLocalPosition();
+		m_letterboxDownStartPos = Title_letterrbox_down->GetLocalPosition();
+		m_letterboxUpStartDepth = Title_letterrbox_up->GetDepth();
+		m_letterboxDownStartDepth = Title_letterrbox_down->GetDepth();
+		m_letterboxInit = true;
+	}
+
 	if (m_time4MovingPanel >= kTime4MovingPanel) return;
 
-	//Title_letterrbox_down->SetLocalPosition((0.5f, ));
-	//Title_letterrbox_up->SetLocalPosition();
+	m_time4MovingPanel += dt;
+	if (m_time4MovingPanel > kTime4MovingPanel) m_time4MovingPanel = kTime4MovingPanel;
+
+	const float t = m_time4MovingPanel / kTime4MovingPanel;
+	auto Lerp = [](float a, float b, float s) { return a + (b - a) * s; };
+
+	Title_letterrbox_up->SetLocalPosition(
+		{ Lerp(m_letterboxUpStartPos.x, upTargetPos.x, t), Lerp(m_letterboxUpStartPos.y, upTargetPos.y, t) });
+	Title_letterrbox_down->SetLocalPosition(
+		{ Lerp(m_letterboxDownStartPos.x, downTargetPos.x, t), Lerp(m_letterboxDownStartPos.y, downTargetPos.y, t) });
+
+	Title_letterrbox_up->SetDepth(Lerp(m_letterboxUpStartDepth, targetDepth, t));
+	Title_letterrbox_down->SetDepth(Lerp(m_letterboxDownStartDepth, targetDepth, t));
 }

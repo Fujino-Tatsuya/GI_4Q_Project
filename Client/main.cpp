@@ -7,6 +7,7 @@
 #include "SoundManager.h"
 
 #include "TestScene.h"
+#include "TitleScene.h"
 #include "HyojeTestScene.h"
 #include "TaehyeonTestScene.h"
 #include "GameManager.h"
@@ -30,7 +31,7 @@ int main()
 
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	sceneManager.Initialize();
-	sceneManager.ChangeScene("TestScene");
+	sceneManager.ChangeScene("TitleScene");
 
 	RNG::GetInstance().Initialize();
 
