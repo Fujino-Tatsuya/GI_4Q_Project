@@ -180,6 +180,7 @@
     <ClInclude Include="ListenerComponent.h" />
     <ClInclude Include="ModelComponent.h" />
     <ClInclude Include="Panel.h" />
+    <ClInclude Include="AnimPanel.h" />
     <ClInclude Include="ParticleComponent.h" />
     <ClInclude Include="NavigationManager.h" />
     <ClInclude Include="RNG.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="ModelComponent.cpp" />
     <ClCompile Include="NavigationManager.cpp" />
     <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="AnimPanel.cpp" />
     <ClCompile Include="ParticleComponent.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="RNG.cpp" />

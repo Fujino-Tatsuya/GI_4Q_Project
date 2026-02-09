@@ -124,6 +124,9 @@
     <ClCompile Include="Panel.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="AnimPanel.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
     <ClCompile Include="Slider.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -224,6 +227,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Panel.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimPanel.h">
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Slider.h">
