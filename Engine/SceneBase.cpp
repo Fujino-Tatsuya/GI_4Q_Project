@@ -546,6 +546,8 @@ void SceneBase::RenderImGui_UI()
 
 	if (ImGui::Button("Add Panel"))  CreateUI<Panel>()->SetName("New Panel");
 	ImGui::SameLine();
+	if (ImGui::Button("Add AnimPanel")) CreateUI<AnimPanel>()->SetName("New AnimPanel");
+	ImGui::SameLine();
 	if (ImGui::Button("Add Button")) CreateUI<Button>()->SetName("New Button");
 	ImGui::SameLine();
 	if (ImGui::Button("Add Slider")) CreateUI<Slider>()->SetName("New Slider");
