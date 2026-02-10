@@ -27,15 +27,22 @@ void SceneManager::Run()
 
 	TimeManager::GetInstance().UpdateTime();
 
-	float& dt = TimeManager::GetInstance().GetDeltaTime();
-	m_accumulator += dt;
-
-	int steps = 0;
-	while (m_accumulator >= fixedDt && steps < maxSteps)
+	if (!m_paused)
 	{
-		m_currentScene->BaseFixedUpdate();
-		m_accumulator -= fixedDt;
-		steps++;
+		float& dt = TimeManager::GetInstance().GetDeltaTime();
+		m_accumulator += dt;
+
+		int steps = 0;
+		while (m_accumulator >= fixedDt && steps < maxSteps)
+		{
+			m_currentScene->BaseFixedUpdate();
+			m_accumulator -= fixedDt;
+			steps++;
+		}
+	}
+	else
+	{
+		m_accumulator = 0.0;
 	}
 
 	m_currentScene->BaseUpdate();

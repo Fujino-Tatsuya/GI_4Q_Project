@@ -1,6 +1,8 @@
 #pragma once
 #include "Player.h"
 
+class Panel;
+
 enum class EScene
 {
 	Title,
@@ -31,7 +33,8 @@ enum class ETutorialStep
 class GameManager : public Singleton<GameManager>
 {
 	friend class Singleton<GameManager>;
-	
+
+    Panel* m_optionPanel = nullptr;
 
 ///GameFlow
     Player* m_Player = nullptr;
@@ -68,9 +71,13 @@ public:
 
     void OnSceneEnter(EScene type);
     void OnSceneUpdate();
-	void OnSceneRender();
+    void OnSceneRender();
     void OnSceneExit();
 
+    bool IsPaused() const { return m_Pause; }
+    void SetPaused(bool v) { m_Pause = v; }
+    void RegisterOptionPanel(Panel* panel) { m_optionPanel = panel; }
+    void ToggleOption();
 
     void MainSceneControl();
     void TutorialControl();

@@ -291,7 +291,7 @@
             "type": "Panel"
         },
         {
-            "active": true,
+            "active": false,
             "colorIdle": [
                 1.0,
                 1.0,
@@ -385,10 +385,10 @@
             "depth": 0.4000000059604645,
             "name": "close_option",
             "parentIdx": 10,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
             "pathIdle": "",
-            "pathPressed": "UI_Pressed.png",
+            "pathPressed": "UI_Button_hover.png",
             "pos": [
                 0.25,
                 -0.3400000035762787
@@ -783,7 +783,10 @@
             "type": "Text"
         },
         {
+<<<<<<< HEAD
             "actionKey": "Set_Sensitivity",
+=======
+>>>>>>> origin/Hyoje260210
             "active": true,
             "colorIdle": [
                 1.0,
@@ -791,6 +794,7 @@
                 1.0,
                 1.0
             ],
+<<<<<<< HEAD
             "depth": 0.3100000023841858,
             "handleColorHover": [
                 0.8999999761581421,
@@ -828,6 +832,89 @@
             "scale": 0.9399999976158142,
             "type": "Slider",
             "value": 1.0
+=======
+            "depth": 0.0,
+            "name": "cheat",
+            "parentIdx": -1,
+            "pathIdle": "UI__.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 0.10000000149011612,
+            "type": "Panel"
+        },
+        {
+            "actionKey": "goto_boss",
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "name": "goto_boss",
+            "parentIdx": 28,
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
+            "pathIdle": "UI_Button.png",
+            "pathPressed": "UI_Button_hover.png",
+            "pos": [
+                0.9700000286102295,
+                0.07000000029802322
+            ],
+            "scale": 0.5199999809265137,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 1.0,
+            "fontName": "SuperCrawler",
+            "name": "goto_boss",
+            "parentIdx": 29,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.05999999865889549,
+                0.0
+            ],
+            "scale": 1.0,
+            "text": "goto_boss",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+>>>>>>> origin/Hyoje260210
         }
     ],
     "environmentMapFileName": "Skybox0.dds",

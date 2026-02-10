@@ -12,6 +12,7 @@ class TestScene : public SceneBase
 	std::vector<DirectX::XMVECTOR> m_spawnPoints = {};
 
 	class Panel* optionPanel = nullptr;
+	class Panel* cheatPanel = nullptr;
 
 public:
 	TestScene() = default;

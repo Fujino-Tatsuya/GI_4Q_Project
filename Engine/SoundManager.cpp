@@ -845,6 +845,16 @@ void SoundManager::UpdateAudioClock()
 	m_AudioTime = nowF;
 }
 
+void SoundManager::Pause()
+{
+	if (m_isPaused) return;
+	if (!m_MainGroup) return;
+
+	m_MainGroup->getDSPClock(&m_pauseDSP, nullptr);
+	m_MainGroup->setPaused(true);
+	m_isPaused = true;
+}
+
 void SoundManager::Resume()
 {
 	if (!m_isPaused) return;

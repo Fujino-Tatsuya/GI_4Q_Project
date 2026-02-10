@@ -140,10 +140,10 @@
             "depth": 0.4000000059604645,
             "name": "close_option",
             "parentIdx": 1,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
             "pathIdle": "",
-            "pathPressed": "UI_Pressed.png",
+            "pathPressed": "UI_Button_hover.png",
             "pos": [
                 0.25,
                 -0.3400000035762787
@@ -523,6 +523,11 @@
                     "childGameObjects": [],
                     "components": [
                         {
+                            "current_state": "Idle",
+                            "start_state": "Idle",
+                            "type": "FSMComponentGun"
+                        },
+                        {
                             "NoiseIndex": 0,
                             "blendState": 0,
                             "dissolveData": {
@@ -565,11 +570,6 @@
                             "rasterState": 1,
                             "type": "ModelComponent",
                             "vsShaderName": "VSModel.hlsl"
-                        },
-                        {
-                            "current_state": "Idle",
-                            "start_state": "Idle",
-                            "type": "FSMComponentGun"
                         }
                     ],
                     "name": "Gun",
@@ -782,99 +782,6 @@
                 0.0
             ],
             "type": "GameObjectBase"
-        },
-        {
-            "childGameObjects": [],
-            "components": [
-                {
-                    "NoiseIndex": 1,
-                    "blendState": 0,
-                    "dissolveData": {
-                        "DissolveEdgeColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "DissolveEdgeIntensity": 1.0,
-                        "DissolveEdgeWidth": 1.0,
-                        "DissolveThreshold": 0.20000000298023224
-                    },
-                    "materialFactor": [
-                        {
-                            "ambientOcclusionFactor": 1.0,
-                            "baseColorFactor": [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "emissionFactor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "metallicFactor": 1.0,
-                            "normalScale": 1.0,
-                            "roughnessFactor": 1.0
-                        }
-                    ],
-                    "modelAndMaterialFileNames": [
-                        {
-                            "materialFileName": "test5",
-                            "modelFileName": "mob_ani3.fbx"
-                        }
-                    ],
-                    "psShaderName": "PSModel_Dissolve.hlsl",
-                    "rasterState": 1,
-                    "type": "SkinnedModelComponent",
-                    "vsShaderName": "VSModelSkinAnim.hlsl"
-                },
-                {
-                    "boundingBoxes": [
-                        {
-                            "center": [
-                                0.0,
-                                1.399999976158142,
-                                0.0
-                            ],
-                            "extents": [
-                                0.800000011920929,
-                                1.2000000476837158,
-                                0.800000011920929
-                            ]
-                        }
-                    ],
-                    "boundingFrustums": [],
-                    "boundingOrientedBoxes": [],
-                    "type": "ColliderComponent"
-                },
-                {
-                    "current_state": "Idle",
-                    "start_state": "Idle",
-                    "type": "FSMComponentEnemy"
-                }
-            ],
-            "name": "Enemy",
-            "position": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scale": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Enemy"
         }
     ],
     "skyboxFileName": "Skybox.dds",
