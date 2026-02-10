@@ -576,22 +576,27 @@ void SoundManager::UpdateUINodeIndexAndGenerated()
 
 InputType SoundManager::CheckRhythm(float correction)
 {
-	if (m_CurrentNodeDataName.empty() || m_CurrentNodeDataName == "") return InputType::Fatal;
+	if (m_CurrentNodeDataName.empty()) return InputType::Fatal;
+	if (m_CurrentNodeDataName == "") return InputType::Fatal;
+	if (m_isBeatConsumed) return InputType::Fatal;
 
 	const float time = GetAudioTime() + Config::BeatHumanOffset;
 	// c - s < time > s = Early
 	if (m_NodeData[m_CurrentNodeDataName][m_rhythmTimerIndex].first - correction + m_RhythmOffSet < time && m_NodeData[m_CurrentNodeDataName][m_rhythmTimerIndex].first + m_RhythmOffSet > time)
 	{
+		m_isBeatConsumed = true;
 		return InputType::Early;
 	}
 	// s < time > e  = perfect
 	else if (m_NodeData[m_CurrentNodeDataName][m_rhythmTimerIndex].first + m_RhythmOffSet < time && m_NodeData[m_CurrentNodeDataName][m_rhythmTimerIndex].second + m_RhythmOffSet > time)
 	{
+		m_isBeatConsumed = true;
 		return InputType::Perfect;
 	}
 	// e < time > e + c = late
 	else if (m_NodeData[m_CurrentNodeDataName][m_rhythmTimerIndex].second + m_RhythmOffSet < time && m_NodeData[m_CurrentNodeDataName][m_rhythmTimerIndex].second + correction + m_RhythmOffSet > time)
 	{
+		m_isBeatConsumed = true;
 		return InputType::Late;
 	}
 	else
@@ -609,6 +614,7 @@ void SoundManager::UpdateUINodeDestroyed()
 		static int cnt = 0;
 
 		m_rhythmDestroyIndex++;
+		m_isBeatConsumed = false;
 		m_OnNodeDestroyed = true;
 		return;
 	}

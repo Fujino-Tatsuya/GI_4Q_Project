@@ -140,6 +140,8 @@ private:
 	size_t m_rhythmUIIndex = 0;
 	size_t m_rhythmDestroyIndex = 0;
 
+	bool m_isBeatConsumed = false;
+
 	//FMOD_CPU_USAGE m_Usage;
 
 	FMOD::DSP* m_lowpass = nullptr;
