@@ -11,18 +11,20 @@ namespace Config
 	//Input
 		//청각 입력 보정
 		inline constexpr float BeatHumanOffset = 0.24f;
-	
+		//시각적 보정
+		inline constexpr float visualLead = 0.2f;
+		//위 두개는 안건드는게 조음 
+
 		//오차 보정
 		inline constexpr float InputCorrection = 0.08f;
-	
+		
 		//노드 생성 -> 도착 시간
 		inline constexpr float travelTime      = 1.2f;
 
-		//시각적 보정
-		inline constexpr float visualLead	   = 0.2f;
+
 
 	//Effect
-		inline constexpr float Player_Dash_Tilt = 10.0f;
+		inline constexpr float Player_Dash_Tilt = 10.0f; //대쉬 했을때 화면 기울기 정도
 
 
 //Sound Config

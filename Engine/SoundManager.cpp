@@ -601,6 +601,7 @@ InputType SoundManager::CheckRhythm(float correction)
 	}
 	else
 	{
+		m_isBeatConsumed = true;
 		return InputType::Miss;
 	}
 }
