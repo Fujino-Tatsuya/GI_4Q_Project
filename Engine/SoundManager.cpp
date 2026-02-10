@@ -62,23 +62,29 @@ void SoundManager::Initialize()
 			std::cerr << "Not Found _Beat Source" << std::endl;
 		}
 
-
+		std::cout << "##BGM_List##" << std::endl;
 		for (auto& n : BGM_List)
 		{
 			std::cout << n.first << std::endl;
 			CreateNodeData(n.first);
 		}
+		std::cout << "##BGM_End##" << std::endl << std::endl;
 
+		std::cout << "##SFX_List##" << std::endl;
 		for (auto& n : SFX_List)
 		{
 			std::cout << n.first << std::endl;
 		}
+		std::cout << "##SFX_End##" << std::endl << std::endl;
 
+		std::cout << "##UI_List##" << std::endl;
 		for (auto& n : UI_List)
 		{
 			std::cout << n.first << std::endl;
 		}
+		std::cout << "##UI_End##" << std::endl << std::endl;
 		SoundManager::GetInstance().LoadNodeData();
+
 
 		m_CoreSystem->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &m_lowpass);
 		m_lowpass->setParameterFloat(FMOD_DSP_LOWPASS_CUTOFF, 22000.0f);

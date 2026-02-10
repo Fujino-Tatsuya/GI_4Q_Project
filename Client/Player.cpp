@@ -81,15 +81,15 @@ void Player::Update()
 		switch (sm.CheckRhythm(Config::InputCorrection))
 		{
 		case InputType::Early:
-			std::cout << "Early" << std::endl;
+			//std::cout << "Early" << std::endl;
 			PlayerReload(0);
 			break;
 		case InputType::Perfect:
-			std::cout << "Perfect" << std::endl;
+			//std::cout << "Perfect" << std::endl;
 			PlayerReload(0);
 			break;
 		case InputType::Late:
-			std::cout << "Late" << std::endl;
+			//std::cout << "Late" << std::endl;
 			PlayerReload(0);
 			break;
 		}
@@ -336,20 +336,20 @@ void Player::PlayerAutoReload(int cnt)
 			switch (state)
 			{
 			case ReloadState::WaitSpin:
-				std::cout << waitCount;
+				//std::cout << waitCount;
 				if (--waitCount == 0)
 				{
 					SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Spin);
 					state = ReloadState::WaitCock;
 					waitCount = 1;
-					std::cout << "WaitSpin" << std::endl;
+					//std::cout << "WaitSpin" << std::endl;
 					m_ControlState.CanAutoReload = false;
 					m_ControlState.CanShoot = false;
 				}
 				return false;
 
 			case ReloadState::WaitCock:
-				std::cout << waitCount;
+				//std::cout << waitCount;
 				if (--waitCount == 0)
 				{
 					SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Cocking);
@@ -357,7 +357,7 @@ void Player::PlayerAutoReload(int cnt)
 
 					state = ReloadState::WaitEnableShoot;
 					waitCount = 1;
-					std::cout << "WaitCock" << std::endl;
+					//std::cout << "WaitCock" << std::endl;
 					m_ControlState.CanAutoReload = false;
 					m_ControlState.CanShoot = false;
 					
@@ -369,7 +369,7 @@ void Player::PlayerAutoReload(int cnt)
 				{
 					m_ControlState.CanAutoReload = true;
 					m_ControlState.CanShoot = true;
-					std::cout << "WaitEnableShoot" << std::endl;
+					//std::cout << "WaitEnableShoot" << std::endl;
 					return true;
 				}
 				return false;
