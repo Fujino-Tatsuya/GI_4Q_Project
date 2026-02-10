@@ -232,12 +232,10 @@ void  HyojeTestScene::BindUIActions()
                 slider->AddListener([](float val) {
                     SoundManager::GetInstance().SetVolume_Main(val);
                 });
-                slider->NotifyValueChanged();
             } else if (key == "Gamma") {
                 slider->AddListener([](float val) {
                     SceneBase::SetGammaIntensity(val);
                 });
-                slider->NotifyValueChanged();
             }
         }
     }

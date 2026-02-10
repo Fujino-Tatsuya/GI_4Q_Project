@@ -65,7 +65,7 @@ class Player : public GameObjectBase
 	float m_moveSpeed = 5.0f;
 
 	class CameraComponent* m_cameraComponent = nullptr;
-	float m_cameraSensitivity = 0.1f;
+	static float m_cameraSensitivity;
 	GameObjectBase* m_gunObject = nullptr;
 	class FSMComponentGun* m_gunFSM = nullptr;
 
@@ -109,6 +109,8 @@ public:
 
 	void TakeHit();
 
+	static void SetCameraSensitivity(float val);
+
 private:
 	void Initialize() override;
 	void Update() override;
@@ -135,7 +137,6 @@ private:
 	void RenderEnemyHitUI(class Renderer& renderer);
 	void RenderUINode(class Renderer& renderer);
 	void RenderBullets(class Renderer& renderer);
-
 
 	void UpdateLutCrossfade(float deltaTime);
 	void TriggerLUT();

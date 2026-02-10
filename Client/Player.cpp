@@ -25,6 +25,8 @@ REGISTER_TYPE(Player)
 using namespace std;
 using namespace DirectX;
 
+float Player::m_cameraSensitivity = 1.0f;
+
 void Player::Initialize()
 {
 	XMStoreFloat3(&m_playerRotation, GetRotation());
@@ -587,6 +589,11 @@ void Player::RenderBullets(class Renderer& renderer)
 		pos = m_bulletUIpos.first + (m_bulletInterval * i);
 		renderer.UI_RENDER_FUNCTIONS().emplace_back([&,pos]() { Renderer::GetInstance().RenderImageNrmPosition(m_bulletImgs.first, { pos, m_bulletUIpos.second }, m_bulletImgs.second, 0.1f); });
 	}
+}
+
+void Player::SetCameraSensitivity(float val)
+{
+	m_cameraSensitivity = val * 0.01f;
 }
 
 void Player::UpdateLutCrossfade(float deltaTime)

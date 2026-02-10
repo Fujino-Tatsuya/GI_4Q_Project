@@ -529,7 +529,7 @@
             ],
             "depth": 0.3799999952316284,
             "fontName": "SuperCrawler",
-            "name": "SFX",
+            "name": "SFX_Volume",
             "parentIdx": 11,
             "pathIdle": "UI_IDLE.png",
             "pos": [
@@ -682,7 +682,7 @@
             "type": "Text"
         },
         {
-            "actionKey": "BGM",
+            "actionKey": "BGM_Volume",
             "active": true,
             "colorIdle": [
                 1.0,
@@ -727,25 +727,6 @@
             "scale": 0.9300000071525574,
             "type": "Slider",
             "value": 0.0
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.30000001192092896,
-            "name": "key",
-            "parentIdx": 10,
-            "pathIdle": "UI_Key.png",
-            "pos": [
-                0.0,
-                0.17000000178813934
-            ],
-            "scale": 0.7099999785423279,
-            "type": "Panel"
         },
         {
             "active": true,
@@ -800,6 +781,53 @@
                 1.0
             ],
             "type": "Text"
+        },
+        {
+            "actionKey": "Set_Sensitivity",
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.3100000023841858,
+            "handleColorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "handleColorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "handleColorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "handlePathHover": "UI_Slider.png",
+            "handlePathIdle": "UI_Slider.png",
+            "handlePathPressed": "UI_Slider.png",
+            "handleScaleHover": 1.0,
+            "handleScaleIdle": 1.0,
+            "handleScalePressed": 1.0,
+            "max": 30.0,
+            "min": 0.0,
+            "name": "Sensitivity",
+            "parentIdx": 10,
+            "pathIdle": "UI_Slider_box.png",
+            "pos": [
+                0.03999999910593033,
+                0.12999999523162842
+            ],
+            "scale": 0.9399999976158142,
+            "type": "Slider",
+            "value": 1.0
         }
     ],
     "environmentMapFileName": "Skybox0.dds",

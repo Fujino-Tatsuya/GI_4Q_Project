@@ -105,7 +105,7 @@ void TitleScene::BindUIActions()
 			std::string key = btn->GetActionKey();
 
 			if (key == "start_game") {
-				btn->SetOnClick([this]() { SceneManager::GetInstance().ChangeScene("TestScene");  });
+				btn->SetOnClick([this]() { if (m_isPanel) return; SceneManager::GetInstance().ChangeScene("TestScene");  });
 			} else if (key == "quit_game") {
 				btn->SetOnClick([]() { PostQuitMessage(0); });
 			} else if (key == "open_option") {
@@ -139,16 +139,21 @@ void TitleScene::BindUIActions()
 		else if (auto* slider = dynamic_cast<Slider*>(uiPtr.get())) {
 			std::string key = slider->GetActionKey();
 
-			if (key == "MasterVolume") {
+			if (key == "BGM_Volume") {
 				slider->AddListener([](float val) {
 					SoundManager::GetInstance().SetVolume_Main(val);
 					});
-				slider->NotifyValueChanged();
-			} else if (key == "Gamma") {
+			}
+			else if (key == "SFX_Volume") {
 				slider->AddListener([](float val) {
 					SceneBase::SetGammaIntensity(val);
 					});
-				slider->NotifyValueChanged();
+			}
+			else if (key == "Set_Sensitivity")
+			{
+				slider->AddListener([](float val) {
+					Player::SetCameraSensitivity(val);
+					});
 			}
 		}
 	}
@@ -183,4 +188,5 @@ void TitleScene::MovingPanel(float dt)
 
 	Title_letterrbox_up->SetDepth(Lerp(m_letterboxUpStartDepth, targetDepth, t));
 	Title_letterrbox_down->SetDepth(Lerp(m_letterboxDownStartDepth, targetDepth, t));
+
 }

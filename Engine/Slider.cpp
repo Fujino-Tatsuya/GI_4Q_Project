@@ -16,7 +16,7 @@ void Slider::SetRange(float min, float max)
 	if (min > max) std::swap(min, max);
 	m_min = min;
 	m_max = max;
-	m_value = std::clamp(m_value, m_min, m_max);
+	m_rendervalue = std::clamp(m_rendervalue, m_min, m_max);
 	UpdateHandleRect();
 }
 
@@ -26,13 +26,21 @@ void Slider::SetValue(float newValue)
 	float safeMax = std::max(m_min, m_max);
 	float clampedValue = std::clamp(newValue, safeMin, safeMax);
 
-	if (m_value == clampedValue)
-		return;
+	float prevValue = m_realvalue;
 
-	m_value = clampedValue;
+	if (fabs(prevValue - clampedValue) < 0.0001f)
+	{
+		m_rendervalue = clampedValue;
+		return;
+	}
+
+	m_realvalue = clampedValue;
+	m_rendervalue = clampedValue;
+
 	UpdateHandleRect();
 	NotifyValueChanged();
 }
+
 void Slider::SetHandleTexture(const std::string& tex)
 {
 	SetHandleTextures(tex, tex, tex);
@@ -65,8 +73,10 @@ void Slider::AddListener(std::function<void(float)> callback)
 
 void Slider::NotifyValueChanged()
 {
+	std::cout << "크아악" << std::endl;
+
 	for (auto& cb : listeners)
-		cb(m_value);
+		cb(m_rendervalue);
 }
 
 void Slider::RenderUI(Renderer& renderer)
@@ -91,7 +101,7 @@ void Slider::RenderUI(Renderer& renderer)
 		});
 
 	float range = m_max - m_min;
-	float t = (range != 0.0f) ? (m_value - m_min) / range : 0.0f;
+	float t = (range != 0.0f) ? (m_rendervalue - m_min) / range : 0.0f;
 	t = std::clamp(t, 0.0f, 1.0f);
 
 	auto pos = GetWorldPosition();
@@ -169,7 +179,7 @@ void Slider::UpdateRect()
 
 void Slider::UpdateHandleRect()
 {
-	float t = (m_value - m_min) / (m_max - m_min);
+	float t = (m_rendervalue - m_min) / (m_max - m_min);
 	t = std::clamp(t, 0.0f, 1.0f);
 
 	float barLeft = m_UIRect.left - m_textureIdle.second.x * 0.5f * GetFinalScale();
@@ -210,7 +220,13 @@ bool Slider::CheckInput(const POINT& mousePos, bool isMousePressed)
 
 	if (!isMousePressed)
 	{
-		m_dragging = false;
+		if (m_dragging)
+		{
+			m_dragging = false;
+
+			SetValue(m_rendervalue);
+		}
+
 		m_handleState = isOverHandle ? HandleState::Hover : HandleState::Idle;
 		return false;
 	}
@@ -237,7 +253,7 @@ bool Slider::CheckInput(const POINT& mousePos, bool isMousePressed)
 	float t = (mousePos.x - minX) / (maxX - minX);
 	t = std::clamp(t, 0.0f, 1.0f);
 
-	m_value = m_min + t * (m_max - m_min);
+	m_rendervalue = m_min + t * (m_max - m_min);
 
 	UpdateHandleRect();
 	return true;
@@ -250,7 +266,7 @@ nlohmann::json Slider::Serialize() const
 
 	data["min"] = m_min;
 	data["max"] = m_max;
-	data["value"] = m_value;
+	data["value"] = m_realvalue;
 	data["handlePathIdle"] = m_handlePathIdle;
 	data["handlePathHover"] = m_handlePathHover;
 	data["handlePathPressed"] = m_handlePathPressed;

@@ -11,7 +11,7 @@ public:
 
 	void SetRange(float min, float max);
 	void SetValue(float newValue);
-	float& GetValue() { return m_value; }
+	float& GetValue() { return m_realvalue; }
 	float& GetMin() { return m_min; }
 	float& GetMax() { return m_max; }
 
@@ -49,7 +49,8 @@ private:
 	{
 		Idle,
 		Hover,
-		Pressed
+		Pressed,
+		Done
 	};
 
 	void UpdateRect() override;
@@ -57,8 +58,8 @@ private:
 
 	float m_min = 0.0f;
 	float m_max = 1.0f;
-	float m_value = 0.5f;
-
+	float m_rendervalue = 1.0f;
+	float m_realvalue = 1.0f;
 	bool m_dragging = false;
 
 	HandleState m_handleState = HandleState::Idle;
