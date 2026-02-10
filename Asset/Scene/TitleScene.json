@@ -291,7 +291,7 @@
             "type": "Panel"
         },
         {
-            "active": true,
+            "active": false,
             "colorIdle": [
                 1.0,
                 1.0,
@@ -351,7 +351,7 @@
                 0.03999999910593033,
                 -0.23000000417232513
             ],
-            "scale": 0.9300000071525574,
+            "scale": 0.699999988079071,
             "type": "Slider",
             "value": 0.0
         },
@@ -385,10 +385,10 @@
             "depth": 0.4000000059604645,
             "name": "close_option",
             "parentIdx": 10,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
             "pathIdle": "",
-            "pathPressed": "UI_Pressed.png",
+            "pathPressed": "UI_Button_hover.png",
             "pos": [
                 0.25,
                 -0.3400000035762787
@@ -536,7 +536,7 @@
                 -0.33000001311302185,
                 -0.019999999552965164
             ],
-            "scale": 1.4800000190734863,
+            "scale": 0.36000001430511475,
             "text": "SFX",
             "textColor": [
                 1.0,
@@ -563,7 +563,7 @@
                 0.0,
                 0.0
             ],
-            "scale": 1.0,
+            "scale": 0.30000001192092896,
             "text": "start_game",
             "textColor": [
                 1.0,
@@ -590,7 +590,7 @@
                 0.0,
                 0.0
             ],
-            "scale": 1.0,
+            "scale": 0.30000001192092896,
             "text": "open_option",
             "textColor": [
                 1.0,
@@ -617,7 +617,7 @@
                 0.0,
                 0.0
             ],
-            "scale": 1.0,
+            "scale": 0.30000001192092896,
             "text": "open_credit",
             "textColor": [
                 1.0,
@@ -644,7 +644,7 @@
                 0.0,
                 0.0
             ],
-            "scale": 1.0,
+            "scale": 0.30000001192092896,
             "text": "quit_game",
             "textColor": [
                 1.0,
@@ -669,9 +669,9 @@
             "pathIdle": "UI_IDLE.png",
             "pos": [
                 -0.33000001311302185,
-                0.0
+                -0.019999999552965164
             ],
-            "scale": 1.4600000381469727,
+            "scale": 0.36000001430511475,
             "text": "BGM",
             "textColor": [
                 1.0,
@@ -724,7 +724,7 @@
                 0.03999999910593033,
                 -0.05999999865889549
             ],
-            "scale": 0.9300000071525574,
+            "scale": 0.699999988079071,
             "type": "Slider",
             "value": 0.0
         },
@@ -745,7 +745,7 @@
                 -0.05999999865889549,
                 -0.4000000059604645
             ],
-            "scale": 2.380000114440918,
+            "scale": 0.5099999904632568,
             "text": "Options",
             "textColor": [
                 1.0,
@@ -772,7 +772,7 @@
                 -0.09000000357627869,
                 -0.4099999964237213
             ],
-            "scale": 3.1600000858306885,
+            "scale": 0.6499999761581421,
             "text": "Options",
             "textColor": [
                 0.0,
@@ -823,11 +823,11 @@
             "pathIdle": "UI_Slider_box.png",
             "pos": [
                 0.03999999910593033,
-                0.12999999523162842
+                0.14000000059604645
             ],
-            "scale": 0.9399999976158142,
+            "scale": 0.699999988079071,
             "type": "Slider",
-            "value": 1.0
+            "value": 0.0
         }
     ],
     "environmentMapFileName": "Skybox0.dds",
