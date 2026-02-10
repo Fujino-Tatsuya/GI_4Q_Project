@@ -20,6 +20,7 @@ enum class DepthStencilState
 {
 	Default,
 	Skybox,
+	Particle,
 
 	Count
 };
@@ -44,6 +45,19 @@ constexpr std::array<D3D11_DEPTH_STENCIL_DESC, static_cast<size_t>(DepthStencilS
 		.DepthEnable = TRUE, // 깊이 테스트 활성화
 		.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO, // 깊이 쓰기 활성화
 		.DepthFunc = D3D11_COMPARISON_LESS_EQUAL, // 깊이 비교 함수: 작거나 같음
+		.StencilEnable = FALSE, // 스텐실 테스트 비활성화
+		.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK,
+		.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK,
+		.FrontFace = {}, // 사용 안 함
+		.BackFace = {} // 사용 안 함
+	},
+
+	// Particle
+	D3D11_DEPTH_STENCIL_DESC
+	{
+		.DepthEnable = TRUE, // 깊이 테스트 활성화 (다른 물체 뒤에 숨김)
+		.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO, // 깊이 쓰기 비활성화 (파티클끼리 순서 문제 방지)
+		.DepthFunc = D3D11_COMPARISON_LESS, // 깊이 비교 함수: 작음
 		.StencilEnable = FALSE, // 스텐실 테스트 비활성화
 		.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK,
 		.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK,
@@ -532,6 +546,32 @@ constexpr std::array<D3D11_BUFFER_DESC, static_cast<size_t>(VSConstBuffers::Coun
 	D3D11_BUFFER_DESC
 	{
 		.ByteWidth = sizeof(ParticleBuffer),
+		.Usage = D3D11_USAGE_DEFAULT,
+		.BindFlags = D3D11_BIND_CONSTANT_BUFFER,
+		.CPUAccessFlags = 0,
+		.MiscFlags = 0,
+		.StructureByteStride = 0
+	}
+};
+
+enum class GSConstBuffers
+{
+	NormalViewProjection, // ViewProjectionBuffer
+
+	Count
+};
+
+struct NormalViewProjectionBuffer
+{
+	DirectX::XMMATRIX viewProjectionMatrix = DirectX::XMMatrixIdentity(); // 뷰-투영 행렬 // 전치함
+};
+
+constexpr std::array<D3D11_BUFFER_DESC, static_cast<size_t>(GSConstBuffers::Count)> GS_CONST_BUFFER_DESCS =
+{
+	// ViewProjectionBuffer
+	D3D11_BUFFER_DESC
+	{
+		.ByteWidth = sizeof(NormalViewProjectionBuffer),
 		.Usage = D3D11_USAGE_DEFAULT,
 		.BindFlags = D3D11_BIND_CONSTANT_BUFFER,
 		.CPUAccessFlags = 0,

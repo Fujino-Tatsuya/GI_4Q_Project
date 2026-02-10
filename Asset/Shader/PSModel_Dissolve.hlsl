@@ -62,7 +62,7 @@ PS_SCENE_OUTPUT main(PS_INPUT_STD input)
     // 섀도우 맵 샘플링
     float4 lightSpacePos = mul(input.WorldPosition, LightViewProjectionMatrix);
     float2 shadowTexCoord = float2(lightSpacePos.x * 0.5f + 0.5f, -lightSpacePos.y * 0.5f + 0.5f);
-    float currentDepth = lightSpacePos.z - 0.005f;
+    float currentDepth = lightSpacePos.z * 0.999f;
     
     float shadowFactor = 1.0f;
     // 그림자 맵이 유효한 경우에만 섀도우 샘플링 수행

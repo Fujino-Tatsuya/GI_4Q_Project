@@ -10,7 +10,7 @@ VS_OUTPUT_STD main(VS_INPUT_STD input)
     
     output.UV = input.UV;
     
-    output.TBN = mul(float3x3(input.Tangent, input.Bitangent, input.Normal), (float3x3)NormalMatrix);
+    output.TBN = mul(float3x3(input.Tangent, input.Bitangent, input.Normal), (float3x3) NormalMatrix);
 
     return output;
 }
