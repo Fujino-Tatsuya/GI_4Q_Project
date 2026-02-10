@@ -5,6 +5,7 @@
 #include "SceneManager.h"
 #include "SceneBase.h"
 #include "Renderer.h"
+#include "Panel.h"
 
 #include "Shared/Config/Option.h"
 
@@ -25,6 +26,20 @@ void GameManager::Initialize()
 void GameManager::Finalize()
 {
 
+}
+
+void GameManager::ToggleOption()
+{
+	if (!m_optionPanel)
+	{
+		m_Pause = !m_Pause;
+		return;
+	}
+
+	const bool opening = !m_Pause;
+	m_Pause = opening;
+	m_optionPanel->SetActive(opening);
+	ForceShowCursor(opening);
 }
 
 

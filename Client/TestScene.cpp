@@ -60,6 +60,13 @@ void TestScene::Update()
 		SceneManager::GetInstance().ChangeScene("EndingScene");
 	}
 
+	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
+		if (cheatPanel)
+		{
+			cheatPanel->SetActive(true);
+		}
+	}
+
 	if (SoundManager::GetInstance().CheckBGMEnd())
 	{
 		SoundManager::GetInstance().Main_BGM_Shot(SoundManager::GetInstance().GetCurrentTrackName(), 3.0f);
@@ -210,7 +217,12 @@ void TestScene::BindUIActions()
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
+			else if (panel->GetName() == "cheat") cheatPanel = panel;
 		}
+	}
+	if (optionPanel)
+	{
+		GameManager::GetInstance().RegisterOptionPanel(optionPanel);
 	}
 
 
@@ -220,14 +232,17 @@ void TestScene::BindUIActions()
 		// -------------------------------------------------------
 		if (auto* btn = dynamic_cast<Button*>(uiPtr.get())) {
 			std::string key = btn->GetActionKey();
-			if (key == "cheat") {
-				btn->SetOnClick([this]() { SceneManager::GetInstance().ChangeScene("EndingScene");  });
-			} else if (key == "open_option") {
-				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(true); });
-			} else if (key == "close_option") {
-				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(false); });
-			} 
+		if (key == "cheat") {
+			btn->SetOnClick([this]() { SceneManager::GetInstance().ChangeScene("EndingScene");  });
+		} else if (key == "close_option") {
+			if (optionPanel) btn->SetOnClick([this]()
+			{
+				optionPanel->SetActive(false);
+				GameManager::GetInstance().SetPaused(false);
+				GameManager::GetInstance().ForceShowCursor(FALSE);
+			});
 		}
+	}
 	}
 
 

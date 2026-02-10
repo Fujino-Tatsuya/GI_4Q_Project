@@ -25,10 +25,13 @@ public:
 	void ChangeScene(const std::string& sceneTypeName);
 
 	class SceneBase* GetCurrentScene();
+	void SetPaused(bool paused) { m_paused = paused; }
+	bool IsPaused() const { return m_paused; }
 
 	void LoadAllPrefabs();
 	const nlohmann::json* GetPrefabData(const std::string& prefabName);
 
 private:
 	SceneManager() = default;
+	bool m_paused = false;
 };

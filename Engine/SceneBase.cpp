@@ -159,6 +159,30 @@ void SceneBase::BaseFixedUpdate()
 
 void SceneBase::BaseUpdate()
 {
+	if (SceneManager::GetInstance().IsPaused())
+	{
+		InputManager& inputManager = InputManager::GetInstance();
+
+		const POINT& mousePosition = inputManager.GetMousePosition();
+		const bool isMousePressed = inputManager.GetKey(KeyCode::MouseLeft);
+		const bool isMouseClicked = inputManager.GetKeyUp(KeyCode::MouseLeft);
+		for (auto it = m_UIList.rbegin(); it != m_UIList.rend(); ++it)
+		{
+			if (auto* button = dynamic_cast<Button*>(it->get()))
+			{
+				if (button->CheckInput(mousePosition, isMousePressed, isMouseClicked))
+					break;
+			}
+
+			if (auto* slider = dynamic_cast<Slider*>(it->get()))
+			{
+				if (slider->CheckInput(mousePosition, isMousePressed))
+					break;
+			}
+		}
+		return;
+	}
+
 	#ifdef _DEBUG
 	m_debugCamera->Update();
 	static_cast<Base*>(m_debugCamera.get())->BaseUpdate();
