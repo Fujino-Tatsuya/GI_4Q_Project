@@ -269,7 +269,13 @@
                             "type": "GameObjectBase"
                         }
                     ],
-                    "components": [],
+                    "components": [
+                        {
+                            "current_state": "Idle",
+                            "start_state": "Idle",
+                            "type": "FSMComponentGun"
+                        }
+                    ],
                     "name": "Gun2",
                     "position": [
                         0.44999998807907104,
@@ -279,9 +285,9 @@
                     ],
                     "rotation": [
                         0.0,
-                        0.7071067690849304,
+                        0.7071067094802856,
                         0.0,
-                        0.7071067094802856
+                        0.7071068286895752
                     ],
                     "scale": [
                         0.9999998807907104,
@@ -547,10 +553,10 @@
                         0.0
                     ],
                     "rotation": [
+                        0.5,
                         0.0,
                         0.0,
-                        0.0,
-                        1.0
+                        0.8660253882408142
                     ],
                     "scale": [
                         1.0,
@@ -630,7 +636,13 @@
                     "type": "GameObjectBase"
                 }
             ],
-            "components": [],
+            "components": [
+                {
+                    "current_state": "Idle",
+                    "start_state": "Idle",
+                    "type": "FSMComponentGun2"
+                }
+            ],
             "name": "Gun2",
             "position": [
                 0.0,
@@ -640,9 +652,9 @@
             ],
             "rotation": [
                 0.0,
-                0.7071067690849304,
+                0.7071067094802856,
                 0.0,
-                0.7071067094802856
+                0.7071068286895752
             ],
             "scale": [
                 0.9999998807907104,

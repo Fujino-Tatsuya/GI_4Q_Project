@@ -197,6 +197,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FSMComponentEnemy.cpp" />
     <ClCompile Include="FSMComponentGun.cpp" />
+    <ClCompile Include="FSMComponentGun2.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="ParticleObject.cpp" />
     <ClCompile Include="main.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FSMComponentEnemy.h" />
     <ClInclude Include="FSMComponentGun.h" />
+    <ClInclude Include="FSMComponentGun2.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="ParticleObject.h" />
     <ClInclude Include="HyojeTestScene.h" />
@@ -233,6 +235,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Asset\Prefab\Enemy.json" />
+    <None Include="..\Asset\Prefab\Gun.json" />
+    <None Include="..\Asset\Prefab\Gun2.json" />
     <None Include="..\Asset\Prefab\Player.json" />
     <None Include="..\Asset\Scene\EndingScene.json" />
     <None Include="..\Asset\Scene\HyojeTestScene.json" />

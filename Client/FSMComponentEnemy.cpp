@@ -145,7 +145,7 @@ void FSMComponentEnemy::OnExitState(StateID state)
 #ifdef _DEBUG
 void FSMComponentEnemy::RenderImGui()
 {
-	if (ImGui::TreeNode("FSM Component Gun"))
+	if (ImGui::TreeNode("FSM Component Enemy"))
 	{
 		string currentName = StateToString(current_state_);
 		ImGui::Text("Current State: %s", currentName.c_str());

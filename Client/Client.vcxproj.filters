@@ -45,6 +45,9 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="FSMComponentGun2.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -91,6 +94,9 @@
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="FSMComponentGun2.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
@@ -138,6 +144,12 @@
       <Filter>GameObject\Prefab</Filter>
     </None>
     <None Include="..\Asset\Prefab\Player.json">
+      <Filter>GameObject\Prefab</Filter>
+    </None>
+    <None Include="..\Asset\Prefab\Gun2.json">
+      <Filter>GameObject\Prefab</Filter>
+    </None>
+    <None Include="..\Asset\Prefab\Gun.json">
       <Filter>GameObject\Prefab</Filter>
     </None>
   </ItemGroup>
