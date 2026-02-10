@@ -89,41 +89,13 @@ void ResourceManager::SetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY topology)
 void ResourceManager::SetAllConstantBuffers()
 {
 	// 정점 셰이더용 상수 버퍼 설정
-	// 뷰-투영 상수 버퍼
-	m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::ViewProjection), 1, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::ViewProjection)].GetAddressOf());
-	// 스카이박스 뷰-투영 역행렬 상수 버퍼
-	m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::SkyboxViewProjection), 1, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::SkyboxViewProjection)].GetAddressOf());
-	// 객체 월드, 스케일 역행렬 적용한 월드 상수 버퍼
-	m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::WorldNormal), 1, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::WorldNormal)].GetAddressOf());
-
-	// 애니메이션 관련 상수 버퍼 설정
-	// 시간 상수 버퍼
-	m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::Time), 1, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Time)].GetAddressOf());
-	// 뼈 버퍼
-	m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::Bone), 1, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Bone)].GetAddressOf());
-
-	//선 그리기용 상수 버퍼
-	m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::Line), 1, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Line)].GetAddressOf());
-	// 파티클 상수 버퍼
-	m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::Particle), 1, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Particle)].GetAddressOf());
+	for (size_t i = 0; i < static_cast<size_t>(VSConstBuffers::Count); ++i) m_deviceContext->VSSetConstantBuffers(static_cast<UINT>(i), 1, m_vsConstantBuffers[i].GetAddressOf());
 
 	// 지오메트리 셰이더용 상수 버퍼 설정
-	// 지오메트리 셰이더용 뷰-투영 상수 버퍼
-	m_deviceContext->GSSetConstantBuffers(static_cast<UINT>(VSConstBuffers::ViewProjection), 1, m_gsConstantBuffers[static_cast<size_t>(GSConstBuffers::NormalViewProjection)].GetAddressOf());
+	for (size_t i = 0; i < static_cast<size_t>(GSConstBuffers::Count); ++i) m_deviceContext->GSSetConstantBuffers(static_cast<UINT>(i), 1, m_gsConstantBuffers[i].GetAddressOf());
 
 	// 픽셀 셰이더용 상수 버퍼 설정
-	// 후처리 상수 버퍼
-	m_deviceContext->PSSetConstantBuffers(static_cast<UINT>(PSConstBuffers::PostProcessing), 1, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::PostProcessing)].GetAddressOf());
-	// 카메라 위치 상수 버퍼
-	m_deviceContext->PSSetConstantBuffers(static_cast<UINT>(PSConstBuffers::CameraPosition), 1, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::CameraPosition)].GetAddressOf());
-	// 방향광 상수 버퍼
-	m_deviceContext->PSSetConstantBuffers(static_cast<UINT>(PSConstBuffers::GlobalLight), 1, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::GlobalLight)].GetAddressOf());
-	// 재질 팩터 상수 버퍼
-	m_deviceContext->PSSetConstantBuffers(static_cast<UINT>(PSConstBuffers::MaterialFactor), 1, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::MaterialFactor)].GetAddressOf());
-	// 디졸브 상수 버퍼
-	m_deviceContext->PSSetConstantBuffers(static_cast<UINT>(PSConstBuffers::Dissolve), 1, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::Dissolve)].GetAddressOf());
-	// 파티클 에미션 상수 버퍼
-	m_deviceContext->PSSetConstantBuffers(static_cast<UINT>(PSConstBuffers::ParticleColor), 1, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::ParticleColor)].GetAddressOf());
+	for (size_t i = 0; i < static_cast<size_t>(PSConstBuffers::Count); ++i) m_deviceContext->PSSetConstantBuffers(static_cast<UINT>(i), 1, m_psConstantBuffers[i].GetAddressOf());
 }
 
 void ResourceManager::SetAllSamplerStates()
@@ -549,56 +521,25 @@ void ResourceManager::CreateConstantBuffers()
 	HRESULT hr = S_OK;
 
 	// 정점 셰이더용 상수 버퍼 생성
-	// 뷰-투영 상수 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::ViewProjection)], nullptr, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::ViewProjection)].GetAddressOf());
-	CheckResult(hr, "ViewProjection 상수 버퍼 생성 실패.");
-	// 스카이박스 뷰-투영 역행렬 상수 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::SkyboxViewProjection)], nullptr, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::SkyboxViewProjection)].GetAddressOf());
-	CheckResult(hr, "Object 상수 버퍼 생성 실패.");
-	// 객체 월드, 스케일 역행렬 적용한 월드 상수 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::WorldNormal)], nullptr, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::WorldNormal)].GetAddressOf());
-	CheckResult(hr, "WorldNormal 상수 버퍼 생성 실패.");
-
-	// 애니메이션 관련 상수 버퍼 생성
-	// 시간 상수 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::Time)], nullptr, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Time)].GetAddressOf());
-	CheckResult(hr, "Time 상수 버퍼 생성 실패.");
-	// 뼈 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::Bone)], nullptr,	m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Bone)].GetAddressOf());
-	CheckResult(hr, "Bone 상수 버퍼 생성 실패.");
-	
-	//선 그리기용 상수 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::Line)], nullptr, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Line)].GetAddressOf());
-	CheckResult(hr, "LineColor 상수 버퍼 생성 실패.");
-	
-	//파티클 상수 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::Particle)], nullptr, m_vsConstantBuffers[static_cast<size_t>(VSConstBuffers::Particle)].GetAddressOf());
-	CheckResult(hr, "LineColor 상수 버퍼 생성 실패.");
+	for (size_t i = 0; i < static_cast<size_t>(VSConstBuffers::Count); ++i)
+	{
+		hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[i], nullptr, m_vsConstantBuffers[i].GetAddressOf());
+		CheckResult(hr, "정점 셰이더용 상수 버퍼 생성 실패.");
+	}
 
 	// 지오메트리 셰이더용 상수 버퍼 생성
-	// 지오메트리 셰이더용 뷰-투영 상수 버퍼
-	hr = m_device->CreateBuffer(&VS_CONST_BUFFER_DESCS[static_cast<size_t>(VSConstBuffers::ViewProjection)], nullptr, m_gsConstantBuffers[static_cast<size_t>(VSConstBuffers::ViewProjection)].GetAddressOf());
-	CheckResult(hr, "지오메트리 셰이더용 ViewProjection 상수 버퍼 생성 실패.");
+	for (size_t i = 0; i < static_cast<size_t>(GSConstBuffers::Count); ++i)
+	{
+		hr = m_device->CreateBuffer(&GS_CONST_BUFFER_DESCS[i], nullptr, m_gsConstantBuffers[i].GetAddressOf());
+		CheckResult(hr, "지오메트리 셰이더용 상수 버퍼 생성 실패.");
+	}
 
 	// 픽셀 셰이더용 상수 버퍼 생성
-	// 후처리 상수 버퍼
-	hr = m_device->CreateBuffer(&PS_CONST_BUFFER_DESCS[static_cast<size_t>(PSConstBuffers::PostProcessing)], nullptr, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::PostProcessing)].GetAddressOf());
-	CheckResult(hr, "PostProcessing 상수 버퍼 생성 실패.");
-	// 카메라 위치 상수 버퍼
-	hr = m_device->CreateBuffer(&PS_CONST_BUFFER_DESCS[static_cast<size_t>(PSConstBuffers::CameraPosition)], nullptr, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::CameraPosition)].GetAddressOf());
-	CheckResult(hr, "CameraPosition 상수 버퍼 생성 실패.");
-	// 방향광 상수 버퍼
-	hr = m_device->CreateBuffer(&PS_CONST_BUFFER_DESCS[static_cast<size_t>(PSConstBuffers::GlobalLight)], nullptr, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::GlobalLight)].GetAddressOf());
-	CheckResult(hr, "DirectionalLight 상수 버퍼 생성 실패.");
-	// 재질 팩터 상수 버퍼
-	hr = m_device->CreateBuffer(&PS_CONST_BUFFER_DESCS[static_cast<size_t>(PSConstBuffers::MaterialFactor)], nullptr, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::MaterialFactor)].GetAddressOf());
-	CheckResult(hr, "MaterialFactor 상수 버퍼 생성 실패.");
-	// 디졸브 상수 버퍼
-	hr = m_device->CreateBuffer(&PS_CONST_BUFFER_DESCS[static_cast<size_t>(PSConstBuffers::Dissolve)], nullptr, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::Dissolve)].GetAddressOf());
-	CheckResult(hr, "Dissolve 상수 버퍼 생성 실패.");
-	// 파티클 에미션 상수 버퍼
-	hr = m_device->CreateBuffer(&PS_CONST_BUFFER_DESCS[static_cast<size_t>(PSConstBuffers::ParticleColor)], nullptr, m_psConstantBuffers[static_cast<size_t>(PSConstBuffers::ParticleColor)].GetAddressOf());
-	CheckResult(hr, "ParticleEmission 상수 버퍼 생성 실패.");
+	for (size_t i = 0; i < static_cast<size_t>(PSConstBuffers::Count); ++i)
+	{
+		hr = m_device->CreateBuffer(&PS_CONST_BUFFER_DESCS[i], nullptr, m_psConstantBuffers[i].GetAddressOf());
+		CheckResult(hr, "픽셀 셰이더용 상수 버퍼 생성 실패.");
+	}
 }
 
 void ResourceManager::CreateSamplerStates()

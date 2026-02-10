@@ -3,27 +3,27 @@
     "components": [
         {
             "RestartOnFinish": true,
-            "billboardType": 4,
+            "billboardType": 1,
             "blendState": 1,
-            "imageScale": 1.3600000143051147,
-            "particleAmount": 8168,
+            "imageScale": 10.0,
+            "particleAmount": 182,
             "particleColor": [
                 1.0,
                 0.7960784435272217,
-                0.5058823823928833,
+                0.48235294222831726,
                 0.7333333492279053
             ],
-            "particleConstTime": -1.0,
+            "particleConstTime": 1.4299999475479126,
             "particleEmissionColor": [
                 0.0,
                 0.027450980618596077,
                 0.0,
                 1.0
             ],
-            "particleTotalTime": 63.459999084472656,
+            "particleTotalTime": 0.10000000149011612,
             "psShaderName": "PSParticle.hlsl",
             "rasterState": 2,
-            "spreadDistance": 1.100000023841858,
+            "spreadDistance": 1.399999976158142,
             "spreadRadius": 0.0,
             "textureFileName": "Smoke.png",
             "type": "ParticleComponent",
@@ -35,7 +35,7 @@
                 1.0,
                 1.0
             ],
-            "vsShaderName": "VSParticleFountain.hlsl"
+            "vsShaderName": "VSParticle.hlsl"
         }
     ],
     "name": "Fog",
@@ -52,9 +52,9 @@
         1.0
     ],
     "scale": [
-        50.0,
-        1.0,
-        50.0,
+        10.0,
+        10.0,
+        10.0,
         1.0
     ],
     "type": "GameObjectBase"
