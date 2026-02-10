@@ -72,8 +72,6 @@ public:
     void MainSceneControl();
     void TutorialControl();
 
-
-
 ///GameFlowEND
 
 ///SCORE
@@ -95,4 +93,13 @@ public:
     const int GetMultiplier() { return m_multiplier; }
     void SetMultiplier(int num) { m_multiplier = num; }
 ///SCORE END
+
+///HELPER 
+
+    void ForceShowCursor(bool show){
+        if (show) { while (ShowCursor(TRUE) < 0) {}
+        } else {    while (ShowCursor(FALSE) >= 0) {}  }
+    }
+
+///HELPER END
 };

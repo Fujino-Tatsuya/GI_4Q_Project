@@ -5,6 +5,7 @@
 #include "CameraComponent.h"
 #include "SoundManager.h"
 #include "TimeManager.h"
+#include "GameManager.h"
 
 #include "UIBase.h"
 #include "Button.h"
@@ -17,10 +18,10 @@
 
 REGISTER_TYPE(TitleScene);
 
-//using
-
 void TitleScene::Initialize()
 {
+	GameManager::GetInstance().ForceShowCursor(TRUE);
+
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
 	if (optionPanel) optionPanel->SetActive(false);
@@ -108,13 +109,27 @@ void TitleScene::BindUIActions()
 			} else if (key == "quit_game") {
 				btn->SetOnClick([]() { PostQuitMessage(0); });
 			} else if (key == "open_option") {
-				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(true); });
+				if (optionPanel) btn->SetOnClick([this]() {
+					if (m_isPanel) return;
+					optionPanel->SetActive(true);
+					m_isPanel = true;
+					});
 			} else if (key == "close_option") {
-				if (optionPanel) btn->SetOnClick([this]() { optionPanel->SetActive(false); });
+				if (optionPanel) btn->SetOnClick([this]() {
+					optionPanel->SetActive(false);
+					m_isPanel = false;
+					});
 			} else if (key == "open_credit") {
-				if (optionPanel) btn->SetOnClick([this]() { creditPanel->SetActive(true); });
+				if (optionPanel) btn->SetOnClick([this]() { 
+					if (m_isPanel) return;
+					creditPanel->SetActive(true); 
+					m_isPanel = true;
+					});
 			} else if (key == "close_credit") {
-				if (optionPanel) btn->SetOnClick([this]() { creditPanel->SetActive(false); });
+				if (optionPanel) btn->SetOnClick([this]() { 
+					creditPanel->SetActive(false);
+					m_isPanel = false;
+					});
 			}
 		}
 
@@ -142,8 +157,30 @@ void TitleScene::BindUIActions()
 
 void TitleScene::MovingPanel(float dt)
 {
+	if (!Title_letterrbox_down || !Title_letterrbox_up) return;
+
+	if (!m_letterboxInit)
+	{
+		m_letterboxUpStartPos = Title_letterrbox_up->GetLocalPosition();
+		m_letterboxDownStartPos = Title_letterrbox_down->GetLocalPosition();
+		m_letterboxUpStartDepth = Title_letterrbox_up->GetDepth();
+		m_letterboxDownStartDepth = Title_letterrbox_down->GetDepth();
+		m_letterboxInit = true;
+	}
+
 	if (m_time4MovingPanel >= kTime4MovingPanel) return;
 
-	//Title_letterrbox_down->SetLocalPosition((0.5f, ));
-	//Title_letterrbox_up->SetLocalPosition();
+	m_time4MovingPanel += dt;
+	if (m_time4MovingPanel > kTime4MovingPanel) m_time4MovingPanel = kTime4MovingPanel;
+
+	const float t = m_time4MovingPanel / kTime4MovingPanel;
+	auto Lerp = [](float a, float b, float s) { return a + (b - a) * s; };
+
+	Title_letterrbox_up->SetLocalPosition(
+		{ Lerp(m_letterboxUpStartPos.x, upTargetPos.x, t), Lerp(m_letterboxUpStartPos.y, upTargetPos.y, t) });
+	Title_letterrbox_down->SetLocalPosition(
+		{ Lerp(m_letterboxDownStartPos.x, downTargetPos.x, t), Lerp(m_letterboxDownStartPos.y, downTargetPos.y, t) });
+
+	Title_letterrbox_up->SetDepth(Lerp(m_letterboxUpStartDepth, targetDepth, t));
+	Title_letterrbox_down->SetDepth(Lerp(m_letterboxDownStartDepth, targetDepth, t));
 }

@@ -7,6 +7,7 @@
 #include "SoundManager.h"
 
 #include "TestScene.h"
+#include "TitleScene.h"
 #include "HyojeTestScene.h"
 #include "TaehyeonTestScene.h"
 #include "GameManager.h"

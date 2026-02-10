@@ -64,7 +64,3 @@ void Panel::UpdateRect()
 	};
 }
 
-void Panel::Update()
-{
-	UIBase::Update();
-}

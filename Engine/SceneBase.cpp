@@ -15,6 +15,7 @@
 #include "Button.h"
 #include "Slider.h"
 #include "Panel.h"
+#include "AnimPanel.h"
 #include "Text.h"
 
 using namespace std;
@@ -545,6 +546,8 @@ void SceneBase::RenderImGui_UI()
 
 	if (ImGui::Button("Add Panel"))  CreateUI<Panel>()->SetName("New Panel");
 	ImGui::SameLine();
+	if (ImGui::Button("Add AnimPanel")) CreateUI<AnimPanel>()->SetName("New AnimPanel");
+	ImGui::SameLine();
 	if (ImGui::Button("Add Button")) CreateUI<Button>()->SetName("New Button");
 	ImGui::SameLine();
 	if (ImGui::Button("Add Slider")) CreateUI<Slider>()->SetName("New Slider");
@@ -594,7 +597,6 @@ void SceneBase::RenderImGui_UI()
 
 	if (m_selectedUI) {
 		ImGui::TextColored(ImVec4(0, 1, 0, 1), "Inspector: %s", m_selectedUI->GetName().c_str());
-		ImGui::Separator();
 
 		static char nameBuf[128];
 		strcpy_s(nameBuf, m_selectedUI->GetName().c_str());
@@ -610,8 +612,6 @@ void SceneBase::RenderImGui_UI()
 			m_selectedUI->SetParent(nullptr);
 		}
 
-		ImGui::Separator();
-
 		bool active = m_selectedUI->GetActive();
 		if (ImGui::Checkbox("Active", &active)) m_selectedUI->SetActive(active);
 
@@ -624,7 +624,8 @@ void SceneBase::RenderImGui_UI()
 		float depth = m_selectedUI->GetDepth();
 		if (ImGui::DragFloat("Depth", &depth, 0.01f, 0.0f, 1.0f)) m_selectedUI->SetDepth(depth);
 
-		ImGui::Separator();
+			ImGui::Separator();
+		}
 
 
 
@@ -813,26 +814,27 @@ void SceneBase::RenderImGui_UI()
 				ImGui::TreePop();
 			}
 		}
-
-		ImGui::Separator();
-		ImGui::TextColored(ImVec4(0.8f, 1.f, .8f, 1.0f), "Animation");
+		else if (auto* animPanel = dynamic_cast<AnimPanel*>(m_selectedUI)) {
+			ImGui::Separator();
+			ImGui::TextColored(ImVec4(0.8f, 1.f, .8f, 1.0f), "Animation");
 
 		bool changed = false;
-		changed |= ImGui::DragInt("Rows", &m_selectedUI->m_rows, 1, 1, 128);
-		changed |= ImGui::DragInt("Columns", &m_selectedUI->m_columns, 1, 1, 128);
-		changed |= ImGui::DragInt("Start Frame", &m_selectedUI->m_startFrame, 1, 0, 4095);
-		changed |= ImGui::DragInt("End Frame", &m_selectedUI->m_endFrame, 1, 1, 4096);
-		changed |= ImGui::DragFloat("FPS", &m_selectedUI->m_framesPerSecond, 0.1f, 0.0f, 120.0f);
-		changed |= ImGui::DragFloat("Playback Speed", &m_selectedUI->playback_speed_, 0.1f, 0.1f, 4.0f);
-		ImGui::Checkbox("Loop", &m_selectedUI->m_loop);
-		ImGui::Checkbox("Auto Play", &m_selectedUI->auto_play_);
-		ImGui::Checkbox("Destroy On Finish", &m_selectedUI->destroy_on_finish_);
+		changed |= ImGui::DragInt("Rows", &animPanel->m_rows, 1, 1, 128);
+		changed |= ImGui::DragInt("Columns", &animPanel->m_columns, 1, 1, 128);
+		changed |= ImGui::DragInt("Start Frame", &animPanel->m_startFrame, 1, 0, 4095);
+		changed |= ImGui::DragInt("End Frame", &animPanel->m_endFrame, 1, 1, 4096);
+		changed |= ImGui::DragFloat("FPS", &animPanel->m_framesPerSecond, 0.1f, 0.0f, 120.0f);
+		changed |= ImGui::DragFloat("Playback Speed", &animPanel->playback_speed_, 0.1f, 0.1f, 4.0f);
+		ImGui::Checkbox("Loop", &animPanel->m_loop);
+		ImGui::Checkbox("Auto Play", &animPanel->auto_play_);
+		ImGui::Checkbox("Destroy On Finish", &animPanel->destroy_on_finish_);
+		if (changed) animPanel->UpdateFlipBookRect();
 
-		ImGui::Text("Current Frame: %d / %d", m_selectedUI->m_currentFrame + 1, m_selectedUI->m_endFrame);
+		ImGui::Text("Current Frame: %d / %d", animPanel->m_currentFrame + 1, animPanel->m_endFrame);
 
-		if (m_selectedUI->m_textureIdle.first) {
+		if (animPanel->m_textureIdle.first) {
 			const ImVec2 previewSize(200.0f, 200.0f);
-			const ImTextureID textureId = reinterpret_cast<ImTextureID>(m_selectedUI->m_textureIdle.first.Get());
+			const ImTextureID textureId = reinterpret_cast<ImTextureID>(animPanel->m_textureIdle.first.Get());
 			ImGui::Image(textureId, previewSize);
 
 			const ImVec2 p0 = ImGui::GetItemRectMin();
@@ -844,7 +846,7 @@ void SceneBase::RenderImGui_UI()
 
 			{
 				com_ptr<ID3D11Resource> res;
-				m_selectedUI->GetTexture()->GetResource(res.GetAddressOf());
+				animPanel->GetTexture()->GetResource(res.GetAddressOf());
 				com_ptr<ID3D11Texture2D> tex2D;
 				if (res && SUCCEEDED(res.As(&tex2D))) {
 					D3D11_TEXTURE2D_DESC desc;
@@ -854,7 +856,7 @@ void SceneBase::RenderImGui_UI()
 				}
 			}
 
-			const RECT& currentRect = m_selectedUI->GetRect(); // 현재 프레임의 RECT
+			const RECT& currentRect = animPanel->m_UIAnimationRect;
 
 			float uvLeft = (float)currentRect.left / (float)texW;
 			float uvTop = (float)currentRect.top / (float)texH;
@@ -878,7 +880,11 @@ void SceneBase::RenderImGui_UI()
 		ImGui::Separator();
 
 
-	} else {
+		}
+
+
+ 
+	 else {
 		ImGui::TextDisabled("Select UI to edit");
 	}
 

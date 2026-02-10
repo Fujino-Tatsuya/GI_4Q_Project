@@ -11,6 +11,8 @@ class TestScene : public SceneBase
 	float m_spawnInterval = 3.0f;
 	std::vector<DirectX::XMVECTOR> m_spawnPoints = {};
 
+	class Panel* optionPanel = nullptr;
+
 public:
 	TestScene() = default;
 	~TestScene() override = default;
@@ -23,6 +25,8 @@ private:
 	void Initialize() override;
 	void Update() override;
 	void Render() override;
+	void BindUIActions() override;
+
 	#ifdef _DEBUG
 	void RenderImGui() override;
 	#endif
