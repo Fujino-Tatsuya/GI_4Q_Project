@@ -1,509 +1,5 @@
 {
-    "UI": [
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.10000000149011612,
-            "name": "option",
-            "parentIdx": -1,
-            "pathIdle": "",
-            "pos": [
-                0.5,
-                0.5
-            ],
-            "scale": 1.0,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.10999999940395355,
-            "handleColorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "handleColorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "handleColorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "handlePathHover": "UI_Slider.png",
-            "handlePathIdle": "UI_Slider.png",
-            "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
-            "handleScalePressed": 1.0,
-            "max": 1.0,
-            "min": 0.0,
-            "name": "sound",
-            "parentIdx": 0,
-            "pathIdle": "",
-            "pos": [
-                0.03999999910593033,
-                -0.23000000417232513
-            ],
-            "scale": 0.9300000071525574,
-            "type": "Slider",
-            "value": 0.6713780760765076
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "depth": 0.10999999940395355,
-            "fontName": "Gugi",
-            "name": "sound",
-            "parentIdx": 1,
-            "pathIdle": "",
-            "pos": [
-                -0.3400000035762787,
-                -0.019999999552965164
-            ],
-            "scale": 1.7200000286102295,
-            "text": "Sound1",
-            "textColor": [
-                1.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "actionKey": "close_option",
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorClicked": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "depth": 0.12999999523162842,
-            "name": "close",
-            "parentIdx": 0,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
-            "pathIdle": "",
-            "pathPressed": "UI_Pressed.png",
-            "pos": [
-                0.23999999463558197,
-                -0.36000001430511475
-            ],
-            "scale": 0.23000000417232513,
-            "scaleClicked": 1.0,
-            "scaleHover": 1.0,
-            "scalePressed": 0.949999988079071,
-            "type": "Button"
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.009999999776482582,
-            "name": "logo",
-            "parentIdx": 9,
-            "pathIdle": "UI_logo.png",
-            "pos": [
-                0.5,
-                0.27000001072883606
-            ],
-            "scale": 0.3799999952316284,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.029999999329447746,
-            "name": "cha_pose",
-            "parentIdx": 9,
-            "pathIdle": "UI_cha_pose.png",
-            "pos": [
-                0.25,
-                0.6200000047683716
-            ],
-            "scale": 0.5299999713897705,
-            "type": "Panel"
-        },
-        {
-            "actionKey": "open_option",
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorClicked": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "depth": 0.009999999776482582,
-            "name": "option",
-            "parentIdx": 7,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
-            "pathIdle": "UI_IDLE.png",
-            "pathPressed": "UI_Pressed.png",
-            "pos": [
-                0.0,
-                0.23000000417232513
-            ],
-            "scale": 0.800000011920929,
-            "scaleClicked": 1.0,
-            "scaleHover": 1.0,
-            "scalePressed": 0.949999988079071,
-            "type": "Button"
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 1.0,
-            "name": "buttons",
-            "parentIdx": 9,
-            "pathIdle": "UI__.png",
-            "pos": [
-                0.75,
-                0.6499999761581421
-            ],
-            "scale": 0.10000000149011612,
-            "type": "Panel"
-        },
-        {
-            "actionKey": "start_game",
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorClicked": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "depth": 0.009999999776482582,
-            "name": "start_game",
-            "parentIdx": 7,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
-            "pathIdle": "UI_IDLE.png",
-            "pathPressed": "UI_Pressed.png",
-            "pos": [
-                0.0,
-                -0.23000000417232513
-            ],
-            "scale": 0.800000011920929,
-            "scaleClicked": 1.0,
-            "scaleHover": 1.0,
-            "scalePressed": 0.949999988079071,
-            "type": "Button"
-        },
-        {
-            "active": false,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 1.0,
-            "name": "title",
-            "parentIdx": -1,
-            "pathIdle": "UI__.png",
-            "pos": [
-                0.0,
-                0.0
-            ],
-            "scale": 0.7200000286102295,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "title_bg",
-            "parentIdx": 9,
-            "pathIdle": "UI_OptionBG.png",
-            "pos": [
-                0.5,
-                0.5
-            ],
-            "scale": 0.7300000190734863,
-            "type": "Panel"
-        },
-        {
-            "actionKey": "quit_game",
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorClicked": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "depth": 0.009999999776482582,
-            "name": "quit_game",
-            "parentIdx": 7,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
-            "pathIdle": "UI_IDLE.png",
-            "pathPressed": "UI_Pressed.png",
-            "pos": [
-                0.0,
-                0.0
-            ],
-            "scale": 0.800000011920929,
-            "scaleClicked": 1.0,
-            "scaleHover": 1.0,
-            "scalePressed": 0.949999988079071,
-            "type": "Button"
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "result",
-            "parentIdx": -1,
-            "pathIdle": "UI__.png",
-            "pos": [
-                0.0,
-                0.0
-            ],
-            "scale": 0.10000000149011612,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "animAutoPlay": true,
-            "animCols": 1,
-            "animFPS": 8.0,
-            "animLoop": true,
-            "animRows": 1,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "result_bg",
-            "parentIdx": 12,
-            "pathIdle": "UI_OptionBG.png",
-            "pos": [
-                0.5,
-                0.5
-            ],
-            "scale": 0.9900000095367432,
-            "type": "Panel"
-        },
-      {
-        "active": true,
-        "animAutoPlay": true,
-        "animCols": 1,
-        "animFPS": 8.0,
-        "animLoop": true,
-        "animRows": 1,
-        "colorIdle": [
-          1.0,
-          1.0,
-          1.0,
-          1.0
-        ],
-        "depth": 0.0,
-        "fontName": "SuperCrawler72",
-        "name": "result_time",
-        "parentIdx": 12,
-        "pathIdle": "UI_IDLE.png",
-        "pos": [
-          0.05999999865889549,
-          0.25
-        ],
-        "scale": 3.0,
-        "text": "Text",
-        "textColor": [
-          1.0,
-          1.0,
-          1.0,
-          1.0
-        ],
-        "type": "Text"
-      }
-    ],
+    "UI": [],
     "environmentMapFileName": "Skybox0.dds",
     "lightColor": [
         1.0,
@@ -760,6 +256,76 @@
                 1.0
             ],
             "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "box.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "TheGun",
+            "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "GameObjectBase"
         }
-    ]
+    ],
+    "skyboxFileName": "Skybox.dds"
 }
