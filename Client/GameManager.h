@@ -106,6 +106,9 @@ public:
 
 ///RANKING
     void SaveRankings() const;
+    void LoadRankings();
+    void AddScore(const std::string& name, int score);
+    const std::vector<std::pair<std::string, int>>& GetTopScores() const { return m_rankings; }
 ///RANKING END
 
 };

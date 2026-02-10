@@ -11,6 +11,13 @@
 using namespace std;
 using namespace DirectX;
 
+
+namespace
+{
+	const char* kRankingsFile = "rankings.json";
+}
+
+
 void GameManager::Initialize()
 {
 }
@@ -288,4 +295,56 @@ void GameManager::OnPlayerHit()
 void GameManager::OnRhythmMiss()
 {
 	m_killCountForNextLevel = 0;
+}
+
+
+void GameManager::LoadRankings()
+{
+	m_rankings.clear();
+
+	ifstream file(kRankingsFile);
+	if (!file.is_open())
+		return;
+
+	nlohmann::json data = {};
+	file >> data;
+	file.close();
+
+	if (!data.contains("rankings") || !data["rankings"].is_array())
+		return;
+
+	for (const auto& entry : data["rankings"]) {
+		if (!entry.is_object())
+			continue;
+
+		const auto nameIt = entry.find("name");
+		const auto scoreIt = entry.find("score");
+		if (nameIt == entry.end() || scoreIt == entry.end())
+			continue;
+		if (!nameIt->is_string() || !scoreIt->is_number_integer())
+			continue;
+
+		m_rankings.emplace_back(nameIt->get<string>(), scoreIt->get<int>());
+	}
+
+	sort(m_rankings.begin(), m_rankings.end(), [](const auto& left, const auto& right) {
+		return left.second > right.second;
+		});
+
+	if (m_rankings.size() > 10)
+		m_rankings.resize(10);
+}
+
+void GameManager::SaveRankings() const
+{
+	nlohmann::json data = nlohmann::json::object();
+	data["rankings"] = nlohmann::json::array();
+
+	for (const auto& [name, score] : m_rankings) {
+		data["rankings"].push_back({ { "name", name }, { "score", score } });
+	}
+
+	ofstream file(kRankingsFile);
+	file << data.dump(4);
+	file.close();
 }
