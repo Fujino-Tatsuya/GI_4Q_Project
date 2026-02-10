@@ -91,6 +91,7 @@ void TestScene::Finalize()
 {
 	GameManager::GetInstance().OnSceneExit();
 	SoundManager::GetInstance().Stop_ChannelGroup();
+	
 }
 
 nlohmann::json TestScene::Serialize()

@@ -9,7 +9,7 @@ using namespace DirectX;
 
 Button::Button()
 {
-	SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
+	SetTextureAndOffset("UI_Button.png", "UI_Button_hover.png", "UI_Button_hover.png", "UI_Button_hover.png");
 }
 
 void Button::UpdateRect()
