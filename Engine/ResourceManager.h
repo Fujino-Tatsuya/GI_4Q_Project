@@ -56,6 +56,8 @@ public:
 
 	// 블렌드 상태 얻기
 	com_ptr<ID3D11BlendState> GetBlendState(BlendState state) { return m_blendStates[static_cast<size_t>(state)]; }
+	// 샘플러 상태 get
+	com_ptr<ID3D11SamplerState> GetSamplerState(SamplerState state) { return m_samplerStates[static_cast<size_t>(state)]; }
 
 	// 블렌드 상태 설정
 	void SetBlendState(BlendState state);

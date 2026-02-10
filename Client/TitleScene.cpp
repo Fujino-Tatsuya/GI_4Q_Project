@@ -72,7 +72,7 @@ void TitleScene::Initialize()
 	//exitbutton->SetLocalPosition({ buttonX, 0.9f });
 	//exitbutton->SetScale(0.3f);
 
-	//SoundManager::GetInstance().Ambience_Shot(Config::Ambience);
+	SoundManager::GetInstance().Ambience_Shot(Config::Ambience);
 }
 
 void TitleScene::Update()

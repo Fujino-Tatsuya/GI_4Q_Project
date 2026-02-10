@@ -57,6 +57,7 @@ enum class BlendState
 	Opaque,
 	AlphaToCoverage,
 	AlphaBlend,
+	AlphaBlendPremultiplied,
 
 	Count
 };
@@ -119,6 +120,27 @@ constexpr std::array<D3D11_BLEND_DESC, static_cast<size_t>(BlendState::Count)> B
 				.BlendOp = D3D11_BLEND_OP_ADD, // 두 값을 더하기
 				.SrcBlendAlpha = D3D11_BLEND_ONE, // 소스 알파 유지
 				.DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA, // 대상 알파 혼합
+				.BlendOpAlpha = D3D11_BLEND_OP_ADD,
+				.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL
+			}
+		}
+	},
+
+	// AlphaBlendPremultiplied
+	D3D11_BLEND_DESC
+	{
+		.AlphaToCoverageEnable = FALSE,
+		.IndependentBlendEnable = FALSE,
+		.RenderTarget =
+		{
+			D3D11_RENDER_TARGET_BLEND_DESC
+			{
+				.BlendEnable = TRUE,
+				.SrcBlend = D3D11_BLEND_ONE,
+				.DestBlend = D3D11_BLEND_INV_SRC_ALPHA,
+				.BlendOp = D3D11_BLEND_OP_ADD,
+				.SrcBlendAlpha = D3D11_BLEND_ONE,
+				.DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA,
 				.BlendOpAlpha = D3D11_BLEND_OP_ADD,
 				.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL
 			}
@@ -203,6 +225,7 @@ enum class SamplerState
 	BackBuffer, // 백 버퍼 전용 샘플러 상태
 	Default,
 	ShadowMap,
+	UI,
 
 	Count
 };
@@ -251,6 +274,21 @@ constexpr std::array<D3D11_SAMPLER_DESC, static_cast<size_t>(SamplerState::Count
 		.BorderColor = { 1.0f, 1.0f, 1.0f, 1.0f }, // 테두리 색상 흰색
 		.MinLOD = 0,
 		.MaxLOD = D3D11_FLOAT32_MAX
+	},
+
+	// UI
+	D3D11_SAMPLER_DESC
+	{
+	.Filter = D3D11_FILTER_MIN_MAG_LINEAR_MIP_POINT,
+	.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP,
+	.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP,
+	.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP,
+	.MipLODBias = 0.0f,
+	.MaxAnisotropy = 1,
+	.ComparisonFunc = D3D11_COMPARISON_NEVER,
+	.BorderColor = { 0,0,0,0 },
+	.MinLOD = 0,
+	.MaxLOD = 0
 	}
 };
 
@@ -534,7 +572,7 @@ struct PostProcessingBuffer
 
 	DirectX::XMFLOAT4 vignettingColor = { 0.0f, 0.0f, 0.0f, 0.0f }; // 비네팅 색상 // w는 강도
 	DirectX::XMFLOAT4 radialBlurParam = { 0.5f, 0.5f, 0.33f, 1.7f }; //x,y = Center # z = Distance #  w = Strength
-	
+
 	float lutLerpFactor = 0;
 	DirectX::XMFLOAT3 PADDING = { 0,0,0 };
 };
@@ -785,7 +823,7 @@ constexpr std::array<std::pair<size_t, size_t>, 12> BOX_LINE_INDICES =
 
 struct LUTData
 {
-	enum 
+	enum
 	{
 #define X(name) name,
 		LUT_LIST
@@ -802,7 +840,7 @@ struct LUTData
 
 struct NoiseData
 {
-	enum 
+	enum
 	{
 #define X(name) name,
 		Noise_LIST
