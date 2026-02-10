@@ -55,7 +55,7 @@ class GameManager : public Singleton<GameManager>
     void TempPrint();   // UI에 넣기 전에 저장할 위치
 ///SCORE END
 
-///RANKING
+///RANKING -> LOG
     std::vector<std::pair<std::string, int>> m_rankings;
 ///RANKING END
 
@@ -104,7 +104,7 @@ public:
     }
 ///HELPER END
 
-///RANKING
+///RANKING -> LOG
     void SaveRankings() const;
     void LoadRankings();
     void AddScore(const std::string& name, int score);
