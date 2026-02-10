@@ -25,19 +25,6 @@ REGISTER_TYPE(Player)
 using namespace std;
 using namespace DirectX;
 
-void Player::TakeHit()
-{
-	if (m_invincibilityTimer > 0.0f) return;
-
-	m_playerHitPoint--;
-	GameManager::GetInstance().OnPlayerHit();
-
-	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
-	SceneBase::SetVignettingColor({ 1.0f, 0.0f, 0.0f });
-	m_redVignetteIntensity = 0.25f;
-	m_invincibilityTimer = m_invincibilityDuration;
-}
-
 void Player::Initialize()
 {
 	XMStoreFloat3(&m_playerRotation, GetRotation());
@@ -76,7 +63,7 @@ void Player::Update()
 
 	TutorialStep();
 	
-	if (										   m_ControlState.CanAutoReload && m_bulletCnt == 0 )																	PlayerAutoReload(0);
+	if (										   m_ControlState.CanAutoReload && m_bulletCnt == 0 )																	PlayerAutoReload(1);
 	if (input.GetKeyDown(KeyCode::MouseLeft)	&& m_ControlState.CanShoot		&& m_bulletCnt > 0		&&	sm.CheckRhythm(Config::InputCorrection) < InputType::Miss)	PlayerShoot();
 	if (input.GetKeyDown(KeyCode::Space)		&& m_ControlState.CanDash		&& !m_isDashing 		&&	sm.CheckRhythm(Config::InputCorrection) < InputType::Miss)	PlayerTriggerDash();
 	if (input.GetKeyDown(KeyCode::MouseRight)	&& m_ControlState.CanSkill		&& !m_isDeadEyeActive	&&	sm.CheckRhythm(Config::InputCorrection) < InputType::Miss)	PlayerDeadEyeStart();
@@ -168,6 +155,19 @@ void Player::TutorialStep() const
 		if (m_isDeadEyeActive) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
 		break;
 	}
+}
+
+void Player::TakeHit()
+{
+	if (m_invincibilityTimer > 0.0f) return;
+
+	m_playerHitPoint--;
+	GameManager::GetInstance().OnPlayerHit();
+
+	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
+	SceneBase::SetVignettingColor({ 1.0f, 0.0f, 0.0f });
+	m_redVignetteIntensity = 0.25f;
+	m_invincibilityTimer = m_invincibilityDuration;
 }
 
 void Player::SetAction(Action state, bool enabled)
@@ -323,28 +323,57 @@ void Player::PlayerReload(int cnt)
 
 void Player::PlayerAutoReload(int cnt)
 {
+	m_bulletCnt = -1;
+
 	m_ControlState.CanAutoReload = false;
 	m_ControlState.CanShoot = false;
-	SoundManager::GetInstance().AddNodeDestroyedListenerOnce([this,count = cnt]()mutable ->bool
+
+	ReloadState reloadState = ReloadState::WaitSpin;
+
+	SoundManager::GetInstance().AddNodeDestroyedListenerOnce(
+		[this, state = reloadState, waitCount = cnt]() mutable -> bool
 		{
-			if (count-- > 0) { return false; }
-
-			SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Spin);
-
-			SoundManager::GetInstance().AddNodeDestroyedListenerOnce([this, secondcount = 1]()mutable ->bool
+			switch (state)
+			{
+			case ReloadState::WaitSpin:
+				std::cout << waitCount;
+				if (--waitCount == 0)
 				{
-					if (secondcount-- > 0) { return false; }
+					SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Spin);
+					state = ReloadState::WaitCock;
+					waitCount = 1;
+					std::cout << "WaitSpin" << std::endl;
+					m_ControlState.CanAutoReload = false;
+					m_ControlState.CanShoot = false;
+				}
+				return false;
 
+			case ReloadState::WaitCock:
+				std::cout << waitCount;
+				if (--waitCount == 0)
+				{
 					SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Cocking);
-
 					m_bulletCnt = m_MaxBullet;
+
+					state = ReloadState::WaitEnableShoot;
+					waitCount = 1;
+					std::cout << "WaitCock" << std::endl;
+					m_ControlState.CanAutoReload = false;
+					m_ControlState.CanShoot = false;
+					
+				}
+				return false;
+
+			case ReloadState::WaitEnableShoot:
+				if (--waitCount == 0)
+				{
 					m_ControlState.CanAutoReload = true;
 					m_ControlState.CanShoot = true;
-
+					std::cout << "WaitEnableShoot" << std::endl;
 					return true;
-				});
-
-			return true;
+				}
+				return false;
+			}
 		});
 }
 
@@ -556,7 +585,7 @@ void Player::RenderBullets(class Renderer& renderer)
 	for (int i = 0; i < m_bulletCnt; i++)
 	{
 		pos = m_bulletUIpos.first + (m_bulletInterval * i);
-		renderer.UI_RENDER_FUNCTIONS().emplace_back([&,pos]() { Renderer::GetInstance().RenderImageUIPosition(m_bulletImgs.first, { pos, m_bulletUIpos.second }, m_bulletImgs.second, 0.1f); });
+		renderer.UI_RENDER_FUNCTIONS().emplace_back([&,pos]() { Renderer::GetInstance().RenderImageNrmPosition(m_bulletImgs.first, { pos, m_bulletUIpos.second }, m_bulletImgs.second, 0.1f); });
 	}
 }
 

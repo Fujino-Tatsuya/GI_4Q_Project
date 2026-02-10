@@ -83,6 +83,11 @@ void Renderer::RenderImageUIPosition(com_ptr<ID3D11ShaderResourceView> texture, 
 	RenderImageScreenPosition(texture, { position.x, position.y }, offset, scale, color, depth, srcRect); //pixel position
 }
 
+void Renderer::RenderImageNrmPosition(com_ptr<ID3D11ShaderResourceView> texture, XMFLOAT2 position, XMFLOAT2 offset, float scale, const XMVECTOR& color, float depth, const RECT* srcRect)
+{
+	RenderImageScreenPosition(texture, { position.x * static_cast<float>(m_swapChainDesc.Width), position.y * static_cast<float>(m_swapChainDesc.Height) }, offset, scale, color, depth, srcRect); //pixel position
+}
+
 void Renderer::EndFrame()
 {
 	HRESULT hr = S_OK;

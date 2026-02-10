@@ -50,7 +50,10 @@ void GameManager::OnSceneUpdate()
 		break;
 
 	case EScene::Main:
-		MainSceneControl();
+		if (m_MainState == EMainState::Tutorial)
+		{
+			MainSceneControl();
+		}
 		ScoreUpdate();
 		break;
 
@@ -145,6 +148,7 @@ void GameManager::TutorialControl()
 
 	case ETutorialStep::End:
 		p->SetAction(Action::All, true);
+		m_MainState = EMainState::Stage1;
 		break;
     }
 }

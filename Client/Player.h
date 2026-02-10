@@ -22,6 +22,14 @@ struct ControlState
 	bool CanAutoReload = false;
 };
 
+enum class ReloadState
+{
+	WaitSpin,
+	WaitCock,
+	WaitEnableShoot,
+	Done
+};
+
 class Player : public GameObjectBase
 {
 	friend class GameManager;

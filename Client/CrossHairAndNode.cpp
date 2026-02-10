@@ -95,19 +95,29 @@ void CrossHairAndNode::Deserialize(const nlohmann::json& jsonData)
 
 void CrossHairAndNode::RenderUINode(Renderer& renderer)
 {
+	auto nodes = m_UINode;
+
+	const float nodeStart = m_NodeStart;
+	const float nodeEnd = m_NodeEnd;
+	const float startSize = m_NodeStartSize;
+	const float endSize = m_NodeEndSize;
+
+	auto tex = m_NodeAndOffset.first;
+	auto off = m_NodeAndOffset.second;
+
 	renderer.UI_RENDER_FUNCTIONS().emplace_back
 	(
-		[&]()
+		[nodes, nodeStart, nodeEnd, startSize, endSize, tex, off]()
 		{
-			for (const auto& time : m_UINode)
+			for (const auto& time : nodes)
 			{
 				float temp = time / SoundManager::GetInstance().GetRhythmOffset();
 
-				float pos = std::clamp(std::lerp(m_NodeEnd, m_NodeStart, temp), 0.0f, m_NodeEnd);
-				float scale = std::clamp(std::lerp(m_NodeStartSize, m_NodeEndSize, temp), 0.0f, 1.0f);
+				float pos = std::clamp(std::lerp(nodeEnd, nodeStart, temp), 0.0f, nodeEnd);
+				float scale = std::clamp(std::lerp(startSize, endSize, temp), 0.0f, 1.0f);
 
-				Renderer::GetInstance().RenderImageUIPosition(m_NodeAndOffset.first, { pos, 0.5f }, m_NodeAndOffset.second, scale);
-				Renderer::GetInstance().RenderImageUIPosition(m_NodeAndOffset.first, { 1.0f - pos, 0.5f }, m_NodeAndOffset.second, -scale);
+				Renderer::GetInstance().RenderImageNrmPosition(tex, { pos, 0.5f }, off, scale);
+				Renderer::GetInstance().RenderImageNrmPosition(tex, { 1.0f - pos, 0.5f }, off, -scale);
 			}
 		}
 	);
@@ -138,9 +148,9 @@ void CrossHairAndNode::ResizeMiddleCH(InputManager& input, float delta)
 
 void CrossHairAndNode::RenderCrossHair(Renderer& renderer)
 {
-	renderer.UI_RENDER_FUNCTIONS().emplace_back([&]() { Renderer::GetInstance().RenderImageUIPosition(m_crosshairTextureAndOffset.first, { 0.5f, 0.5f }, m_crosshairTextureAndOffset.second, m_CrossHairSize); });
-	renderer.UI_RENDER_FUNCTIONS().emplace_back([&]() { Renderer::GetInstance().RenderImageUIPosition(m_RhythmLineTextureAndOffset.first, { m_linePos, 0.5f }, m_RhythmLineTextureAndOffset.second, m_lineScl); });
-	renderer.UI_RENDER_FUNCTIONS().emplace_back([&]() { Renderer::GetInstance().RenderImageUIPosition(m_RhythmLineTextureAndOffset.first, { 1-m_linePos, 0.5f }, m_RhythmLineTextureAndOffset.second, m_lineScl); });
+	renderer.UI_RENDER_FUNCTIONS().emplace_back([&]() { Renderer::GetInstance().RenderImageNrmPosition(m_crosshairTextureAndOffset.first, { 0.5f, 0.5f }, m_crosshairTextureAndOffset.second, m_CrossHairSize); });
+	renderer.UI_RENDER_FUNCTIONS().emplace_back([&]() { Renderer::GetInstance().RenderImageNrmPosition(m_RhythmLineTextureAndOffset.first, { m_linePos, 0.5f }, m_RhythmLineTextureAndOffset.second, m_lineScl); });
+	renderer.UI_RENDER_FUNCTIONS().emplace_back([&]() { Renderer::GetInstance().RenderImageNrmPosition(m_RhythmLineTextureAndOffset.first, { 1-m_linePos, 0.5f }, m_RhythmLineTextureAndOffset.second, m_lineScl); });
 }
 
 void CrossHairAndNode::GenerateNode()

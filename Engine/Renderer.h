@@ -129,6 +129,7 @@ public:
 	// UI 좌표계
 	void RenderImageUIPosition(com_ptr<ID3D11ShaderResourceView> texture, DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 offset, float scale = 1.0f, const DirectX::XMVECTOR& color = DirectX::XMVECTOR{ 1.0f, 1.0f, 1.0f, 1.0f }, float depth = 0.0f, const RECT* srcRect = nullptr);
 
+	void RenderImageNrmPosition(com_ptr<ID3D11ShaderResourceView> texture, DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 offset, float scale = 1.0f, const DirectX::XMVECTOR& color = DirectX::XMVECTOR{ 1.0f, 1.0f, 1.0f, 1.0f }, float depth = 0.0f, const RECT* srcRect = nullptr);
 	// 프레임 종료 // 화면에 내용 출력
 	void EndFrame();
 
