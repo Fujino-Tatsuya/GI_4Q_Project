@@ -171,7 +171,6 @@ void Renderer::Resize(UINT width, UINT height)
 	constexpr ID3D11RenderTargetView* nullRTV = nullptr;
 	m_deviceContext->OMSetRenderTargets(1, &nullRTV, nullptr);
 
-	m_deviceContext->ClearState();
 	m_deviceContext->Flush();
 
 	// 백 버퍼 리소스 해제
