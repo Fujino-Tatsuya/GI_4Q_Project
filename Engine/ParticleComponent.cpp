@@ -64,6 +64,8 @@ void ParticleComponent::Render()
 		[&]()
 		{
 			ResourceManager& resourceManager = ResourceManager::GetInstance();
+
+			resourceManager.SetDepthStencilState(DepthStencilState::Particle);
 			resourceManager.SetRasterState(m_rasterState);
 
 			// 상수 버퍼 업데이트
@@ -82,6 +84,8 @@ void ParticleComponent::Render()
 			m_deviceContext->PSSetShaderResources(static_cast<UINT>(TextureSlots::BaseColor), 1, particle_texture_srv_.GetAddressOf());
 
 			m_deviceContext->DrawInstanced(4, m_particleAmount, 0, 0);
+
+			resourceManager.SetDepthStencilState(DepthStencilState::Default);
 		}
 	);
 }

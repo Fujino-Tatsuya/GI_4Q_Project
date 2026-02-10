@@ -4,7 +4,7 @@
         {
             "RestartOnFinish": true,
             "billboardType": 1,
-            "blendState": 1,
+            "blendState": 2,
             "imageScale": 10.0,
             "particleAmount": 182,
             "particleColor": [
