@@ -50,6 +50,12 @@ protected:
 	TimeBuffer m_timeData = {}; // 시간 상수 버퍼 데이터
 	com_ptr<ID3D11Buffer> m_timeConstantBuffer = nullptr; // 시간 상수 버퍼
 
+	// 지오메트리 셰이더용 상수 버퍼
+	#ifdef _DEBUG
+	NormalViewProjectionBuffer m_viewProjectionForNormalData = {}; // 법선 렌더링용 뷰-투영 상수 버퍼 데이터
+	com_ptr<ID3D11Buffer> m_viewProjectionForNormalConstantBuffer = nullptr; // 법선 렌더링용 뷰-투영 상수 버퍼
+	#endif
+
 	// 픽셀 셰이더용 상수 버퍼
 	CameraPositionBuffer m_cameraPositionData = {}; // 카메라 위치 상수 버퍼 데이터
 	com_ptr<ID3D11Buffer> m_cameraPositionConstantBuffer = nullptr; // 카메라 위치 상수 버퍼

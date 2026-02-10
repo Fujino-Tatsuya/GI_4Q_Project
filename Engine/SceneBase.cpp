@@ -1152,24 +1152,27 @@ void SceneBase::GetResources()
 {
 	ResourceManager& resourceManager = ResourceManager::GetInstance();
 
-	m_skyboxVertexShaderAndInputLayout = resourceManager.GetVertexShaderAndInputLayout("VSSkybox.hlsl"); 
+	m_skyboxVertexShaderAndInputLayout = resourceManager.GetVertexShaderAndInputLayout("VSSkybox.hlsl");
 	m_skyboxPixelShader = resourceManager.GetPixelShader("PSSkybox.hlsl");
-	m_shadowMapPixelShader = resourceManager.GetPixelShader("PSShadow.hlsl"); 
+	m_shadowMapPixelShader = resourceManager.GetPixelShader("PSShadow.hlsl");
 
 	#ifdef _DEBUG
-	m_debugCoordinateVertexShaderAndInputLayout = resourceManager.GetVertexShaderAndInputLayout("VSCoordinateLine.hlsl"); 
-	m_debugCoordinatePixelShader = resourceManager.GetPixelShader("PSColor.hlsl"); 
+	m_debugCoordinateVertexShaderAndInputLayout = resourceManager.GetVertexShaderAndInputLayout("VSCoordinateLine.hlsl");
+	m_debugCoordinatePixelShader = resourceManager.GetPixelShader("PSColor.hlsl");
 	#endif
 
 	m_skyboxSRV = resourceManager.GetTexture(m_skyboxFileName);
-	m_environmentMapSRV = resourceManager.GetTexture(m_environmentMapFileName); 
+	m_environmentMapSRV = resourceManager.GetTexture(m_environmentMapFileName);
 
-	m_viewProjectionConstantBuffer = resourceManager.GetConstantBuffer(VSConstBuffers::ViewProjection); 
-	m_skyboxViewProjectionConstantBuffer = resourceManager.GetConstantBuffer(VSConstBuffers::SkyboxViewProjection); 
+	m_viewProjectionConstantBuffer = resourceManager.GetConstantBuffer(VSConstBuffers::ViewProjection);
+	#ifdef _DEBUG
+	m_viewProjectionForNormalConstantBuffer = resourceManager.GetConstantBuffer(GSConstBuffers::NormalViewProjection);
+	#endif
+	m_skyboxViewProjectionConstantBuffer = resourceManager.GetConstantBuffer(VSConstBuffers::SkyboxViewProjection);
 	m_timeConstantBuffer = resourceManager.GetConstantBuffer(VSConstBuffers::Time);
 
-	m_cameraPositionConstantBuffer = resourceManager.GetConstantBuffer(PSConstBuffers::CameraPosition); 
-	m_globalLightConstantBuffer = resourceManager.GetConstantBuffer(PSConstBuffers::GlobalLight); 
+	m_cameraPositionConstantBuffer = resourceManager.GetConstantBuffer(PSConstBuffers::CameraPosition);
+	m_globalLightConstantBuffer = resourceManager.GetConstantBuffer(PSConstBuffers::GlobalLight);
 
 	m_postProcessingConstantBuffer = resourceManager.GetConstantBuffer(PSConstBuffers::PostProcessing);
 }
@@ -1182,6 +1185,11 @@ void SceneBase::UpdateConstantBuffers()
 	m_viewProjectionData.projectionMatrix = mainCamera.GetProjectionMatrix();
 	m_viewProjectionData.VPMatrix = XMMatrixTranspose(m_viewProjectionData.viewMatrix * m_viewProjectionData.projectionMatrix);
 	m_deviceContext->UpdateSubresource(m_viewProjectionConstantBuffer.Get(), 0, nullptr, &m_viewProjectionData, 0, 0);
+
+	#ifdef _DEBUG
+	m_viewProjectionForNormalData.viewProjectionMatrix = m_viewProjectionData.VPMatrix;
+	m_deviceContext->UpdateSubresource(m_viewProjectionForNormalConstantBuffer.Get(), 0, nullptr, &m_viewProjectionForNormalData, 0, 0);
+	#endif
 
 	m_viewProjectionData.viewMatrix.r[3] = XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
 	m_skyboxViewProjectionData.skyboxVPMatrix = XMMatrixTranspose(XMMatrixInverse(nullptr, m_viewProjectionData.viewMatrix * m_viewProjectionData.projectionMatrix));

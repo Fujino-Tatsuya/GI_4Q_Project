@@ -110,6 +110,19 @@ void SkinnedModelComponent::Render()
 					m_deviceContext->IASetVertexBuffers(0, 1, mesh.vertexBuffer.GetAddressOf(), &stride, &offset);
 					m_deviceContext->IASetIndexBuffer(mesh.indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 					m_deviceContext->DrawIndexed(mesh.indexCount, 0, 0);
+
+					#ifdef _DEBUG
+					if (m_renderNormals)
+					{
+						resourceManager.SetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
+						m_deviceContext->GSSetShader(resourceManager.GetGeometryShader("GSNormal.hlsl").Get(), nullptr, 0);
+						m_deviceContext->PSSetShader(resourceManager.GetPixelShader("PSColor.hlsl").Get(), nullptr, 0);
+						m_deviceContext->DrawIndexed(mesh.indexCount, 0, 0);
+
+						m_deviceContext->GSSetShader(nullptr, nullptr, 0);
+						m_deviceContext->PSSetShader(m_pixelShader.Get(), nullptr, 0);
+					}
+					#endif
 				}
 			}
 		}

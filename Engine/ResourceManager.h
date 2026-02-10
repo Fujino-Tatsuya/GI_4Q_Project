@@ -21,6 +21,7 @@ class ResourceManager : public Singleton<ResourceManager>
 	D3D11_PRIMITIVE_TOPOLOGY m_currentTopology = D3D11_PRIMITIVE_TOPOLOGY_UNDEFINED; // 현재 프리미티브 토폴로지
 
 	std::array<com_ptr<ID3D11Buffer>, static_cast<size_t>(VSConstBuffers::Count)> m_vsConstantBuffers = {}; // 정점 셰이더용 상수 버퍼 배열
+	std::array<com_ptr<ID3D11Buffer>, static_cast<size_t>(GSConstBuffers::Count)> m_gsConstantBuffers = {}; // 지오메트리 셰이더용 상수 버퍼 배열
 	std::array<com_ptr<ID3D11Buffer>, static_cast<size_t>(PSConstBuffers::Count)> m_psConstantBuffers = {}; // 픽셀 셰이더용 상수 버퍼 배열
 
 	std::array<com_ptr<ID3D11SamplerState>, static_cast<size_t>(SamplerState::Count)> m_samplerStates = {}; // 샘플러 상태 배열
@@ -72,6 +73,7 @@ public:
 
 	// 상수 버퍼 얻기 // UpdateSubresource만 써야함 // Set는 리소스 매니저가 함
 	com_ptr<ID3D11Buffer> GetConstantBuffer(VSConstBuffers buffer) { return m_vsConstantBuffers[static_cast<size_t>(buffer)]; }
+	com_ptr<ID3D11Buffer> GetConstantBuffer(GSConstBuffers buffer) { return m_gsConstantBuffers[static_cast<size_t>(buffer)]; }
 	com_ptr<ID3D11Buffer> GetConstantBuffer(PSConstBuffers buffer) { return m_psConstantBuffers[static_cast<size_t>(buffer)]; }
 
 	// 버텍스 버퍼를 만들어서 리턴하는 함수 : 라인을 그리기 위함임

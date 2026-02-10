@@ -502,6 +502,32 @@ constexpr std::array<D3D11_BUFFER_DESC, static_cast<size_t>(VSConstBuffers::Coun
 	}
 };
 
+enum class GSConstBuffers
+{
+	NormalViewProjection, // ViewProjectionBuffer
+
+	Count
+};
+
+struct NormalViewProjectionBuffer
+{
+	DirectX::XMMATRIX viewProjectionMatrix = DirectX::XMMatrixIdentity(); // 뷰-투영 행렬 // 전치함
+};
+
+constexpr std::array<D3D11_BUFFER_DESC, static_cast<size_t>(GSConstBuffers::Count)> GS_CONST_BUFFER_DESCS =
+{
+	// ViewProjectionBuffer
+	D3D11_BUFFER_DESC
+	{
+		.ByteWidth = sizeof(NormalViewProjectionBuffer),
+		.Usage = D3D11_USAGE_DEFAULT,
+		.BindFlags = D3D11_BIND_CONSTANT_BUFFER,
+		.CPUAccessFlags = 0,
+		.MiscFlags = 0,
+		.StructureByteStride = 0
+	}
+};
+
 enum class PSConstBuffers
 {
 	PostProcessing, // PostProcessingBuffer
