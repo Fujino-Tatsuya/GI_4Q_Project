@@ -45,19 +45,11 @@ int main()
 
 	while (windowManager.ProcessMessages())
 	{
-		if (InputManager::GetInstance().GetKeyDown(KeyCode::Escape))
-		{
-			gameManager.ToggleOption();
-		}
+		if (InputManager::GetInstance().GetKeyDown(KeyCode::Escape)){gameManager.ToggleOption();}
 		sceneManager.SetPaused(gameManager.IsPaused());
-		if (gameManager.IsPaused())
-		{
-			soundManager.Pause();
-		}
-		else
-		{
-			soundManager.Resume();
-		}
+		if (gameManager.IsPaused()){soundManager.Pause();}
+		else{soundManager.Resume();}
+
 		soundManager.Update();
 		sceneManager.Run();
 	}
