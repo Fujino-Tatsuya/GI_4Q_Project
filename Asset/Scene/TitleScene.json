@@ -528,7 +528,7 @@
                 1.0
             ],
             "depth": 0.3799999952316284,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "SFX_Volume",
             "parentIdx": 11,
             "pathIdle": "UI_IDLE.png",
@@ -555,7 +555,7 @@
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "start_game",
             "parentIdx": 1,
             "pathIdle": "UI_IDLE.png",
@@ -582,7 +582,7 @@
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "open_option",
             "parentIdx": 4,
             "pathIdle": "UI_IDLE.png",
@@ -609,7 +609,7 @@
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "open_credit",
             "parentIdx": 5,
             "pathIdle": "UI_IDLE.png",
@@ -636,7 +636,7 @@
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "quit_game",
             "parentIdx": 6,
             "pathIdle": "UI_IDLE.png",
@@ -663,7 +663,7 @@
                 1.0
             ],
             "depth": 0.3199999928474426,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "BGM",
             "parentIdx": 24,
             "pathIdle": "UI_IDLE.png",
@@ -737,7 +737,7 @@
                 1.0
             ],
             "depth": 0.33000001311302185,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "Options1",
             "parentIdx": 10,
             "pathIdle": "UI_IDLE.png",
@@ -764,7 +764,7 @@
                 1.0
             ],
             "depth": 0.3100000023841858,
-            "fontName": "SuperCrawler",
+            "fontName": "SuperCrawler72",
             "name": "Options2",
             "parentIdx": 10,
             "pathIdle": "UI_IDLE.png",

@@ -173,87 +173,87 @@
             "scale": 0.6700000166893005,
             "type": "Panel"
         },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.3799999952316284,
-            "fontName": "SuperCrawler",
-            "name": "SFX",
-            "parentIdx": 2,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.33000001311302185,
-                -0.019999999552965164
-            ],
-            "scale": 1.4800000190734863,
-            "text": "SFX",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.4350000023841858,
-            "fontName": "SuperCrawler",
-            "name": "cheat",
-            "parentIdx": 0,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.03999999910593033,
-                -0.019999999552965164
-            ],
-            "scale": 1.340000033378601,
-            "text": "cheat",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.3199999928474426,
-            "fontName": "SuperCrawler",
-            "name": "BGM",
-            "parentIdx": 8,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.33000001311302185,
-                0.0
-            ],
-            "scale": 1.4600000381469727,
-            "text": "BGM",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
+      {
+        "active": true,
+        "colorIdle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "depth": 0.3799999952316284,
+        "fontName": "SuperCrawler72",
+        "name": "SFX",
+        "parentIdx": 2,
+        "pathIdle": "UI_IDLE.png",
+        "pos": [
+          -0.33000001311302185,
+          -0.019999999552965164
+        ],
+        "scale": 1.4800000190734863,
+        "text": "SFX",
+        "textColor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "type": "Text"
+      },
+      {
+        "active": true,
+        "colorIdle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "depth": 0.4350000023841858,
+        "fontName": "SuperCrawler72",
+        "name": "cheat",
+        "parentIdx": 0,
+        "pathIdle": "UI_IDLE.png",
+        "pos": [
+          -0.03999999910593033,
+          -0.019999999552965164
+        ],
+        "scale": 1.340000033378601,
+        "text": "cheat",
+        "textColor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "type": "Text"
+      },
+      {
+        "active": true,
+        "colorIdle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "depth": 0.3199999928474426,
+        "fontName": "SuperCrawler72",
+        "name": "BGM",
+        "parentIdx": 8,
+        "pathIdle": "UI_IDLE.png",
+        "pos": [
+          -0.33000001311302185,
+          0.0
+        ],
+        "scale": 1.4600000381469727,
+        "text": "BGM",
+        "textColor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "type": "Text"
+      },
         {
             "actionKey": "BGM",
             "active": true,
@@ -320,60 +320,60 @@
             "scale": 0.7099999785423279,
             "type": "Panel"
         },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.33000001311302185,
-            "fontName": "SuperCrawler",
-            "name": "Options1",
-            "parentIdx": 1,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.05999999865889549,
-                -0.4000000059604645
-            ],
-            "scale": 2.380000114440918,
-            "text": "Options",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "depth": 0.3100000023841858,
-            "fontName": "SuperCrawler",
-            "name": "Options2",
-            "parentIdx": 1,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.09000000357627869,
-                -0.4099999964237213
-            ],
-            "scale": 3.1600000858306885,
-            "text": "Options",
-            "textColor": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "type": "Text"
-        }
+      {
+        "active": true,
+        "colorIdle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "depth": 0.33000001311302185,
+        "fontName": "SuperCrawler72",
+        "name": "Options1",
+        "parentIdx": 1,
+        "pathIdle": "UI_IDLE.png",
+        "pos": [
+          -0.05999999865889549,
+          -0.4000000059604645
+        ],
+        "scale": 2.380000114440918,
+        "text": "Options",
+        "textColor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "type": "Text"
+      },
+      {
+        "active": true,
+        "colorIdle": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "depth": 0.3100000023841858,
+        "fontName": "SuperCrawler72",
+        "name": "Options2",
+        "parentIdx": 1,
+        "pathIdle": "UI_IDLE.png",
+        "pos": [
+          -0.09000000357627869,
+          -0.4099999964237213
+        ],
+        "scale": 3.1600000858306885,
+        "text": "Options",
+        "textColor": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "type": "Text"
+      }
     ],
     "environmentMapFileName": "Skybox.dds",
     "lightColor": [
