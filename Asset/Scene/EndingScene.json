@@ -1,50 +1,156 @@
 {
-  "environmentMapFileName": "Skybox.dds",
-  "lightColor": [
-    1.0,
-    1.0,
-    1.0,
-    1.0
-  ],
-  "lightDirection": [
-    -0.5,
-    -1.0,
-    -0.5,
-    1.0
-  ],
-  "navPolyIndices": [],
-  "navVertices": [],
-  "rootGameObjects": [
-    {
-      "childGameObjects": [],
-      "components": [
+    "UI": [
         {
-          "farZ": 1000.0,
-          "fovY": 0.7853981852531433,
-          "nearZ": 0.10000000149011612,
-          "type": "CameraComponent"
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "ending_score",
+            "parentIdx": -1,
+            "pathIdle": "UI_OptionBG.png",
+            "pos": [
+                0.5,
+                0.5
+            ],
+            "scale": 0.6700000166893005,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "ending_ranking",
+            "parentIdx": -1,
+            "pathIdle": "UI_OptionBG.png",
+            "pos": [
+                0.5,
+                0.5
+            ],
+            "scale": 1.0,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "cha_pose",
+            "parentIdx": 0,
+            "pathIdle": "UI_cha_pose.png",
+            "pos": [
+                -0.3199999928474426,
+                0.0
+            ],
+            "scale": 0.550000011920929,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "fontName": "SuperCrawler72",
+            "name": "rank",
+            "parentIdx": -1,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                0.47999998927116394,
+                0.12999999523162842
+            ],
+            "scale": 1.0,
+            "text": "Ranking",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
         }
-      ],
-      "name": "MainCam",
-      "position": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": [
-        0.0,
-        0.0,
-        0.0,
-        1.0
-      ],
-      "scale": [
+    ],
+    "environmentMapFileName": "Skybox.dds",
+    "lightColor": [
         1.0,
         1.0,
         1.0,
         1.0
-      ],
-      "type": "GameObjectBase"
-    }
-  ]
+    ],
+    "lightDirection": [
+        -0.5,
+        -1.0,
+        -0.5,
+        1.0
+    ],
+    "navPolyIndices": [],
+    "navVertices": [],
+    "postProcessing": {
+        "bloomIntensity": 1.0,
+        "flags": 0,
+        "gammaIntensity": 1.0,
+        "grayScaleIntensity": 0.0,
+        "lutLerpFactor": 0.0,
+        "radialBlurParam": [
+            0.5,
+            0.5,
+            0.33000001311302185,
+            1.7000000476837158
+        ],
+        "vignettingColor": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "rootGameObjects": [
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "farZ": 1000.0,
+                    "fovY": 0.7853981852531433,
+                    "nearZ": 0.10000000149011612,
+                    "type": "CameraComponent"
+                }
+            ],
+            "name": "MainCam",
+            "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "GameObjectBase"
+        }
+    ],
+    "skyboxFileName": "Skybox.dds"
 }

@@ -10,6 +10,8 @@
 #include "TitleScene.h"
 #include "HyojeTestScene.h"
 #include "TaehyeonTestScene.h"
+#include "EndingScene.h"
+
 #include "GameManager.h"
 
 using namespace std;
@@ -31,7 +33,7 @@ int main()
 
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	sceneManager.Initialize();
-	sceneManager.ChangeScene("TestScene");
+	sceneManager.ChangeScene("EndingScene");
 
 	RNG::GetInstance().Initialize();
 
