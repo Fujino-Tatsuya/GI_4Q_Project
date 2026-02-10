@@ -55,6 +55,9 @@ class GameManager : public Singleton<GameManager>
     void TempPrint();   // UI에 넣기 전에 저장할 위치
 ///SCORE END
 
+///RANKING
+    std::vector<std::pair<std::string, int>> m_rankings;
+///RANKING END
 
 public:
     void Initialize();
@@ -95,11 +98,14 @@ public:
 ///SCORE END
 
 ///HELPER 
-
     void ForceShowCursor(bool show){
         if (show) { while (ShowCursor(TRUE) < 0) {}
         } else {    while (ShowCursor(FALSE) >= 0) {}  }
     }
-
 ///HELPER END
+
+///RANKING
+    void SaveRankings() const;
+///RANKING END
+
 };
