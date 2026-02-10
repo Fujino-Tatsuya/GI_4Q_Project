@@ -132,8 +132,11 @@ void SkinnedModelComponent::Render()
 
 			for (const auto& [model, material] : m_modelsAndMaterials)
 			{
-				//후보1) 이것도 아니었음
-				//m_deviceContext->UpdateSubresource(m_materialFactorConstantBuffer.Get(), 0, nullptr, &material.m_materialFactor, 0, 0);
+				// 재질 텍스처 셰이더에 설정
+				m_deviceContext->PSSetShaderResources(static_cast<UINT>(TextureSlots::BaseColor), 1, material.baseColorTextureSRV.GetAddressOf());
+
+				// 재질 팩터 설정
+				m_deviceContext->UpdateSubresource(m_materialFactorConstantBuffer.Get(), 0, nullptr, &material.m_materialFactor, 0, 0);
 
 				for (const Mesh& mesh : model->meshes)
 				{

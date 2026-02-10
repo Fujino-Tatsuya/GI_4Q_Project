@@ -135,6 +135,9 @@ void ModelComponent::Render()
 				// 재질 텍스처 셰이더에 설정
 				m_deviceContext->PSSetShaderResources(static_cast<UINT>(TextureSlots::BaseColor), 1, material.baseColorTextureSRV.GetAddressOf());
 
+				// 재질 팩터 설정
+				m_deviceContext->UpdateSubresource(m_materialFactorConstantBuffer.Get(), 0, nullptr, &material.m_materialFactor, 0, 0);
+
 				for (const Mesh& mesh : model->meshes)
 				{
 					resourceManager.SetPrimitiveTopology(mesh.topology);
