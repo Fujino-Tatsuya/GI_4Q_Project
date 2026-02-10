@@ -10,6 +10,8 @@
 #include "TitleScene.h"
 #include "HyojeTestScene.h"
 #include "TaehyeonTestScene.h"
+#include "EndingScene.h"
+
 #include "GameManager.h"
 
 using namespace std;
@@ -23,7 +25,6 @@ int main()
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_ViewportsEnable;
 	#endif
 
-	// 윈도우 매니저 초기화 // 렌더러, 인풋 매니저도 내부에서 초기화됨
 	WindowManager& windowManager = WindowManager::GetInstance();
 	windowManager.Initialize(L"Aurora");
 

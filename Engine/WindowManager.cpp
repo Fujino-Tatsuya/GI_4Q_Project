@@ -5,6 +5,8 @@
 #include "InputManager.h"
 #include "ResourceManager.h"
 
+#include "..\\Client\\resource.h"
+
 using namespace std;
 
 #ifdef _DEBUG
@@ -79,6 +81,7 @@ void WindowManager::Initialize(const wchar_t* windowTitle, int width, int height
 		.style = CS_HREDRAW | CS_VREDRAW,
 		.lpfnWndProc = WindowProc,
 		.hInstance = m_hInstance,
+		.hIcon = LoadIcon(m_hInstance, MAKEINTRESOURCE(IDI_ICON1)),
 		.lpszClassName = className
 	};
 	if (!RegisterClass(&wc))

@@ -90,6 +90,7 @@
     <ClInclude Include="GameManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
@@ -139,5 +140,8 @@
     <None Include="..\Asset\Prefab\Player.json">
       <Filter>GameObject\Prefab</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
   </ItemGroup>
 </Project>

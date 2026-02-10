@@ -523,11 +523,6 @@
                     "childGameObjects": [],
                     "components": [
                         {
-                            "current_state": "Idle",
-                            "start_state": "Idle",
-                            "type": "FSMComponentGun"
-                        },
-                        {
                             "NoiseIndex": 0,
                             "blendState": 0,
                             "dissolveData": {
@@ -570,6 +565,11 @@
                             "rasterState": 1,
                             "type": "ModelComponent",
                             "vsShaderName": "VSModel.hlsl"
+                        },
+                        {
+                            "current_state": "Idle",
+                            "start_state": "Idle",
+                            "type": "FSMComponentGun"
                         }
                     ],
                     "name": "Gun",
