@@ -27,7 +27,7 @@ void GameManager::Initialize()
 
 void GameManager::Finalize()
 {
-
+	//
 }
 
 void GameManager::Update()
