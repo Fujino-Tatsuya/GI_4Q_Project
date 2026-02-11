@@ -142,7 +142,7 @@
                 1.0
             ],
             "depth": 0.029999999329447746,
-            "name": "Rank",
+            "name": "Grade",
             "parentIdx": 2,
             "pathIdle": "UI_Grade_S.png",
             "pos": [

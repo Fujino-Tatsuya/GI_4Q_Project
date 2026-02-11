@@ -14,6 +14,7 @@
 #include "Button.h"
 #include "Slider.h"
 
+
 REGISTER_TYPE(EndingScene)
 
 using namespace std;
@@ -28,34 +29,73 @@ void EndingScene::Initialize()
 
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
+	int finalScore = 9356;
+	SetScoreUI(finalScore);
 
-	//Panel* TestPanel = CreateUI<Panel>();
-	//TestPanel->SetTextureAndOffset("Gem.png");
-	//TestPanel->SetLocalPosition({ 0.5f,0.5f });
-	//TestPanel->SetScale(0.5f);
-
-	//Button* TitleButton = CreateUI<Button>();
-	////TitleButton->SetParent(TestPanel);
-	//TitleButton->SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
-	//TitleButton->SetLocalPosition({ 0.0f, 0.0f });
-	//TitleButton->SetOnClick([TestPanel]() { TestPanel->SetActive(true); });
-	//TitleButton->SetScale(0.3f);
-
-	//Button* PanelCloseButton = CreateUI<Button>();
-	//PanelCloseButton->SetParent(TestPanel);
-	//PanelCloseButton->SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
-	//PanelCloseButton->SetLocalPosition({ 0.0f, 0.1f });
-	//PanelCloseButton->SetOnClick([TestPanel]() { TestPanel->SetActive(false); });
-	//PanelCloseButton->SetScale(0.3f);
-
-	//Slider* volume = CreateUI<Slider>();
-	//volume->SetRange(0.0f, 1.0f);
-	//volume->SetValue(0.5f);
-	//volume->SetTextureAndOffset("Crosshair.png");
-	//volume->SetHandleTexture("bullet.png");
-	//volume->SetLocalPosition({ 0.5f, 0.5f });
+	//SetScoreUI(GameManager::GetInstance().GetScore());
 }
 
 void EndingScene::Update()
 {
+}
+
+void EndingScene::BindUIActions()
+{
+	for (const auto& uiPtr : m_UIList) {
+		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
+			if (panel->GetName() == "1") n1 = panel;
+			else if (panel->GetName() == "10") n10 = panel;
+			else if (panel->GetName() == "100") n100 = panel;
+			else if (panel->GetName() == "1000") n1000 = panel;
+			else if (panel->GetName() == "10000") n10000 = panel;
+			else if (panel->GetName() == "100000") n100000 = panel;
+			else if (panel->GetName() == "namu_pan") namu_pan = panel;
+			else if (panel->GetName() == "Grade") Grade = panel;
+		}
+	}
+
+
+	for (auto& uiPtr : m_UIList) {
+		// -------------------------------------------------------
+		// 1. Button bindings
+		// -------------------------------------------------------
+		if (auto* btn = dynamic_cast<Button*>(uiPtr.get())) {
+			std::string key = btn->GetActionKey();
+
+			if (key == "RETRY") {
+				btn->SetOnClick([]() {
+					SceneManager::GetInstance().ChangeScene("TestScene");
+					});
+			} else if (key == "TITLE") {
+				btn->SetOnClick([]() {
+					SceneManager::GetInstance().ChangeScene("TitleScene");
+					});
+			}
+		}
+	}
+}
+
+void EndingScene::SetScoreUI(int score)
+{
+	// 점수 범위 예외 처리 (0 ~ 999999)
+	if (score < 0) score = 0;
+	if (score > 999999) score = 999999;
+
+	// 각 자릿수 추출
+	int d1 = score % 10;           // 1의 자리
+	int d10 = (score / 10) % 10;    // 10의 자리
+	int d100 = (score / 100) % 10;   // 100의 자리
+	int d1000 = (score / 1000) % 10;  // 1000의 자리
+	int d10000 = (score / 10000) % 10; // 10000의 자리
+	int d100000 = (score / 100000) % 10;// 100000의 자리
+
+	// 텍스처 변경 (nullptr 체크 포함)
+	// 파일명 형식: "UI_n" + 숫자 + ".png"
+
+	if (n1)      n1->SetTextureAndOffset("UI_n" + std::to_string(d1) + ".png");
+	if (n10)     n10->SetTextureAndOffset("UI_n" + std::to_string(d10) + ".png");
+	if (n100)    n100->SetTextureAndOffset("UI_n" + std::to_string(d100) + ".png");
+	if (n1000)   n1000->SetTextureAndOffset("UI_n" + std::to_string(d1000) + ".png");
+	if (n10000)  n10000->SetTextureAndOffset("UI_n" + std::to_string(d10000) + ".png");
+	if (n100000) n100000->SetTextureAndOffset("UI_n" + std::to_string(d100000) + ".png");
 }
