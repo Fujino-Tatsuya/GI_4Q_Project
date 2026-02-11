@@ -413,6 +413,9 @@ void Player::PlayerAutoReload(int cnt)
 					return true;
 				}
 				return false;
+
+			default:
+				return true;
 			}
 		});
 }
