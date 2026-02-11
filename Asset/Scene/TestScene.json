@@ -1,375 +1,16 @@
 {
-    "UI": [
-        {
-            "active": false,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.30000001192092896,
-            "name": "option",
-            "parentIdx": -1,
-            "pathIdle": "UI__.png",
-            "pos": [
-                0.5,
-                0.5
-            ],
-            "scale": 1.0,
-            "type": "Panel"
-        },
-        {
-            "actionKey": "close_option",
-            "active": true,
-            "colorClicked": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "depth": 0.4000000059604645,
-            "name": "close_option",
-            "parentIdx": 0,
-            "pathClicked": "UI_Button_hover.png",
-            "pathHover": "UI_Button_hover.png",
-            "pathIdle": "",
-            "pathPressed": "UI_Button_hover.png",
-            "pos": [
-                0.25,
-                -0.3400000035762787
-            ],
-            "scale": 0.20999999344348907,
-            "scaleClicked": 1.0,
-            "scaleHover": 1.0,
-            "scalePressed": 0.949999988079071,
-            "type": "Button"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.28999999165534973,
-            "name": "optionBG",
-            "parentIdx": 0,
-            "pathIdle": "UI_OptionBG.png",
-            "pos": [
-                0.0,
-                0.0
-            ],
-            "scale": 0.6700000166893005,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.3199999928474426,
-            "fontName": "SuperCrawler72",
-            "name": "BGM",
-            "parentIdx": 4,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.33000001311302185,
-                -0.019999999552965164
-            ],
-            "scale": 0.36000001430511475,
-            "text": "BGM",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "actionKey": "BGM_Volume",
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.30000001192092896,
-            "handleColorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "handleColorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "handleColorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "handlePathHover": "UI_Slider.png",
-            "handlePathIdle": "UI_Slider.png",
-            "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
-            "handleScalePressed": 1.0,
-            "max": 1.0,
-            "min": 0.0,
-            "name": "BGM",
-            "parentIdx": 0,
-            "pathIdle": "UI_Slider_box.png",
-            "pos": [
-                0.03999999910593033,
-                -0.05999999865889549
-            ],
-            "scale": 0.699999988079071,
-            "type": "Slider",
-            "value": 1.0
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.33000001311302185,
-            "fontName": "SuperCrawler72",
-            "name": "Options1",
-            "parentIdx": 0,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.05999999865889549,
-                -0.4000000059604645
-            ],
-            "scale": 0.5099999904632568,
-            "text": "Options",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "depth": 0.3100000023841858,
-            "fontName": "SuperCrawler72",
-            "name": "Options2",
-            "parentIdx": 0,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.09000000357627869,
-                -0.4099999964237213
-            ],
-            "scale": 0.6499999761581421,
-            "text": "Options",
-            "textColor": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "actionKey": "Set_Sensitivity",
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.3100000023841858,
-            "handleColorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "handleColorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "handleColorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "handlePathHover": "UI_Slider.png",
-            "handlePathIdle": "UI_Slider.png",
-            "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
-            "handleScalePressed": 1.0,
-            "max": 30.0,
-            "min": 0.0,
-            "name": "Sensitivity",
-            "parentIdx": 0,
-            "pathIdle": "UI_Slider_box.png",
-            "pos": [
-                0.03999999910593033,
-                0.14000000059604645
-            ],
-            "scale": 0.699999988079071,
-            "type": "Slider",
-            "value": 6.585000038146973
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.3199999928474426,
-            "fontName": "SuperCrawler72",
-            "name": "Sensitivity",
-            "parentIdx": 7,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.36000001430511475,
-                -0.029999999329447746
-            ],
-            "scale": 0.3499999940395355,
-            "text": "Sensitivity",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "actionKey": "SFX_Volume",
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.3100000023841858,
-            "handleColorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "handleColorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "handleColorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "handlePathHover": "UI_Slider.png",
-            "handlePathIdle": "UI_Slider.png",
-            "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
-            "handleScalePressed": 1.0,
-            "max": 1.0,
-            "min": 0.0,
-            "name": "SFX",
-            "parentIdx": 0,
-            "pathIdle": "UI_Slider_box.png",
-            "pos": [
-                0.03999999910593033,
-                -0.23999999463558197
-            ],
-            "scale": 0.699999988079071,
-            "type": "Slider",
-            "value": 1.0
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.3100000023841858,
-            "fontName": "SuperCrawler72",
-            "name": "SFX",
-            "parentIdx": 9,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.33000001311302185,
-                -0.019999999552965164
-            ],
-            "scale": 0.3700000047683716,
-            "text": "SFX",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        }
-    ],
-    "environmentMapFileName": "Skybox.dds",
+    "UI": [],
+    "environmentMapFileName": "Skybox0.dds",
     "lightColor": [
         1.0,
-        1.0,
-        1.0,
+        0.8566897511482239,
+        0.30392158031463623,
         1.0
     ],
     "lightDirection": [
-        -0.8609127402305603,
-        -0.4958404004573822,
-        -0.11389243602752686,
+        -0.7429336905479431,
+        -0.46630123257637024,
+        -0.48022156953811646,
         1.0
     ],
     "navPolyIndices": [
@@ -379,13 +20,28 @@
             2
         ],
         [
+            2,
             0,
-            1,
             3
         ],
         [
             1,
+            2,
+            4
+        ],
+        [
+            0,
+            1,
+            5
+        ],
+        [
+            5,
+            0,
+            3
+        ],
+        [
             3,
+            2,
             4
         ],
         [
@@ -394,91 +50,246 @@
             5
         ],
         [
-            1,
-            5,
-            2
-        ],
-        [
+            4,
             3,
-            0,
             6
         ],
         [
-            0,
             6,
+            4,
             7
         ],
         [
             7,
-            0,
-            2
-        ],
-        [
-            5,
-            2,
+            6,
             8
         ],
         [
-            2,
             8,
-            7
+            7,
+            9
         ],
         [
-            3,
-            4,
-            9
+            9,
+            8,
+            10
+        ],
+        [
+            10,
+            9,
+            11
+        ],
+        [
+            11,
+            10,
+            12
+        ],
+        [
+            10,
+            12,
+            13
+        ],
+        [
+            12,
+            13,
+            14
+        ],
+        [
+            13,
+            14,
+            15
+        ],
+        [
+            14,
+            15,
+            16
+        ],
+        [
+            16,
+            14,
+            17
+        ],
+        [
+            14,
+            17,
+            18
+        ],
+        [
+            17,
+            18,
+            19
+        ],
+        [
+            18,
+            19,
+            20
+        ],
+        [
+            19,
+            20,
+            21
+        ],
+        [
+            21,
+            19,
+            22
+        ],
+        [
+            22,
+            21,
+            23
+        ],
+        [
+            23,
+            22,
+            24
+        ],
+        [
+            21,
+            23,
+            25
+        ],
+        [
+            23,
+            25,
+            26
         ]
     ],
     "navVertices": [
         [
-            -1.001372218132019,
+            -176.28634643554688,
             0.0,
-            0.28903770446777344
+            -181.24929809570313
         ],
         [
-            0.9986277222633362,
+            -174.28634643554688,
             0.0,
-            0.28903770446777344
+            -181.24929809570313
         ],
         [
-            -0.0013722628355026245,
+            -175.28634643554688,
             0.0,
-            2.2890377044677734
+            -179.24929809570313
         ],
         [
-            -0.8297119140625,
+            -185.4642333984375,
             0.0,
-            -27.002059936523438
+            -173.21560668945313
         ],
         [
-            27.39183235168457,
+            -168.50082397460938,
             0.0,
-            -7.717660903930664
+            -174.09442138671875
         ],
         [
-            21.648136138916016,
+            -175.58908081054688,
             0.0,
-            16.959531784057617
+            -190.54254150390625
         ],
         [
-            -20.399911880493164,
+            -185.2607421875,
             0.0,
-            -12.550938606262207
+            -59.139617919921875
         ],
         [
-            -21.959211349487305,
+            -168.65850830078125,
             0.0,
-            11.612655639648438
+            -88.74563598632813
         ],
         [
-            0.10975837707519531,
+            -163.35011291503906,
             0.0,
-            19.59136199951172
+            -46.208274841308594
         ],
         [
-            19.015226364135742,
+            -146.42327880859375,
             0.0,
-            -46.800811767578125
+            -76.29682922363281
+        ],
+        [
+            -120.79530334472656,
+            0.0,
+            -48.28547668457031
+        ],
+        [
+            -103.2640609741211,
+            0.0,
+            -74.73383331298828
+        ],
+        [
+            -99.17157745361328,
+            0.0,
+            -46.03951644897461
+        ],
+        [
+            -120.39323425292969,
+            0.0,
+            61.47569274902344
+        ],
+        [
+            -98.88166809082031,
+            0.0,
+            44.684410095214844
+        ],
+        [
+            -112.05232238769531,
+            0.0,
+            64.56895446777344
+        ],
+        [
+            -99.65718078613281,
+            0.0,
+            65.0002212524414
+        ],
+        [
+            47.60356140136719,
+            0.0,
+            65.93995666503906
+        ],
+        [
+            -8.402008056640625,
+            0.0,
+            46.63982009887695
+        ],
+        [
+            46.11109924316406,
+            0.0,
+            16.91759490966797
+        ],
+        [
+            -9.801612854003906,
+            0.0,
+            -3.7106571197509766
+        ],
+        [
+            207.39224243164063,
+            0.0,
+            -3.111774444580078
+        ],
+        [
+            159.4512481689453,
+            0.0,
+            16.737144470214844
+        ],
+        [
+            180.9447021484375,
+            0.0,
+            77.98808288574219
+        ],
+        [
+            158.76992797851563,
+            0.0,
+            79.09504699707031
+        ],
+        [
+            207.14991760253906,
+            0.0,
+            162.9816436767578
+        ],
+        [
+            180.14752197265625,
+            0.0,
+            162.5881805419922
         ]
     ],
     "postProcessing": {
@@ -502,116 +313,94 @@
     },
     "rootGameObjects": [
         {
-            "childGameObjects": [
-                {
-                    "childGameObjects": [],
-                    "components": [
-                        {
-                            "NoiseIndex": 0,
-                            "blendState": 0,
-                            "dissolveData": {
-                                "DissolveEdgeColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "DissolveEdgeIntensity": 1.0,
-                                "DissolveEdgeWidth": 1.0,
-                                "DissolveThreshold": 0.20000000298023224
-                            },
-                            "materialFactor": [
-                                {
-                                    "ambientOcclusionFactor": 1.0,
-                                    "baseColorFactor": [
-                                        1.0,
-                                        1.0,
-                                        1.0,
-                                        1.0
-                                    ],
-                                    "emissionFactor": [
-                                        1.0,
-                                        1.0,
-                                        1.0
-                                    ],
-                                    "metallicFactor": 1.0,
-                                    "normalScale": 1.0,
-                                    "roughnessFactor": 1.0
-                                }
-                            ],
-                            "modelAndMaterialFileNames": [
-                                {
-                                    "materialFileName": "",
-                                    "modelFileName": "box.fbx"
-                                }
-                            ],
-                            "psShaderName": "PSModel.hlsl",
-                            "rasterState": 1,
-                            "type": "ModelComponent",
-                            "vsShaderName": "VSModel.hlsl"
-                        },
-                        {
-                            "current_state": "Idle",
-                            "start_state": "Idle",
-                            "type": "FSMComponentGun"
-                        }
-                    ],
-                    "name": "Gun",
-                    "position": [
-                        0.44999998807907104,
-                        -0.4000000059604645,
-                        2.299999952316284,
-                        1.0
-                    ],
-                    "rotation": [
-                        -0.0,
-                        0.0,
-                        -0.0,
-                        1.0
-                    ],
-                    "scale": [
-                        0.10000000149011612,
-                        0.09000000357627869,
-                        0.38999998569488525,
-                        0.0
-                    ],
-                    "type": "GameObjectBase"
-                }
-            ],
+            "childGameObjects": [],
             "components": [
                 {
-                    "farZ": 250.0,
-                    "fovY": 0.7853981852531433,
-                    "nearZ": 0.10000000149011612,
-                    "type": "CameraComponent"
-                },
-                {
-                    "type": "CrossHairAndNode"
-                },
-                {
-                    "type": "ListenerComponent"
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
                 }
             ],
-            "name": "Player",
+            "name": "Cube5",
             "position": [
+                -191.0022430419922,
                 0.0,
-                1.600000023841858,
-                0.0,
-                0.0
+                -93.5,
+                1.0
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
+                -0.0,
+                -0.7069849371910095,
+                -0.0,
+                0.7072286605834961
             ],
             "scale": [
+                0.9999999403953552,
                 1.0,
-                1.0,
-                1.0,
-                1.0
+                0.9999999403953552,
+                0.0
             ],
-            "type": "Player"
+            "type": "GameObjectBase"
         },
         {
             "childGameObjects": [],
@@ -647,56 +436,238 @@
                             "metallicFactor": 1.0,
                             "normalScale": 1.0,
                             "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
                         }
                     ],
                     "modelAndMaterialFileNames": [
                         {
-                            "materialFileName": "temple",
-                            "modelFileName": "plane.fbx"
+                            "materialFileName": "",
+                            "modelFileName": "SM_5.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_5_wood.fbx"
                         }
                     ],
                     "psShaderName": "PSModel.hlsl",
                     "rasterState": 1,
                     "type": "ModelComponent",
                     "vsShaderName": "VSModel.hlsl"
-                },
-                {
-                    "boundingBoxes": [
-                        {
-                            "center": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "extents": [
-                                1.0,
-                                0.0,
-                                1.0
-                            ]
-                        }
-                    ],
-                    "boundingFrustums": [],
-                    "boundingOrientedBoxes": [],
-                    "type": "ColliderComponent"
                 }
             ],
-            "name": "Plane",
+            "name": "Cube6",
             "position": [
-                -3.725290298461914e-09,
-                7.450580596923828e-09,
+                -191.0,
                 0.0,
+                -75.5,
                 1.0
             ],
             "rotation": [
                 -0.0,
-                0.0,
+                -0.7071066498756409,
                 -0.0,
-                1.0
+                0.7071069478988647
             ],
             "scale": [
-                1000.0,
-                1000.0,
-                1000.0,
+                0.999998927116394,
+                1.0,
+                0.999998927116394,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_6.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_6_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube7",
+            "position": [
+                -137.0,
+                0.0,
+                -80.5,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                1.0,
+                0.0,
+                -5.215433063199271e-08
+            ],
+            "scale": [
+                0.9999948740005493,
+                1.0,
+                0.9999948740005493,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_16.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_16_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube8",
+            "position": [
+                -124.498779296875,
+                -1.3858082184015075e-06,
+                -77.999755859375,
+                1.0
+            ],
+            "rotation": [
+                0.5001220703125,
+                -0.4998781979084015,
+                0.49987801909446716,
+                0.5001217722892761
+            ],
+            "scale": [
+                1.0000146627426147,
+                1.0000007152557373,
+                1.000008463859558,
                 0.0
             ],
             "type": "GameObjectBase"
@@ -740,7 +711,7 @@
                     "modelAndMaterialFileNames": [
                         {
                             "materialFileName": "",
-                            "modelFileName": "box.fbx"
+                            "modelFileName": "SM_4.fbx"
                         }
                     ],
                     "psShaderName": "PSModel.hlsl",
@@ -749,11 +720,11 @@
                     "vsShaderName": "VSModel.hlsl"
                 }
             ],
-            "name": "Box",
+            "name": "Cube9",
             "position": [
-                -5.892876625061035,
-                0.7559764981269836,
-                8.392831802368164,
+                -111.5,
+                0.0,
+                -80.5,
                 1.0
             ],
             "rotation": [
@@ -763,14 +734,3345 @@
                 1.0
             ],
             "scale": [
-                0.4099999964237213,
-                0.4000000059604645,
-                0.4699999988079071,
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_13.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube10",
+            "position": [
+                -153.5,
+                0.0,
+                -40.5,
+                1.0
+            ],
+            "rotation": [
+                -1.3411047916633834e-07,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                0.9999997615814209,
+                0.9999997615814209,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_8.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_8_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube11",
+            "position": [
+                -130.0009765625,
+                0.0,
+                -35.500980377197266,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.7069345116615295,
+                -0.0,
+                0.7072790265083313
+            ],
+            "scale": [
+                0.9999996423721313,
+                1.0,
+                0.9999996423721313,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12_wood1.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12_wood2.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12_wood4.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube12",
+            "position": [
+                -91.0,
+                0.0,
+                -55.5,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.7071066498756409,
+                -0.0,
+                0.7071069478988647
+            ],
+            "scale": [
+                0.9999997615814209,
+                1.0,
+                0.9999997615814209,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_6.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_6_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube13",
+            "position": [
+                -91.5,
+                0.0,
+                -33.5,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.707106351852417,
+                -0.0,
+                0.7071072459220886
+            ],
+            "scale": [
+                0.999999463558197,
+                1.0,
+                0.999999463558197,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_3.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_3_WOOD.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube14",
+            "position": [
+                -91.5,
+                0.0,
+                -18.5,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                0.7071068286895752,
+                0.0,
+                0.7071067094802856
+            ],
+            "scale": [
+                0.9999977946281433,
+                1.0,
+                0.9999977946281433,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [
+                {
+                    "childGameObjects": [],
+                    "components": [
+                        {
+                            "NoiseIndex": 0,
+                            "blendState": 0,
+                            "dissolveData": {
+                                "DissolveEdgeColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "DissolveEdgeIntensity": 1.0,
+                                "DissolveEdgeWidth": 1.0,
+                                "DissolveThreshold": 0.20000000298023224
+                            },
+                            "materialFactor": [
+                                {
+                                    "ambientOcclusionFactor": 1.0,
+                                    "baseColorFactor": [
+                                        1.0,
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "emissionFactor": [
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "metallicFactor": 1.0,
+                                    "normalScale": 1.0,
+                                    "roughnessFactor": 1.0
+                                },
+                                {
+                                    "ambientOcclusionFactor": 1.0,
+                                    "baseColorFactor": [
+                                        1.0,
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "emissionFactor": [
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "metallicFactor": 1.0,
+                                    "normalScale": 1.0,
+                                    "roughnessFactor": 1.0
+                                }
+                            ],
+                            "modelAndMaterialFileNames": [
+                                {
+                                    "materialFileName": "",
+                                    "modelFileName": "SM_8.fbx"
+                                },
+                                {
+                                    "materialFileName": "",
+                                    "modelFileName": "SM_3_WOOD.fbx"
+                                }
+                            ],
+                            "psShaderName": "PSModel.hlsl",
+                            "rasterState": 1,
+                            "type": "ModelComponent",
+                            "vsShaderName": "VSModel.hlsl"
+                        }
+                    ],
+                    "name": "Cube15",
+                    "position": [
+                        -92.0,
+                        0.0,
+                        -4.0,
+                        1.0
+                    ],
+                    "rotation": [
+                        0.0,
+                        0.7071068286895752,
+                        0.0,
+                        0.7071067094802856
+                    ],
+                    "scale": [
+                        0.9999982118606567,
+                        1.0,
+                        0.9999982118606567,
+                        0.0
+                    ],
+                    "type": "GameObjectBase"
+                }
+            ],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube15",
+            "position": [
+                -92.0,
+                0.0,
+                -4.0,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                0.7071068286895752,
+                0.0,
+                0.7071067094802856
+            ],
+            "scale": [
+                0.9999982118606567,
+                1.0,
+                0.9999982118606567,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_9.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_9_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube16",
+            "position": [
+                -127.0,
+                0.0,
+                -4.0,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                0.7071070671081543,
+                0.0,
+                -0.7071064710617065
+            ],
+            "scale": [
+                0.999997615814209,
+                1.0,
+                0.999997615814209,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_10.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_10_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube17",
+            "position": [
+                -127.7371597290039,
+                0.0,
+                11.499999046325684,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.7071066498756409,
+                -0.0,
+                0.7071069478988647
+            ],
+            "scale": [
+                0.9999984502792358,
+                1.0,
+                0.9999984502792358,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_11.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_11_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube19",
+            "position": [
+                -127.49999237060547,
+                0.0,
+                27.392459869384766,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.707106351852417,
+                -0.0,
+                0.7071072459220886
+            ],
+            "scale": [
+                0.9999995827674866,
+                1.0,
+                0.9999995827674866,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12_wood1.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12_wood2.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_12_wood4.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube20",
+            "position": [
+                -123.70710754394531,
+                0.0,
+                67.20710754394531,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.3826834559440613,
+                -0.0,
+                0.9238795042037964
+            ],
+            "scale": [
+                0.999999463558197,
+                1.0,
+                0.999999463558197,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube21",
+            "position": [
+                -90.39144134521484,
+                -0.11678986996412277,
+                36.940460205078125,
+                1.0
+            ],
+            "rotation": [
+                -0.29518643021583557,
+                0.6425461769104004,
+                -0.6425455808639526,
+                -0.2951855957508087
+            ],
+            "scale": [
+                0.9999954104423523,
+                0.9999948143959045,
+                0.9999807476997375,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube22",
+            "position": [
+                -68.91590881347656,
+                0.0,
+                40.0,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                1.0,
+                0.0,
+                -0.00017224939074367285
+            ],
+            "scale": [
+                1.0000033378601074,
+                1.0,
+                1.0000033378601074,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_2.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_2_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube23",
+            "position": [
+                -54.0,
+                0.0,
+                40.499996185302734,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                1.0,
+                0.0,
+                3.7253064988362894e-07
+            ],
+            "scale": [
+                0.9999973177909851,
+                1.0,
+                0.9999973177909851,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_8.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_8_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube24",
+            "position": [
+                -17.524850845336914,
+                0.0,
+                -0.5017180442810059,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.7068626880645752,
+                -0.0,
+                0.7073507308959961
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_2.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_2_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube25",
+            "position": [
+                -72.32553100585938,
+                0.38304567337036133,
+                71.5182876586914,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_4_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube27",
+            "position": [
+                -58.5,
+                0.0,
+                70.5,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_7.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_7_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube28",
+            "position": [
+                -40.5,
+                0.0,
+                73.0,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.7071066498756409,
+                -0.0,
+                0.7071069478988647
+            ],
+            "scale": [
+                0.9999973177909851,
+                1.0,
+                0.9999973177909851,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_13.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_13_WOOD.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube29",
+            "position": [
+                -16.0,
+                0.0,
+                71.5,
+                1.0
+            ],
+            "rotation": [
+                2.831222900567809e-07,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                0.9999999403953552,
+                0.9999992251396179,
+                0.9999992251396179,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_15.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_15_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube30",
+            "position": [
+                2.500000476837158,
+                1.7881393432617188e-06,
+                74.5,
+                1.0
+            ],
+            "rotation": [
+                0.49999988079071045,
+                -0.49999988079071045,
+                0.5000000596046448,
+                0.5000001788139343
+            ],
+            "scale": [
+                0.9999982118606567,
+                0.9999998211860657,
+                0.9999982714653015,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_16_wood.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_16.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube31",
+            "position": [
+                -0.6401066780090332,
+                0.0,
+                -6.298855781555176,
+                1.0
+            ],
+            "rotation": [
+                -0.5000356435775757,
+                0.5002085566520691,
+                -0.4999640882015228,
+                -0.4997917711734772
+            ],
+            "scale": [
+                1.0000033378601074,
+                1.0000033378601074,
+                1.0000041723251343,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube32",
+            "position": [
+                49.01795196533203,
+                -0.0019404888153076172,
+                68.1028823852539,
+                1.0
+            ],
+            "rotation": [
+                0.35340431332588196,
+                0.6124588251113892,
+                -0.6122857928276062,
+                0.3537028133869171
+            ],
+            "scale": [
+                1.0000005960464478,
+                1.0000011920928955,
+                1.0000027418136597,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube33",
+            "position": [
+                -16.0,
+                0.0,
+                38.5,
+                1.0
+            ],
+            "rotation": [
+                0.6532818675041199,
+                -0.27059823274612427,
+                0.270597904920578,
+                0.6532810926437378
+            ],
+            "scale": [
+                0.9999996423721313,
+                0.999997615814209,
+                0.9999966621398926,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14_wood.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube35",
+            "position": [
+                58.5,
+                0.0,
+                -6.0,
+                1.0
+            ],
+            "rotation": [
+                0.7071072459220886,
+                0.0,
+                0.0,
+                0.7071062326431274
+            ],
+            "scale": [
+                1.0,
+                0.9999960064888,
+                0.9999960064888,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube36",
+            "position": [
+                105.5,
+                0.0,
+                20.5,
+                1.0
+            ],
+            "rotation": [
+                0.7071071267127991,
+                0.0,
+                0.0,
+                0.7071064114570618
+            ],
+            "scale": [
+                1.0,
+                0.999996542930603,
+                0.999996542930603,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14_wood.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube37",
+            "position": [
+                153.5,
+                0.0,
+                32.5,
+                1.0
+            ],
+            "rotation": [
+                0.5000002384185791,
+                0.5000002384185791,
+                -0.4999998211860657,
+                0.4999997019767761
+            ],
+            "scale": [
+                0.9999999403953552,
+                0.9999976754188538,
+                0.9999960660934448,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14_wood.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_14.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "Cube38",
+            "position": [
+                212.4981231689453,
+                -0.0045826733112335205,
+                24.49931526184082,
+                1.0
+            ],
+            "rotation": [
+                -0.5001235008239746,
+                0.5002924799919128,
+                -0.4998779296875,
+                -0.4997059106826782
+            ],
+            "scale": [
+                0.9999959468841553,
+                0.9999960660934448,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "size_road.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_33",
+            "position": [
+                -1.7027194587626582e-07,
+                0.0,
+                4.2567879177113355e-07,
+                1.0
+            ],
+            "rotation": [
+                0.4999997615814209,
+                -0.4999999403953552,
+                0.5000001192092896,
+                0.5000001788139343
+            ],
+            "scale": [
+                1.0000001192092896,
+                0.999997615814209,
+                0.9999967813491821,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_2.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_2_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_133",
+            "position": [
+                -190.0,
+                0.0,
+                -160.0,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.7069339752197266,
+                -0.0,
+                0.7072795629501343
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_3.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_3_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_134",
+            "position": [
+                -190.0,
+                0.5,
+                -147.5,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                0.7071069478988647,
+                0.0,
+                -0.7071065902709961
+            ],
+            "scale": [
+                0.9999963641166687,
+                1.0,
+                0.9999963641166687,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [],
+            "name": "GameObjectBase_135",
+            "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_6.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_6_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_136",
+            "position": [
+                -191.0,
+                0.0,
+                -123.49993133544922,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                -0.7071062326431274,
+                -0.0,
+                0.7071073651313782
+            ],
+            "scale": [
+                0.9999997019767761,
+                1.0,
+                0.9999997019767761,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_1_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_137",
+            "position": [
+                -182.05308532714844,
+                -0.001517568831332028,
+                -47.917991638183594,
+                1.0
+            ],
+            "rotation": [
+                0.6284574270248413,
+                0.32383641600608826,
+                -0.3239479959011078,
+                0.6286723613739014
+            ],
+            "scale": [
+                0.9999956488609314,
+                0.9999961256980896,
+                0.9999988675117493,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [],
+            "name": "GameObjectBase_138",
+            "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_17.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_17_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_41",
+            "position": [
+                -164.5,
+                -0.4999995231628418,
+                -159.5,
+                1.0
+            ],
+            "rotation": [
+                0.4999133050441742,
+                -0.500085711479187,
+                0.500086784362793,
+                0.49991413950920105
+            ],
+            "scale": [
+                0.9999293088912964,
+                0.9999648332595825,
+                0.9999601244926453,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_18.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_18_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_42",
+            "position": [
+                -165.41763305664063,
+                2.384185791015625e-06,
+                -131.5083465576172,
+                1.0
+            ],
+            "rotation": [
+                0.49996381998062134,
+                -0.5000357031822205,
+                0.5000357031822205,
+                0.49996477365493774
+            ],
+            "scale": [
+                0.9999935626983643,
+                0.9999949336051941,
+                0.9999821782112122,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_17.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "SM_17_wood.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_42",
+            "position": [
+                -164.91770935058594,
+                -5.5402517318725586e-05,
+                -120.25727844238281,
+                1.0
+            ],
+            "rotation": [
+                0.4998777210712433,
+                -0.5001178979873657,
+                0.4998757541179657,
+                0.5001283884048462
+            ],
+            "scale": [
+                0.999982476234436,
+                0.9999904036521912,
+                0.9999827742576599,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        },
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "enterence_1.fbx"
+                        },
+                        {
+                            "materialFileName": "",
+                            "modelFileName": "enterence_2.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "ModelComponent",
+                    "vsShaderName": "VSModel.hlsl"
+                }
+            ],
+            "name": "GameObjectBase_48",
+            "position": [
+                -176.0,
+                0.0,
+                -174.5,
+                1.0
+            ],
+            "rotation": [
+                0.0,
+                0.707318127155304,
+                0.0,
+                0.7068953514099121
+            ],
+            "scale": [
+                0.9999986886978149,
+                0.9999999403953552,
+                0.9999986886978149,
                 0.0
             ],
             "type": "GameObjectBase"
         }
     ],
-    "skyboxFileName": "Skybox.dds",
+    "skyboxFileName": "Skybox_day_1.dds",
     "spawnPoints": []
 }
