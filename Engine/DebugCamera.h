@@ -5,7 +5,7 @@ class DebugCamera : public GameObjectBase
 {
 	float m_sensitivity = 0.1f;
 	float m_moveSpeed = 10.0f;
-	bool m_keyBoardRotation = true;
+	bool m_keyBoardRotation = false;
 
 public:
     DebugCamera() = default;
