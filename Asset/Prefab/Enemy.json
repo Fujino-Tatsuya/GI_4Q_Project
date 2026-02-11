@@ -15,6 +15,25 @@
                 "DissolveEdgeWidth": 1.0,
                 "DissolveThreshold": 0.20000000298023224
             },
+            "materialFactor": [
+                {
+                    "ambientOcclusionFactor": 1.0,
+                    "baseColorFactor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "emissionFactor": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "metallicFactor": 1.0,
+                    "normalScale": 1.0,
+                    "roughnessFactor": 1.0
+                }
+            ],
             "modelAndMaterialFileNames": [
                 {
                     "materialFileName": "test5",
@@ -27,30 +46,91 @@
             "vsShaderName": "VSModelSkinAnim.hlsl"
         },
         {
-            "boundingBoxes": [
-                {
-                    "center": [
-                        0.0,
-                        1.399999976158142,
-                        0.0
-                    ],
-                    "extents": [
-                        0.800000011920929,
-                        1.2000000476837158,
-                        0.800000011920929
-                    ]
-                }
-            ],
-            "boundingFrustums": [],
-            "boundingOrientedBoxes": [],
-            "type": "ColliderComponent"
-        },
-        {
             "current_state": "Idle",
             "start_state": "Idle",
             "type": "FSMComponentEnemy"
+        },
+        {
+            "boundingBoxes": [],
+            "boundingFrustums": [],
+            "boundingOrientedBoxes": [
+                {
+                    "center": [
+                        -0.08799999952316284,
+                        0.9350000023841858,
+                        -0.1120000034570694
+                    ],
+                    "extents": [
+                        0.4180000126361847,
+                        0.40700000524520874,
+                        0.3059999942779541
+                    ],
+                    "orientation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "center": [
+                        -0.07000000029802322,
+                        1.3450000286102295,
+                        -0.1979999989271164
+                    ],
+                    "extents": [
+                        0.1120000034570694,
+                        0.12300000339746475,
+                        0.11900000274181366
+                    ],
+                    "orientation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "center": [
+                        0.18400000035762787,
+                        0.23899999260902405,
+                        -0.0689999982714653
+                    ],
+                    "extents": [
+                        0.13500000536441803,
+                        0.28700000047683716,
+                        0.28600001335144043
+                    ],
+                    "orientation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "center": [
+                        -0.3019999861717224,
+                        0.28999999165534973,
+                        -0.02800000086426735
+                    ],
+                    "extents": [
+                        0.10499999672174454,
+                        0.27399998903274536,
+                        0.2709999978542328
+                    ],
+                    "orientation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                }
+            ],
+            "type": "ColliderComponent"
         }
     ],
+    "isTutorialDummy": false,
     "name": "Enemy",
     "position": [
         0.0,

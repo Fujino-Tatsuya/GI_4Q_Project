@@ -317,8 +317,8 @@ void ColliderComponent::RenderImGui()
 		{
 			ImGui::PushID(&box);
 
-			ImGui::DragFloat3("Center", &box.Center.x, 0.1f);
-			ImGui::DragFloat3("Extents", &box.Extents.x, 0.1f);
+			ImGui::DragFloat3("Center", &box.Center.x, 0.001f);
+			ImGui::DragFloat3("Extents", &box.Extents.x, 0.001f);
 
 			ImGui::PopID();
 		}
@@ -332,11 +332,11 @@ void ColliderComponent::RenderImGui()
 		{
 			ImGui::PushID(&obb);
 
-			ImGui::DragFloat3("Center", &obb.Center.x, 0.1f);
-			ImGui::DragFloat3("Extents", &obb.Extents.x, 0.1f);
+			ImGui::DragFloat3("Center", &obb.Center.x, 0.001f);
+			ImGui::DragFloat3("Extents", &obb.Extents.x, 0.001f);
 
 			XMVECTOR eulerAngles = ToDegrees(static_cast<XMVECTOR>(static_cast<SimpleMath::Quaternion>(obb.Orientation).ToEuler()));
-			if (ImGui::DragFloat3("Rotation (Degrees)", eulerAngles.m128_f32, 0.1f))
+			if (ImGui::DragFloat3("Rotation (Degrees)", eulerAngles.m128_f32, 0.001f))
 			{
 				XMVECTOR radians = ToRadians(eulerAngles);
 				SimpleMath::Quaternion quaternion = SimpleMath::Quaternion::CreateFromYawPitchRoll(XMVectorGetY(radians), XMVectorGetX(radians), XMVectorGetZ(radians));
@@ -355,14 +355,14 @@ void ColliderComponent::RenderImGui()
 		{
 			ImGui::PushID(&frustum);
 
-			ImGui::DragFloat3("Origin", &frustum.Origin.x, 0.1f);
-			ImGui::DragFloat4("Orientation", &frustum.Orientation.x, 0.1f);
-			ImGui::DragFloat("RightSlope", &frustum.RightSlope, 0.1f);
-			ImGui::DragFloat("LeftSlope", &frustum.LeftSlope, 0.1f);
-			ImGui::DragFloat("TopSlope", &frustum.TopSlope, 0.1f);
-			ImGui::DragFloat("BottomSlope", &frustum.BottomSlope, 0.1f);
-			ImGui::DragFloat("Near", &frustum.Near, 0.1f);
-			ImGui::DragFloat("Far", &frustum.Far, 0.1f);
+			ImGui::DragFloat3("Origin", &frustum.Origin.x, 0.001f);
+			ImGui::DragFloat4("Orientation", &frustum.Orientation.x, 0.001f);
+			ImGui::DragFloat("RightSlope", &frustum.RightSlope, 0.001f);
+			ImGui::DragFloat("LeftSlope", &frustum.LeftSlope, 0.001f);
+			ImGui::DragFloat("TopSlope", &frustum.TopSlope, 0.001f);
+			ImGui::DragFloat("BottomSlope", &frustum.BottomSlope, 0.001f);
+			ImGui::DragFloat("Near", &frustum.Near, 0.001f);
+			ImGui::DragFloat("Far", &frustum.Far, 0.001f);
 
 			ImGui::PopID();
 		}
