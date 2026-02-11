@@ -73,8 +73,6 @@ void Slider::AddListener(std::function<void(float)> callback)
 
 void Slider::NotifyValueChanged()
 {
-	std::cout << "크아악" << std::endl;
-
 	for (auto& cb : listeners)
 		cb(m_rendervalue);
 }

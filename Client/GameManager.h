@@ -12,6 +12,7 @@ enum class EScene
 
 enum class EMainState
 {
+    None,
     Tutorial,
     Stage1,
     Stage2,
@@ -40,9 +41,11 @@ class GameManager : public Singleton<GameManager>
     Player* m_Player = nullptr;
 
     bool m_Pause = false;
+    bool m_isSuccess = false;
 
     EScene m_CurrentScene = EScene::Title;
-    EMainState m_MainState = EMainState::Tutorial;
+    EMainState m_MainState = EMainState::None;
+	EMainState m_PrevMainState = EMainState::None;
     ETutorialStep m_TutorialStep = ETutorialStep::WASD;
 ///GameFlowEnd
 
@@ -69,6 +72,7 @@ public:
     Player* GetPlayerPtr();
 ///GameFlow
 
+    void Update();
     void OnSceneEnter(EScene type);
     void OnSceneUpdate();
     void OnSceneRender();
@@ -78,9 +82,20 @@ public:
     void SetPaused(bool v) { m_Pause = v; }
     void RegisterOptionPanel(Panel* panel) { m_optionPanel = panel; }
     void ToggleOption();
+    bool IsSuccess() const { return m_isSuccess; }
+    void SetSuccess(bool v) { m_isSuccess = v; }
 
     void MainSceneControl();
+
+    void ChangeMainState(EMainState next);
+
+	void OnStageEnter(EMainState state);
+	void OnStageExit(EMainState state);
+
     void TutorialControl();
+    void Stage1Control();
+    void Stage2Control();
+    void Stage3Control();
 
 ///GameFlowEND
 

@@ -6,6 +6,8 @@
 #include "SceneBase.h"
 #include "Renderer.h"
 #include "Panel.h"
+#include "InputManager.h"
+#include "SoundManager.h"
 
 #include "Shared/Config/Option.h"
 
@@ -25,7 +27,34 @@ void GameManager::Initialize()
 
 void GameManager::Finalize()
 {
+	//
+}
 
+void GameManager::Update()
+{
+	if (m_CurrentScene == EScene::Main)
+	{
+		if (InputManager::GetInstance().GetKeyDown(KeyCode::Escape))
+		{
+			ToggleOption();
+		}
+
+		SceneManager::GetInstance().SetPaused(m_Pause);
+		if (m_Pause)
+		{
+			SoundManager::GetInstance().Pause();
+		}
+		else
+		{
+			SoundManager::GetInstance().Resume();
+		}
+	}
+	else
+	{
+		if (m_Pause) m_Pause = false;
+		SceneManager::GetInstance().SetPaused(false);
+		SoundManager::GetInstance().Resume();
+	}
 }
 
 void GameManager::ToggleOption()
@@ -45,11 +74,19 @@ void GameManager::ToggleOption()
 
 void GameManager::OnSceneEnter(EScene type)
 {
+	auto& sm = SoundManager::GetInstance();
+
 	m_CurrentScene = type;
+	m_Pause = false;
+	if (type != EScene::Main) m_optionPanel = nullptr;
+	if (type == EScene::Title || type == EScene::Main) m_isSuccess = false;
 
 	switch (type)
 	{
 	case EScene::Title:
+		sm.Ambience_Shot(Config::Ambience);
+		sm.Sub_BGM_Shot(Config::Title_BGM,0.0f);
+
 		ScoreReset();
 		m_MainState = EMainState::Tutorial;
 		m_TutorialStep = ETutorialStep::WASD;
@@ -57,9 +94,12 @@ void GameManager::OnSceneEnter(EScene type)
 
 	case EScene::Main:
 		m_Player = GetPlayerPtr();
+
+		ChangeMainState(EMainState::Tutorial);
 		break;
 
 	case EScene::Result:
+		sm.Sub_BGM_Shot(Config::Ending_BGM, 0.0f);
 		break;
 	}
 }
@@ -72,10 +112,7 @@ void GameManager::OnSceneUpdate()
 		break;
 
 	case EScene::Main:
-		if (m_MainState == EMainState::Tutorial)
-		{
-			MainSceneControl();
-		}
+		MainSceneControl();
 		ScoreUpdate();
 		break;
 
@@ -102,15 +139,19 @@ void GameManager::OnSceneRender()
 
 void GameManager::OnSceneExit()
 {
+	auto& sm = SoundManager::GetInstance();
 	switch (m_CurrentScene)
 	{
 	case EScene::Title:
+		sm.FadeOut(sm.GetBGMCh2(), 1.0f, true);
 		break;
 
 	case EScene::Main:
+		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
 		break;
 
 	case EScene::Result:
+		sm.FadeOut(sm.GetBGMCh2(), 1.0f, true);
 		break;
 	}
 }
@@ -124,38 +165,86 @@ void GameManager::MainSceneControl()
 		break;
 
 	case EMainState::Stage1:
+		Stage1Control();
 		break;
 
 	case EMainState::Stage2:
+		Stage2Control();
 		break;
 
 	case EMainState::StageBoss:
+		Stage3Control();
+		break;
+	}
+}
+
+void GameManager::ChangeMainState(EMainState next)
+{
+	if (m_MainState == next)
+		return;
+
+	if (m_MainState != EMainState::None)
+		OnStageExit(m_MainState);
+
+	m_PrevMainState = m_MainState;
+	m_MainState = next;
+
+	OnStageEnter(m_MainState);
+}
+
+void GameManager::OnStageEnter(EMainState state)
+{
+	auto& sm = SoundManager::GetInstance();
+	switch (state)
+	{
+	case EMainState::Tutorial:
+		std::cout << "Tutorial Enter\n";
+		sm.Main_BGM_Shot(Config::Tutori_BGM, 3.0f);
+		
+		break;
+
+	case EMainState::Stage1:
+		std::cout << "Stage1 Enter\n";
+		sm.Main_BGM_Shot(Config::Stage1_BGM, 3.0f);
+
+		break;
+
+	case EMainState::Stage2:
+		std::cout << "Stage2 Enter\n";
+		sm.Main_BGM_Shot(Config::Stage2_BGM, 3.0f);
+
+		break;
+
+	case EMainState::StageBoss:
+		std::cout << "StageBoss Enter\n";
+		sm.Main_BGM_Shot(Config::Stage3_BGM, 3.0f);
+
 		break;
 	}
 }
 
 void GameManager::TutorialControl()
 {
-    auto& p = m_Player;
+	auto& p = m_Player;
 
 	p->SetAction(Action::All, false);
 
-    switch (m_TutorialStep)
-    {
+	switch (m_TutorialStep)
+	{
 	case ETutorialStep::WASD:
 		p->SetAction(Action::Move, true);
 		break;
 
-    case ETutorialStep::Dash:
+	case ETutorialStep::Dash:
 		p->SetAction(Action::Move, true);
 		p->SetAction(Action::Dash, true);
 		break;
 
-    case ETutorialStep::Reload:
+	case ETutorialStep::Reload:
 		p->SetAction(Action::Reload, true);
 		break;
 
-    case ETutorialStep::Shoot:
+	case ETutorialStep::Shoot:
 		p->SetAction(Action::Shoot, true);
 		break;
 
@@ -170,10 +259,56 @@ void GameManager::TutorialControl()
 
 	case ETutorialStep::End:
 		p->SetAction(Action::All, true);
-		m_MainState = EMainState::Stage1;
+		auto& sm = SoundManager::GetInstance();
+		sm.Stop_ChannelGroup();
+		sm.Main_BGM_Shot(Config::Stage1_BGM, 4.0f);
+		ChangeMainState(EMainState::Stage1);
 		break;
-    }
+	}
 }
+
+void GameManager::Stage1Control()
+{
+
+}
+
+void GameManager::Stage2Control()
+{
+
+}
+
+void GameManager::Stage3Control()
+{
+
+}
+
+void GameManager::OnStageExit(EMainState state)
+{
+	auto& sm = SoundManager::GetInstance();
+
+	switch (state)
+	{
+	case EMainState::Tutorial:
+		std::cout << "Tutorial Exit\n";
+		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		break;
+
+	case EMainState::Stage1:
+		std::cout << "Stage1 Exit\n";
+		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		break;
+
+	case EMainState::Stage2:
+		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		break;
+
+	case EMainState::StageBoss:
+		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		break;
+	}
+}
+
+
 
 Player* GameManager::GetPlayerPtr()
 {

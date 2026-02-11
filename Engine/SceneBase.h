@@ -158,6 +158,8 @@ private:
 	void PickObjectDebugCamera();
 	// 디버그 좌표 렌더링
 	void RenderDebugCoordinates();
+	// 콜라이더 베이크
+	void BakeCollider();
 #endif
 };
 

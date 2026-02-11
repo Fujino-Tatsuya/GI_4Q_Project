@@ -21,6 +21,7 @@ REGISTER_TYPE(TitleScene);
 void TitleScene::Initialize()
 {
 	GameManager::GetInstance().ForceShowCursor(TRUE);
+	GameManager::GetInstance().OnSceneEnter(EScene::Title);
 
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
@@ -72,7 +73,6 @@ void TitleScene::Initialize()
 	//exitbutton->SetLocalPosition({ buttonX, 0.9f });
 	//exitbutton->SetScale(0.3f);
 
-	SoundManager::GetInstance().Ambience_Shot(Config::Ambience);
 }
 
 void TitleScene::Update()
@@ -107,7 +107,9 @@ void TitleScene::BindUIActions()
 			if (key == "start_game") {
 				btn->SetOnClick([this]() { if (m_isPanel) return; SceneManager::GetInstance().ChangeScene("TestScene");  });
 			} else if (key == "quit_game") {
-				btn->SetOnClick([]() { PostQuitMessage(0); });
+				btn->SetOnClick([this]() {
+					if (m_isPanel) return;
+				PostQuitMessage(0); });
 			} else if (key == "open_option") {
 				if (optionPanel) btn->SetOnClick([this]() {
 					if (m_isPanel) return;
@@ -141,12 +143,12 @@ void TitleScene::BindUIActions()
 
 			if (key == "BGM_Volume") {
 				slider->AddListener([](float val) {
-					SoundManager::GetInstance().SetVolume_Main(val);
+					SoundManager::GetInstance().SetVolume_BGM(val);
 					});
 			}
 			else if (key == "SFX_Volume") {
 				slider->AddListener([](float val) {
-					SceneBase::SetGammaIntensity(val);
+					SoundManager::GetInstance().SetVolume_SFX(val);
 					});
 			}
 			else if (key == "Set_Sensitivity")

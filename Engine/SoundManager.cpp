@@ -304,6 +304,7 @@ bool SoundManager::CheckMainBGMBeatver()
 		
 		return false;
 	}
+	return false;
 }
 
 static float Hann(int n, int N)

@@ -11,12 +11,69 @@
             "depth": 0.0,
             "name": "ending_score",
             "parentIdx": -1,
-            "pathIdle": "UI_OptionBG.png",
+            "pathIdle": "UI_Result_BG.png",
             "pos": [
                 0.5,
                 0.5
             ],
             "scale": 0.6700000166893005,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.009999999776482582,
+            "name": "result_fail",
+            "parentIdx": 4,
+            "pathIdle": "UI_result_fail.png",
+            "pos": [
+                -0.28999999165534973,
+                0.07999999821186066
+            ],
+            "scale": 1.0399999618530273,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.009999999776482582,
+            "name": "namu_pan",
+            "parentIdx": 0,
+            "pathIdle": "UI_Result_Sign.png",
+            "pos": [
+                0.17000000178813934,
+                0.03999999910593033
+            ],
+            "scale": 0.6899999976158142,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.009999999776482582,
+            "name": "result_pass",
+            "parentIdx": 5,
+            "pathIdle": "UI_result_pass.png",
+            "pos": [
+                -0.27000001072883606,
+                0.07000000029802322
+            ],
+            "scale": 1.409999966621399,
             "type": "Panel"
         },
         {
@@ -28,33 +85,14 @@
                 1.0
             ],
             "depth": 0.0,
-            "name": "ending_ranking",
-            "parentIdx": -1,
-            "pathIdle": "UI_OptionBG.png",
-            "pos": [
-                0.5,
-                0.5
-            ],
-            "scale": 1.0,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "cha_pose",
+            "name": "fail",
             "parentIdx": 0,
-            "pathIdle": "UI_cha_pose.png",
+            "pathIdle": "UI__.png",
             "pos": [
-                -0.3199999928474426,
+                0.0,
                 0.0
             ],
-            "scale": 0.550000011920929,
+            "scale": 0.10000000149011612,
             "type": "Panel"
         },
         {
@@ -66,23 +104,450 @@
                 1.0
             ],
             "depth": 0.0,
-            "fontName": "SuperCrawler72",
-            "name": "rank",
-            "parentIdx": -1,
+            "name": "pass",
+            "parentIdx": 0,
+            "pathIdle": "UI__.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 0.10000000149011612,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.019999999552965164,
+            "name": "Gameover",
+            "parentIdx": 4,
+            "pathIdle": "UI_Gameover.png",
+            "pos": [
+                0.17000000178813934,
+                -0.3499999940395355
+            ],
+            "scale": 0.8899999856948853,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "Grade",
+            "parentIdx": 2,
+            "pathIdle": "UI_Grade_S.png",
+            "pos": [
+                0.0,
+                -0.12999999523162842
+            ],
+            "scale": 0.8999999761581421,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "Daesa",
+            "parentIdx": 2,
+            "pathIdle": "UI_panel.png",
+            "pos": [
+                0.0,
+                0.11999999731779099
+            ],
+            "scale": 0.10000000149011612,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "depth": 0.3400000035762787,
+            "fontName": "Paperlogy",
+            "name": "Daesa_Deuleogal_got",
+            "parentIdx": 2,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                0.47999998927116394,
-                0.12999999523162842
+                -0.10999999940395355,
+                0.09000000357627869
             ],
-            "scale": 1.0,
-            "text": "Ranking",
+            "scale": 0.4000000059604645,
+            "text": "\"is this end?\"",
             "textColor": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.019999999552965164,
+            "name": "Clear",
+            "parentIdx": 5,
+            "pathIdle": "UI_Clear.png",
+            "pos": [
+                0.17000000178813934,
+                -0.3799999952316284
+            ],
+            "scale": 0.8999999761581421,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "100000",
+            "parentIdx": 12,
+            "pathIdle": "UI_n0.png",
+            "pos": [
+                -0.07500000298023224,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.028999999165534973,
+            "name": "numbers",
+            "parentIdx": 2,
+            "pathIdle": "UI__.png",
+            "pos": [
+                0.0,
+                0.03999999910593033
+            ],
+            "scale": 0.699999988079071,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "10000",
+            "parentIdx": 12,
+            "pathIdle": "UI_n1.png",
+            "pos": [
+                -0.04500000178813934,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "1000",
+            "parentIdx": 12,
+            "pathIdle": "UI_n2.png",
+            "pos": [
+                -0.014999999664723873,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "100",
+            "parentIdx": 12,
+            "pathIdle": "UI_n3.png",
+            "pos": [
+                0.014999999664723873,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "10",
+            "parentIdx": 12,
+            "pathIdle": "UI_n4.png",
+            "pos": [
+                0.04500000178813934,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "1",
+            "parentIdx": 12,
+            "pathIdle": "UI_n5.png",
+            "pos": [
+                0.07500000298023224,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.029999999329447746,
+            "name": "buttons",
+            "parentIdx": 2,
+            "pathIdle": "UI__.png",
+            "pos": [
+                0.0,
+                0.2199999988079071
+            ],
+            "scale": 0.10000000149011612,
+            "type": "Panel"
+        },
+        {
+            "actionKey": "TITLE",
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.03099999949336052,
+            "name": "TITLE",
+            "parentIdx": 18,
+            "pathClicked": "UI_Result_hover.png",
+            "pathHover": "UI_Result_hover.png",
+            "pathIdle": "UI_Result_hover.png",
+            "pathPressed": "UI_Result_hover.png",
+            "pos": [
+                0.09000000357627869,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.032999999821186066,
+            "name": "gun",
+            "parentIdx": 18,
+            "pathIdle": "UI_Icon_sgun.png",
+            "pos": [
+                -0.14000000059604645,
+                -0.019999999552965164
+            ],
+            "scale": 0.7599999904632568,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "depth": 0.33000001311302185,
+            "fontName": "Paperlogy",
+            "name": "RETRY",
+            "parentIdx": 18,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.15000000596046448,
+                -0.029999999329447746
+            ],
+            "scale": 0.36000001430511475,
+            "text": "RETRY",
+            "textColor": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.032999999821186066,
+            "name": "hat",
+            "parentIdx": 19,
+            "pathIdle": "UI_Icon_hat.png",
+            "pos": [
+                -0.05000000074505806,
+                -0.029999999329447746
+            ],
+            "scale": 0.7599999904632568,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "depth": 0.33000001311302185,
+            "fontName": "Paperlogy",
+            "name": "TITLE",
+            "parentIdx": 19,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.03999999910593033,
+                -0.029999999329447746
+            ],
+            "scale": 0.36000001430511475,
+            "text": "TITLE",
+            "textColor": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "actionKey": "RETRY",
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.03099999949336052,
+            "name": "RETRY",
+            "parentIdx": 18,
+            "pathClicked": "UI_Result_hover.png",
+            "pathHover": "UI_Result_hover.png",
+            "pathIdle": "UI_Result_hover.png",
+            "pathPressed": "UI_Result_hover.png",
+            "pos": [
+                -0.09000000357627869,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
         }
     ],
     "environmentMapFileName": "Skybox.dds",

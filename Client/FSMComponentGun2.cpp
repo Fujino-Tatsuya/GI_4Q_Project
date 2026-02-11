@@ -177,8 +177,8 @@ void FSMComponentGun2::OnUpdateState(StateID state)
         // ==========================================
         m_timer += dt;
 
-        constexpr float kReloadDuration = 1.5f; // 재장전 시간 1.5초
-        constexpr float kSpinSpeed = 1440.0f;   // 초당 1440도 (엄청 빠르게 4바퀴)
+        constexpr float kReloadDuration = 0.5f;  // <- 여기만 조작할것
+        constexpr float kSpinSpeed = 360.0f / kReloadDuration;
 
         if (m_timer <= kReloadDuration) {
             // 1. 실린더 회전 (계속 누적)
@@ -199,6 +199,14 @@ void FSMComponentGun2::OnUpdateState(StateID state)
             tiltRot.m128_f32[2] += 30.0f; // Z축으로 30도 갸우뚱
             gun->SetRotation(tiltRot);
             */
+
+            if (gun){
+                XMVECTOR spinRot = m_originRotGun;
+                float addedAngle = kSpinSpeed * m_timer;
+                spinRot.m128_f32[2] -= addedAngle;
+                gun->SetRotation(spinRot);
+            }
+
         } else {
             // 종료: 각도 정리
             // 실린더는 많이 돌아갔으므로, 360도로 나눈 나머지값 등으로 깔끔하게 처리하거나

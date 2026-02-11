@@ -11,6 +11,7 @@
 #include "ModelComponent.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "ColliderComponent.h"
 
 #include "Button.h"
 #include "Slider.h"
@@ -225,20 +226,6 @@ void SceneBase::BaseUpdate()
 
 	if (inputManager.GetKey(KeyCode::Control))
 	{
-		static nlohmann::json copiedObjectJson = {};
-		if (inputManager.GetKeyDown(KeyCode::C))
-		{
-			if (GameObjectBase* selectedObject = GameObjectBase::GetSelectedObject()) copiedObjectJson = static_cast<Base*>(selectedObject)->BaseSerialize();
-		}
-		if (inputManager.GetKeyDown(KeyCode::V))
-		{
-			if (!copiedObjectJson.is_null() && !copiedObjectJson.empty())
-			{
-				if (GameObjectBase* selectedObject = GameObjectBase::GetSelectedObject()) selectedObject->CreateFromJson(copiedObjectJson);
-				else CreateFromJson(copiedObjectJson);
-			}
-		}
-
 		if (inputManager.GetKeyDown(KeyCode::S))
 		{
 			cout << "[System] Saving Scene: " << m_type << "..." << endl;
@@ -274,14 +261,15 @@ void SceneBase::BaseRender()
 
 			const float cameraFarPlane = mainCamera.GetFarZ();
 
-			XMVECTOR lightPosition = (m_globalLightData.lightDirection * -cameraFarPlane * 0.25f) + mainCamera.GetPosition();
+			XMVECTOR lightPosition = m_globalLightData.lightDirection * -250.0f;
 			lightPosition = XMVectorSetW(lightPosition, 1.0f);
 			renderer.SetRenderSortPoint(lightPosition);
 
 			constexpr XMVECTOR LIGHT_UP = { 0.0f, 1.0f, 0.0f, 0.0f };
-			m_viewProjectionData.viewMatrix = XMMatrixLookAtLH(lightPosition, mainCamera.GetPosition(), LIGHT_UP);
+			constexpr XMVECTOR LIGHT_TARGET_OFFSET = { 0.0f, 0.0f, 0.0f, 0.0f };
+			m_viewProjectionData.viewMatrix = XMMatrixLookAtLH(lightPosition, LIGHT_TARGET_OFFSET, LIGHT_UP);
 
-			const float lightRange = cameraFarPlane * 0.5f; // TODO: 나중에 조금 줄일수도 있음
+			const float lightRange = 500.0f; // TODO: 나중에 조금 줄일수도 있음
 			m_viewProjectionData.projectionMatrix = XMMatrixOrthographicLH(lightRange, lightRange, 0.1f, lightRange);
 
 			m_viewProjectionData.VPMatrix = XMMatrixTranspose(m_viewProjectionData.viewMatrix * m_viewProjectionData.projectionMatrix);
@@ -443,6 +431,8 @@ void SceneBase::BaseRenderImGui()
 	ImGui::DragFloat("Directional Intensity", &m_globalLightData.lightDirection.m128_f32[3], 0.001f, 0.0f, 100.0f);
 
 	RenderImGui();
+
+	if (ImGui::Button("Bake Colloder")) BakeCollider();
 
 	ImGui::Separator();
 	ImGui::Text("Game Objects:");
@@ -1282,4 +1272,17 @@ void SceneBase::RenderDebugCoordinates()
 
 	m_deviceContext->DrawInstanced(2, 2004, 0, 0);
 }
+
+void SceneBase::BakeCollider()
+{
+	for (unique_ptr<Base>& gameObject : m_gameObjects)
+	{
+		GameObjectBase* gameObjectBase = dynamic_cast<GameObjectBase*>(gameObject.get());
+		if (gameObjectBase->GetComponent<ModelComponent>() && !gameObjectBase->GetComponent<ColliderComponent>())
+		{
+			gameObjectBase->CreateComponent<ColliderComponent>()->LoadFromModelMesh();
+		}
+	}
+}
+
 #endif

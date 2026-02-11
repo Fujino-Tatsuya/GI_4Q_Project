@@ -6,14 +6,14 @@
                 {
                     "RestartOnFinish": false,
                     "billboardType": 1,
-                    "blendState": 1,
-                    "imageScale": 0.10000000149011612,
-                    "particleAmount": 500,
+                    "blendState": 2,
+                    "imageScale": 0.1599999964237213,
+                    "particleAmount": 250,
                     "particleColor": [
-                        1.0,
-                        1.0,
-                        1.0,
-                        1.0
+                        0.4264705777168274,
+                        0.3999083936214447,
+                        0.3700259327888489,
+                        0.9944725632667542
                     ],
                     "particleConstTime": 1.0,
                     "particleEmissionColor": [
@@ -68,19 +68,19 @@
         0.0,
         0.0,
         0.0,
-        0.0
+        1.0
     ],
     "rotation": [
+        -0.0,
         0.0,
-        0.0,
-        0.0,
+        -0.0,
         1.0
     ],
     "scale": [
         1.0,
         1.0,
         1.0,
-        1.0
+        0.0
     ],
     "type": "ParticleObject"
 }

@@ -5,7 +5,6 @@
 #include "NavigationManager.h"
 #include "RNG.h"
 #include "SoundManager.h"
-#include "InputManager.h"
 #include "GameManager.h"
 
 #include "TestScene.h"
@@ -44,11 +43,7 @@ int main()
 
 	while (windowManager.ProcessMessages())
 	{
-		if (InputManager::GetInstance().GetKeyDown(KeyCode::Escape)){gameManager.ToggleOption();}
-		sceneManager.SetPaused(gameManager.IsPaused());
-		if (gameManager.IsPaused()){soundManager.Pause();}
-		else{soundManager.Resume();}
-
+		gameManager.Update();
 		soundManager.Update();
 		sceneManager.Run();
 	}

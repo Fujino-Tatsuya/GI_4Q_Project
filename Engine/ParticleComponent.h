@@ -10,7 +10,11 @@ enum class BillboardType
 
 	FountainNone,
 	FountainSpherical,
-	FountainCylindrical
+	FountainCylindrical,
+
+	CubeNone,
+	CubeSpherical,
+	CubeCylindrical
 };
 
 class ParticleComponent : public ComponentBase
@@ -86,6 +90,7 @@ public:
 	void SetBlendState(BlendState blendState) { m_blendState = blendState; }
 	
 	float GetParticleTotalTime() const { return m_particleTotalTime; }
+	void SetParticleAmount(int amount) { m_particleAmount = amount; }
 
 	bool NeedsFixedUpdate() const override { return false; }
 	bool NeedsUpdate() const override { return true; }

@@ -78,6 +78,15 @@ void Renderer::RenderImageScreenPosition(com_ptr<ID3D11ShaderResourceView> textu
 	m_spriteBatch->Draw(texture.Get(), position, srcRect, color, 0.0f, offset, scale, SpriteEffects_None, depth);
 }
 
+void Renderer::RenderImageWrapScreenPosition(com_ptr<ID3D11ShaderResourceView> texture, XMFLOAT2 position, XMFLOAT2 offset, float scale, const XMVECTOR& color, float depth, const RECT* srcRect)
+{
+	XMFLOAT2 wrapPosition = position;
+	if (wrapPosition.x < 0.0f) wrapPosition.x = static_cast<float>(m_swapChainDesc.Width) + wrapPosition.x;
+	if (wrapPosition.y < 0.0f) wrapPosition.y = static_cast<float>(m_swapChainDesc.Height) + wrapPosition.y;
+
+	m_spriteBatch->Draw(texture.Get(), wrapPosition, srcRect, color, 0.0f, offset, scale, SpriteEffects_None, depth);
+}
+
 void Renderer::RenderImageUIPosition(com_ptr<ID3D11ShaderResourceView> texture, XMFLOAT2 position, XMFLOAT2 offset, float scale, const XMVECTOR& color, float depth, const RECT* srcRect)
 {
 	RenderImageScreenPosition(texture, { position.x, position.y }, offset, scale, color, depth, srcRect); //pixel position

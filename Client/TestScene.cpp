@@ -9,6 +9,7 @@
 #include "Renderer.h"
 #include "CameraComponent.h"
 #include "GameManager.h"
+#include "ColliderComponent.h"
 
 #include "TestCameraObject.h"
 #include "CamRotObject.h"
@@ -21,6 +22,8 @@
 #include "Button.h"
 
 #include "Shared/Config/Option.h"
+#include <Slider.h>
+#include "Text.h"
 
 REGISTER_TYPE(TestScene)
 
@@ -29,15 +32,14 @@ using namespace DirectX;
 
 void TestScene::Initialize()
 {
+	GameManager::GetInstance().OnSceneEnter(EScene::Main);
 	GameManager::GetInstance().ForceShowCursor(FALSE);
 
 	m_player = dynamic_cast<Player*>(GetRootGameObject("Player"));
 
-	GameManager::GetInstance().OnSceneEnter(EScene::Main);
 	m_tutorialBox = GetRootGameObject("Box");
-
-	SoundManager::GetInstance().Main_BGM_Shot(Config::Main_BGM,1.0f);
-	SoundManager::GetInstance().Ambience_Shot(Config::Ambience);
+	m_stage2Trigger = GetRootGameObject("Stage2Trigger");
+	m_stageBossTrigger = GetRootGameObject("StageBossTrigger");
 
 	for (size_t i = 0; i < 10; ++i)
 	{
@@ -55,10 +57,7 @@ void TestScene::Update()
 	GameManager::GetInstance().OnSceneUpdate();
 	TutorialStep();
 
-	if (InputManager::GetInstance().GetKeyDown(KeyCode::Num0))
-	{
-		SceneManager::GetInstance().ChangeScene("EndingScene");
-	}
+	CheckStageTrigger();
 
 	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
 		if (cheatPanel)
@@ -67,10 +66,23 @@ void TestScene::Update()
 		}
 	}
 
-	if (SoundManager::GetInstance().CheckBGMEnd())
-	{
-		SoundManager::GetInstance().Main_BGM_Shot(SoundManager::GetInstance().GetCurrentTrackName(), 3.0f);
-	}
+	auto& sm = SoundManager::GetInstance();
+
+	float mastervolume = sm.GetVolume_Main();
+	float bgmvolume = sm.GetVolume_BGM();
+	float sfxvolume = sm.GetVolume_SFX();
+	float sensitivity = m_player->GetCameraSensitivity();
+
+	string masterstr = format("{:.2f}", mastervolume);
+	string bgmstr = format("{:.2f}", mastervolume);
+	string sfxstr = format("{:.2f}", mastervolume);
+	string sensestr = format("{:.2f}", mastervolume);
+
+	
+	//m_curMasterVolume->SetText(masterstr);
+	//m_curBGMVolume->SetText(bgmstr);
+	//m_curSFXVolume->SetText(sfxstr);
+	//m_curSensitivity->SetText(sensestr);
 }
 
 void TestScene::Render()
@@ -97,8 +109,6 @@ void TestScene::RenderImGui()
 void TestScene::Finalize()
 {
 	GameManager::GetInstance().OnSceneExit();
-	SoundManager::GetInstance().Stop_ChannelGroup();
-	
 }
 
 nlohmann::json TestScene::Serialize()
@@ -147,7 +157,25 @@ void TestScene::TutorialStep()
 	}
 }
 
-constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 100.0f;
+void TestScene::CheckStageTrigger()
+{
+	const XMVECTOR& playerPos = m_player->GetWorldPosition();
+	if (m_stage2Trigger && m_stage2Trigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	{
+		GameManager::GetInstance().ChangeMainState(EMainState::Stage2);
+		m_stage2Trigger->SetAlive(false);
+		m_stage2Trigger = nullptr;
+	}
+	if (m_stageBossTrigger && m_stageBossTrigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	{
+		GameManager::GetInstance().ChangeMainState(EMainState::StageBoss);
+		m_stageBossTrigger->SetAlive(false);
+		m_stageBossTrigger = nullptr;
+	}
+}
+
+// 스폰 활성 거리 제곱
+constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 25.0f * 25.0f;
 
 void TestScene::SpawnEnemy(float deltaTime)
 {
@@ -167,8 +195,7 @@ void TestScene::SpawnEnemy(float deltaTime)
 
 		if (!validSpawnPoints.empty())
 		{
-			XMVECTOR spawnPoint = validSpawnPoints[RNG::GetInstance().Range(0, static_cast<int>(validSpawnPoints.size()) - 1)];
-			CreatePrefabRootGameObject("Enemy.json")->SetPosition(spawnPoint);
+			for (const XMVECTOR& spawnPoint : validSpawnPoints) CreatePrefabRootGameObject("Enemy.json")->SetPosition(spawnPoint);
 
 			spawnTime = 0.0f;
 		}
@@ -230,20 +257,65 @@ void TestScene::BindUIActions()
 		// -------------------------------------------------------
 		// 1. Button bindings
 		// -------------------------------------------------------
-		if (auto* btn = dynamic_cast<Button*>(uiPtr.get())) {
+		if (auto* btn = dynamic_cast<Button*>(uiPtr.get()))
+		{
 			std::string key = btn->GetActionKey();
-		if (key == "cheat") {
-			btn->SetOnClick([this]() { SceneManager::GetInstance().ChangeScene("EndingScene");  });
-		} else if (key == "close_option") {
-			if (optionPanel) btn->SetOnClick([this]()
+
+
+				if (key == "cheat") {
+					btn->SetOnClick([this]() {
+						GameManager::GetInstance().SetSuccess(true);
+						SceneManager::GetInstance().ChangeScene("EndingScene");
+					});
+				}
+			else if (key == "close_option") {
+				if (optionPanel) btn->SetOnClick([this]()
+					{
+						optionPanel->SetActive(false);
+						GameManager::GetInstance().SetPaused(false);
+						GameManager::GetInstance().ForceShowCursor(FALSE);
+					});
+			}
+		}
+		else if (auto* slider = dynamic_cast<Slider*>(uiPtr.get())) {
+			std::string key = slider->GetActionKey();
+
+			if (key == "BGM_Volume") {
+				slider->AddListener([](float val) {
+					SoundManager::GetInstance().SetVolume_BGM(val);
+					});
+			}
+			else if (key == "SFX_Volume") {
+				slider->AddListener([](float val) {
+					SoundManager::GetInstance().SetVolume_SFX(val);
+					});
+			}
+			else if (key == "Set_Sensitivity")
 			{
-				optionPanel->SetActive(false);
-				GameManager::GetInstance().SetPaused(false);
-				GameManager::GetInstance().ForceShowCursor(FALSE);
-			});
+				slider->AddListener([](float val) {
+					Player::SetCameraSensitivity(val);
+					});
+			}
+		}
+		else if (auto* text = dynamic_cast<Text*>(uiPtr.get()))
+		{
+			std::string name = text->GetName();
+
+			if (name == "Cur_Master_Volume")
+			{
+				m_curMasterVolume = text;
+			}
+			else if (name == "Cur_BGM_Volume")
+			{
+				m_curBGMVolume = text;
+			}
+			else if (name == "Cur_SFX_Volume") {
+				m_curSFXVolume = text;
+			}
+			else if (name == "Cur_Set_Sensitivity")
+			{
+				m_curSensitivity = text;
+			}
 		}
 	}
-	}
-
-
 }
