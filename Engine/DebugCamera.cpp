@@ -22,7 +22,14 @@ void DebugCamera::Update()
 	float deltaTime = TimeManager::GetInstance().GetDeltaTime();
 	const POINT& mouseDelta = input.GetMouseDelta();
 
-	if (input.GetKey(KeyCode::MouseRight))
+	if (m_keyBoardRotation)
+	{
+		if (input.GetKey(KeyCode::Left))  Rotate(XMVectorSet(0.0f, -50.0f * deltaTime, 0.0f, 0.0f));
+		if (input.GetKey(KeyCode::Right)) Rotate(XMVectorSet(0.0f, 50.0f * deltaTime, 0.0f, 0.0f));
+		if (input.GetKey(KeyCode::Up))    Rotate(XMVectorSet(-50.0f * deltaTime, 0.0f, 0.0f, 0.0f));
+		if (input.GetKey(KeyCode::Down))  Rotate(XMVectorSet(50.0f * deltaTime, 0.0f, 0.0f, 0.0f));
+	}
+	else if (input.GetKey(KeyCode::MouseRight))
 	{
 		const XMVECTOR& euler = GetRotation();
 
@@ -50,6 +57,7 @@ void DebugCamera::RenderImGui()
 	ImGui::Begin("Debug Camera Settings");
 	ImGui::SliderFloat("Sensitivity", &m_sensitivity, 0.01f, 1.0f);
 	ImGui::SliderFloat("Move Speed", &m_moveSpeed, 1.0f, 100.0f);
+	ImGui::Checkbox("Keyboard Rotation", &m_keyBoardRotation);
 	ImGui::End();
 }
 #endif
