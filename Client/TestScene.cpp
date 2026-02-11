@@ -59,13 +59,6 @@ void TestScene::Update()
 
 	CheckStageTrigger();
 
-	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
-		if (cheatPanel)
-		{
-			cheatPanel->SetActive(true);
-		}
-	}
-
 	auto& sm = SoundManager::GetInstance();
 
 	float mastervolume = sm.GetVolume_Main();
@@ -241,16 +234,18 @@ void TestScene::RenderSpawnPoints()
 
 void TestScene::BindUIActions()
 {
+	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
-			else if (panel->GetName() == "cheat") cheatPanel = panel;
+			else if (panel->GetName() == "cheat") sceneCheatPanel = panel;
 		}
 	}
 	if (optionPanel)
 	{
 		GameManager::GetInstance().RegisterOptionPanel(optionPanel);
 	}
+	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {

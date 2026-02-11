@@ -42,10 +42,12 @@ void EndingScene::Initialize()
 
 void EndingScene::Update()
 {
+	GameManager::GetInstance().OnSceneUpdate();
 }
 
 void EndingScene::BindUIActions()
 {
+	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "1") n1 = panel;
@@ -56,8 +58,10 @@ void EndingScene::BindUIActions()
 			else if (panel->GetName() == "100000") n100000 = panel;
 			else if (panel->GetName() == "namu_pan") namu_pan = panel;
 			else if (panel->GetName() == "Grade") Grade = panel;
+			else if (panel->GetName() == "cheat") sceneCheatPanel = panel;
 		}
 	}
+	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {

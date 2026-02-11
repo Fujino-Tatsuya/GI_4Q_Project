@@ -519,6 +519,354 @@
             ],
             "scale": 0.6499999761581421,
             "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "name": "cheat",
+            "parentIdx": -1,
+            "pathIdle": "UI__.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 0.10000000149011612,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "name": "right",
+            "parentIdx": 16,
+            "pathIdle": "UI__.png",
+            "pos": [
+                1.0,
+                0.0
+            ],
+            "scale": 0.10000000149011612,
+            "type": "Panel"
+        },
+        {
+            "actionKey": "goto_tutorial",
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "name": "goto_tutorial",
+            "parentIdx": 17,
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
+            "pathIdle": "UI_Button.png",
+            "pathPressed": "UI_Button_hover.png",
+            "pos": [
+                0.0,
+                0.28999999165534973
+            ],
+            "scale": 1.0,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "fontName": "SuperCrawler72",
+            "name": "GoTo",
+            "parentIdx": 17,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.12999999523162842,
+                0.0
+            ],
+            "scale": 0.5799999833106995,
+            "text": "Go To",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "actionKey": "goto_stage1",
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "name": "goto_stage1",
+            "parentIdx": 17,
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
+            "pathIdle": "UI_Button.png",
+            "pathPressed": "UI_Button_hover.png",
+            "pos": [
+                0.0,
+                0.44999998807907104
+            ],
+            "scale": 1.0,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
+        },
+        {
+            "actionKey": "goto_stage2",
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "name": "goto_stage2",
+            "parentIdx": 17,
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
+            "pathIdle": "UI_Button.png",
+            "pathPressed": "UI_Button_hover.png",
+            "pos": [
+                0.0,
+                0.6100000143051147
+            ],
+            "scale": 1.0,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
+        },
+        {
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "name": "goto_boss",
+            "parentIdx": 17,
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
+            "pathIdle": "UI_Button.png",
+            "pathPressed": "UI_Button_hover.png",
+            "pos": [
+                0.0,
+                0.7699999809265137
+            ],
+            "scale": 1.0,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "fontName": "SuperCrawler72",
+            "name": "tutorial",
+            "parentIdx": 18,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.11999999731779099,
+                -0.019999999552965164
+            ],
+            "scale": 0.36000001430511475,
+            "text": "tutorial",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "fontName": "SuperCrawler72",
+            "name": "stage1",
+            "parentIdx": 20,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.10000000149011612,
+                -0.019999999552965164
+            ],
+            "scale": 0.4000000059604645,
+            "text": "One",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "fontName": "SuperCrawler72",
+            "name": "stage2",
+            "parentIdx": 21,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.10000000149011612,
+                -0.019999999552965164
+            ],
+            "scale": 0.4000000059604645,
+            "text": "Two",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.9100000262260437,
+            "fontName": "SuperCrawler72",
+            "name": "boss",
+            "parentIdx": 22,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.10000000149011612,
+                -0.019999999552965164
+            ],
+            "scale": 0.4000000059604645,
+            "text": "Boss",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
         }
     ],
     "environmentMapFileName": "Skybox.dds",

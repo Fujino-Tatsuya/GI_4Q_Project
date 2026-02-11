@@ -55,6 +55,7 @@ void GameManager::Update()
 		SceneManager::GetInstance().SetPaused(false);
 		SoundManager::GetInstance().Resume();
 	}
+
 }
 
 void GameManager::ToggleOption()
@@ -71,6 +72,16 @@ void GameManager::ToggleOption()
 	ForceShowCursor(opening);
 }
 
+void GameManager::ToggleCheatPanel()
+{
+	if (!m_cheatPanel)
+	{
+		return;
+	}
+
+	m_cheatPanel->SetActive(!m_cheatPanel->GetActive());
+}
+
 
 void GameManager::OnSceneEnter(EScene type)
 {
@@ -79,6 +90,7 @@ void GameManager::OnSceneEnter(EScene type)
 	m_CurrentScene = type;
 	m_Pause = false;
 	if (type != EScene::Main) m_optionPanel = nullptr;
+	if (type != EScene::Main) m_cheatPanel = nullptr;
 	if (type == EScene::Title || type == EScene::Main) m_isSuccess = false;
 
 	switch (type)
@@ -106,6 +118,10 @@ void GameManager::OnSceneEnter(EScene type)
 
 void GameManager::OnSceneUpdate()
 {
+	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
+		ToggleCheatPanel();
+	}
+
 	switch (m_CurrentScene)
 	{
 	case EScene::Title:

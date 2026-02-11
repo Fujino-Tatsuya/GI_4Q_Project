@@ -77,6 +77,8 @@ void TitleScene::Initialize()
 
 void TitleScene::Update()
 {
+	GameManager::GetInstance().OnSceneUpdate();
+
 	float dt = TimeManager::GetInstance().GetDeltaTime();
 
 	MovingPanel(dt);
@@ -84,6 +86,7 @@ void TitleScene::Update()
 
 void TitleScene::BindUIActions()
 {
+	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
@@ -91,10 +94,12 @@ void TitleScene::BindUIActions()
 			else if (panel->GetName() == "UI_Title_letterrbox_up") Title_letterrbox_up = panel;
 			else if (panel->GetName() == "credit") creditPanel = panel;
 			else if (panel->GetName() == "Titles") Titles = panel;
+			else if (panel->GetName() == "cheat") sceneCheatPanel = panel;
 		} else if (auto* text = dynamic_cast<Text*>(uiPtr.get())) {
 			//if (text->GetName() == "result_time") resultTime = text;
 		}
 	}
+	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {

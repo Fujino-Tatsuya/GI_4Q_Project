@@ -36,6 +36,7 @@ class GameManager : public Singleton<GameManager>
 	friend class Singleton<GameManager>;
 
     Panel* m_optionPanel = nullptr;
+    Panel* m_cheatPanel = nullptr;
 
 ///GameFlow
     Player* m_Player = nullptr;
@@ -81,7 +82,9 @@ public:
     bool IsPaused() const { return m_Pause; }
     void SetPaused(bool v) { m_Pause = v; }
     void RegisterOptionPanel(Panel* panel) { m_optionPanel = panel; }
+    void RegisterCheatPanel(Panel* panel) { m_cheatPanel = panel; }
     void ToggleOption();
+    void ToggleCheatPanel();
     bool IsSuccess() const { return m_isSuccess; }
     void SetSuccess(bool v) { m_isSuccess = v; }
 
