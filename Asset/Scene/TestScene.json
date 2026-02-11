@@ -20,7 +20,7 @@
             "type": "Panel"
         },
         {
-            "actionKey": "GoToTitle",
+            "actionKey": "go_to_title",
             "active": true,
             "colorClicked": [
                 1.0,
@@ -55,7 +55,7 @@
             "pathPressed": "UI_Button_hover.png",
             "pos": [
                 -0.10000000149011612,
-                0.3799999952316284
+                0.36000001430511475
             ],
             "scale": 0.6600000262260437,
             "scaleClicked": 1.0,
@@ -340,6 +340,7 @@
             "type": "Text"
         },
         {
+            "actionKey": "close_option",
             "active": true,
             "colorClicked": [
                 1.0,
@@ -374,7 +375,7 @@
             "pathPressed": "UI_Button_hover.png",
             "pos": [
                 0.10000000149011612,
-                0.3799999952316284
+                0.36000001430511475
             ],
             "scale": 0.6600000262260437,
             "scaleClicked": 1.0,
@@ -410,6 +411,7 @@
             "type": "Text"
         },
         {
+            "actionKey": "Master_Volume",
             "active": true,
             "colorIdle": [
                 1.0,
@@ -496,7 +498,7 @@
             "pathIdle": "UI_Key.png",
             "pos": [
                 0.0,
-                0.22499999403953552
+                0.20499999821186066
             ],
             "scale": 0.5600000023841858,
             "type": "Panel"

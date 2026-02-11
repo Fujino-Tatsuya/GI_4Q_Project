@@ -246,19 +246,37 @@ void TestScene::BindUIActions()
 						SceneManager::GetInstance().ChangeScene("EndingScene");
 					});
 				}
-			else if (key == "close_option") {
-				if (optionPanel) btn->SetOnClick([this]()
+				else if (key == "close_option") {
+					if (optionPanel) btn->SetOnClick([this]()
 					{
 						optionPanel->SetActive(false);
 						GameManager::GetInstance().SetPaused(false);
 						GameManager::GetInstance().ForceShowCursor(FALSE);
 					});
-			}
+				}
+				else if (key == "go_to_title")
+				{
+					if (optionPanel) btn->SetOnClick([this]()
+						{
+							optionPanel->SetActive(false);
+							GameManager::GetInstance().SetPaused(false);
+							GameManager::GetInstance().ForceShowCursor(TRUE);
+							SceneManager::GetInstance().ChangeScene("TitleScene");
+							
+						});
+				}
+
+
 		}
 		else if (auto* slider = dynamic_cast<Slider*>(uiPtr.get())) {
 			std::string key = slider->GetActionKey();
-
-			if (key == "BGM_Volume") {
+			if (key == "Master_Volume")
+			{
+				slider->AddListener([](float val) {
+					SoundManager::GetInstance().SetVolume_Main(val);
+					});
+			}
+			else if (key == "BGM_Volume") {
 				slider->AddListener([](float val) {
 					SoundManager::GetInstance().SetVolume_BGM(val);
 					});
