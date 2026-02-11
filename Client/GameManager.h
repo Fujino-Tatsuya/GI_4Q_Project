@@ -136,4 +136,16 @@ public:
     const std::vector<std::pair<std::string, int>>& GetTopScores() const { return m_rankings; }
 ///RANKING END
 
+	std::string ToString(EMainState state)
+	{
+		switch (state)
+		{
+		case EMainState::None:      return "None";
+		case EMainState::Tutorial:  return "Tutorial";
+		case EMainState::Stage1:    return "Stage1";
+		case EMainState::Stage2:    return "Stage2";
+		case EMainState::StageBoss: return "StageBoss";
+		default:                    return "Unknown";
+		}
+	}
 };

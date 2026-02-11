@@ -37,7 +37,7 @@ class Button : public UIBase
 
 	std::function<void()> m_onClick = nullptr;
 	std::string m_onClickActionKey = "";
-	bool m_debugInput = true;
+	bool m_debugInput = false;
 
 
 public:
