@@ -548,6 +548,25 @@
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
             "type": "Button"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "New Panel",
+            "parentIdx": -1,
+            "pathIdle": "Gameover.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 0.10000000149011612,
+            "type": "Panel"
         }
     ],
     "environmentMapFileName": "Skybox.dds",

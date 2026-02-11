@@ -93,7 +93,8 @@ public:
 		ORM,
 		Normal,
 		Emissive,
-		LUT
+		LUT,
+		UI
 	};
 	// 텍스처 파일로부터 텍스처 로드
 	com_ptr<ID3D11ShaderResourceView> GetTexture(const std::string& fileName, TextureType type = TextureType::BaseColor);
