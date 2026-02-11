@@ -353,7 +353,7 @@
             ],
             "scale": 0.699999988079071,
             "type": "Slider",
-            "value": 0.0
+            "value": 0.3837803304195404
         },
         {
             "actionKey": "close_option",
@@ -726,7 +726,7 @@
             ],
             "scale": 0.699999988079071,
             "type": "Slider",
-            "value": 0.0
+            "value": 0.22030651569366455
         },
         {
             "active": true,
@@ -827,7 +827,34 @@
             ],
             "scale": 0.699999988079071,
             "type": "Slider",
-            "value": 0.0
+            "value": 8.984674453735352
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.3199999928474426,
+            "fontName": "SuperCrawler72",
+            "name": "Sensitivity",
+            "parentIdx": 27,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.36000001430511475,
+                -0.009999999776482582
+            ],
+            "scale": 0.2800000011920929,
+            "text": "Sensitivity",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
         }
     ],
     "environmentMapFileName": "Skybox0.dds",

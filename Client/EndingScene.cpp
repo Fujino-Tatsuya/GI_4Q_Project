@@ -24,6 +24,7 @@ using namespace DirectX;
 void EndingScene::Initialize()
 {
 	GameManager::GetInstance().ForceShowCursor(TRUE);
+	GameManager::GetInstance().OnSceneEnter(EScene::Result);
 
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 

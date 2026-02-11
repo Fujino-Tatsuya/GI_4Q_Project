@@ -21,6 +21,7 @@ REGISTER_TYPE(TitleScene);
 void TitleScene::Initialize()
 {
 	GameManager::GetInstance().ForceShowCursor(TRUE);
+	GameManager::GetInstance().OnSceneEnter(EScene::Title);
 
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
@@ -72,7 +73,9 @@ void TitleScene::Initialize()
 	//exitbutton->SetLocalPosition({ buttonX, 0.9f });
 	//exitbutton->SetScale(0.3f);
 
+	SoundManager::GetInstance().Main_BGM_Shot(Config::Main_BGM, 1.0f);
 	SoundManager::GetInstance().Ambience_Shot(Config::Ambience);
+
 }
 
 void TitleScene::Update()

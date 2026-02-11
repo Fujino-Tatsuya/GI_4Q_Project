@@ -69,6 +69,7 @@ public:
     Player* GetPlayerPtr();
 ///GameFlow
 
+    void Update();
     void OnSceneEnter(EScene type);
     void OnSceneUpdate();
     void OnSceneRender();

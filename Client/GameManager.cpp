@@ -6,6 +6,8 @@
 #include "SceneBase.h"
 #include "Renderer.h"
 #include "Panel.h"
+#include "InputManager.h"
+#include "SoundManager.h"
 
 #include "Shared/Config/Option.h"
 
@@ -28,6 +30,33 @@ void GameManager::Finalize()
 
 }
 
+void GameManager::Update()
+{
+	if (m_CurrentScene == EScene::Main)
+	{
+		if (InputManager::GetInstance().GetKeyDown(KeyCode::Escape))
+		{
+			ToggleOption();
+		}
+
+		SceneManager::GetInstance().SetPaused(m_Pause);
+		if (m_Pause)
+		{
+			SoundManager::GetInstance().Pause();
+		}
+		else
+		{
+			SoundManager::GetInstance().Resume();
+		}
+	}
+	else
+	{
+		if (m_Pause) m_Pause = false;
+		SceneManager::GetInstance().SetPaused(false);
+		SoundManager::GetInstance().Resume();
+	}
+}
+
 void GameManager::ToggleOption()
 {
 	if (!m_optionPanel)
@@ -46,6 +75,8 @@ void GameManager::ToggleOption()
 void GameManager::OnSceneEnter(EScene type)
 {
 	m_CurrentScene = type;
+	m_Pause = false;
+	if (type != EScene::Main) m_optionPanel = nullptr;
 
 	switch (type)
 	{
