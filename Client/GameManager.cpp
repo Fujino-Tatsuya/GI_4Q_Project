@@ -27,7 +27,7 @@ void GameManager::Initialize()
 
 void GameManager::Finalize()
 {
-
+	//
 }
 
 void GameManager::Update()
@@ -79,6 +79,7 @@ void GameManager::OnSceneEnter(EScene type)
 	m_CurrentScene = type;
 	m_Pause = false;
 	if (type != EScene::Main) m_optionPanel = nullptr;
+	if (type == EScene::Title || type == EScene::Main) m_isSuccess = false;
 
 	switch (type)
 	{

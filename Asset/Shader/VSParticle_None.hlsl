@@ -7,8 +7,8 @@ VS_OUTPUT_POS_UV main(VS_INPUT_POS_UV input, uint instanceID : SV_InstanceID)
     
     float4 worldPos = mul(input.Position, WorldMatrix);
     
-    float rndDirSeed = Rand(LowBias32(instanceID + 1u));
-    float rndMag = Rand(LowBias32(instanceID + 2u));
+    float rndDirSeed = Rand(LowBias32(instanceID));
+    float rndMag = Rand(LowBias32(instanceID + 1u));
     
     float3 dir = Rand3(rndDirSeed, SpreadRadius);
     float3 localOffset = dir * (rndMag * SpreadDistance * EclipsedTime);

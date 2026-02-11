@@ -15,6 +15,7 @@
 #include "NavigationManager.h"
 #include "SceneManager.h"
 #include "GameManager.h"
+#include "ParticleComponent.h"
 
 #include "FSMComponentGun.h"
 
@@ -39,7 +40,9 @@ void Player::Initialize()
 	m_cameraComponent->SetAsMainCamera();
 	m_gunObject = GetChildGameObject("Gun");
 
-	m_playerHitPointTextureAndOffset = resourceManager.GetTextureAndOffset("UI_HitPoint.png");
+	m_playerHitPointTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP.png");
+	m_playerHitPointDecorationTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP_Deco.png");
+	m_deadEyeCoolDownTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_Energy.png");
 	m_deadEyeTextureAndOffset = resourceManager.GetTextureAndOffset("Crosshair.png");
 	m_enemyHitTextureAndOffset = resourceManager.GetTextureAndOffset("CrosshairHit.png");
 
@@ -68,15 +71,21 @@ void Player::Update()
 	if (										   m_ControlState.CanAutoReload && m_bulletCnt == 0 )																	PlayerAutoReload(1);
 	if (input.GetKeyDown(KeyCode::MouseLeft)	&& m_ControlState.CanShoot		&& m_bulletCnt > 0		&&	sm.CheckRhythm(Config::InputCorrection) < InputType::Miss)	PlayerShoot();
 	if (input.GetKeyDown(KeyCode::Space)		&& m_ControlState.CanDash		&& !m_isDashing 		&&	sm.CheckRhythm(Config::InputCorrection) < InputType::Miss)	PlayerTriggerDash();
-	if (input.GetKeyDown(KeyCode::MouseRight)	&& m_ControlState.CanSkill		&& !m_isDeadEyeActive	&&	sm.CheckRhythm(Config::InputCorrection) < InputType::Miss)	PlayerDeadEyeStart();
+
+	if (m_ControlState.CanSkill && !m_isDeadEyeActive)
+	{
+		if (m_deadEyeCoolDownTimer >= m_deadEyeCoolDownDuration && input.GetKeyDown(KeyCode::MouseRight) && sm.CheckRhythm(Config::InputCorrection) < InputType::Miss) PlayerDeadEyeStart();
+		else m_deadEyeCoolDownTimer += deltaTime;
+	}
+
+	XMVECTOR previousPosition = GetPosition();
 	
 	if (m_isDeadEyeActive)				PlayerDeadEye(deltaTime, input);	
 	if (m_isDashing)					PlayerDash(deltaTime);
 	else if (m_ControlState.CanMove)	MovePosition(m_normalizedMoveDirection * m_moveSpeed * deltaTime);
 	
-	XMVECTOR previousPosition = GetPosition();
 	// 만약 이동한 위치가 네비게이션 메시 밖이면 이전 위치로 되돌림 // 월드 좌표계는 나중에 업데이트 됨으로 로컬 좌표계로 해햐함
-	if (NavigationManager::GetInstance().FindNearestPoly(GetPosition(), 1.0f) < 0) SetPosition(previousPosition);
+	if (NavigationManager::GetInstance().FindNearestPoly(GetPosition(), 3.0f) < 0) SetPosition(previousPosition);
 
 	if (input.GetKeyDown(KeyCode::R) && m_ControlState.CanReload && m_bulletCnt > 0)
 	{
@@ -101,7 +110,11 @@ void Player::Update()
 	if (!m_lineBuffers.empty() && m_lineBuffers.front().second < 0.0f) m_lineBuffers.pop_front();
 	if (m_enemyHitTimer > -1.0f) m_enemyHitTimer -= deltaTime;
 	if (m_invincibilityTimer > -1.0f) m_invincibilityTimer -= deltaTime;
-	if (!m_playerHitPoint && m_invincibilityTimer <= 0.0f) SceneManager::GetInstance().ChangeScene("EndingScene");
+	if (!m_playerHitPoint && m_invincibilityTimer <= 0.0f)
+	{
+		GameManager::GetInstance().SetSuccess(false);
+		SceneManager::GetInstance().ChangeScene("EndingScene");
+	}
 
 	if (m_redVignetteIntensity > 0.0f)
 	{
@@ -122,6 +135,7 @@ void Player::Render()
 	Renderer& renderer = Renderer::GetInstance();
 
 	RenderPlayerHitPointUI(renderer);
+	RenderDeadEyeCoolDownUI(renderer);
 	if (!m_lineBuffers.empty()) RenderLineBuffers(renderer);
 	if (!m_deadEyeTargets.empty()) RenderDeadEyeTargetsUI(renderer);
 	if (m_enemyHitTimer > 0.0f) RenderEnemyHitUI(renderer);
@@ -286,6 +300,7 @@ void Player::PlayerShoot()
 	const XMVECTOR& gunPos = m_gunObject->GetWorldPosition();
 	smoke->SetPosition(gunPos);
 	smoke->SetScale({ 1.0f, 1.0f, distance, 1.0f });
+	smoke->GetChildGameObject("SmokeLine")->GetComponent<ParticleComponent>()->SetParticleAmount(static_cast<int>(distance) * 25);
 	smoke->LookAt(hitPosition);
 	smoke->SetLifetime(5.0f);
 
@@ -418,30 +433,31 @@ void Player::PlayerDeadEyeStart()
 			m_deadEyeTargets.emplace_back(powf(distancePair.x - 0.5f, 2) + powf(distancePair.y - 0.5f, 2), enemy);
 		}
 	}
-	if (hasEnemy)
-	{
-		m_isDeadEyeActive = true;
+	if (!hasEnemy) return;
 
-		TimeManager::GetInstance().SetTimeScale(0.1f);
+	m_deadEyeCoolDownTimer = 0.0f;
 
-		m_cameraSensitivity = 0.01f;
+	m_isDeadEyeActive = true;
 
-		SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Grayscale, true);
+	TimeManager::GetInstance().SetTimeScale(0.1f);
 
-		sort(m_deadEyeTargets.begin(), m_deadEyeTargets.end(), [](const auto& a, const auto& b) { return a.first < b.first; });
-		if (m_deadEyeTargets.size() > 6) m_deadEyeTargets.resize(6);
-		sort(m_deadEyeTargets.begin(), m_deadEyeTargets.end(), [&](const auto& a, const auto& b) { return m_cameraComponent->WorldToScreenPosition(a.second->GetWorldPosition()).x > m_cameraComponent->WorldToScreenPosition(b.second->GetWorldPosition()).x; });
+	m_cameraSensitivity = 0.01f;
 
-		SoundManager::GetInstance().ChangeLowpass();
+	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Grayscale, true);
 
-		m_currentNodeIndex = SoundManager::GetInstance().GetRhythmTimerIndex();
-		m_DeadEyeCount = m_deadEyeTargets.size();
-		m_deadEyeTotalDuration = static_cast<float>(m_DeadEyeCount) * 0.5f;
-		m_deadEyeDuration = 0.0f;
+	sort(m_deadEyeTargets.begin(), m_deadEyeTargets.end(), [](const auto& a, const auto& b) { return a.first < b.first; });
+	if (m_deadEyeTargets.size() > 6) m_deadEyeTargets.resize(6);
+	sort(m_deadEyeTargets.begin(), m_deadEyeTargets.end(), [&](const auto& a, const auto& b) { return m_cameraComponent->WorldToScreenPosition(a.second->GetWorldPosition()).x > m_cameraComponent->WorldToScreenPosition(b.second->GetWorldPosition()).x; });
 
-		m_prevDeadEyePos = m_cameraComponent->WorldToScreenPosition(m_deadEyeTargets.back().second->GetWorldPosition());
-		m_nextDeadEyePos = m_prevDeadEyePos;
-	}
+	SoundManager::GetInstance().ChangeLowpass();
+
+	m_currentNodeIndex = SoundManager::GetInstance().GetRhythmTimerIndex();
+	m_DeadEyeCount = m_deadEyeTargets.size();
+	m_deadEyeTotalDuration = static_cast<float>(m_DeadEyeCount) * 0.5f;
+	m_deadEyeDuration = 0.0f;
+
+	m_prevDeadEyePos = m_cameraComponent->WorldToScreenPosition(XMVectorAdd(m_deadEyeTargets.back().second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f }));
+	m_nextDeadEyePos = m_prevDeadEyePos;
 }
 
 void Player::PlayerDeadEye(float deltaTime, InputManager& input)
@@ -454,7 +470,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 	float effectIntensity = min((m_deadEyeDuration / m_deadEyeTotalDuration) * 16.0f, 1.0f);
 	SceneBase::SetGrayScaleIntensity(effectIntensity);
 
-	const XMVECTOR& targetPos = m_deadEyeTargets.back().second->GetWorldPosition();
+	const XMVECTOR& targetPos = XMVectorAdd(m_deadEyeTargets.back().second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f });
 	m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(targetPos);
 
 	if (input.GetKeyDown(KeyCode::MouseLeft))
@@ -465,14 +481,16 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 		m_deadEyeTargets.back().second->Die();
 		if (m_deadEyeTargets.size() > 1)
 		{
-			m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(m_deadEyeTargets[m_deadEyeTargets.size() - 2].second->GetWorldPosition());
+			m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(XMVectorAdd(m_deadEyeTargets[m_deadEyeTargets.size() - 2].second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f }));
 			m_deadEyeMoveTimer = 0.0f;
 		}
 
 		const XMVECTOR& gunPos = m_gunObject->GetWorldPosition();
 		ParticleObject* smoke = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Smoke.json"));
 		smoke->SetPosition(gunPos);
-		smoke->SetScale({ 1.0f, 1.0f, XMVectorGetX(XMVector3LengthEst(XMVectorSubtract(gunPos, targetPos))), 1.0f });
+		float length = XMVectorGetX(XMVector3LengthEst(XMVectorSubtract(gunPos, targetPos)));
+		smoke->SetScale({ 1.0f, 1.0f, length, 1.0f });
+		smoke->GetChildGameObject("SmokeLine")->GetComponent<ParticleComponent>()->SetParticleAmount(static_cast<int>(length) * 25);
 		smoke->LookAt(targetPos);
 		smoke->SetLifetime(5.0f);
 
@@ -512,7 +530,7 @@ void Player::RenderPlayerHitPointUI(Renderer& renderer)
 	(
 		[&]()
 		{
-			float hitPointRatio = static_cast<float>(m_playerHitPoint) / static_cast<float>(m_maxPlayerHitPoint);
+			const float hitPointRatio = static_cast<float>(m_playerHitPoint) / static_cast<float>(m_maxPlayerHitPoint);
 			LONG width = static_cast<LONG>(m_playerHitPointTextureAndOffset.second.x);
 
 			if (m_playerHitPoint != m_maxPlayerHitPoint)
@@ -528,15 +546,51 @@ void Player::RenderPlayerHitPointUI(Renderer& renderer)
 				.bottom = static_cast<LONG>(m_playerHitPointTextureAndOffset.second.y)
 			};
 
-			Renderer::GetInstance().RenderImageUIPosition
+			Renderer& renderer = Renderer::GetInstance();
+
+			renderer.RenderImageWrapScreenPosition
 			(
 				m_playerHitPointTextureAndOffset.first,
-				{ 0.2f, 0.9f },
+				{ 300.0f, -35.0f },
 				m_playerHitPointTextureAndOffset.second,
 				1.0f,
 				{ 1.0f - hitPointRatio, hitPointRatio, 0.0f, 1.0f },
 				0.0f,
 				&hitPointSrcRect
+			);
+
+			// 체력 바 데코 // 지금 크기사 이상한 것 같음
+			//renderer.RenderImageNrmPosition(m_playerHitPointDecorationTextureAndOffset.first, { 0.25f, 0.9f }, m_playerHitPointDecorationTextureAndOffset.second);
+		}
+	);
+}
+
+void Player::RenderDeadEyeCoolDownUI(Renderer& renderer)
+{
+	renderer.UI_RENDER_FUNCTIONS().emplace_back
+	(
+		[&]()
+		{
+			const float coolDownRatio = m_deadEyeCoolDownTimer / m_deadEyeCoolDownDuration;
+			LONG width = static_cast<LONG>(m_deadEyeCoolDownTextureAndOffset.second.x * min(coolDownRatio, 1.0f));
+
+			RECT coolDownSrcRect =
+			{
+				.left = 0,
+				.top = 0,
+				.right = width,
+				.bottom = static_cast<LONG>(m_deadEyeCoolDownTextureAndOffset.second.y)
+			};
+
+			Renderer::GetInstance().RenderImageWrapScreenPosition
+			(
+				m_deadEyeCoolDownTextureAndOffset.first,
+				{ 150.0f, -20.0f },
+				m_deadEyeCoolDownTextureAndOffset.second,
+				1.0f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.0f,
+				&coolDownSrcRect
 			);
 		}
 	);

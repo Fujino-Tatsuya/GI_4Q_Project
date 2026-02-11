@@ -34,17 +34,21 @@ class Player : public GameObjectBase
 {
 	friend class GameManager;
 
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointTextureAndOffset = {};
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointDecorationTextureAndOffset = {};
 	int m_playerHitPoint = 3;
 	const int m_maxPlayerHitPoint = 3;
 	const float m_invincibilityDuration = 1.0f;
 	float m_invincibilityTimer = 0.0f;
 	float m_redVignetteIntensity = 0.0f;
 
-	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointTextureAndOffset = {};
-
 	std::pair<com_ptr<ID3D11VertexShader>, com_ptr<ID3D11InputLayout>> m_lineVertexBufferAndShader = {};
 	com_ptr<ID3D11PixelShader> m_linePixelShader = nullptr;
 	std::deque<std::pair<LineBuffer, float>> m_lineBuffers = {};
+
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_deadEyeCoolDownTextureAndOffset = {};
+	float m_deadEyeCoolDownTimer = 5.0f;
+	const float m_deadEyeCoolDownDuration = 5.0f;
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_deadEyeTextureAndOffset = {};
 	std::vector<std::pair<float, class Enemy*>> m_deadEyeTargets = {};
@@ -133,6 +137,7 @@ private:
 	void PlayerDeadEyeEnd();
 
 	void RenderPlayerHitPointUI(class Renderer& renderer);
+	void RenderDeadEyeCoolDownUI(class Renderer& renderer);
 	void RenderLineBuffers(class Renderer& renderer);
 	void RenderDeadEyeTargetsUI(class Renderer& renderer);
 	void RenderEnemyHitUI(class Renderer& renderer);

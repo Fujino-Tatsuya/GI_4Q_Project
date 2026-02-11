@@ -151,7 +151,8 @@ void TestScene::TutorialStep()
 	}
 }
 
-constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 100.0f;
+// ?†Å ?ä§?è∞ Ïß??†êÍ≥? ?îå?†à?ù¥?ñ¥ Í∞ÑÏùò Í±∞Î¶¨ ?†úÍ≥?
+constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 25.0f * 25.0f;
 
 void TestScene::SpawnEnemy(float deltaTime)
 {
@@ -171,8 +172,7 @@ void TestScene::SpawnEnemy(float deltaTime)
 
 		if (!validSpawnPoints.empty())
 		{
-			XMVECTOR spawnPoint = validSpawnPoints[RNG::GetInstance().Range(0, static_cast<int>(validSpawnPoints.size()) - 1)];
-			CreatePrefabRootGameObject("Enemy.json")->SetPosition(spawnPoint);
+			for (const XMVECTOR& spawnPoint : validSpawnPoints) CreatePrefabRootGameObject("Enemy.json")->SetPosition(spawnPoint);
 
 			spawnTime = 0.0f;
 		}
@@ -238,9 +238,13 @@ void TestScene::BindUIActions()
 		{
 			std::string key = btn->GetActionKey();
 
-			if (key == "cheat") {
-				btn->SetOnClick([this]() { SceneManager::GetInstance().ChangeScene("EndingScene");  });
-			}
+
+				if (key == "cheat") {
+					btn->SetOnClick([this]() {
+						GameManager::GetInstance().SetSuccess(true);
+						SceneManager::GetInstance().ChangeScene("EndingScene");
+					});
+				}
 			else if (key == "close_option") {
 				if (optionPanel) btn->SetOnClick([this]()
 					{

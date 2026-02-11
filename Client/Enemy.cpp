@@ -55,6 +55,9 @@ void Enemy::Die()
 	//SoundManager::GetInstance().SFX_Shot(GetPosition(), Config::Enemy_Die);
 }
 
+// 적이 플레이어를 쫓기 시작하는 거리의 제곱
+constexpr float ChaseSQRange = 25.0f * 25.0f;
+
 void Enemy::Update()
 {
 	float deltaTime = TimeManager::GetInstance().GetDeltaTime();
@@ -76,6 +79,8 @@ void Enemy::Update()
 				return;
 			}
 
+			if (distSq > ChaseSQRange) return;
+
 			m_pathFindTimer += deltaTime;
 			if (m_pathFindTimer >= m_pathFindInterval - m_pathFindIntervalRandomOffset) { m_path.clear(); m_pathFindTimer = -m_pathFindIntervalRandomOffset; }
 			MoveAlongPath(deltaTime);
@@ -93,6 +98,13 @@ void Enemy::Update()
 
 	ApplySeparation(deltaTime);
 }
+
+#ifdef _DEBUG
+void Enemy::RenderImGui()
+{
+	ImGui::Checkbox("Is Tutorial Dummy", &m_isTutorialDummy);
+}
+#endif
 
 void Enemy::SetAsTutorialDummy()
 {
@@ -156,6 +168,20 @@ void Enemy::Finalize()
 {
 	auto it = find(s_enemies.begin(), s_enemies.end(), this);
 	if (it != s_enemies.end()) s_enemies.erase(it);
+}
+
+nlohmann::json Enemy::Serialize()
+{
+	nlohmann::json jsonData = {};
+
+	jsonData["isTutorialDummy"] = m_isTutorialDummy;
+
+	return jsonData;
+}
+
+void Enemy::Deserialize(const nlohmann::json& jsonData)
+{
+	if (jsonData.find("isTutorialDummy") != jsonData.end()) if (jsonData["isTutorialDummy"].get<bool>()) SetAsTutorialDummy();
 }
 
 void Enemy::ApplySeparation(float dt)
