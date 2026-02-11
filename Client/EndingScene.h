@@ -4,9 +4,6 @@
 
 class EndingScene : public SceneBase
 {
-	//class Button* RETRY = nullptr;
-	//class Button* TITLE = nullptr;
-	//class Panel* numbers = nullptr;
 	class Panel* n1 = nullptr;
 	class Panel* n10 = nullptr;
 	class Panel* n100 = nullptr;
@@ -25,6 +22,7 @@ public:
 	EndingScene& operator=(EndingScene&&) = default;
 
 	void SetScoreUI(int score);
+	void SetGradeUI(int score);
 
 private:
 	void Initialize() override;

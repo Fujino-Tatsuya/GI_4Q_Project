@@ -21,7 +21,6 @@ using namespace std;
 using namespace DirectX;
 
 
-
 void EndingScene::Initialize()
 {
 	GameManager::GetInstance().ForceShowCursor(TRUE);
@@ -30,9 +29,12 @@ void EndingScene::Initialize()
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
 	int finalScore = 9356;
+	//int finalScore = GameManager::GetInstance().GetScore();
 	SetScoreUI(finalScore);
+	SetGradeUI(finalScore);
 
-	//SetScoreUI(GameManager::GetInstance().GetScore());
+	bool isPass = true;
+	//int isPass = GameManager::GetInstance().GetScore();
 }
 
 void EndingScene::Update()
@@ -77,11 +79,9 @@ void EndingScene::BindUIActions()
 
 void EndingScene::SetScoreUI(int score)
 {
-	// 점수 범위 예외 처리 (0 ~ 999999)
 	if (score < 0) score = 0;
 	if (score > 999999) score = 999999;
 
-	// 각 자릿수 추출
 	int d1 = score % 10;           // 1의 자리
 	int d10 = (score / 10) % 10;    // 10의 자리
 	int d100 = (score / 100) % 10;   // 100의 자리
@@ -89,8 +89,6 @@ void EndingScene::SetScoreUI(int score)
 	int d10000 = (score / 10000) % 10; // 10000의 자리
 	int d100000 = (score / 100000) % 10;// 100000의 자리
 
-	// 텍스처 변경 (nullptr 체크 포함)
-	// 파일명 형식: "UI_n" + 숫자 + ".png"
 
 	if (n1)      n1->SetTextureAndOffset("UI_n" + std::to_string(d1) + ".png");
 	if (n10)     n10->SetTextureAndOffset("UI_n" + std::to_string(d10) + ".png");
@@ -98,4 +96,29 @@ void EndingScene::SetScoreUI(int score)
 	if (n1000)   n1000->SetTextureAndOffset("UI_n" + std::to_string(d1000) + ".png");
 	if (n10000)  n10000->SetTextureAndOffset("UI_n" + std::to_string(d10000) + ".png");
 	if (n100000) n100000->SetTextureAndOffset("UI_n" + std::to_string(d100000) + ".png");
+}
+
+void EndingScene::SetGradeUI(int score)
+{
+	if (Grade == nullptr) return;
+
+	std::string gradeTextureName = "UI_Grade_F.png"; 
+
+	if (score >= 90000) {
+		gradeTextureName = "UI_Grade_S.png";
+	} else if (score >= 70000) {
+		gradeTextureName = "UI_Grade_A.png";
+	} else if (score >= 50000) {
+		gradeTextureName = "UI_Grade_B.png";
+	} else if (score >= 30000) {
+		gradeTextureName = "UI_Grade_C.png";
+	} else if (score >= 10000) {
+		gradeTextureName = "UI_Grade_D.png";
+	} else if (score >= 5000) {
+		gradeTextureName = "UI_Grade_E.png";
+	} else {
+		gradeTextureName = "UI_Grade_F.png";
+	}
+
+	Grade->SetTextureAndOffset(gradeTextureName);
 }
