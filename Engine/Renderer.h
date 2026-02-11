@@ -125,7 +125,9 @@ public:
 	void RenderTextUIPosition(const wchar_t* text, DirectX::XMFLOAT2 position, float depth = 0.0f, const DirectX::XMVECTOR& color = DirectX::XMVECTOR{ 1.0f, 1.0f, 1.0f, 1.0f }, float scale = 1.0f, const std::wstring& fontName = L"Gugi");
 	// UI 이미지 렌더링
 	// 스크린 좌표계
-	void RenderImageScreenPosition(com_ptr<ID3D11ShaderResourceView> texture, DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 offset, float scale = 1.0f, const DirectX::XMVECTOR& color = DirectX::XMVECTOR{ 1.0f, 1.0f, 1.0f, 1.0f }, float depth = 0.0f, const RECT * srcRect = nullptr);
+	void RenderImageScreenPosition(com_ptr<ID3D11ShaderResourceView> texture, DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 offset, float scale = 1.0f, const DirectX::XMVECTOR& color = DirectX::XMVECTOR{ 1.0f, 1.0f, 1.0f, 1.0f }, float depth = 0.0f, const RECT* srcRect = nullptr);
+	// 스크린 좌표계 (음수 좌표 감싸기)
+	void RenderImageWrapScreenPosition(com_ptr<ID3D11ShaderResourceView> texture, DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 offset, float scale = 1.0f, const DirectX::XMVECTOR& color = DirectX::XMVECTOR{ 1.0f, 1.0f, 1.0f, 1.0f }, float depth = 0.0f, const RECT* srcRect = nullptr);
 	// UI 좌표계
 	void RenderImageUIPosition(com_ptr<ID3D11ShaderResourceView> texture, DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 offset, float scale = 1.0f, const DirectX::XMVECTOR& color = DirectX::XMVECTOR{ 1.0f, 1.0f, 1.0f, 1.0f }, float depth = 0.0f, const RECT* srcRect = nullptr);
 
