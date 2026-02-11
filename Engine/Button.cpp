@@ -16,8 +16,10 @@ void Button::UpdateRect()
 {
 	auto pos = GetWorldPosition();
 
-	float halfW = m_textureIdle.second.x * 0.5f * GetFinalScale();
-	float halfH = m_textureIdle.second.y * 0.5f * GetFinalScale();
+	//float halfW = m_textureIdle.second.x * 0.5f * GetFinalScale();
+	//float halfH = m_textureIdle.second.y * 0.5f * GetFinalScale();
+	float halfW = m_textureIdle.second.x * GetFinalScale();
+	float halfH = m_textureIdle.second.y * GetFinalScale();
 
 	m_UIRect =
 	{
@@ -99,6 +101,33 @@ void Button::RenderUI(class Renderer& renderer)
 			});
 		break;
 	}
+
+#ifdef _DEBUG
+	if (m_debugInput)
+	{
+		const RECT& r = m_UIRect;
+		const XMFLOAT2 center
+		{
+			(static_cast<float>(r.left) + static_cast<float>(r.right)) * 0.5f,
+			(static_cast<float>(r.top) + static_cast<float>(r.bottom)) * 0.5f
+		};
+		const XMFLOAT2 offset = m_textureIdle.second;
+		float scale = 1.0f;
+		if (offset.x > 0.0f && offset.y > 0.0f)
+		{
+			const float width = static_cast<float>(r.right - r.left);
+			const float height = static_cast<float>(r.bottom - r.top);
+			const float sx = width / (offset.x * 2.0f);
+			const float sy = height / (offset.y * 2.0f);
+			scale = (sx + sy) * 0.5f;
+			//scale = (sx + sy);
+		}
+		const XMVECTOR debugColor = { 1.0f, 0.0f, 0.0f, 0.35f };
+		renderer.UI_RENDER_FUNCTIONS().emplace_back([texidle, center, offset, scale, debugColor]() {
+			Renderer::GetInstance().RenderImageUIPosition(texidle, center, offset, scale, debugColor, 1.f, nullptr);
+			});
+	}
+#endif
 }
 
 bool Button::CheckInput(const POINT& mousePosition, bool isMousePressed, bool isMouseClicked)
