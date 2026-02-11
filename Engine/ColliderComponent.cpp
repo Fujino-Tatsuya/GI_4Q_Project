@@ -356,7 +356,14 @@ void ColliderComponent::RenderImGui()
 			ImGui::PushID(&frustum);
 
 			ImGui::DragFloat3("Origin", &frustum.Origin.x, 0.001f);
-			ImGui::DragFloat4("Orientation", &frustum.Orientation.x, 0.001f);
+			XMVECTOR eulerAngles = ToDegrees(static_cast<XMVECTOR>(static_cast<SimpleMath::Quaternion>(frustum.Orientation).ToEuler()));
+			if (ImGui::DragFloat3("Rotation (Degrees)", eulerAngles.m128_f32, 0.001f))
+			{
+				XMVECTOR radians = ToRadians(eulerAngles);
+				SimpleMath::Quaternion quaternion = SimpleMath::Quaternion::CreateFromYawPitchRoll(XMVectorGetY(radians), XMVectorGetX(radians), XMVectorGetZ(radians));
+				frustum.Orientation = static_cast<XMFLOAT4>(quaternion);
+			}
+
 			ImGui::DragFloat("RightSlope", &frustum.RightSlope, 0.001f);
 			ImGui::DragFloat("LeftSlope", &frustum.LeftSlope, 0.001f);
 			ImGui::DragFloat("TopSlope", &frustum.TopSlope, 0.001f);
