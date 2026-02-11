@@ -54,10 +54,10 @@
             "pathIdle": "",
             "pathPressed": "UI_Button_hover.png",
             "pos": [
-                -0.14000000059604645,
-                0.28999999165534973
+                -0.10000000149011612,
+                0.3799999952316284
             ],
-            "scale": 0.699999988079071,
+            "scale": 0.6600000262260437,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
@@ -77,7 +77,7 @@
             "parentIdx": 3,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.12399999797344208,
+                -0.14399999380111694,
                 -0.07999999821186066
             ],
             "scale": 0.3100000023841858,
@@ -122,7 +122,7 @@
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
             "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
+            "handleScaleIdle": 0.800000011920929,
             "handleScalePressed": 1.0,
             "max": 1.0,
             "min": 0.0,
@@ -130,10 +130,10 @@
             "parentIdx": 0,
             "pathIdle": "UI_Slider_box.png",
             "pos": [
-                -0.1770000010728836,
-                0.019999999552965164
+                -0.1599999964237213,
+                -0.05999999865889549
             ],
-            "scale": 0.46000000834465027,
+            "scale": 0.550000011920929,
             "type": "Slider",
             "value": 0.0
         },
@@ -152,7 +152,7 @@
             "pathIdle": "UI_IDLE.png",
             "pos": [
                 -0.10999999940395355,
-                -0.4699999988079071
+                -0.38999998569488525
             ],
             "scale": 0.9599999785423279,
             "text": "PAUSE",
@@ -196,7 +196,7 @@
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
             "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
+            "handleScaleIdle": 0.800000011920929,
             "handleScalePressed": 1.0,
             "max": 30.0,
             "min": 0.0,
@@ -205,9 +205,9 @@
             "pathIdle": "UI_Slider_box.png",
             "pos": [
                 0.1599999964237213,
-                -0.05000000074505806
+                -0.07000000029802322
             ],
-            "scale": 0.5299999713897705,
+            "scale": 0.550000011920929,
             "type": "Slider",
             "value": 0.0
         },
@@ -225,10 +225,10 @@
             "parentIdx": 5,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.14000000059604645,
-                -0.11999999731779099
+                -0.14499999582767487,
+                -0.07999999821186066
             ],
-            "scale": 0.5,
+            "scale": 0.33000001311302185,
             "text": "Sensitivity",
             "textColor": [
                 1.0,
@@ -270,7 +270,7 @@
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
             "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
+            "handleScaleIdle": 0.800000011920929,
             "handleScalePressed": 1.0,
             "max": 1.0,
             "min": 0.0,
@@ -278,10 +278,10 @@
             "parentIdx": 0,
             "pathIdle": "UI_Slider_box.png",
             "pos": [
-                -0.1770000010728836,
-                0.1599999964237213
+                -0.1599999964237213,
+                0.05999999865889549
             ],
-            "scale": 0.46000000834465027,
+            "scale": 0.550000011920929,
             "type": "Slider",
             "value": 0.0
         },
@@ -299,7 +299,7 @@
             "parentIdx": 7,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.12399999797344208,
+                -0.14399999380111694,
                 -0.07999999821186066
             ],
             "scale": 0.33000001311302185,
@@ -321,15 +321,15 @@
                 1.0
             ],
             "depth": 0.4099999964237213,
-            "fontName": "SuperCrawler72",
+            "fontName": "Paperlogy",
             "name": "TitleText",
             "parentIdx": 1,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.05999999865889549,
-                -0.03500000014901161
+                -0.019999999552965164,
+                -0.017000000923871994
             ],
-            "scale": 0.5899999737739563,
+            "scale": 0.23000000417232513,
             "text": "Title",
             "textColor": [
                 1.0,
@@ -373,10 +373,10 @@
             "pathIdle": "UI_Button.png",
             "pathPressed": "UI_Button_hover.png",
             "pos": [
-                0.09000000357627869,
-                0.28999999165534973
+                0.10000000149011612,
+                0.3799999952316284
             ],
-            "scale": 0.699999988079071,
+            "scale": 0.6600000262260437,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
@@ -396,10 +396,10 @@
             "parentIdx": 10,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.07999999821186066,
-                -0.029999999329447746
+                -0.03999999910593033,
+                -0.019999999552965164
             ],
-            "scale": 0.5099999904632568,
+            "scale": 0.23000000417232513,
             "text": "Resume",
             "textColor": [
                 1.0,
@@ -440,7 +440,7 @@
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
             "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
+            "handleScaleIdle": 0.800000011920929,
             "handleScalePressed": 1.0,
             "max": 1.0,
             "min": 0.0,
@@ -449,9 +449,9 @@
             "pathIdle": "UI_Slider_box.png",
             "pos": [
                 -0.1599999964237213,
-                -0.11999999731779099
+                -0.18000000715255737
             ],
-            "scale": 0.5299999713897705,
+            "scale": 0.550000011920929,
             "type": "Slider",
             "value": 0.0
         },
@@ -464,15 +464,15 @@
                 1.0
             ],
             "depth": 0.0,
-            "fontName": "Paperlogy",
+            "fontName": "SuperCrawler72",
             "name": "MasterText",
             "parentIdx": 12,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.14000000059604645,
-                -0.10999999940395355
+                -0.14399999380111694,
+                -0.08500000089406967
             ],
-            "scale": 0.44999998807907104,
+            "scale": 0.3199999928474426,
             "text": "Master",
             "textColor": [
                 1.0,
@@ -495,10 +495,29 @@
             "parentIdx": 0,
             "pathIdle": "UI_Key.png",
             "pos": [
-                0.14000000059604645,
-                0.07999999821186066
+                0.0,
+                0.22499999403953552
             ],
-            "scale": 0.41999998688697815,
+            "scale": 0.5600000023841858,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "MiddleLine",
+            "parentIdx": 0,
+            "pathIdle": "UI_Line.png",
+            "pos": [
+                -0.004999999888241291,
+                -0.07000000029802322
+            ],
+            "scale": 0.6499999761581421,
             "type": "Panel"
         }
     ],
