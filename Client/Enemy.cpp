@@ -56,7 +56,7 @@ void Enemy::Die()
 }
 
 // 적이 플레이어를 쫓기 시작하는 거리의 제곱
-constexpr float ChaseSQRange = 25.0f * 25.0f;
+constexpr float CHASE_SQ_RANGE = 25.0f * 25.0f;
 
 void Enemy::Update()
 {
@@ -79,7 +79,7 @@ void Enemy::Update()
 				return;
 			}
 
-			if (distSq > ChaseSQRange) return;
+			if (distSq > CHASE_SQ_RANGE) return;
 
 			m_pathFindTimer += deltaTime;
 			if (m_pathFindTimer >= m_pathFindInterval - m_pathFindIntervalRandomOffset) { m_path.clear(); m_pathFindTimer = -m_pathFindIntervalRandomOffset; }
