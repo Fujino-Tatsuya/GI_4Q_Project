@@ -73,10 +73,11 @@ void TestScene::Update()
 	string sfxstr = format("{:.2f}", mastervolume);
 	string sensestr = format("{:.2f}", mastervolume);
 
-	m_curMasterVolume->SetText(masterstr);
-	m_curBGMVolume->SetText(bgmstr);
-	m_curSFXVolume->SetText(sfxstr);
-	m_curSensitivity->SetText(sensestr);
+	
+	//m_curMasterVolume->SetText(masterstr);
+	//m_curBGMVolume->SetText(bgmstr);
+	//m_curSFXVolume->SetText(sfxstr);
+	//m_curSensitivity->SetText(sensestr);
 }
 
 void TestScene::Render()
