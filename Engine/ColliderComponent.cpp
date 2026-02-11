@@ -172,7 +172,7 @@ vector<GameObjectBase*> ColliderComponent::CheckCollision(const BoundingFrustum&
 	return collidedObjects;
 }
 
-bool ColliderComponent::CheckCollisionWithObject(ColliderComponent* otherCollider)
+bool ColliderComponent::CheckCollisionObject(ColliderComponent* otherCollider)
 {
 	for (const auto& [box, transformedBox] : m_boundingBoxes)
 	{
@@ -195,6 +195,15 @@ bool ColliderComponent::CheckCollisionWithObject(ColliderComponent* otherCollide
 			if (transformedFrustum.Intersects(otherTransformedFrustum)) return true;
 		}
 	}
+
+	return false;
+}
+
+bool ColliderComponent::CheckCollisionPoint(const XMVECTOR& point)
+{
+	for (const auto& [box, transformedBox] : m_boundingBoxes) if (transformedBox.Contains(point) != ContainmentType::DISJOINT) return true;
+	for (const auto& [obb, transformedOBB] : m_boundingOrientedBoxes) if (transformedOBB.Contains(point) != ContainmentType::DISJOINT) return true;
+	for (const auto& [frustum, transformedFrustum] : m_boundingFrustums) if (transformedFrustum.Contains(point) != ContainmentType::DISJOINT) return true;
 
 	return false;
 }
@@ -336,7 +345,7 @@ void ColliderComponent::RenderImGui()
 			ImGui::DragFloat3("Extents", &obb.Extents.x, 0.001f);
 
 			XMVECTOR eulerAngles = ToDegrees(static_cast<XMVECTOR>(static_cast<SimpleMath::Quaternion>(obb.Orientation).ToEuler()));
-			if (ImGui::DragFloat3("Rotation (Degrees)", eulerAngles.m128_f32, 0.001f))
+			if (ImGui::DragFloat3("Rotation (Degrees)", eulerAngles.m128_f32, 0.01f))
 			{
 				XMVECTOR radians = ToRadians(eulerAngles);
 				SimpleMath::Quaternion quaternion = SimpleMath::Quaternion::CreateFromYawPitchRoll(XMVectorGetY(radians), XMVectorGetX(radians), XMVectorGetZ(radians));
@@ -357,7 +366,7 @@ void ColliderComponent::RenderImGui()
 
 			ImGui::DragFloat3("Origin", &frustum.Origin.x, 0.001f);
 			XMVECTOR eulerAngles = ToDegrees(static_cast<XMVECTOR>(static_cast<SimpleMath::Quaternion>(frustum.Orientation).ToEuler()));
-			if (ImGui::DragFloat3("Rotation (Degrees)", eulerAngles.m128_f32, 0.001f))
+			if (ImGui::DragFloat3("Rotation (Degrees)", eulerAngles.m128_f32, 0.01f))
 			{
 				XMVECTOR radians = ToRadians(eulerAngles);
 				SimpleMath::Quaternion quaternion = SimpleMath::Quaternion::CreateFromYawPitchRoll(XMVectorGetY(radians), XMVectorGetX(radians), XMVectorGetZ(radians));

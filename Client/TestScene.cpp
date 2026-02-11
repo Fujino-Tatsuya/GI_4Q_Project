@@ -9,6 +9,7 @@
 #include "Renderer.h"
 #include "CameraComponent.h"
 #include "GameManager.h"
+#include "ColliderComponent.h"
 
 #include "TestCameraObject.h"
 #include "CamRotObject.h"
@@ -37,6 +38,8 @@ void TestScene::Initialize()
 	m_player = dynamic_cast<Player*>(GetRootGameObject("Player"));
 
 	m_tutorialBox = GetRootGameObject("Box");
+	m_stage2Trigger = GetRootGameObject("Stage2Trigger");
+	m_stageBossTrigger = GetRootGameObject("StageBossTrigger");
 
 	for (size_t i = 0; i < 10; ++i)
 	{
@@ -53,6 +56,8 @@ void TestScene::Update()
 
 	GameManager::GetInstance().OnSceneUpdate();
 	TutorialStep();
+
+	CheckStageTrigger();
 
 	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
 		if (cheatPanel)
@@ -149,6 +154,23 @@ void TestScene::TutorialStep()
 			GameManager::GetInstance().SetTutorialStep(ETutorialStep::Dash);
 		}
 		break;
+	}
+}
+
+void TestScene::CheckStageTrigger()
+{
+	const XMVECTOR& playerPos = m_player->GetWorldPosition();
+	if (m_stage2Trigger && m_stage2Trigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	{
+		GameManager::GetInstance().ChangeMainState(EMainState::Stage2);
+		m_stage2Trigger->SetAlive(false);
+		m_stage2Trigger = nullptr;
+	}
+	if (m_stageBossTrigger && m_stageBossTrigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	{
+		GameManager::GetInstance().ChangeMainState(EMainState::StageBoss);
+		m_stageBossTrigger->SetAlive(false);
+		m_stageBossTrigger = nullptr;
 	}
 }
 

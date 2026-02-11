@@ -9463,6 +9463,94 @@
                 0.0
             ],
             "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "boundingBoxes": [
+                        {
+                            "center": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "extents": [
+                                30.0,
+                                4.7179999351501465,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "boundingFrustums": [],
+                    "boundingOrientedBoxes": [],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "name": "StageBossTrigger",
+            "position": [
+                194.86508178710938,
+                3.2915481824602466e-06,
+                108.35572052001953,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "boundingBoxes": [
+                        {
+                            "center": [
+                                0.0,
+                                0.9940000176429749,
+                                1.409000039100647
+                            ],
+                            "extents": [
+                                1.0,
+                                5.0,
+                                15.352999687194824
+                            ]
+                        }
+                    ],
+                    "boundingFrustums": [],
+                    "boundingOrientedBoxes": [],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "name": "Stage2Trigger",
+            "position": [
+                -11.233894348144531,
+                0.0,
+                54.96223449707031,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
         }
     ],
     "skyboxFileName": "Skybox_day_1.dds",
