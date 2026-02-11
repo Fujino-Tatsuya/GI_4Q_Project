@@ -33,6 +33,9 @@ void Enemy::Initialize()
 	m_player = static_cast<Player*>(SceneManager::GetInstance().GetCurrentScene()->GetGameObjectRecursive("Player"));
 	if (!m_player) cout << "Enemy 초기화 오류: Player 게임 오브젝트를 찾을 수 없습니다." << endl;
 
+	GameObjectBase* triggerObj = SceneManager::GetInstance().GetCurrentScene()->GetGameObjectRecursive(m_triggerColliderName);
+	if (triggerObj) m_triggerCollider = triggerObj->GetComponent<ColliderComponent>();
+
 	m_pathFindIntervalRandomOffset = RANDOM(0.0f, m_pathFindInterval);
 	m_pathFindTimer = -m_pathFindIntervalRandomOffset;
 
@@ -56,11 +59,15 @@ void Enemy::Die()
 }
 
 // 적이 플레이어를 쫓기 시작하는 거리의 제곱
-constexpr float ChaseSQRange = 25.0f * 25.0f;
+constexpr float CHASE_SQ_RANGE = 25.0f * 25.0f;
 
 void Enemy::Update()
 {
 	float deltaTime = TimeManager::GetInstance().GetDeltaTime();
+
+	if (!m_player) return;
+	const XMVECTOR& playerPos = m_player->GetPosition();
+	if (m_triggerCollider && !m_hasFoundPlayer) if (m_triggerCollider->CheckCollisionPoint(playerPos)) m_hasFoundPlayer = true;
 
 	switch (m_state) {
 	case Enemy::AIState::Idle: 
@@ -70,7 +77,7 @@ void Enemy::Update()
 		break;
 	case Enemy::AIState::Chase:
 		if(m_player){
-			XMVECTOR toPlayer = m_player->GetPosition() - GetPosition();
+			XMVECTOR toPlayer = playerPos - GetPosition();
 			float distSq = XMVectorGetX(XMVector3LengthSq(toPlayer));
 
 			if (distSq <= m_attackRangeSquare) {
@@ -79,8 +86,9 @@ void Enemy::Update()
 				return;
 			}
 
-			if (distSq > ChaseSQRange) return;
+			if (!m_hasFoundPlayer && distSq > CHASE_SQ_RANGE) return;
 
+			m_hasFoundPlayer = true;
 			m_pathFindTimer += deltaTime;
 			if (m_pathFindTimer >= m_pathFindInterval - m_pathFindIntervalRandomOffset) { m_path.clear(); m_pathFindTimer = -m_pathFindIntervalRandomOffset; }
 			MoveAlongPath(deltaTime);
@@ -103,6 +111,10 @@ void Enemy::Update()
 void Enemy::RenderImGui()
 {
 	ImGui::Checkbox("Is Tutorial Dummy", &m_isTutorialDummy);
+	
+	array<char, 256> triggerColliderNameBuffer = {};
+	strcpy_s(triggerColliderNameBuffer.data(), triggerColliderNameBuffer.size(), m_triggerColliderName.c_str());
+	if (ImGui::InputText("Trigger Collider Name", triggerColliderNameBuffer.data(), triggerColliderNameBuffer.size())) m_triggerColliderName = string(triggerColliderNameBuffer.data());
 }
 #endif
 
@@ -175,6 +187,7 @@ nlohmann::json Enemy::Serialize()
 	nlohmann::json jsonData = {};
 
 	jsonData["isTutorialDummy"] = m_isTutorialDummy;
+	jsonData["triggerColliderName"] = m_triggerColliderName;
 
 	return jsonData;
 }
@@ -182,6 +195,7 @@ nlohmann::json Enemy::Serialize()
 void Enemy::Deserialize(const nlohmann::json& jsonData)
 {
 	if (jsonData.find("isTutorialDummy") != jsonData.end()) if (jsonData["isTutorialDummy"].get<bool>()) SetAsTutorialDummy();
+	if (jsonData.find("triggerColliderName") != jsonData.end()) m_triggerColliderName = jsonData["triggerColliderName"].get<string>();
 }
 
 void Enemy::ApplySeparation(float dt)

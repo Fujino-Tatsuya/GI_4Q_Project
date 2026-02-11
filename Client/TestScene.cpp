@@ -9,6 +9,7 @@
 #include "Renderer.h"
 #include "CameraComponent.h"
 #include "GameManager.h"
+#include "ColliderComponent.h"
 
 #include "TestCameraObject.h"
 #include "CamRotObject.h"
@@ -22,6 +23,7 @@
 
 #include "Shared/Config/Option.h"
 #include <Slider.h>
+#include "Text.h"
 
 REGISTER_TYPE(TestScene)
 
@@ -36,6 +38,8 @@ void TestScene::Initialize()
 	m_player = dynamic_cast<Player*>(GetRootGameObject("Player"));
 
 	m_tutorialBox = GetRootGameObject("Box");
+	m_stage2Trigger = GetRootGameObject("Stage2Trigger");
+	m_stageBossTrigger = GetRootGameObject("StageBossTrigger");
 
 	for (size_t i = 0; i < 10; ++i)
 	{
@@ -53,11 +57,7 @@ void TestScene::Update()
 	GameManager::GetInstance().OnSceneUpdate();
 	TutorialStep();
 
-	if (InputManager::GetInstance().GetKeyDown(KeyCode::Num0))
-	{
-		GameManager::GetInstance().SetSuccess(true);
-		SceneManager::GetInstance().ChangeScene("EndingScene");
-	}
+	CheckStageTrigger();
 
 	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
 		if (cheatPanel)
@@ -65,6 +65,24 @@ void TestScene::Update()
 			cheatPanel->SetActive(true);
 		}
 	}
+
+	auto& sm = SoundManager::GetInstance();
+
+	float mastervolume = sm.GetVolume_Main();
+	float bgmvolume = sm.GetVolume_BGM();
+	float sfxvolume = sm.GetVolume_SFX();
+	float sensitivity = m_player->GetCameraSensitivity();
+
+	string masterstr = format("{:.2f}", mastervolume);
+	string bgmstr = format("{:.2f}", mastervolume);
+	string sfxstr = format("{:.2f}", mastervolume);
+	string sensestr = format("{:.2f}", mastervolume);
+
+	
+	//m_curMasterVolume->SetText(masterstr);
+	//m_curBGMVolume->SetText(bgmstr);
+	//m_curSFXVolume->SetText(sfxstr);
+	//m_curSensitivity->SetText(sensestr);
 }
 
 void TestScene::Render()
@@ -139,7 +157,24 @@ void TestScene::TutorialStep()
 	}
 }
 
-// 적 스폰 지점과 플레이어 간의 거리 제곱
+void TestScene::CheckStageTrigger()
+{
+	const XMVECTOR& playerPos = m_player->GetWorldPosition();
+	if (m_stage2Trigger && m_stage2Trigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	{
+		GameManager::GetInstance().ChangeMainState(EMainState::Stage2);
+		m_stage2Trigger->SetAlive(false);
+		m_stage2Trigger = nullptr;
+	}
+	if (m_stageBossTrigger && m_stageBossTrigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	{
+		GameManager::GetInstance().ChangeMainState(EMainState::StageBoss);
+		m_stageBossTrigger->SetAlive(false);
+		m_stageBossTrigger = nullptr;
+	}
+}
+
+// 스폰 활성 거리 제곱
 constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 25.0f * 25.0f;
 
 void TestScene::SpawnEnemy(float deltaTime)
@@ -260,6 +295,26 @@ void TestScene::BindUIActions()
 				slider->AddListener([](float val) {
 					Player::SetCameraSensitivity(val);
 					});
+			}
+		}
+		else if (auto* text = dynamic_cast<Text*>(uiPtr.get()))
+		{
+			std::string name = text->GetName();
+
+			if (name == "Cur_Master_Volume")
+			{
+				m_curMasterVolume = text;
+			}
+			else if (name == "Cur_BGM_Volume")
+			{
+				m_curBGMVolume = text;
+			}
+			else if (name == "Cur_SFX_Volume") {
+				m_curSFXVolume = text;
+			}
+			else if (name == "Cur_Set_Sensitivity")
+			{
+				m_curSensitivity = text;
 			}
 		}
 	}

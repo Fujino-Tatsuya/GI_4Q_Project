@@ -1,0 +1,44 @@
+{
+    "childGameObjects": [],
+    "components": [
+        {
+            "boundingBoxes": [
+                {
+                    "center": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "extents": [
+                        30.0,
+                        4.7179999351501465,
+                        1.0
+                    ]
+                }
+            ],
+            "boundingFrustums": [],
+            "boundingOrientedBoxes": [],
+            "type": "ColliderComponent"
+        }
+    ],
+    "name": "StageBossTrigger",
+    "position": [
+        194.86508178710938,
+        3.2915481824602466e-06,
+        108.35572052001953,
+        1.0
+    ],
+    "rotation": [
+        -0.0,
+        0.0,
+        -0.0,
+        1.0
+    ],
+    "scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.0
+    ],
+    "type": "GameObjectBase"
+}

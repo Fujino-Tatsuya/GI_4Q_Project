@@ -20,7 +20,13 @@ class Enemy : public GameObjectBase
 
 	float m_deathTimer = 0.0f;
 	const float m_deathDuration = 2.0f;
+
+	bool m_hasFoundPlayer = false;
 	const float m_attackRangeSquare = 5.0f;
+
+	std::string m_triggerColliderName = "";
+	class ColliderComponent* m_triggerCollider = nullptr;
+
 	float m_rotationSpeed = 10.0f;
 	const float m_separationRadius = 0.8f;
 	const float m_separationStrength = 3.5f;
