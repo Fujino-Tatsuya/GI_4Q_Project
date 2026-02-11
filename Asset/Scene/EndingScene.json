@@ -401,7 +401,7 @@
             "parentIdx": 18,
             "pathClicked": "UI_Result_hover.png",
             "pathHover": "UI_Result_hover.png",
-            "pathIdle": "UI_Result_hover.png",
+            "pathIdle": "UI__.png",
             "pathPressed": "UI_Result_hover.png",
             "pos": [
                 0.09000000357627869,
@@ -537,7 +537,7 @@
             "parentIdx": 18,
             "pathClicked": "UI_Result_hover.png",
             "pathHover": "UI_Result_hover.png",
-            "pathIdle": "UI_Result_hover.png",
+            "pathIdle": "UI__.png",
             "pathPressed": "UI_Result_hover.png",
             "pos": [
                 -0.09000000357627869,
