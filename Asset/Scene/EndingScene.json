@@ -370,50 +370,6 @@
             "type": "Panel"
         },
         {
-            "actionKey": "RETRY",
-            "active": true,
-            "colorClicked": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorHover": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421,
-                1.0
-            ],
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "colorPressed": [
-                0.699999988079071,
-                0.699999988079071,
-                0.699999988079071,
-                1.0
-            ],
-            "depth": 0.03200000151991844,
-            "name": "RETRY",
-            "parentIdx": 18,
-            "pathClicked": "UI_Result_hover.png",
-            "pathHover": "UI_Result_hover.png",
-            "pathIdle": "UI__.png",
-            "pathPressed": "UI_Result_hover.png",
-            "pos": [
-                -0.09000000357627869,
-                0.0
-            ],
-            "scale": 0.699999988079071,
-            "scaleClicked": 1.0,
-            "scaleHover": 1.0,
-            "scalePressed": 0.949999988079071,
-            "type": "Button"
-        },
-        {
             "actionKey": "TITLE",
             "active": true,
             "colorClicked": [
@@ -445,7 +401,7 @@
             "parentIdx": 18,
             "pathClicked": "UI_Result_hover.png",
             "pathHover": "UI_Result_hover.png",
-            "pathIdle": "UI__.png",
+            "pathIdle": "UI_Result_hover.png",
             "pathPressed": "UI_Result_hover.png",
             "pos": [
                 0.09000000357627869,
@@ -467,10 +423,10 @@
             ],
             "depth": 0.032999999821186066,
             "name": "gun",
-            "parentIdx": 19,
+            "parentIdx": 18,
             "pathIdle": "UI_Icon_sgun.png",
             "pos": [
-                -0.05000000074505806,
+                -0.14000000059604645,
                 -0.019999999552965164
             ],
             "scale": 0.7599999904632568,
@@ -487,10 +443,10 @@
             "depth": 0.33000001311302185,
             "fontName": "Paperlogy",
             "name": "RETRY",
-            "parentIdx": 19,
+            "parentIdx": 18,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.05999999865889549,
+                -0.15000000596046448,
                 -0.029999999329447746
             ],
             "scale": 0.36000001430511475,
@@ -513,7 +469,7 @@
             ],
             "depth": 0.032999999821186066,
             "name": "hat",
-            "parentIdx": 20,
+            "parentIdx": 19,
             "pathIdle": "UI_Icon_hat.png",
             "pos": [
                 -0.05000000074505806,
@@ -533,7 +489,7 @@
             "depth": 0.33000001311302185,
             "fontName": "Paperlogy",
             "name": "TITLE",
-            "parentIdx": 20,
+            "parentIdx": 19,
             "pathIdle": "UI_IDLE.png",
             "pos": [
                 -0.03999999910593033,
@@ -548,6 +504,50 @@
                 1.0
             ],
             "type": "Text"
+        },
+        {
+            "actionKey": "RETRY",
+            "active": true,
+            "colorClicked": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "colorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "depth": 0.03099999949336052,
+            "name": "RETRY",
+            "parentIdx": 18,
+            "pathClicked": "UI_Result_hover.png",
+            "pathHover": "UI_Result_hover.png",
+            "pathIdle": "UI_Result_hover.png",
+            "pathPressed": "UI_Result_hover.png",
+            "pos": [
+                -0.09000000357627869,
+                0.0
+            ],
+            "scale": 0.699999988079071,
+            "scaleClicked": 1.0,
+            "scaleHover": 1.0,
+            "scalePressed": 0.949999988079071,
+            "type": "Button"
         }
     ],
     "environmentMapFileName": "Skybox.dds",
