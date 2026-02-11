@@ -520,7 +520,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 		m_deadEyeTargets.pop_back();
 	}
 
-	if (SoundManager::GetInstance().GetRhythmTimerIndex() >= m_currentNodeIndex + m_DeadEyeCount) PlayerDeadEyeEnd();
+	//if (SoundManager::GetInstance().GetRhythmTimerIndex() >= m_currentNodeIndex + m_DeadEyeCount) PlayerDeadEyeEnd();
 }
 
 void Player::PlayerDeadEyeEnd()
