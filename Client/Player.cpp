@@ -17,7 +17,7 @@
 #include "GameManager.h"
 #include "ParticleComponent.h"
 
-#include "FSMComponentGun.h"
+#include "FSMComponentGun2.h"
 
 #include "Shared/Config/Option.h"
 
@@ -39,6 +39,7 @@ void Player::Initialize()
 	m_cameraComponent = GetComponent<CameraComponent>();
 	m_cameraComponent->SetAsMainCamera();
 	m_gunObject = GetChildGameObject("Gun");
+	m_gunFSM = m_gunObject->GetComponent<FSMComponentGun2>();
 
 	m_playerHitPointTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP.png");
 	m_playerHitPointDecorationTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP_Deco.png");
@@ -321,6 +322,8 @@ void Player::PlayerReload(int cnt)
 {
 	if (m_bulletCnt == m_MaxBullet) return;
 
+	if (m_gunFSM) m_gunFSM->Reload();
+
 	m_ControlState.CanShoot = false;
 	m_ControlState.CanReload = false;
 	m_ControlState.CanAutoReload = false;
@@ -359,6 +362,8 @@ void Player::PlayerReload(int cnt)
 
 void Player::PlayerAutoReload(int cnt)
 {
+	if (m_gunFSM) m_gunFSM->Reload();
+
 	m_ControlState.CanAutoReload = false;
 	m_ControlState.CanShoot = false;
 
@@ -521,7 +526,7 @@ void Player::PlayerDeadEyeEnd()
 
 	SoundManager::GetInstance().ChangeLowpass();
 
-	//TriggerLUT(); // 맛이 ?��?��
+	//TriggerLUT();
 }
 
 void Player::RenderPlayerHitPointUI(Renderer& renderer)
@@ -680,7 +685,7 @@ void Player::UpdateLutCrossfade(float deltaTime)
 	float t = m_lutCrossfadeElapsed / m_lutCrossfadeDuration;
 	if (t > 1.0f) t = 1.0f;
 
-	// smoothstep (깔끔?�� �??��/감속)
+	// smoothstep (깔끔/감속)
 	float smooth = t * t * (3.0f - 2.0f * t);
 	float factor = m_lutCrossfadeReverse ? (1.0f - smooth) : smooth;
 
@@ -690,13 +695,13 @@ void Player::UpdateLutCrossfade(float deltaTime)
 	{
 		if (!m_lutCrossfadeReverse)
 		{
-			// ?��방향 ?��?��
+			// 방향 
 			m_lutCrossfadeReverse = true;
 			m_lutCrossfadeElapsed = 0.0f;
 		}
 		else
 		{
-			// 종료: flag off + ?���?
+			// 종료: flag off + 
 			m_lutCrossfadeActive = false;
 			m_lutCrossfadeReverse = false;
 			SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, false);

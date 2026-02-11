@@ -71,7 +71,7 @@ class Player : public GameObjectBase
 	class CameraComponent* m_cameraComponent = nullptr;
 	static float m_cameraSensitivity;
 	GameObjectBase* m_gunObject = nullptr;
-	class FSMComponentGun* m_gunFSM = nullptr;
+	class FSMComponentGun2* m_gunFSM = nullptr;
 
 	bool m_isDeadEyeActive = false;
 	float m_deadEyeTotalDuration = 0.0f;
