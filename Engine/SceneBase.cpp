@@ -226,20 +226,6 @@ void SceneBase::BaseUpdate()
 
 	if (inputManager.GetKey(KeyCode::Control))
 	{
-		static nlohmann::json copiedObjectJson = {};
-		if (inputManager.GetKeyDown(KeyCode::C))
-		{
-			if (GameObjectBase* selectedObject = GameObjectBase::GetSelectedObject()) copiedObjectJson = static_cast<Base*>(selectedObject)->BaseSerialize();
-		}
-		if (inputManager.GetKeyDown(KeyCode::V))
-		{
-			if (!copiedObjectJson.is_null() && !copiedObjectJson.empty())
-			{
-				if (GameObjectBase* selectedObject = GameObjectBase::GetSelectedObject()) selectedObject->CreateFromJson(copiedObjectJson);
-				else CreateFromJson(copiedObjectJson);
-			}
-		}
-
 		if (inputManager.GetKeyDown(KeyCode::S))
 		{
 			cout << "[System] Saving Scene: " << m_type << "..." << endl;
@@ -275,7 +261,7 @@ void SceneBase::BaseRender()
 
 			const float cameraFarPlane = mainCamera.GetFarZ();
 
-			XMVECTOR lightPosition = m_globalLightData.lightDirection * -cameraFarPlane;
+			XMVECTOR lightPosition = m_globalLightData.lightDirection * -250.0f;
 			lightPosition = XMVectorSetW(lightPosition, 1.0f);
 			renderer.SetRenderSortPoint(lightPosition);
 
@@ -283,7 +269,7 @@ void SceneBase::BaseRender()
 			constexpr XMVECTOR LIGHT_TARGET_OFFSET = { 0.0f, 0.0f, 0.0f, 0.0f };
 			m_viewProjectionData.viewMatrix = XMMatrixLookAtLH(lightPosition, LIGHT_TARGET_OFFSET, LIGHT_UP);
 
-			const float lightRange = cameraFarPlane * 2.0f; // TODO: 나중에 조금 줄일수도 있음
+			const float lightRange = 500.0f; // TODO: 나중에 조금 줄일수도 있음
 			m_viewProjectionData.projectionMatrix = XMMatrixOrthographicLH(lightRange, lightRange, 0.1f, lightRange);
 
 			m_viewProjectionData.VPMatrix = XMMatrixTranspose(m_viewProjectionData.viewMatrix * m_viewProjectionData.projectionMatrix);
