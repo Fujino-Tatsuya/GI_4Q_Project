@@ -1,0 +1,90 @@
+{
+    "childGameObjects": [],
+    "components": [
+        {
+            "NoiseIndex": 0,
+            "blendState": 0,
+            "dissolveData": {
+                "DissolveEdgeColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "DissolveEdgeIntensity": 1.0,
+                "DissolveEdgeWidth": 1.0,
+                "DissolveThreshold": 0.20000000298023224
+            },
+            "materialFactor": [
+                {
+                    "ambientOcclusionFactor": 1.0,
+                    "baseColorFactor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "emissionFactor": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "metallicFactor": 1.0,
+                    "normalScale": 1.0,
+                    "roughnessFactor": 1.0
+                },
+                {
+                    "ambientOcclusionFactor": 1.0,
+                    "baseColorFactor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "emissionFactor": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "metallicFactor": 1.0,
+                    "normalScale": 1.0,
+                    "roughnessFactor": 1.0
+                }
+            ],
+            "modelAndMaterialFileNames": [
+                {
+                    "materialFileName": "",
+                    "modelFileName": "SM_7.fbx"
+                },
+                {
+                    "materialFileName": "",
+                    "modelFileName": "SM_7_wood.fbx"
+                }
+            ],
+            "psShaderName": "PSModel.hlsl",
+            "rasterState": 1,
+            "type": "ModelComponent",
+            "vsShaderName": "VSModel.hlsl"
+        }
+    ],
+    "name": "GameObjectBase_17",
+    "position": [
+        -39.0080680847168,
+        0.0,
+        -46.523319244384766,
+        1.0
+    ],
+    "rotation": [
+        0.0,
+        1.0,
+        0.0,
+        0.00029896185151301324
+    ],
+    "scale": [
+        1.0000170469284058,
+        1.0,
+        1.0000170469284058,
+        0.0
+    ],
+    "type": "GameObjectBase"
+}

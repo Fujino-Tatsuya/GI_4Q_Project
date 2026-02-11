@@ -17,9 +17,6 @@ REGISTER_TYPE(TaehyeonTestScene)
 void TaehyeonTestScene::Initialize()
 {
 	ShowCursor(FALSE);
-
-	SoundManager::GetInstance().Main_BGM_Shot(Config::Main_BGM, 3.0f);
-	SoundManager::GetInstance().Ambience_Shot(Config::Ambience);
 }
 
 void TaehyeonTestScene::Update()

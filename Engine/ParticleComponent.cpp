@@ -42,7 +42,7 @@ void ParticleComponent::Update()
 			SetAlive(false);
 		};
 		#endif
-		m_particleColor.baseColor.w = max(0.0f, 1.0f - powf(progress, 2.0f));
+		m_particleColor.baseColor.w = max(0.0f, 1.0f - progress);
 	}
 
 	if (m_particleConstTime >= 0.0f) uv_buffer_data_.eclipsedTime = m_particleConstTime;
@@ -98,7 +98,7 @@ void ParticleComponent::RenderImGui()
 	{
 		ImGui::DragInt("Particle Amount", &m_particleAmount, 1, 1, 1000000);
 
-		ImGui::DragFloat("Image Scale", &uv_buffer_data_.imageScale, 0.01f, 0.1f, 10.0f);
+		ImGui::DragFloat("Image Scale", &uv_buffer_data_.imageScale, 0.01f, 0.1f, 100.0f);
 		ImGui::DragFloat("Spread Radius", &uv_buffer_data_.spreadRadius, 0.1f, 0.0f, 10.0f);
 		ImGui::DragFloat("Spread Distance", &uv_buffer_data_.spreadDistance, 0.1f, 0.0f, 1000.0f);
 		ImGui::DragFloat("Particle Constant Time", &m_particleConstTime, 0.01f, -1.0f, 100.0f);
@@ -135,7 +135,7 @@ void ParticleComponent::RenderImGui()
 	// 3. 렌더링 옵션 섹션
 	if (ImGui::CollapsingHeader("Rendering Options", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		const char* billboardItems[] = { "None", "Spherical", "Cylindrical", "Fountain None", "Fountain Spherical", "Fountain Cylindrical" };
+		const char* billboardItems[] = { "None", "Spherical", "Cylindrical", "Fountain None", "Fountain Spherical", "Fountain Cylindrical", "Cube None", "Cube Spherical", "Cube Cylindrical" };
 		int currentBillboard = static_cast<int>(billboard_type_);
 		if (ImGui::Combo("Billboard Type", &currentBillboard, billboardItems, IM_ARRAYSIZE(billboardItems)))
 		{
@@ -282,17 +282,24 @@ string ParticleComponent::GetBillboardVSName(BillboardType type)
 	{
 	case BillboardType::None:
 		return "VSParticle_None.hlsl";
-	case BillboardType::Cylindrical:
-		return "VSParticle_Cylindrical.hlsl";
 	case BillboardType::Spherical:
 		return "VSParticle.hlsl";
+	case BillboardType::Cylindrical:
+		return "VSParticle_Cylindrical.hlsl";
 
 	case BillboardType::FountainNone:
 		return "VSParticleFountain_None.hlsl";
-	case BillboardType::FountainCylindrical:
-		return "VSParticleFountain_Cylindrical.hlsl";
 	case BillboardType::FountainSpherical:
 		return "VSParticleFountain.hlsl";
+	case BillboardType::FountainCylindrical:
+		return "VSParticleFountain_Cylindrical.hlsl";
+
+	case BillboardType::CubeNone:
+		return "VSParticleCube_None.hlsl";
+	case BillboardType::CubeSpherical:
+		return "VSParticleCube.hlsl";
+	case BillboardType::CubeCylindrical:
+		return "VSParticleCube_Cylindrical.hlsl";
 
 	default:
 		return "VSParticle.hlsl";

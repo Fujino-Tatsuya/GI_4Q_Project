@@ -97,8 +97,6 @@ void HyojeTestScene::OnHyojeStateEnter(EHyojeState type)
 		cout << "[HyojeTestScene] Game Start! HP Reset" << endl;
 		//ShowCursor(FALSE);
 		ForceShowCursor(FALSE);
-		SoundManager::GetInstance().Main_BGM_Shot(Config::Main_BGM, 1.0f);
-		SoundManager::GetInstance().Ambience_Shot(Config::Ambience);
 		break;
 
 	case EHyojeState::Result:
