@@ -10,7 +10,11 @@ enum class BillboardType
 
 	FountainNone,
 	FountainSpherical,
-	FountainCylindrical
+	FountainCylindrical,
+
+	CubeNone,
+	CubeSpherical,
+	CubeCylindrical
 };
 
 class ParticleComponent : public ComponentBase
