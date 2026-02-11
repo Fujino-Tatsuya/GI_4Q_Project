@@ -22,6 +22,7 @@
 
 #include "Shared/Config/Option.h"
 #include <Slider.h>
+#include "Text.h"
 
 REGISTER_TYPE(TestScene)
 
@@ -53,17 +54,29 @@ void TestScene::Update()
 	GameManager::GetInstance().OnSceneUpdate();
 	TutorialStep();
 
-	if (InputManager::GetInstance().GetKeyDown(KeyCode::Num0))
-	{
-		SceneManager::GetInstance().ChangeScene("EndingScene");
-	}
-
 	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
 		if (cheatPanel)
 		{
 			cheatPanel->SetActive(true);
 		}
 	}
+
+	auto& sm = SoundManager::GetInstance();
+
+	float mastervolume = sm.GetVolume_Main();
+	float bgmvolume = sm.GetVolume_BGM();
+	float sfxvolume = sm.GetVolume_SFX();
+	float sensitivity = m_player->GetCameraSensitivity();
+
+	string masterstr = format("{:.2f}", mastervolume);
+	string bgmstr = format("{:.2f}", mastervolume);
+	string sfxstr = format("{:.2f}", mastervolume);
+	string sensestr = format("{:.2f}", mastervolume);
+
+	m_curMasterVolume->SetText(masterstr);
+	m_curBGMVolume->SetText(bgmstr);
+	m_curSFXVolume->SetText(sfxstr);
+	m_curSensitivity->SetText(sensestr);
 }
 
 void TestScene::Render()
@@ -255,6 +268,26 @@ void TestScene::BindUIActions()
 				slider->AddListener([](float val) {
 					Player::SetCameraSensitivity(val);
 					});
+			}
+		}
+		else if (auto* text = dynamic_cast<Text*>(uiPtr.get()))
+		{
+			std::string name = text->GetName();
+
+			if (name == "Cur_Master_Volume")
+			{
+				m_curMasterVolume = text;
+			}
+			else if (name == "Cur_BGM_Volume")
+			{
+				m_curBGMVolume = text;
+			}
+			else if (name == "Cur_SFX_Volume") {
+				m_curSFXVolume = text;
+			}
+			else if (name == "Cur_Set_Sensitivity")
+			{
+				m_curSensitivity = text;
 			}
 		}
 	}

@@ -110,6 +110,7 @@ public:
 	void TakeHit();
 
 	static void SetCameraSensitivity(float val);
+	static float GetCameraSensitivity();
 
 private:
 	void Initialize() override;

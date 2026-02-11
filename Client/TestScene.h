@@ -14,6 +14,11 @@ class TestScene : public SceneBase
 	class Panel* optionPanel = nullptr;
 	class Panel* cheatPanel = nullptr;
 
+	class Text* m_curMasterVolume = nullptr;
+	class Text* m_curBGMVolume = nullptr;
+	class Text* m_curSFXVolume = nullptr;
+	class Text* m_curSensitivity = nullptr;
+
 public:
 	TestScene() = default;
 	~TestScene() override = default;

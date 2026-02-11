@@ -613,6 +613,11 @@ void Player::SetCameraSensitivity(float val)
 	m_cameraSensitivity = val * 0.01f;
 }
 
+float Player::GetCameraSensitivity()
+{
+	return m_cameraSensitivity;
+}
+
 void Player::UpdateLutCrossfade(float deltaTime)
 {
 	if (!m_lutCrossfadeActive) return;
