@@ -298,13 +298,18 @@ void Player::PlayerShoot()
 	if (!hit) distance = 100.0f;
 	const XMVECTOR& hitPosition = XMVectorAdd(origin, XMVectorScale(direction, distance));
 
-	ParticleObject* smoke = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Smoke.json"));
 	const XMVECTOR& gunPos = m_gunTip->GetWorldPosition();
+
+	ParticleObject* smoke = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Smoke.json"));
 	smoke->SetPosition(gunPos);
 	smoke->SetScale({ 1.0f, 1.0f, distance, 1.0f });
 	smoke->GetChildGameObject("SmokeLine")->GetComponent<ParticleComponent>()->SetParticleAmount(static_cast<int>(distance) * 25);
 	smoke->LookAt(hitPosition);
 	smoke->SetLifetime(5.0f);
+
+	ParticleObject* muzzleFlash = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("MuzzleFlash.json"));
+	muzzleFlash->SetPosition(gunPos);
+	muzzleFlash->SetLifetime(0.5f);
 
 	if (Enemy* enemy = dynamic_cast<Enemy*>(hit))
 	{
@@ -495,6 +500,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 		}
 
 		const XMVECTOR& gunPos = m_gunTip->GetWorldPosition();
+
 		ParticleObject* smoke = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Smoke.json"));
 		smoke->SetPosition(gunPos);
 		float length = XMVectorGetX(XMVector3LengthEst(XMVectorSubtract(gunPos, targetPos)));
@@ -503,6 +509,10 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 		smoke->LookAt(targetPos);
 		smoke->SetLifetime(5.0f);
 
+		ParticleObject* muzzleFlash = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("MuzzleFlash.json"));
+		muzzleFlash->SetPosition(gunPos);
+		muzzleFlash->SetLifetime(0.5f);
+
 		ParticleObject* gem = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Gem.json"));
 		gem->SetPosition(targetPos);
 		gem->SetLifetime(5.0f);
@@ -510,7 +520,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 		m_deadEyeTargets.pop_back();
 	}
 
-	if (SoundManager::GetInstance().GetRhythmTimerIndex() >= m_currentNodeIndex + m_DeadEyeCount) PlayerDeadEyeEnd();
+	//if (SoundManager::GetInstance().GetRhythmTimerIndex() >= m_currentNodeIndex + m_DeadEyeCount) PlayerDeadEyeEnd();
 }
 
 void Player::PlayerDeadEyeEnd()

@@ -7,6 +7,8 @@ class TestScene : public SceneBase
 	class Player* m_player = nullptr;
 
 	class GameObjectBase* m_tutorialBox = nullptr;
+	class GameObjectBase* m_stage2Trigger = nullptr;
+	class GameObjectBase* m_stageBossTrigger = nullptr;
 
 	float m_spawnInterval = 3.0f;
 	std::vector<DirectX::XMVECTOR> m_spawnPoints = {};
@@ -42,6 +44,7 @@ private:
 	void Deserialize(const nlohmann::json& jsonData) override;
 
 	void TutorialStep();
+	void CheckStageTrigger();
 
 	void SpawnEnemy(float deltaTime);
 

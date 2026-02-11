@@ -39,7 +39,10 @@ public:
 	static std::vector<GameObjectBase*> CheckCollision(const DirectX::BoundingFrustum& frustum);
 
 	// 객체 충돌 검사
-	bool CheckCollisionWithObject(ColliderComponent* otherCollider);
+	bool CheckCollisionObject(ColliderComponent* otherCollider);
+
+	// 점 충돌 검사
+	bool CheckCollisionPoint(const DirectX::XMVECTOR& point);
 
 	bool NeedsFixedUpdate() const override { return true; }
 	bool NeedsUpdate() const override { return true; }
