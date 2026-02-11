@@ -1,0 +1,210 @@
+#include "stdafx.h"
+#include "FSMComponentBoss.h"
+
+#include "GameObjectBase.h"
+#include "SkinnedModelComponent.h"
+#include "TimeManager.h"
+#include "SceneManager.h"
+#include "SceneBase.h"
+#include "Player.h"
+#include "../Engine/Animator.h"
+
+REGISTER_TYPE(FSMComponentBoss)
+
+using namespace std;
+using namespace DirectX;
+
+void FSMComponentBoss::Initialize()
+{
+	m_model = GetOwner()->GetComponent<SkinnedModelComponent>();
+	if (auto* scene = SceneManager::GetInstance().GetCurrentScene())
+	{
+		m_player = dynamic_cast<Player*>(scene->GetRootGameObject("Player"));
+	}
+	FSMComponent::Initialize();
+}
+
+std::string FSMComponentBoss::StateToString(StateID state) const
+{
+	switch (state)
+	{
+	case EChase: return "Chase";
+	case EAttack: return "Attack";
+	case EJump: return "Jump";
+	case EDead: return "Dead";
+	default: return "Unknown";
+	}
+}
+
+FSMComponent::StateID FSMComponentBoss::StringToState(const std::string& str) const
+{
+	if (str == "Chase") return EChase;
+	if (str == "Attack") return EAttack;
+	if (str == "Jump") return EJump;
+	if (str == "Dead") return EDead;
+	return EChase;
+}
+
+void FSMComponentBoss::OnEnterState(StateID state)
+{
+	if (!m_model || !m_model->GetAnimator()) return;
+
+	switch (state)
+	{
+	case EChase:
+		// 2 = run
+		m_model->GetAnimator()->SetPlaybackSpeed(1.0f);
+		m_model->GetAnimator()->PlayAnimation(2, true);
+		m_model->SetBlendState(BlendState::Opaque);
+		break;
+
+	case EAttack:
+		// 0 = attack
+		m_attack_timer = 0.0f;
+		m_attack_has_hit = false;
+		m_model->GetAnimator()->SetPlaybackSpeed(1.0f);
+		m_model->GetAnimator()->PlayAnimation(0, false);
+		break;
+
+	case EJump:
+		// 1 = jump attack
+		m_jump_timer = 0.0f;
+		m_jump_has_hit = false;
+		m_model->GetAnimator()->SetPlaybackSpeed(1.0f);
+		m_model->GetAnimator()->PlayAnimation(1, false);
+		break;
+
+	case EDead:
+		m_death_timer = 0.0f;
+		m_model->GetAnimator()->SetPlaybackSpeed(0.1f);
+		m_model->GetAnimator()->PlayAnimation(0, false);
+		m_model->SetBlendState(BlendState::AlphaBlend);
+		break;
+	}
+}
+
+void FSMComponentBoss::OnUpdateState(StateID state)
+{
+	const float dt = TimeManager::GetInstance().GetDeltaTime();
+
+	switch (state)
+	{
+	case EAttack:
+		m_attack_timer += dt;
+		if (m_attack_timer >= kAttackAnticipation && !m_attack_has_hit)
+		{
+			m_attack_has_hit = true;
+
+			if (!m_player)
+			{
+				if (auto* scene = SceneManager::GetInstance().GetCurrentScene())
+				{
+					m_player = dynamic_cast<Player*>(scene->GetRootGameObject("Player"));
+				}
+			}
+
+			if (m_player && GetOwner())
+			{
+				const XMVECTOR diff = m_player->GetPosition() - GetOwner()->GetPosition();
+				const float distSq = XMVectorGetX(XMVector3LengthSq(diff));
+				if (distSq <= kAttackRange * kAttackRange)
+				{
+					for (int i = 0; i < kDamage; ++i)
+					{
+						m_player->TakeHit();
+					}
+				}
+			}
+		}
+		if (m_attack_timer >= kAttackTotalTime)
+		{
+			ChangeState(EChase);
+		}
+		break;
+
+	case EJump:
+		m_jump_timer += dt;
+		if (m_jump_timer >= kJumpAttackAnticipation && !m_jump_has_hit)
+		{
+			m_jump_has_hit = true;
+
+			if (!m_player)
+			{
+				if (auto* scene = SceneManager::GetInstance().GetCurrentScene())
+				{
+					m_player = dynamic_cast<Player*>(scene->GetRootGameObject("Player"));
+				}
+			}
+
+			if (m_player && GetOwner())
+			{
+				const XMVECTOR diff = m_player->GetPosition() - GetOwner()->GetPosition();
+				const float distSq = XMVectorGetX(XMVector3LengthSq(diff));
+				if (distSq <= kAttackRange * kAttackRange)
+				{
+					for (int i = 0; i < kDamage; ++i)
+					{
+						m_player->TakeHit();
+					}
+				}
+			}
+		}
+		if (m_jump_timer >= kJumpTotalTime)
+		{
+			ChangeState(EChase);
+		}
+		break;
+
+	case EDead:
+		m_death_timer += dt;
+		if (m_death_timer >= kFadeStartTime)
+		{
+			float progress = (m_death_timer - kFadeStartTime) / kFadeDuration;
+			if (progress > 1.0f) progress = 1.0f;
+
+			if (m_model)
+			{
+				m_model->SetAlpha(1.0f - progress);
+				m_model->SetDissolveThreshold(progress);
+			}
+		}
+		break;
+	}
+}
+
+void FSMComponentBoss::OnExitState(StateID state)
+{
+	(void)state;
+}
+
+#ifdef _DEBUG
+void FSMComponentBoss::RenderImGui()
+{
+	if (ImGui::TreeNode("FSM Component Boss"))
+	{
+		const string currentName = StateToString(current_state_);
+		ImGui::Text("Current State: %s", currentName.c_str());
+
+		if (ImGui::BeginCombo("Force State", currentName.c_str()))
+		{
+			for (int i = 0; i < ECount; ++i)
+			{
+				const EState state = static_cast<EState>(i);
+				const string stateName = StateToString(state);
+				const bool isSelected = (current_state_ == state);
+				if (ImGui::Selectable(stateName.c_str(), isSelected))
+				{
+					ChangeState(state);
+				}
+				if (isSelected)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
+		}
+
+		ImGui::TreePop();
+	}
+}
+#endif

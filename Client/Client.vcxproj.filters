@@ -45,6 +45,9 @@
     <ClCompile Include="FSMComponentGun2.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="FSMComponentBoss.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -89,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="FSMComponentGun2.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMComponentBoss.h">
       <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>

@@ -195,6 +195,7 @@
     <ClCompile Include="CrossHairAndNode.cpp" />
     <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FSMComponentBoss.cpp" />
     <ClCompile Include="FSMComponentEnemy.cpp" />
     <ClCompile Include="FSMComponentGun2.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="CrossHairAndNode.h" />
     <ClInclude Include="EndingScene.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FSMComponentBoss.h" />
     <ClInclude Include="FSMComponentEnemy.h" />
     <ClInclude Include="FSMComponentGun2.h" />
     <ClInclude Include="GameManager.h" />
