@@ -12,6 +12,7 @@ enum class EScene
 
 enum class EMainState
 {
+    None,
     Tutorial,
     Stage1,
     Stage2,
@@ -43,7 +44,8 @@ class GameManager : public Singleton<GameManager>
     bool m_isSuccess = false;
 
     EScene m_CurrentScene = EScene::Title;
-    EMainState m_MainState = EMainState::Tutorial;
+    EMainState m_MainState = EMainState::None;
+	EMainState m_PrevMainState = EMainState::None;
     ETutorialStep m_TutorialStep = ETutorialStep::WASD;
 ///GameFlowEnd
 
@@ -84,7 +86,16 @@ public:
     void SetSuccess(bool v) { m_isSuccess = v; }
 
     void MainSceneControl();
+
+    void ChangeMainState(EMainState next);
+
+	void OnStageEnter(EMainState state);
+	void OnStageExit(EMainState state);
+
     void TutorialControl();
+    void Stage1Control();
+    void Stage2Control();
+    void Stage3Control();
 
 ///GameFlowEND
 
