@@ -6,14 +6,14 @@
                 {
                     "RestartOnFinish": false,
                     "billboardType": 1,
-                    "blendState": 1,
+                    "blendState": 2,
                     "imageScale": 0.10000000149011612,
                     "particleAmount": 500,
                     "particleColor": [
                         1.0,
                         1.0,
                         1.0,
-                        1.0
+                        0.5396724939346313
                     ],
                     "particleConstTime": 1.0,
                     "particleEmissionColor": [
@@ -66,21 +66,21 @@
     "name": "Smoke",
     "position": [
         0.0,
+        29.58625602722168,
         0.0,
-        0.0,
-        0.0
+        1.0
     ],
     "rotation": [
+        -0.0,
         0.0,
-        0.0,
-        0.0,
+        -0.0,
         1.0
     ],
     "scale": [
         1.0,
         1.0,
         1.0,
-        1.0
+        0.0
     ],
     "type": "ParticleObject"
 }

@@ -39,6 +39,18 @@ float Rand(uint u)
     return float(u & 0x00FFFFFFu) * INV_16777216;
 }
 
+// 2D 벡터 유사 난수 생성
+float2 Rand2(float seed)
+{
+    uint intSeed = asuint(seed * 12345.678f + 0.5f);
+    uint hashX = LowBias32(intSeed);
+    uint hashY = LowBias32(hashX);
+    
+    float2 randomVec = float2(Rand(hashX), Rand(hashY));
+    
+    return randomVec;
+}
+
 // 3D 벡터 유사 난수 생성
 float3 Rand3(float seed, float spread = 0.0f)
 {
