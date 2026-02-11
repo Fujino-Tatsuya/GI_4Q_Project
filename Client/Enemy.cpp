@@ -55,6 +55,8 @@ void Enemy::Die()
 	//SoundManager::GetInstance().SFX_Shot(GetPosition(), Config::Enemy_Die);
 }
 
+constexpr float ChaseSQRange = 25.0f * 25.0f;
+
 void Enemy::Update()
 {
 	float deltaTime = TimeManager::GetInstance().GetDeltaTime();
@@ -75,6 +77,8 @@ void Enemy::Update()
 				if (m_fsm) m_fsm->ChangeState(FSMComponentEnemy::EAttack);
 				return;
 			}
+
+			if (distSq > ChaseSQRange) return;
 
 			m_pathFindTimer += deltaTime;
 			if (m_pathFindTimer >= m_pathFindInterval - m_pathFindIntervalRandomOffset) { m_path.clear(); m_pathFindTimer = -m_pathFindIntervalRandomOffset; }

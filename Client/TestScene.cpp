@@ -139,7 +139,8 @@ void TestScene::TutorialStep()
 	}
 }
 
-constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 100.0f;
+// 적 스폰 지점과 플레이어 간의 거리 제곱
+constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 25.0f * 25.0f;
 
 void TestScene::SpawnEnemy(float deltaTime)
 {
@@ -159,8 +160,7 @@ void TestScene::SpawnEnemy(float deltaTime)
 
 		if (!validSpawnPoints.empty())
 		{
-			XMVECTOR spawnPoint = validSpawnPoints[RNG::GetInstance().Range(0, static_cast<int>(validSpawnPoints.size()) - 1)];
-			CreatePrefabRootGameObject("Enemy.json")->SetPosition(spawnPoint);
+			for (const XMVECTOR& spawnPoint : validSpawnPoints) CreatePrefabRootGameObject("Enemy.json")->SetPosition(spawnPoint);
 
 			spawnTime = 0.0f;
 		}

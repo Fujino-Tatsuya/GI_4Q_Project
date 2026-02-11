@@ -77,14 +77,15 @@ void Player::Update()
 		if (m_deadEyeCoolDownTimer >= m_deadEyeCoolDownDuration && input.GetKeyDown(KeyCode::MouseRight) && sm.CheckRhythm(Config::InputCorrection) < InputType::Miss) PlayerDeadEyeStart();
 		else m_deadEyeCoolDownTimer += deltaTime;
 	}
+
+	XMVECTOR previousPosition = GetPosition();
 	
 	if (m_isDeadEyeActive)				PlayerDeadEye(deltaTime, input);	
 	if (m_isDashing)					PlayerDash(deltaTime);
 	else if (m_ControlState.CanMove)	MovePosition(m_normalizedMoveDirection * m_moveSpeed * deltaTime);
 	
-	XMVECTOR previousPosition = GetPosition();
 	// 만약 이동한 위치가 네비게이션 메시 밖이면 이전 위치로 되돌림 // 월드 좌표계는 나중에 업데이트 됨으로 로컬 좌표계로 해햐함
-	if (NavigationManager::GetInstance().FindNearestPoly(GetPosition(), 1.0f) < 0) SetPosition(previousPosition);
+	if (NavigationManager::GetInstance().FindNearestPoly(GetPosition(), 3.0f) < 0) SetPosition(previousPosition);
 
 	if (input.GetKeyDown(KeyCode::R) && m_ControlState.CanReload && m_bulletCnt > 0)
 	{
