@@ -55,6 +55,7 @@ void Enemy::Die()
 	//SoundManager::GetInstance().SFX_Shot(GetPosition(), Config::Enemy_Die);
 }
 
+// 적이 플레이어를 쫓기 시작하는 거리의 제곱
 constexpr float ChaseSQRange = 25.0f * 25.0f;
 
 void Enemy::Update()
