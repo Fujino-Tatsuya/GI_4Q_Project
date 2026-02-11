@@ -88,7 +88,6 @@ void GameManager::OnSceneEnter(EScene type)
 		sm.Sub_BGM_Shot(Config::Title_BGM,0.0f);
 
 		ScoreReset();
-		m_MainState = EMainState::Tutorial;
 		m_TutorialStep = ETutorialStep::WASD;
 		break;
 
@@ -182,6 +181,8 @@ void GameManager::ChangeMainState(EMainState next)
 {
 	if (m_MainState == next)
 		return;
+
+	std::cout << "Cur Scene : " << GameManager::ToString(m_MainState) << " ->  Next Scene : " << GameManager::ToString(next) << std::endl;
 
 	if (m_MainState != EMainState::None)
 		OnStageExit(m_MainState);
