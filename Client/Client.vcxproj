@@ -196,10 +196,6 @@
     <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FSMComponentEnemy.cpp" />
-    <ClCompile Include="FSMComponentGun.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="FSMComponentGun2.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="ParticleObject.cpp" />
@@ -223,10 +219,6 @@
     <ClInclude Include="EndingScene.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FSMComponentEnemy.h" />
-    <ClInclude Include="FSMComponentGun.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="FSMComponentGun2.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="ParticleObject.h" />

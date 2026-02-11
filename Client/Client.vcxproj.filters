@@ -23,9 +23,6 @@
     <ClCompile Include="FSMComponentEnemy.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="FSMComponentGun.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="TaehyeonTestScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="FSMComponentEnemy.h">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="FSMComponentGun.h">
       <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="TaehyeonTestScene.h">

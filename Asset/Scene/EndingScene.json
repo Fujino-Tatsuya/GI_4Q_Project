@@ -385,10 +385,10 @@
                 1.0
             ],
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
+                0.0,
+                0.0,
+                0.0,
+                0.0
             ],
             "colorPressed": [
                 0.699999988079071,
@@ -398,14 +398,14 @@
             ],
             "depth": 0.03099999949336052,
             "name": "TITLE",
-            "parentIdx": 18,
+            "parentIdx": -1,
             "pathClicked": "UI_Result_hover.png",
             "pathHover": "UI_Result_hover.png",
-            "pathIdle": "UI__.png",
+            "pathIdle": "UI_Result_hover.png",
             "pathPressed": "UI_Result_hover.png",
             "pos": [
-                0.09000000357627869,
-                0.0
+                0.7599999904632568,
+                0.7599999904632568
             ],
             "scale": 0.699999988079071,
             "scaleClicked": 1.0,
@@ -469,10 +469,10 @@
             ],
             "depth": 0.032999999821186066,
             "name": "hat",
-            "parentIdx": 19,
+            "parentIdx": 18,
             "pathIdle": "UI_Icon_hat.png",
             "pos": [
-                -0.05000000074505806,
+                0.029999999329447746,
                 -0.029999999329447746
             ],
             "scale": 0.7599999904632568,
@@ -489,10 +489,10 @@
             "depth": 0.33000001311302185,
             "fontName": "Paperlogy",
             "name": "TITLE",
-            "parentIdx": 19,
+            "parentIdx": 18,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.03999999910593033,
+                0.03999999910593033,
                 -0.029999999329447746
             ],
             "scale": 0.36000001430511475,
@@ -524,7 +524,7 @@
                 1.0,
                 1.0,
                 1.0,
-                1.0
+                0.0
             ],
             "colorPressed": [
                 0.699999988079071,
@@ -534,39 +534,20 @@
             ],
             "depth": 0.03099999949336052,
             "name": "RETRY",
-            "parentIdx": 18,
+            "parentIdx": -1,
             "pathClicked": "UI_Result_hover.png",
             "pathHover": "UI_Result_hover.png",
-            "pathIdle": "UI__.png",
+            "pathIdle": "UI_Result_hover.png",
             "pathPressed": "UI_Result_hover.png",
             "pos": [
-                -0.09000000357627869,
-                0.0
+                0.5799999833106995,
+                0.7599999904632568
             ],
             "scale": 0.699999988079071,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
             "type": "Button"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "New Panel",
-            "parentIdx": -1,
-            "pathIdle": "Gameover.png",
-            "pos": [
-                0.0,
-                0.0
-            ],
-            "scale": 0.10000000149011612,
-            "type": "Panel"
         }
     ],
     "environmentMapFileName": "Skybox.dds",
