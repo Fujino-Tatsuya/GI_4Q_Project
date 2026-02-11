@@ -153,7 +153,7 @@
             "type": "Panel"
         },
         {
-            "active": true,
+            "active": false,
             "colorIdle": [
                 1.0,
                 1.0,
@@ -172,7 +172,7 @@
             "type": "Panel"
         },
         {
-            "active": true,
+            "active": false,
             "colorIdle": [
                 0.0,
                 0.0,

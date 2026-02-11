@@ -6,6 +6,7 @@
 #include "TimeManager.h"
 #include "SoundManager.h"
 #include "GameManager.h"
+#include "RNG.h"
 
 #include "CameraComponent.h"
 
@@ -28,13 +29,14 @@ void EndingScene::Initialize()
 
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
-	int finalScore = 9356;
-	//int finalScore = GameManager::GetInstance().GetScore();
+	const int finalScore = 9356;
+	//const int finalScore = GameManager::GetInstance().GetScore();
 	SetScoreUI(finalScore);
 	SetGradeUI(finalScore);
 
-	bool isSuccess = true;
-	//int isSuccess = GameManager::GetInstance().IsSuccess();
+	const bool isSuccess = true;
+	//const bool isSuccess = GameManager::GetInstance().IsSuccess();
+	SetSucessUI(isSuccess);
 
 }
 
@@ -122,4 +124,13 @@ void EndingScene::SetGradeUI(int score)
 	}
 
 	Grade->SetTextureAndOffset(gradeTextureName);
+}
+
+void EndingScene::SetSucessUI(bool isSuccess)
+{
+	const int variant = RNG::GetInstance().Range(1, 5);
+	if (namu_pan) {
+		const std::string prefix = isSuccess ? "UI_Result_Sign_Clear" : "UI_Result_Sign_Gameover";
+		namu_pan->SetTextureAndOffset(prefix + std::to_string(variant) + ".png");
+	}
 }

@@ -23,6 +23,7 @@ public:
 
 	void SetScoreUI(int score);
 	void SetGradeUI(int score);
+	void SetSucessUI(bool isSuccess);
 
 private:
 	void Initialize() override;
