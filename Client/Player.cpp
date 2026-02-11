@@ -101,7 +101,11 @@ void Player::Update()
 	if (!m_lineBuffers.empty() && m_lineBuffers.front().second < 0.0f) m_lineBuffers.pop_front();
 	if (m_enemyHitTimer > -1.0f) m_enemyHitTimer -= deltaTime;
 	if (m_invincibilityTimer > -1.0f) m_invincibilityTimer -= deltaTime;
-	if (!m_playerHitPoint && m_invincibilityTimer <= 0.0f) SceneManager::GetInstance().ChangeScene("EndingScene");
+	if (!m_playerHitPoint && m_invincibilityTimer <= 0.0f)
+	{
+		GameManager::GetInstance().SetSuccess(false);
+		SceneManager::GetInstance().ChangeScene("EndingScene");
+	}
 
 	if (m_redVignetteIntensity > 0.0f)
 	{

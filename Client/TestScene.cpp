@@ -57,6 +57,7 @@ void TestScene::Update()
 
 	if (InputManager::GetInstance().GetKeyDown(KeyCode::Num0))
 	{
+		GameManager::GetInstance().SetSuccess(true);
 		SceneManager::GetInstance().ChangeScene("EndingScene");
 	}
 
@@ -232,9 +233,12 @@ void TestScene::BindUIActions()
 		// -------------------------------------------------------
 		if (auto* btn = dynamic_cast<Button*>(uiPtr.get())) {
 			std::string key = btn->GetActionKey();
-		if (key == "cheat") {
-			btn->SetOnClick([this]() { SceneManager::GetInstance().ChangeScene("EndingScene");  });
-		} else if (key == "close_option") {
+				if (key == "cheat") {
+					btn->SetOnClick([this]() {
+						GameManager::GetInstance().SetSuccess(true);
+						SceneManager::GetInstance().ChangeScene("EndingScene");
+					});
+				} else if (key == "close_option") {
 			if (optionPanel) btn->SetOnClick([this]()
 			{
 				optionPanel->SetActive(false);

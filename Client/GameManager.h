@@ -40,6 +40,7 @@ class GameManager : public Singleton<GameManager>
     Player* m_Player = nullptr;
 
     bool m_Pause = false;
+    bool m_isSuccess = false;
 
     EScene m_CurrentScene = EScene::Title;
     EMainState m_MainState = EMainState::Tutorial;
@@ -79,6 +80,8 @@ public:
     void SetPaused(bool v) { m_Pause = v; }
     void RegisterOptionPanel(Panel* panel) { m_optionPanel = panel; }
     void ToggleOption();
+    bool IsSuccess() const { return m_isSuccess; }
+    void SetSuccess(bool v) { m_isSuccess = v; }
 
     void MainSceneControl();
     void TutorialControl();

@@ -33,8 +33,9 @@ void EndingScene::Initialize()
 	SetScoreUI(finalScore);
 	SetGradeUI(finalScore);
 
-	bool isPass = true;
-	//int isPass = GameManager::GetInstance().GetScore();
+	bool isSuccess = true;
+	//int isSuccess = GameManager::GetInstance().IsSuccess();
+
 }
 
 void EndingScene::Update()
