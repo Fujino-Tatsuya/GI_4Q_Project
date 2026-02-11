@@ -19,6 +19,18 @@ namespace
 {
 	const char* kRankingsFile = "rankings.json";
 
+	std::string GetCurrentDateTime()
+	{
+		const auto now = std::chrono::system_clock::now();
+		const std::time_t nowTime = std::chrono::system_clock::to_time_t(now);
+		std::tm localTime = {};
+		localtime_s(&localTime, &nowTime);
+
+		std::ostringstream oss;
+		oss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S");
+		return oss.str();
+	}
+
 	struct CheatTransform
 	{
 		float px;
@@ -163,6 +175,10 @@ void GameManager::OnSceneEnter(EScene type)
 		break;
 
 	case EScene::Result:
+		if (m_currentScore > 0)
+		{
+			AddScore(GetCurrentDateTime(), m_currentScore);
+		}
 		sm.Sub_BGM_Shot(Config::Ending_BGM, 0.0f);
 		break;
 	}
@@ -611,22 +627,19 @@ void GameManager::LoadRankings()
 		if (!entry.is_object())
 			continue;
 
-		const auto nameIt = entry.find("name");
+		const auto playedAtIt = entry.find("played_at");
 		const auto scoreIt = entry.find("score");
-		if (nameIt == entry.end() || scoreIt == entry.end())
+		if (playedAtIt == entry.end() || scoreIt == entry.end())
 			continue;
-		if (!nameIt->is_string() || !scoreIt->is_number_integer())
+		if (!playedAtIt->is_string() || !scoreIt->is_number_integer())
 			continue;
 
-		m_rankings.emplace_back(nameIt->get<string>(), scoreIt->get<int>());
+		m_rankings.emplace_back(playedAtIt->get<string>(), scoreIt->get<int>());
 	}
 
 	sort(m_rankings.begin(), m_rankings.end(), [](const auto& left, const auto& right) {
 		return left.second > right.second;
 		});
-
-	if (m_rankings.size() > 10)
-		m_rankings.resize(10);
 }
 
 void GameManager::SaveRankings() const
@@ -634,11 +647,55 @@ void GameManager::SaveRankings() const
 	nlohmann::json data = nlohmann::json::object();
 	data["rankings"] = nlohmann::json::array();
 
-	for (const auto& [name, score] : m_rankings) {
-		data["rankings"].push_back({ { "name", name }, { "score", score } });
+	for (const auto& [playedAt, score] : m_rankings) {
+		data["rankings"].push_back({ { "played_at", playedAt }, { "score", score } });
 	}
 
 	ofstream file(kRankingsFile);
 	file << data.dump(4);
 	file.close();
+}
+
+void GameManager::AddScore(const std::string& playedAt, int score)
+{
+	if (score <= 0)
+		return;
+
+	m_rankings.emplace_back(playedAt, score);
+
+	sort(m_rankings.begin(), m_rankings.end(), [](const auto& left, const auto& right) {
+		return left.second > right.second;
+		});
+
+	SaveRankings();
+}
+
+std::string GameManager::GetGradeTextureName(int score) const
+{
+	if (m_rankings.empty())
+		return "UI_Grade_F.png";
+	if (m_rankings.size() == 1)
+		return "UI_Grade_S.png";
+
+	size_t index = m_rankings.size() - 1;
+	for (size_t i = 0; i < m_rankings.size(); ++i)
+	{
+		if (m_rankings[i].second == score)
+		{
+			index = i;
+			break;
+		}
+	}
+
+	const float rank = static_cast<float>(index + 1);
+	const float total = static_cast<float>(m_rankings.size());
+	const float topPercent = (rank / total) * 100.0f;
+
+	if (topPercent <= 10.0f) return "UI_Grade_S.png";
+	if (topPercent <= 20.0f) return "UI_Grade_A.png";
+	if (topPercent <= 30.0f) return "UI_Grade_B.png";
+	if (topPercent <= 50.0f) return "UI_Grade_C.png";
+	if (topPercent <= 70.0f) return "UI_Grade_D.png";
+	if (topPercent <= 90.0f) return "UI_Grade_E.png";
+	return "UI_Grade_F.png";
 }

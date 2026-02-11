@@ -35,6 +35,12 @@
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dxgi.lib")
 
+// Time
+#include <chrono>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+
 // DirectXTK 헤더
 #include <directxtk/SimpleMath.h>
 #include <directxtk/WICTextureLoader.h>

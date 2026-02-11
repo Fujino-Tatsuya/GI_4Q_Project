@@ -137,7 +137,8 @@ public:
 ///RANKING -> LOG
     void SaveRankings() const;
     void LoadRankings();
-    void AddScore(const std::string& name, int score);
+    void AddScore(const std::string& playedAt, int score);
+    std::string GetGradeTextureName(int score) const;
     const std::vector<std::pair<std::string, int>>& GetTopScores() const { return m_rankings; }
 ///RANKING END
 
