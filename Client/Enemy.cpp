@@ -94,6 +94,13 @@ void Enemy::Update()
 	ApplySeparation(deltaTime);
 }
 
+#ifdef _DEBUG
+void Enemy::RenderImGui()
+{
+	ImGui::Checkbox("Is Tutorial Dummy", &m_isTutorialDummy);
+}
+#endif
+
 void Enemy::SetAsTutorialDummy()
 {
 	m_isTutorialDummy = true;
@@ -156,6 +163,20 @@ void Enemy::Finalize()
 {
 	auto it = find(s_enemies.begin(), s_enemies.end(), this);
 	if (it != s_enemies.end()) s_enemies.erase(it);
+}
+
+nlohmann::json Enemy::Serialize()
+{
+	nlohmann::json jsonData = {};
+
+	jsonData["isTutorialDummy"] = m_isTutorialDummy;
+
+	return jsonData;
+}
+
+void Enemy::Deserialize(const nlohmann::json& jsonData)
+{
+	if (jsonData.find("isTutorialDummy") != jsonData.end()) if (jsonData["isTutorialDummy"].get<bool>()) SetAsTutorialDummy();
 }
 
 void Enemy::ApplySeparation(float dt)

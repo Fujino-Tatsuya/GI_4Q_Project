@@ -52,7 +52,13 @@ public:
 private:
 	void Initialize() override;
 	void Update() override;
+	#ifdef _DEBUG
+	void RenderImGui() override;
+	#endif
 	void Finalize() override;
+
+	nlohmann::json Serialize() override;
+	void Deserialize(const nlohmann::json& jsonData) override;
 
 	void MoveAlongPath(float dt);
 	void ApplySeparation(float dt);
