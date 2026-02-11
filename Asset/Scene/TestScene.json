@@ -8744,6 +8744,30 @@
                                 1.0
                             ],
                             "type": "GameObjectBase"
+                        },
+                        {
+                            "childGameObjects": [],
+                            "components": [],
+                            "name": "GunTip",
+                            "position": [
+                                -0.6720123291015625,
+                                0.40651601552963257,
+                                1.52587890625e-05,
+                                1.0
+                            ],
+                            "rotation": [
+                                -0.0,
+                                0.0,
+                                -0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "type": "GameObjectBase"
                         }
                     ],
                     "components": [

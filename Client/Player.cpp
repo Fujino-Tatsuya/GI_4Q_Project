@@ -39,6 +39,7 @@ void Player::Initialize()
 	m_cameraComponent = GetComponent<CameraComponent>();
 	m_cameraComponent->SetAsMainCamera();
 	m_gunObject = GetChildGameObject("Gun");
+	m_gunTip = m_gunObject->GetChildGameObject("GunTip");
 	m_gunFSM = m_gunObject->GetComponent<FSMComponentGun2>();
 
 	m_playerHitPointTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP.png");
@@ -298,7 +299,7 @@ void Player::PlayerShoot()
 	const XMVECTOR& hitPosition = XMVectorAdd(origin, XMVectorScale(direction, distance));
 
 	ParticleObject* smoke = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Smoke.json"));
-	const XMVECTOR& gunPos = m_gunObject->GetWorldPosition();
+	const XMVECTOR& gunPos = m_gunTip->GetWorldPosition();
 	smoke->SetPosition(gunPos);
 	smoke->SetScale({ 1.0f, 1.0f, distance, 1.0f });
 	smoke->GetChildGameObject("SmokeLine")->GetComponent<ParticleComponent>()->SetParticleAmount(static_cast<int>(distance) * 25);
@@ -490,7 +491,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 			m_deadEyeMoveTimer = 0.0f;
 		}
 
-		const XMVECTOR& gunPos = m_gunObject->GetWorldPosition();
+		const XMVECTOR& gunPos = m_gunTip->GetWorldPosition();
 		ParticleObject* smoke = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Smoke.json"));
 		smoke->SetPosition(gunPos);
 		float length = XMVectorGetX(XMVector3LengthEst(XMVectorSubtract(gunPos, targetPos)));
