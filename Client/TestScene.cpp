@@ -151,7 +151,7 @@ void TestScene::TutorialStep()
 	}
 }
 
-// ?  ?Š¤?° ì§?? ê³? ?”Œ? ˆ?´?–´ ê°„ì˜ ê±°ë¦¬ ? œê³?
+// ìŠ¤í° í™œì„± ê±°ë¦¬ ì œê³±
 constexpr float SPAWN_ACTIVE_DISTANCE_SQ = 25.0f * 25.0f;
 
 void TestScene::SpawnEnemy(float deltaTime)
