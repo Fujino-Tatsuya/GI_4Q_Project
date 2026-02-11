@@ -25,7 +25,7 @@ REGISTER_TYPE(Player)
 using namespace std;
 using namespace DirectX;
 
-float Player::m_cameraSensitivity = 1.0f;
+float Player::m_cameraSensitivity = 0.05f;
 
 void Player::Initialize()
 {
@@ -83,15 +83,15 @@ void Player::Update()
 		switch (sm.CheckRhythm(Config::InputCorrection))
 		{
 		case InputType::Early:
-			//std::cout << "Early" << std::endl;
+			std::cout << "Early" << std::endl;
 			PlayerReload(0);
 			break;
 		case InputType::Perfect:
-			//std::cout << "Perfect" << std::endl;
+			std::cout << "Perfect" << std::endl;
 			PlayerReload(0);
 			break;
 		case InputType::Late:
-			//std::cout << "Late" << std::endl;
+			std::cout << "Late" << std::endl;
 			PlayerReload(0);
 			break;
 		}
@@ -306,6 +306,11 @@ void Player::PlayerReload(int cnt)
 {
 	if (m_bulletCnt == m_MaxBullet) return;
 
+	m_ControlState.CanShoot = false;
+	m_ControlState.CanReload = false;
+	m_ControlState.CanAutoReload = false;
+
+
 	//Reload Anime + rhythm check
 
 	SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Spin);
@@ -318,6 +323,20 @@ void Player::PlayerReload(int cnt)
 				return false;
 			}
 			SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Cocking);
+
+			SoundManager::GetInstance().AddNodeDestroyedListenerOnce([this, cnt = 2]()mutable ->bool
+				{
+					if (--cnt > 0)
+					{
+						return false;
+					}
+					m_ControlState.CanShoot = true;
+					m_ControlState.CanReload = true;
+					m_ControlState.CanAutoReload = true;
+
+					return true;
+				});
+
 			m_bulletCnt = m_MaxBullet;
 			return true;
 		});
@@ -325,8 +344,6 @@ void Player::PlayerReload(int cnt)
 
 void Player::PlayerAutoReload(int cnt)
 {
-	m_bulletCnt = -1;
-
 	m_ControlState.CanAutoReload = false;
 	m_ControlState.CanShoot = false;
 
@@ -339,7 +356,7 @@ void Player::PlayerAutoReload(int cnt)
 			{
 			case ReloadState::WaitSpin:
 				//std::cout << waitCount;
-				if (--waitCount == 0)
+				if (--waitCount <= 0)
 				{
 					SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Spin);
 					state = ReloadState::WaitCock;
@@ -355,20 +372,20 @@ void Player::PlayerAutoReload(int cnt)
 				if (--waitCount == 0)
 				{
 					SoundManager::GetInstance().UI_Shot(Config::Player_Reload_Cocking);
-					m_bulletCnt = m_MaxBullet;
+					
 
 					state = ReloadState::WaitEnableShoot;
 					waitCount = 1;
 					//std::cout << "WaitCock" << std::endl;
 					m_ControlState.CanAutoReload = false;
 					m_ControlState.CanShoot = false;
-					
+					m_bulletCnt = m_MaxBullet;
 				}
 				return false;
 
 			case ReloadState::WaitEnableShoot:
 				if (--waitCount == 0)
-				{
+				{					
 					m_ControlState.CanAutoReload = true;
 					m_ControlState.CanShoot = true;
 					//std::cout << "WaitEnableShoot" << std::endl;
