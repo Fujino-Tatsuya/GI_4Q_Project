@@ -47,7 +47,7 @@ class Player : public GameObjectBase
 	std::deque<std::pair<LineBuffer, float>> m_lineBuffers = {};
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_deadEyeCoolDownTextureAndOffset = {};
-	float m_deadEyeCoolDownTimer = 0.0f;
+	float m_deadEyeCoolDownTimer = 5.0f;
 	const float m_deadEyeCoolDownDuration = 5.0f;
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_deadEyeTextureAndOffset = {};

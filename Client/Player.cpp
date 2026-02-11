@@ -15,6 +15,7 @@
 #include "NavigationManager.h"
 #include "SceneManager.h"
 #include "GameManager.h"
+#include "ParticleComponent.h"
 
 #include "FSMComponentGun.h"
 
@@ -298,6 +299,7 @@ void Player::PlayerShoot()
 	const XMVECTOR& gunPos = m_gunObject->GetWorldPosition();
 	smoke->SetPosition(gunPos);
 	smoke->SetScale({ 1.0f, 1.0f, distance, 1.0f });
+	smoke->GetChildGameObject("SmokeLine")->GetComponent<ParticleComponent>()->SetParticleAmount(static_cast<int>(distance) * 25);
 	smoke->LookAt(hitPosition);
 	smoke->SetLifetime(5.0f);
 
@@ -453,7 +455,7 @@ void Player::PlayerDeadEyeStart()
 	m_deadEyeTotalDuration = static_cast<float>(m_DeadEyeCount) * 0.5f;
 	m_deadEyeDuration = 0.0f;
 
-	m_prevDeadEyePos = m_cameraComponent->WorldToScreenPosition(m_deadEyeTargets.back().second->GetWorldPosition());
+	m_prevDeadEyePos = m_cameraComponent->WorldToScreenPosition(XMVectorAdd(m_deadEyeTargets.back().second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f }));
 	m_nextDeadEyePos = m_prevDeadEyePos;
 }
 
@@ -467,7 +469,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 	float effectIntensity = min((m_deadEyeDuration / m_deadEyeTotalDuration) * 16.0f, 1.0f);
 	SceneBase::SetGrayScaleIntensity(effectIntensity);
 
-	const XMVECTOR& targetPos = m_deadEyeTargets.back().second->GetWorldPosition();
+	const XMVECTOR& targetPos = XMVectorAdd(m_deadEyeTargets.back().second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f });
 	m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(targetPos);
 
 	if (input.GetKeyDown(KeyCode::MouseLeft))
@@ -478,14 +480,16 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 		m_deadEyeTargets.back().second->Die();
 		if (m_deadEyeTargets.size() > 1)
 		{
-			m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(m_deadEyeTargets[m_deadEyeTargets.size() - 2].second->GetWorldPosition());
+			m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(XMVectorAdd(m_deadEyeTargets[m_deadEyeTargets.size() - 2].second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f }));
 			m_deadEyeMoveTimer = 0.0f;
 		}
 
 		const XMVECTOR& gunPos = m_gunObject->GetWorldPosition();
 		ParticleObject* smoke = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Smoke.json"));
 		smoke->SetPosition(gunPos);
-		smoke->SetScale({ 1.0f, 1.0f, XMVectorGetX(XMVector3LengthEst(XMVectorSubtract(gunPos, targetPos))), 1.0f });
+		float length = XMVectorGetX(XMVector3LengthEst(XMVectorSubtract(gunPos, targetPos)));
+		smoke->SetScale({ 1.0f, 1.0f, length, 1.0f });
+		smoke->GetChildGameObject("SmokeLine")->GetComponent<ParticleComponent>()->SetParticleAmount(static_cast<int>(length) * 25);
 		smoke->LookAt(targetPos);
 		smoke->SetLifetime(5.0f);
 

@@ -42,7 +42,7 @@ void ParticleComponent::Update()
 			SetAlive(false);
 		};
 		#endif
-		m_particleColor.baseColor.w = max(0.0f, 1.0f - powf(progress, 2.0f));
+		m_particleColor.baseColor.w = max(0.0f, 1.0f - progress);
 	}
 
 	if (m_particleConstTime >= 0.0f) uv_buffer_data_.eclipsedTime = m_particleConstTime;
