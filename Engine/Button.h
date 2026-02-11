@@ -37,6 +37,7 @@ class Button : public UIBase
 
 	std::function<void()> m_onClick = nullptr;
 	std::string m_onClickActionKey = "";
+	bool m_debugInput = true;
 
 
 public:
@@ -57,6 +58,7 @@ public:
 	void SetTextureAndOffset(const std::string& idle, const std::string& hoverd, const std::string& pressed, const std::string& clicked);
 
 	void SetOnClick(const std::function<void()>& onClick) { m_onClick = onClick; }
+	void SetDebugInput(bool v) { m_debugInput = v; }
 
 	void RenderUI(class Renderer& renderer) override;
 	bool CheckInput(const POINT& mousePosition, bool isMouseClicked, bool isMousePressed);
