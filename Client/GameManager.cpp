@@ -18,6 +18,37 @@ using namespace DirectX;
 namespace
 {
 	const char* kRankingsFile = "rankings.json";
+
+	struct CheatTransform
+	{
+		float px;
+		float py;
+		float pz;
+		float rx;
+		float ry;
+		float rz;
+	};
+
+	bool TryGetCheatTransform(EMainState state, CheatTransform& out)
+	{
+		switch (state)
+		{
+		case EMainState::Tutorial:
+			out = { -176.27f, 0.0f, -184.939f, 0.0f, 0.0f, 0.0f };
+			return true;
+		case EMainState::Stage1:
+			out = { -176.27f, 0.0f, -84.939f, 0.0f, 90.0f, 0.0f };
+			return true;
+		case EMainState::Stage2:
+			out = { -11.234f, 0.0f, 54.962f, 0.0f, 90.0f, 0.0f };
+			return true;
+		case EMainState::StageBoss:
+			out = { 194.865f, 0.0f, 108.356f, 0.0f, 0.0f, 0.0f };
+			return true;
+		default:
+			return false;
+		}
+	}
 }
 
 
@@ -118,6 +149,16 @@ void GameManager::OnSceneEnter(EScene type)
 			m_TutorialStep = ETutorialStep::WASD;
 		}
 		ChangeMainState(m_QueuedMainState);
+		if (m_isCheat && m_Player)
+		{
+			CheatTransform transform = {};
+			if (TryGetCheatTransform(m_MainState, transform))
+			{
+				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
+				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
+				m_currentScore /= 2;
+			}
+		}
 		m_QueuedMainState = EMainState::None;
 		break;
 
@@ -178,6 +219,17 @@ void GameManager::CheatGoto(EMainState state)
 			m_TutorialStep = ETutorialStep::WASD;
 		}
 		ChangeMainState(state);
+
+		if (m_isCheat && m_Player)
+		{
+			CheatTransform transform = {};
+			if (TryGetCheatTransform(state, transform))
+			{
+				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
+				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
+				m_currentScore /= 2;
+			}
+		}
 		return;
 	}
 
@@ -187,6 +239,8 @@ void GameManager::CheatGoto(EMainState state)
 
 void GameManager::CheatGotoByActionKey(const std::string& actionKey)
 {
+	m_isCheat = true;
+
 	if (actionKey == "goto_tutorial")
 	{
 		CheatGoto(EMainState::Tutorial);

@@ -44,6 +44,7 @@ class GameManager : public Singleton<GameManager>
 
     bool m_Pause = false;
     bool m_isSuccess = false;
+    bool m_isCheat = false;
 
     EScene m_CurrentScene = EScene::Title;
     EMainState m_MainState = EMainState::None;
