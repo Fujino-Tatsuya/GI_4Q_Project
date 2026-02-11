@@ -653,7 +653,7 @@ void Player::RenderEnemyHitUI(Renderer& renderer)
 	(
 		[&]()
 		{
-			Renderer::GetInstance().RenderImageUIPosition(m_enemyHitTextureAndOffset.first, { 0.5f, 0.5f }, m_enemyHitTextureAndOffset.second, 0.5f);
+			Renderer::GetInstance().RenderImageNrmPosition(m_enemyHitTextureAndOffset.first, { 0.5f, 0.5f }, m_enemyHitTextureAndOffset.second, 0.5f);
 		}
 	);
 }
