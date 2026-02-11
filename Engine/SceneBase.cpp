@@ -11,6 +11,7 @@
 #include "ModelComponent.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "ColliderComponent.h"
 
 #include "Button.h"
 #include "Slider.h"
@@ -443,6 +444,8 @@ void SceneBase::BaseRenderImGui()
 	ImGui::DragFloat("Directional Intensity", &m_globalLightData.lightDirection.m128_f32[3], 0.001f, 0.0f, 100.0f);
 
 	RenderImGui();
+
+	if (ImGui::Button("Bake Colloder")) BakeCollider();
 
 	ImGui::Separator();
 	ImGui::Text("Game Objects:");
@@ -1282,4 +1285,17 @@ void SceneBase::RenderDebugCoordinates()
 
 	m_deviceContext->DrawInstanced(2, 2004, 0, 0);
 }
+
+void SceneBase::BakeCollider()
+{
+	for (unique_ptr<Base>& gameObject : m_gameObjects)
+	{
+		GameObjectBase* gameObjectBase = dynamic_cast<GameObjectBase*>(gameObject.get());
+		if (gameObjectBase->GetComponent<ModelComponent>() && !gameObjectBase->GetComponent<ColliderComponent>())
+		{
+			gameObjectBase->CreateComponent<ColliderComponent>()->LoadFromModelMesh();
+		}
+	}
+}
+
 #endif

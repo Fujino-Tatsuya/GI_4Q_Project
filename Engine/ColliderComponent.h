@@ -49,6 +49,8 @@ public:
 	bool NeedsRender() const override { return false; }
 	#endif
 
+	void LoadFromModelMesh();
+
 protected:
 	void Initialize() override;
 	void FixedUpdate() override;
@@ -61,6 +63,4 @@ protected:
 
 	nlohmann::json Serialize() override;
 	void Deserialize(const nlohmann::json& jsonData) override;
-
-	void LoadFromModelMesh();
 };
