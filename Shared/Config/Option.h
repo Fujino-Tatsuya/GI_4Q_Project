@@ -36,23 +36,41 @@ namespace Config
 		inline constexpr const float UI_Volume = 1.0f;
 
 	//BGM
-		inline constexpr const char* Main_BGM = "1.DOB_IngameBGM_1";									//Node 생성은(Main_BGM + "_Beat")으로 자동 결정 ex) DOB Music_test2_Beat 
 		inline constexpr const char* Ambience = "1.DOB_AMB";
+		
+		inline constexpr const char* Title_BGM  = "0.DOB_TutorialBGM_1";
+		inline constexpr const char* Tutori_BGM = "0.DOB_TutorialBGM_1";
+		inline constexpr const char* Stage1_BGM = "1.DOB_IngameBGM_1";									//Node 생성은(Main_BGM + "_Beat")으로 자동 결정 ex) DOB Music_test2_Beat 
+		inline constexpr const char* Stage2_BGM = "2.DOB_IngameBGM_2";
+		inline constexpr const char* Stage3_BGM = "3.DOB_IngameBGM_3";
+		inline constexpr const char* Ending_BGM = "0.DOB_TutorialBGM_1";
 
 	//SFX
 		//Player
-		inline constexpr const char* Player_Dash = "1.Player_Dash";
+
 
 		//Enemy
+		inline constexpr const char* Enemy_Hit = "7.Enemy_Hit";
 		inline constexpr const char* Enemy_Die = "8.Enemy_Die";
+		inline constexpr const char* Enemy_Attack = "9.Enemy_Attack";
 
-		//UI
+	//2D SFX (분류는 UI)
+		inline constexpr const char* Player_Hit = "5. Player_Hit";
+		inline constexpr const char* Player_Die = "6. Player_Die";
+
 		inline constexpr const char* Player_Shoot = "2.Player_Shot";
 		inline constexpr const char* Player_DeadEye_Shoot = "10.DeadEye_Shoot_LV";
-		inline constexpr const char* Player_Reload_Spin = "4.Player_spin";
 
+		inline constexpr const char* Player_Reload_Spin = "4.Player_spin";
 		inline constexpr const char* Player_Reload_Cocking = "4.Player_cocking";
 		inline constexpr const int   Player_Reload_Cocking_Count = 1;
+
+		inline constexpr const char* Player_Dash = "1.Player_Dash";
+		
+		//UI
+		inline constexpr const char* UI_GameStart = "1. UI_GameStart";
+		inline constexpr const char* UI_ButtonClick = "2. UI_ButtonClick";
+		inline constexpr const char* UI_ButtonMouseover = "3. UI_ButtonMouseover";
 
 //Score Config
 		inline constexpr int		 BaseScore = 100;

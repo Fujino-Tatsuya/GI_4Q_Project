@@ -74,6 +74,8 @@ void GameManager::ToggleOption()
 
 void GameManager::OnSceneEnter(EScene type)
 {
+	auto& sm = SoundManager::GetInstance();
+
 	m_CurrentScene = type;
 	m_Pause = false;
 	if (type != EScene::Main) m_optionPanel = nullptr;
@@ -82,16 +84,22 @@ void GameManager::OnSceneEnter(EScene type)
 	switch (type)
 	{
 	case EScene::Title:
+		sm.Ambience_Shot(Config::Ambience);
+		sm.Sub_BGM_Shot(Config::Title_BGM,0.0f);
+
 		ScoreReset();
 		m_MainState = EMainState::Tutorial;
 		m_TutorialStep = ETutorialStep::WASD;
 		break;
 
 	case EScene::Main:
+		sm.Main_BGM_Shot(Config::Tutori_BGM,2.0f);
+
 		m_Player = GetPlayerPtr();
 		break;
 
 	case EScene::Result:
+		sm.Sub_BGM_Shot(Config::Ending_BGM, 0.0f);
 		break;
 	}
 }
@@ -134,15 +142,19 @@ void GameManager::OnSceneRender()
 
 void GameManager::OnSceneExit()
 {
+	auto& sm = SoundManager::GetInstance();
 	switch (m_CurrentScene)
 	{
 	case EScene::Title:
+		sm.FadeOut(sm.GetBGMCh2(), 1.0f, true);
 		break;
 
 	case EScene::Main:
+		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
 		break;
 
 	case EScene::Result:
+		sm.FadeOut(sm.GetBGMCh2(), 1.0f, true);
 		break;
 	}
 }
@@ -203,6 +215,9 @@ void GameManager::TutorialControl()
 	case ETutorialStep::End:
 		p->SetAction(Action::All, true);
 		m_MainState = EMainState::Stage1;
+		auto& sm = SoundManager::GetInstance();
+		sm.Stop_ChannelGroup();
+		sm.Main_BGM_Shot(Config::Stage1_BGM, 4.0f);
 		break;
     }
 }
