@@ -58,7 +58,6 @@ void EndingScene::BindUIActions()
 			else if (panel->GetName() == "100000") n100000 = panel;
 			else if (panel->GetName() == "namu_pan") namu_pan = panel;
 			else if (panel->GetName() == "Grade") Grade = panel;
-			else if (panel->GetName() == "cheat") sceneCheatPanel = panel;
 		}
 	}
 	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);

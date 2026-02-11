@@ -69,6 +69,10 @@ void GameManager::ToggleOption()
 	const bool opening = !m_Pause;
 	m_Pause = opening;
 	m_optionPanel->SetActive(opening);
+	if (!opening && m_cheatPanel)
+	{
+		m_cheatPanel->SetActive(false);
+	}
 	ForceShowCursor(opening);
 }
 
@@ -105,8 +109,16 @@ void GameManager::OnSceneEnter(EScene type)
 
 	case EScene::Main:
 		m_Player = GetPlayerPtr();
-
-		ChangeMainState(EMainState::Tutorial);
+		if (m_QueuedMainState == EMainState::None)
+		{
+			m_QueuedMainState = EMainState::Tutorial;
+		}
+		if (m_QueuedMainState == EMainState::Tutorial)
+		{
+			m_TutorialStep = ETutorialStep::WASD;
+		}
+		ChangeMainState(m_QueuedMainState);
+		m_QueuedMainState = EMainState::None;
 		break;
 
 	case EScene::Result:
@@ -118,7 +130,23 @@ void GameManager::OnSceneEnter(EScene type)
 void GameManager::OnSceneUpdate()
 {
 	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
-		ToggleCheatPanel();
+		if (m_CurrentScene == EScene::Main)
+		{
+			if (!m_Pause)
+			{
+				ToggleOption();
+			}
+			else
+			{
+				if (m_optionPanel && !m_optionPanel->GetActive()) m_optionPanel->SetActive(true);
+				ForceShowCursor(true);
+			}
+
+			if (m_cheatPanel)
+			{
+				m_cheatPanel->SetActive(true);
+			}
+		}
 	}
 
 	switch (m_CurrentScene)
@@ -133,6 +161,47 @@ void GameManager::OnSceneUpdate()
 
 	case EScene::Result:
 		break;
+	}
+}
+
+void GameManager::CheatGoto(EMainState state)
+{
+	if (state == EMainState::None)
+	{
+		return;
+	}
+
+	if (m_CurrentScene == EScene::Main)
+	{
+		if (state == EMainState::Tutorial)
+		{
+			m_TutorialStep = ETutorialStep::WASD;
+		}
+		ChangeMainState(state);
+		return;
+	}
+
+	m_QueuedMainState = state;
+	SceneManager::GetInstance().ChangeScene("TestScene");
+}
+
+void GameManager::CheatGotoByActionKey(const std::string& actionKey)
+{
+	if (actionKey == "goto_tutorial")
+	{
+		CheatGoto(EMainState::Tutorial);
+	}
+	else if (actionKey == "goto_stage1")
+	{
+		CheatGoto(EMainState::Stage1);
+	}
+	else if (actionKey == "goto_stage2")
+	{
+		CheatGoto(EMainState::Stage2);
+	}
+	else if (actionKey == "goto_boss")
+	{
+		CheatGoto(EMainState::StageBoss);
 	}
 }
 

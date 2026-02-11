@@ -256,15 +256,21 @@ void TestScene::BindUIActions()
 		{
 			std::string key = btn->GetActionKey();
 
-
-				if (key == "cheat") {
-					btn->SetOnClick([this]() {
-						GameManager::GetInstance().SetSuccess(true);
-						SceneManager::GetInstance().ChangeScene("EndingScene");
+			if (key == "goto_tutorial" || key == "goto_stage1" || key == "goto_stage2" || key == "goto_boss")
+			{
+				btn->SetOnClick([key]() {
+					GameManager::GetInstance().CheatGotoByActionKey(key);
 					});
-				}
-				else if (key == "close_option") {
-					if (optionPanel) btn->SetOnClick([this]()
+			}
+
+			if (key == "cheat") {
+				btn->SetOnClick([this]() {
+					GameManager::GetInstance().SetSuccess(true);
+					SceneManager::GetInstance().ChangeScene("EndingScene");
+				});
+			}
+			else if (key == "close_option") {
+				if (optionPanel) btn->SetOnClick([this]()
 					{
 						optionPanel->SetActive(false);
 						GameManager::GetInstance().SetPaused(false);

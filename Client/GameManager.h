@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include <string>
 
 class Panel;
 
@@ -47,6 +48,7 @@ class GameManager : public Singleton<GameManager>
     EScene m_CurrentScene = EScene::Title;
     EMainState m_MainState = EMainState::None;
 	EMainState m_PrevMainState = EMainState::None;
+    EMainState m_QueuedMainState = EMainState::None;
     ETutorialStep m_TutorialStep = ETutorialStep::WASD;
 ///GameFlowEnd
 
@@ -85,6 +87,8 @@ public:
     void RegisterCheatPanel(Panel* panel) { m_cheatPanel = panel; }
     void ToggleOption();
     void ToggleCheatPanel();
+    void CheatGoto(EMainState state);
+    void CheatGotoByActionKey(const std::string& actionKey);
     bool IsSuccess() const { return m_isSuccess; }
     void SetSuccess(bool v) { m_isSuccess = v; }
 

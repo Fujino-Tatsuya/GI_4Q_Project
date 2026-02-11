@@ -523,7 +523,7 @@
             "type": "Panel"
         },
         {
-            "active": true,
+            "active": false,
             "colorIdle": [
                 1.0,
                 1.0,
