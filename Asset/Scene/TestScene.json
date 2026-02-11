@@ -121,9 +121,9 @@
             "handlePathHover": "UI_Slider.png",
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
+            "handleScaleHover": 0.800000011920929,
             "handleScaleIdle": 0.800000011920929,
-            "handleScalePressed": 1.0,
+            "handleScalePressed": 0.800000011920929,
             "max": 1.0,
             "min": 0.0,
             "name": "BGM",
@@ -134,8 +134,20 @@
                 -0.05999999865889549
             ],
             "scale": 0.550000011920929,
+            "showValueText": true,
             "type": "Slider",
-            "value": 0.0
+            "value": 0.0,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -11.0
+            ],
+            "valueTextScale": 0.14000000059604645
         },
         {
             "active": true,
@@ -195,9 +207,9 @@
             "handlePathHover": "UI_Slider.png",
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
+            "handleScaleHover": 0.800000011920929,
             "handleScaleIdle": 0.800000011920929,
-            "handleScalePressed": 1.0,
+            "handleScalePressed": 0.800000011920929,
             "max": 30.0,
             "min": 0.0,
             "name": "Sensitivity",
@@ -208,8 +220,20 @@
                 -0.07000000029802322
             ],
             "scale": 0.550000011920929,
+            "showValueText": true,
             "type": "Slider",
-            "value": 0.0
+            "value": 0.0,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -11.0
+            ],
+            "valueTextScale": 0.14000000059604645
         },
         {
             "active": true,
@@ -269,9 +293,9 @@
             "handlePathHover": "UI_Slider.png",
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
+            "handleScaleHover": 0.800000011920929,
             "handleScaleIdle": 0.800000011920929,
-            "handleScalePressed": 1.0,
+            "handleScalePressed": 0.800000011920929,
             "max": 1.0,
             "min": 0.0,
             "name": "SFX",
@@ -282,8 +306,20 @@
                 0.05999999865889549
             ],
             "scale": 0.550000011920929,
+            "showValueText": true,
             "type": "Slider",
-            "value": 0.0
+            "value": 1.0,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -11.0
+            ],
+            "valueTextScale": 0.14000000059604645
         },
         {
             "active": true,
@@ -441,9 +477,9 @@
             "handlePathHover": "UI_Slider.png",
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
+            "handleScaleHover": 0.800000011920929,
             "handleScaleIdle": 0.800000011920929,
-            "handleScalePressed": 1.0,
+            "handleScalePressed": 0.800000011920929,
             "max": 1.0,
             "min": 0.0,
             "name": "Master_Slider",
@@ -454,8 +490,20 @@
                 -0.18000000715255737
             ],
             "scale": 0.550000011920929,
+            "showValueText": true,
             "type": "Slider",
-            "value": 0.0
+            "value": 0.0,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -11.0
+            ],
+            "valueTextScale": 0.14000000059604645
         },
         {
             "active": true,

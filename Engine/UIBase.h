@@ -61,6 +61,8 @@ public:
 	// --- Texture & Offset ---
 	void SetTextureAndOffset(const std::string& idle);
 
+
+
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> GetTexture() const { return m_textureIdle.first; }
 	const DirectX::XMFLOAT2& GetTextureOffset() const { return m_textureIdle.second; }
 
@@ -78,8 +80,14 @@ public:
 	virtual void Deserialize(const nlohmann::json& data);
 
 	static UIBase* CreateFactory(const std::string& typeName);
+
 	virtual std::string GetTypeName() const = 0;
 
+	void StartFadeIn(float duration);
+	void UpdateFade(float dt);
+
+	DirectX::XMVECTOR GetFinalColor(const DirectX::XMVECTOR& baseColor) const;
+	float GetFinalAlpha() const;
 protected:
 	virtual void UpdateRect() = 0;
 	
@@ -92,6 +100,14 @@ protected:
 	float m_resolutionScale = 1.0f;
 	DirectX::XMVECTOR m_colorIdle = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float m_depth = 0.0f;
+
+	bool m_useFade = false;
+	bool m_fadeIn = false;
+
+	float m_fadeTimer = 0.0f;
+	float m_fadeDuration = 1.0f;
+
+	float m_alpha = 1.0f;
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_textureIdle = {};
 	std::string m_pathIdle = "UI_IDLE.png";

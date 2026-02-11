@@ -827,6 +827,38 @@ void SceneBase::RenderImGui_UI()
 				if (pathChanged) slider->SetHandleTextures(slider->m_handlePathIdle, slider->m_handlePathHover, slider->m_handlePathPressed);
 				ImGui::TreePop();
 			}
+			ImGui::Separator();
+			ImGui::TextColored(ImVec4(0.3f, 1.0f, 0.3f, 1.0f), "[ Value Text Settings ]");
+
+			ImGui::Checkbox("Show Value Text", &slider->m_showValueText);
+
+			// Font Scale
+			ImGui::DragFloat("Text Scale", &slider->m_valueTextScale,
+				0.01f, 0.05f, 3.0f);
+
+			// Offset (X,Y)
+			float offset[2] =
+			{
+				slider->m_valueTextOffset.x,
+				slider->m_valueTextOffset.y
+			};
+
+			if (ImGui::DragFloat2("Text Offset", offset, 1.0f))
+			{
+				slider->m_valueTextOffset.x = offset[0];
+				slider->m_valueTextOffset.y = offset[1];
+			}
+
+			// Text Color
+			DirectX::XMFLOAT4 tc;
+			DirectX::XMStoreFloat4(&tc, slider->m_valueTextColor);
+
+			if (ImGui::ColorEdit4("Text Color", &tc.x))
+			{
+				slider->m_valueTextColor = DirectX::XMLoadFloat4(&tc);
+			}
+
+			ImGui::TextDisabled("Text follows handle automatically.");
 		}
 		else if (auto* animPanel = dynamic_cast<AnimPanel*>(m_selectedUI)) {
 			ImGui::Separator();

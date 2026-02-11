@@ -85,7 +85,7 @@ void GameManager::OnSceneEnter(EScene type)
 	{
 	case EScene::Title:
 		sm.Ambience_Shot(Config::Ambience);
-		sm.Sub_BGM_Shot(Config::Title_BGM,0.0f);
+		sm.Sub_BGM_Shot(Config::Title_BGM, 0.0f);
 
 		ScoreReset();
 		m_TutorialStep = ETutorialStep::WASD;
@@ -201,7 +201,7 @@ void GameManager::OnStageEnter(EMainState state)
 	case EMainState::Tutorial:
 		std::cout << "Tutorial Enter\n";
 		sm.Main_BGM_Shot(Config::Tutori_BGM, 3.0f);
-		
+
 		break;
 
 	case EMainState::Stage1:
@@ -260,9 +260,6 @@ void GameManager::TutorialControl()
 
 	case ETutorialStep::End:
 		p->SetAction(Action::All, true);
-		auto& sm = SoundManager::GetInstance();
-		sm.Stop_ChannelGroup();
-		sm.Main_BGM_Shot(Config::Stage1_BGM, 4.0f);
 		ChangeMainState(EMainState::Stage1);
 		break;
 	}
@@ -391,7 +388,7 @@ function<void()> GameManager::RenderInfo()
 	}
 }
 
-void GameManager::TempPrint() 
+void GameManager::TempPrint()
 {
 	float dt = TimeManager::GetInstance().GetDeltaTime();
 

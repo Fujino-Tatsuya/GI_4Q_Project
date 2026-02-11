@@ -22,7 +22,7 @@ void Text::RenderUI(Renderer& renderer)
 		return;
 
 	auto pos = GetWorldPosition();
-	auto color = m_colorIdle;
+	auto color = GetFinalColor(m_colorIdle);
 	auto scale = GetFinalScale();
 	auto depth = m_depth;
 

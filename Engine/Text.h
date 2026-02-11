@@ -21,6 +21,7 @@ public:
 
 	std::string GetTypeName() const override { return "Text"; }
 
+	
 private:
 	void UpdateRect() override;
 
