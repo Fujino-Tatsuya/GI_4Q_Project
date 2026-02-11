@@ -199,6 +199,14 @@ bool ColliderComponent::CheckCollisionWithObject(ColliderComponent* otherCollide
 	return false;
 }
 
+void ColliderComponent::LoadFromModelMesh()
+{
+	ModelComponent* modelComp = m_owner->GetComponent<ModelComponent>();
+	if (!modelComp) return;
+
+	for (const auto& [model, material] : modelComp->GetModelsAndMaterials()) for (const Mesh& mesh : model->meshes) AddBoundingBox(mesh.boundingBox);
+}
+
 void ColliderComponent::Initialize()
 {
 	#ifdef _DEBUG
@@ -445,12 +453,4 @@ void ColliderComponent::Deserialize(const nlohmann::json& jsonData)
 		frustum.Far = frustumData["far"];
 		AddBoundingFrustum(frustum);
 	}
-}
-
-void ColliderComponent::LoadFromModelMesh()
-{
-	ModelComponent* modelComp = m_owner->GetComponent<ModelComponent>();
-	if (!modelComp) return;
-
-	for (const auto& [model, material] : modelComp->GetModelsAndMaterials()) for (const Mesh& mesh : model->meshes) AddBoundingBox(mesh.boundingBox);
 }
