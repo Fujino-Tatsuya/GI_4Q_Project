@@ -188,10 +188,18 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 		if (m_death_timer >= kFadeStartTime)
 		{
 			float progress = (m_death_timer - kFadeStartTime) / kFadeDuration;
+
+			SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
+			SceneBase::SetVignettingIntensity(progress);
+			SceneBase::SetVignettingColor({ 0.0f, 0.0f, 0.0f });
+
 			if (progress > 1.0f)
 			{
 				GameManager::GetInstance().SetSuccess(true);
 				SceneManager::GetInstance().ChangeScene("EndingScene");
+
+				SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, false);
+				SceneBase::SetVignettingIntensity(0.0f);
 			};
 
 			if (m_model)
