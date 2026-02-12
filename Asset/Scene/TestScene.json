@@ -611,15 +611,15 @@
     ],
     "environmentMapFileName": "Skybox0.dds",
     "lightColor": [
-        1.0,
-        0.8566897511482239,
-        0.30392158031463623,
+        0.8235294222831726,
+        0.7370920777320862,
+        0.4036908745765686,
         1.0
     ],
     "lightDirection": [
-        -0.7429336905479431,
-        -0.46630123257637024,
-        -0.48022156953811646,
+        -0.7395457029342651,
+        -0.47387540340423584,
+        -0.4780316948890686,
         1.0
     ],
     "navPolyIndices": [
@@ -26639,9 +26639,9 @@
                         {
                             "ambientOcclusionFactor": 1.0,
                             "baseColorFactor": [
-                                0.1568627506494522,
-                                0.1568627506494522,
-                                0.24313725531101227,
+                                1.0,
+                                1.0,
+                                1.0,
                                 1.0
                             ],
                             "emissionFactor": [
@@ -26656,8 +26656,8 @@
                     ],
                     "modelAndMaterialFileNames": [
                         {
-                            "materialFileName": "",
-                            "modelFileName": "ground_1.fbx"
+                            "materialFileName": "ground_7_low_ground-sand",
+                            "modelFileName": "ground_tile_sand2.fbx"
                         }
                     ],
                     "psShaderName": "PSModel.hlsl",
@@ -26693,10 +26693,10 @@
                 1.0
             ],
             "rotation": [
-                0.7071071267127991,
-                0.0,
-                0.0,
-                0.7071064114570618
+                0.4999997317790985,
+                0.5000001788139343,
+                -0.4999997615814209,
+                0.5000001788139343
             ],
             "scale": [
                 1.0,
