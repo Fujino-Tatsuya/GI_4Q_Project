@@ -228,6 +228,7 @@ void Player::TutorialStep() const
 
 	case ETutorialStep::DeadEye:
 		if (InputManager::GetInstance().GetKeyDown(KeyCode::MouseLeft)) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadTwo);
+		break;
 
 	case ETutorialStep::DeadTwo:
 		if (m_hasUsedDeadEyeForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
@@ -241,6 +242,7 @@ void Player::TakeHit()
 
 	m_playerHitPoint--;
 	GameManager::GetInstance().OnPlayerHit();
+	SoundManager::GetInstance().UI_Shot(Config::Player_Hit);
 
 	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
 	SceneBase::SetVignettingColor({ 1.0f, 0.0f, 0.0f });

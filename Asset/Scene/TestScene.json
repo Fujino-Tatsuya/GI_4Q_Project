@@ -27161,6 +27161,9 @@
                     "NodeStart": 0.10000000149011612,
                     "NodeStartSize": 0.10400000214576721,
                     "type": "CrossHairAndNode"
+                },
+                {
+                    "type": "ListenerComponent"
                 }
             ],
             "name": "Player",

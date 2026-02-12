@@ -79,7 +79,7 @@ void CrossHairAndNode::RenderImGui()
 
 void CrossHairAndNode::Finalize()
 {
-
+	m_UINode.clear();
 }
 
 nlohmann::json CrossHairAndNode::Serialize()
