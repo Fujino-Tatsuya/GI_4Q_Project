@@ -75,5 +75,5 @@
         1.0,
         1.0
     ],
-    "type": "GameObjectBase"
+    "type": "Enemy"
 }
