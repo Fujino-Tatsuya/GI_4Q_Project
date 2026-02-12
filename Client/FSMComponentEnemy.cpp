@@ -70,7 +70,7 @@ void FSMComponentEnemy::OnEnterState(StateID state)
 		attack_has_hit_ = false;
 
 		model_->GetAnimator()->SetPlaybackSpeed(1.0f);
-		model_->GetAnimator()->RestartCurrentAnimation(false);
+		//model_->GetAnimator()->RestartCurrentAnimation(false);
 		model_->GetAnimator()->PlayAnimation(0, false);
 		break;
 

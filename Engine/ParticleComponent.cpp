@@ -52,6 +52,7 @@ void ParticleComponent::Update()
 void ParticleComponent::Render()
 {
 	if (GetAlive() == false) return;
+	if (m_particleAmount <= 0 || m_particleAmount > 1000000) return;
 
 	Renderer& renderer = Renderer::GetInstance();
 	const CameraComponent& mainCamera = CameraComponent::GetMainCamera();

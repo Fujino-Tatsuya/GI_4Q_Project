@@ -135,7 +135,7 @@ void TestScene::TutorialStep()
 	{
 	case ETutorialStep::WASD:
 		constexpr float BOX_DISTANCE_SQ = 8.0f;
-		if (XMVectorGetX(XMVector3LengthSq(XMVectorSubtract(m_player->GetWorldPosition(), m_tutorialBox->GetWorldPosition()))) < BOX_DISTANCE_SQ)
+		if (m_tutorialBox && XMVectorGetX(XMVector3LengthSq(XMVectorSubtract(m_player->GetWorldPosition(), m_tutorialBox->GetWorldPosition()))) < BOX_DISTANCE_SQ)
 		{
 			m_tutorialBox->SetAlive(false);
 			GameManager::GetInstance().SetTutorialStep(ETutorialStep::Dash);

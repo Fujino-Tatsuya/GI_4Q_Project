@@ -15,6 +15,8 @@ protected:
 	std::string m_vsShaderName = "VSModel.hlsl"; // 기본 모델 정점 셰이더
 	std::string m_psShaderName = "PSModel.hlsl"; // 기본 모델 픽셀 셰이더
 
+	bool m_hasShadow = true; // 그림자 생성 여부
+
 	// 입력 요소 배열 // 위치, UV, 법선, 접선
 	std::vector<InputElement> m_inputElements =
 	{
@@ -27,8 +29,6 @@ protected:
 	std::pair<com_ptr<ID3D11VertexShader>, com_ptr<ID3D11InputLayout>> m_vertexShaderAndInputLayout = {}; // 정점 셰이더 및 입력 레이아웃
 	com_ptr<ID3D11PixelShader> m_pixelShader = nullptr; // 픽셀 셰이더
 
-	//std::string m_modelFileName = "box.fbx"; // 기본 모델 파일 이름
-	//const Model* m_model = nullptr;
 	std::vector<std::pair<std::string, std::string>> m_modelAndMaterialFileNames = {}; // 모델 및 재질 파일 이름 쌍 배열
 	std::vector<std::pair<const Model*, Material>> m_modelsAndMaterials = {}; // 모델 및 재질 쌍 배열
 	com_ptr<ID3D11Buffer> m_materialFactorConstantBuffer = nullptr; // 재질 상수 버퍼

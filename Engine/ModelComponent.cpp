@@ -128,42 +128,45 @@ void ModelComponent::Render()
 	);
 
 	// 섀도우 맵 렌더링
-	renderer.RENDER_FUNCTION(RenderStage::DirectionalLightShadow, m_blendState).emplace_back
-	(
-		// 광원으로부터의 거리
-		XMVectorGetX(XMVector3LengthSq(sortPoint - XMVectorClamp(sortPoint, boxCenter - boxExtents, boxCenter + boxExtents))),
-		[&]()
-		{
-			ResourceManager& resourceManager = ResourceManager::GetInstance();
-			resourceManager.SetRasterState(m_rasterState);
-
-			// 상수 버퍼 업데이트
-			m_deviceContext->UpdateSubresource(m_worldNormalConstantBuffer.Get(), 0, nullptr, m_worldNormalData, 0, 0);
-
-			m_deviceContext->IASetInputLayout(m_vertexShaderAndInputLayout.second.Get());
-			m_deviceContext->VSSetShader(m_vertexShaderAndInputLayout.first.Get(), nullptr, 0);
-
-			for (const auto& [model, material] : m_modelsAndMaterials)
+	if (m_hasShadow)
+	{
+		renderer.RENDER_FUNCTION(RenderStage::DirectionalLightShadow, m_blendState).emplace_back
+		(
+			// 광원으로부터의 거리
+			XMVectorGetX(XMVector3LengthSq(sortPoint - XMVectorClamp(sortPoint, boxCenter - boxExtents, boxCenter + boxExtents))),
+			[&]()
 			{
-				// 재질 텍스처 셰이더에 설정
-				m_deviceContext->PSSetShaderResources(static_cast<UINT>(TextureSlots::BaseColor), 1, material.baseColorTextureSRV.GetAddressOf());
+				ResourceManager& resourceManager = ResourceManager::GetInstance();
+				resourceManager.SetRasterState(m_rasterState);
 
-				// 재질 팩터 설정
-				m_deviceContext->UpdateSubresource(m_materialFactorConstantBuffer.Get(), 0, nullptr, &material.m_materialFactor, 0, 0);
+				// 상수 버퍼 업데이트
+				m_deviceContext->UpdateSubresource(m_worldNormalConstantBuffer.Get(), 0, nullptr, m_worldNormalData, 0, 0);
 
-				for (const Mesh& mesh : model->meshes)
+				m_deviceContext->IASetInputLayout(m_vertexShaderAndInputLayout.second.Get());
+				m_deviceContext->VSSetShader(m_vertexShaderAndInputLayout.first.Get(), nullptr, 0);
+
+				for (const auto& [model, material] : m_modelsAndMaterials)
 				{
-					resourceManager.SetPrimitiveTopology(mesh.topology);
-					// 메쉬 버퍼 설정
-					constexpr UINT STRIDE = sizeof(Vertex);
-					constexpr UINT OFFSET = 0;
-					m_deviceContext->IASetVertexBuffers(0, 1, mesh.vertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
-					m_deviceContext->IASetIndexBuffer(mesh.indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-					m_deviceContext->DrawIndexed(mesh.indexCount, 0, 0);
+					// 재질 텍스처 셰이더에 설정
+					m_deviceContext->PSSetShaderResources(static_cast<UINT>(TextureSlots::BaseColor), 1, material.baseColorTextureSRV.GetAddressOf());
+
+					// 재질 팩터 설정
+					m_deviceContext->UpdateSubresource(m_materialFactorConstantBuffer.Get(), 0, nullptr, &material.m_materialFactor, 0, 0);
+
+					for (const Mesh& mesh : model->meshes)
+					{
+						resourceManager.SetPrimitiveTopology(mesh.topology);
+						// 메쉬 버퍼 설정
+						constexpr UINT STRIDE = sizeof(Vertex);
+						constexpr UINT OFFSET = 0;
+						m_deviceContext->IASetVertexBuffers(0, 1, mesh.vertexBuffer.GetAddressOf(), &STRIDE, &OFFSET);
+						m_deviceContext->IASetIndexBuffer(mesh.indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+						m_deviceContext->DrawIndexed(mesh.indexCount, 0, 0);
+					}
 				}
 			}
-		}
-	);
+		);
+	}
 
 	// 디버그 - 경계 상자 렌더링
 	#ifdef _DEBUG
@@ -242,6 +245,8 @@ void ModelComponent::RenderImGui()
 
 	if(ImGui::Button("Load Shaders")) CreateShaders();
 	ImGui::Separator();
+
+	ImGui::Checkbox("Has Shadow", &m_hasShadow);
 
 	if (ImGui::TreeNode("Model and Materials"))
 	{
@@ -392,6 +397,8 @@ nlohmann::json ModelComponent::Serialize()
 	jsonData["vsShaderName"] = m_vsShaderName;
 	jsonData["psShaderName"] = m_psShaderName;
 
+	jsonData["hasShadow"] = m_hasShadow;
+
 	jsonData["modelAndMaterialFileNames"] = nlohmann::json::array();
 	for (const auto& [modelName, materialName] : m_modelAndMaterialFileNames)
 	{
@@ -436,6 +443,8 @@ void ModelComponent::Deserialize(const nlohmann::json& jsonData)
 {
 	if (jsonData.contains("vsShaderName")) m_vsShaderName = jsonData["vsShaderName"].get<string>();
 	if (jsonData.contains("psShaderName")) m_psShaderName = jsonData["psShaderName"].get<string>();
+
+	if (jsonData.contains("hasShadow")) m_hasShadow = jsonData["hasShadow"].get<bool>();
 
 	// 모델 및 재질 로드
 	if (jsonData.contains("modelAndMaterialFileNames"))

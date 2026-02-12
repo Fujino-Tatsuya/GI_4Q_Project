@@ -34,17 +34,13 @@ std::string FSMComponentGun2::StateToString(StateID state) const
 void FSMComponentGun2::Fire()
 {
 	if (current_state_ == EReload)
+	{
+		//std::cout << "[GunFSM] Fire blocked: current_state=Reload\n";
 		return;
+	}
 
-	if (current_state_ == EAttack)
-	{
-		//m_timer = 0.0f;
-		ChangeState(EAttack);
-	}
-	else
-	{
-		ChangeState(EAttack);
-	}
+	//std::cout << "[GunFSM] Fire -> ChangeState(EAttack)\n";
+    ChangeState(EAttack);
 }
 
 void FSMComponentGun2::Reload()
@@ -68,6 +64,8 @@ void FSMComponentGun2::OnEnterState(StateID state)
 	m_originRotGun = gun->GetRotation();
 	if (cylinder) m_originRotCylinder = cylinder->GetRotation();
 	if (pin)      m_originRotPin = pin->GetRotation();
+
+	//std::cout << "[GunFSM] OnEnterState=" << StateToString(state) << "\n";
 
 	switch (state)
 	{
@@ -96,7 +94,7 @@ void FSMComponentGun2::OnUpdateState(StateID state)
     case EAttack:
     {
         m_timer += dt;
-
+        //std::cout << "[GunFSM] EAttack - (갔다가 돌아오기)\n";
         // ==========================================
         // 1. 반동 (Gun 전체) - 기존 로직 유지
         // ==========================================
@@ -109,6 +107,8 @@ void FSMComponentGun2::OnUpdateState(StateID state)
         if (m_timer <= kRecoilDuration) {
             float t = m_timer / kRecoilDuration;
             float recoilVal = 0.0f;
+            //std::cout << "[GunFSM] EAttack - (갔다가 돌아오기)\n";
+
 
             // 0.0 ~ 0.5 (들림), 0.5 ~ 1.0 (복귀)
             if (t <= 0.5f)
@@ -130,6 +130,8 @@ void FSMComponentGun2::OnUpdateState(StateID state)
         // 2. 실린더 회전 (X축 60도)
         // ==========================================
         if (cylinder) {
+            //std::cout << "[GunFSM] EAttack - (실린더 회전)\n";
+
             // 실린더는 반동보다 조금 천천히 돌아가도 멋짐
             constexpr float kCylinderDuration = 0.15f;
             float t = std::min(m_timer / kCylinderDuration, 1.0f);
@@ -146,6 +148,8 @@ void FSMComponentGun2::OnUpdateState(StateID state)
         // 3. Pin (공이) 동작 (0 -> 45 -> 0)
         // ==========================================
         if (pin) {
+            //std::cout << "[GunFSM] EAttack - (Pin)\n";
+
             // 공이는 아주 빠르게 움직여야 함
             constexpr float kPinDuration = 0.1f;
             float t = m_timer / kPinDuration;
@@ -187,6 +191,8 @@ void FSMComponentGun2::OnUpdateState(StateID state)
         if (m_timer <= kReloadDuration) {
             // 1. 실린더 회전 (계속 누적)
             if (cylinder) {
+                //std::cout << "[GunFSM] EReload - (cylinder)\n";
+
                 XMVECTOR spinRot = m_originRotCylinder;
                 // 시간 * 속도만큼 각도 더하기
                 // EaseOut(점점 느려지게)을 넣고 싶으면 t를 조작하면 됨. 여기선 등속.
@@ -205,6 +211,8 @@ void FSMComponentGun2::OnUpdateState(StateID state)
             */
 
             if (gun){
+                //std::cout << "[GunFSM] EReload - (gun)\n";
+
                 XMVECTOR spinRot = m_originRotGun;
                 float addedAngle = kSpinSpeed * m_timer;
                 spinRot.m128_f32[2] -= addedAngle;
@@ -220,6 +228,7 @@ void FSMComponentGun2::OnUpdateState(StateID state)
             // 만약 총을 기울였다면 원위치
             gun->SetRotation(m_originRotGun);
 
+            //std::cout << "[GunFSM] Reload end -> ChangeState(EIdle)\n";
             ChangeState(EIdle);
         }
     }

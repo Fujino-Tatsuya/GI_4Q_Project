@@ -6,7 +6,9 @@
 #include "TimeManager.h"
 #include "SceneManager.h"
 #include "SceneBase.h"
+#include "Boss.h"
 #include "Player.h"
+#include "ParticleObject.h"
 #include "../Engine/Animator.h"
 
 REGISTER_TYPE(FSMComponentBoss)
@@ -17,10 +19,9 @@ using namespace DirectX;
 void FSMComponentBoss::Initialize()
 {
 	m_model = GetOwner()->GetComponent<SkinnedModelComponent>();
-	if (auto* scene = SceneManager::GetInstance().GetCurrentScene())
-	{
-		m_player = dynamic_cast<Player*>(scene->GetRootGameObject("Player"));
-	}
+
+	m_owner_boss_ = dynamic_cast<Boss*>(GetOwner());
+	if (auto* scene = SceneManager::GetInstance().GetCurrentScene()) m_player = dynamic_cast<Player*>(scene->GetRootGameObject("Player"));
 	FSMComponent::Initialize();
 }
 
@@ -103,9 +104,9 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 				}
 			}
 
-			if (m_player && GetOwner())
+			if (m_player && m_owner_boss_)
 			{
-				const XMVECTOR diff = m_player->GetPosition() - GetOwner()->GetPosition();
+				const XMVECTOR diff = m_player->GetPosition() - m_owner_boss_->GetPosition();
 				const float distSq = XMVectorGetX(XMVector3LengthSq(diff));
 				if (distSq <= kAttackRange * kAttackRange)
 				{
@@ -116,17 +117,18 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 				}
 			}
 		}
-		if (m_attack_timer >= kAttackTotalTime)
-		{
-			ChangeState(EChase);
-		}
+		if (m_attack_timer >= kAttackTotalTime && m_owner_boss_) m_owner_boss_->OnAttackFinished();
 		break;
 
 	case EJump:
 		m_jump_timer += dt;
-		if (m_jump_timer >= kJumpAttackAnticipation && !m_jump_has_hit)
+		if (m_jump_timer >= kJumpAttackAnticipation - 0.5f && !m_jump_has_hit)
 		{
 			m_jump_has_hit = true;
+
+			ParticleObject* bossDust = dynamic_cast<ParticleObject*>(m_owner_boss_->CreatePrefabChildGameObject("BossDust.json"));
+			bossDust->SetPosition(m_owner_boss_->GetPosition());
+			bossDust->SetLifetime(1.0f);
 
 			if (!m_player)
 			{
@@ -136,9 +138,9 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 				}
 			}
 
-			if (m_player && GetOwner())
+			if (m_player && m_owner_boss_)
 			{
-				const XMVECTOR diff = m_player->GetPosition() - GetOwner()->GetPosition();
+				const XMVECTOR diff = m_player->GetPosition() - m_owner_boss_->GetPosition();
 				const float distSq = XMVectorGetX(XMVector3LengthSq(diff));
 				if (distSq <= kAttackRange * kAttackRange)
 				{
@@ -149,10 +151,7 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 				}
 			}
 		}
-		if (m_jump_timer >= kJumpTotalTime)
-		{
-			ChangeState(EChase);
-		}
+		if (m_jump_timer >= kJumpTotalTime && m_owner_boss_) m_owner_boss_->OnAttackFinished();
 		break;
 
 	case EDead:

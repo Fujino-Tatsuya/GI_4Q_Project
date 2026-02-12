@@ -36,8 +36,8 @@ class Player : public GameObjectBase
 
 	std::array<std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2>, 3> m_playerHitPointExpressions = {};
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointTextureAndOffset = {};
-	int m_playerHitPoint = 10;
-	const int m_maxPlayerHitPoint = 10;
+	int m_playerHitPoint = 1000;
+	const int m_maxPlayerHitPoint = 1000;
 	const float m_invincibilityDuration = 1.0f;
 	float m_invincibilityTimer = 0.0f;
 	float m_redVignetteIntensity = 0.0f;
@@ -68,6 +68,9 @@ class Player : public GameObjectBase
 	DirectX::XMFLOAT3 m_playerRotation = {}; // 쿼터니언 각으로 변환하지 않는 회전 각도
 	float m_moveSpeed = 5.0f;
 
+	float m_originalHeight = 0.0f;
+	float m_headBobTimer = 0.0f;
+
 	class CameraComponent* m_cameraComponent = nullptr;
 	static float m_cameraSensitivity;
 	GameObjectBase* m_gunObject = nullptr;
@@ -93,7 +96,7 @@ class Player : public GameObjectBase
 	float m_dashTimer = 0.0f;
 	DirectX::XMVECTOR m_dashDirection = {};
 	const float m_kDashSpeed = 30.0f;
-	const float m_kDashDuration = 0.15f; 
+	const float m_kDashDuration = 0.15f;
 
 	bool m_lutCrossfadeActive = false;
 	bool m_lutCrossfadeReverse = false;
