@@ -536,8 +536,24 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 
 	const XMVECTOR& targetPos = XMVectorAdd(m_deadEyeTargets.back().second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f });
 	m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(targetPos);
-	m_gunObject->LookAt(targetPos);
-	m_gunObject->Rotate({ 0.0f, 90.0f, 0.0f, 0.0f });
+	//m_gunObject->LookAt(targetPos);
+	//m_gunObject->Rotate({ 0.0f, 90.0f, 0.0f, 0.0f });
+	//이게 맞냐..
+	const XMVECTOR gunPos = m_gunObject->GetWorldPosition();
+	XMVECTOR dir = XMVectorSubtract(targetPos, gunPos);
+	dir = XMVector3Normalize(dir);
+
+	const float dx = XMVectorGetX(dir);
+	const float dy = XMVectorGetY(dir);
+	const float dz = XMVectorGetZ(dir);
+	const float yaw = XMConvertToDegrees(atan2f(dx, dz));
+	const float pitch = XMConvertToDegrees(-atan2f(dy, sqrtf(dx * dx + dz * dz)));
+
+	const float localYaw = yaw - m_playerRotation.y;
+	const float localPitch = pitch - m_playerRotation.x;
+
+	constexpr float kGunForwardYawOffset = 90.0f;
+	m_gunObject->SetRotation({ localPitch, localYaw + kGunForwardYawOffset, 0.0f, 0.0f });
 
 	if (input.GetKeyDown(KeyCode::MouseLeft))
 	{
