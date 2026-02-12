@@ -11,6 +11,16 @@ class TitleScene : public SceneBase
 	class Panel* Title_letterrbox_down = nullptr;
 	class Panel* Title_letterrbox_up = nullptr;
 
+	class Text* text_start_game = nullptr;
+	class Text* text_option		= nullptr;
+	class Text* text_credit = nullptr;
+	class Text* text_quit = nullptr;
+
+	class Button* Button_start_game = nullptr;
+	class Button* Button_option = nullptr;
+	class Button* Button_credit = nullptr;
+	class Button* Button_quit = nullptr;
+
 	bool m_isPanel = false;
 
 	float m_time4MovingPanel = 0;

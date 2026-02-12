@@ -73,8 +73,18 @@ void TitleScene::BindUIActions()
 			else if (panel->GetName() == "UI_Title_letterrbox_up") Title_letterrbox_up = panel;
 			else if (panel->GetName() == "credit") creditPanel = panel;
 			else if (panel->GetName() == "Titles") Titles = panel;
-		} else if (auto* text = dynamic_cast<Text*>(uiPtr.get())) {
-			//if (text->GetName() == "result_time") resultTime = text;
+		} 
+		else if (auto* text = dynamic_cast<Text*>(uiPtr.get())) { 
+			if (text->GetName() == "start_game")	text_start_game = text;
+			else if (text->GetName() == "open_option")	text_option = text;
+			else if (text->GetName() == "open_credit")	text_credit = text;
+			else if (text->GetName() == "quit_game")	text_quit = text;
+		}
+		else if (auto* button = dynamic_cast<Button*>(uiPtr.get())) {
+			if (button->GetName() == "start_game")	Button_start_game = button;
+			else if (button->GetName() == "open_option")	Button_option = button;
+			else if (button->GetName() == "open_credit")	Button_credit = button;
+			else if (button->GetName() == "quit_game")	Button_quit = button;
 		}
 	}
 
