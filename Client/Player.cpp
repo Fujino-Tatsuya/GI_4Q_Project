@@ -566,6 +566,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 	//m_gunObject->LookAt(targetPos);
 	//m_gunObject->Rotate({ 0.0f, 90.0f, 0.0f, 0.0f });
 	//이게 맞냐..
+	// UPvector를 바꿔야 하는데 이유를 모르겠음
 	const XMVECTOR gunPos = m_gunObject->GetWorldPosition();
 	XMVECTOR dir = XMVectorSubtract(targetPos, gunPos);
 	dir = XMVector3Normalize(dir);
