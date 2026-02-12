@@ -107,6 +107,13 @@ struct VS_OUTPUT_STD
     float3x3 TBN : TBN0;
 };
 
+struct VS_OUTPUT_POS_WORLD_UV
+{
+    float4 Position : SV_POSITION;
+    float4 WorldPosition : POSITION0;
+    float2 UV : TEXCOORD0;
+};
+
 struct VS_OUTPUT_POS_UV
 {
     float4 Position : SV_POSITION;
