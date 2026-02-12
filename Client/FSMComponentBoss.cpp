@@ -121,7 +121,7 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 
 	case EJump:
 		m_jump_timer += dt;
-		if (m_jump_timer >= kJumpAttackAnticipation && !m_jump_has_hit)
+		if (m_jump_timer >= kJumpAttackAnticipation - 0.5f && !m_jump_has_hit)
 		{
 			m_jump_has_hit = true;
 

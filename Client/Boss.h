@@ -5,7 +5,7 @@ class Boss : public GameObjectBase
 {
 	class Player* m_player = nullptr;
 
-	float m_moveSpeed = 4.0f;
+	float m_moveSpeed = 5.0f;
 
 	class FSMComponentBoss* m_fsm = nullptr;
 
