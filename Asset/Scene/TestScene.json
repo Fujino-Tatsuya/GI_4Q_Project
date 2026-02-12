@@ -609,7 +609,7 @@
             "type": "Panel"
         }
     ],
-    "environmentMapFileName": "Skybox.dds",
+    "environmentMapFileName": "Skybox0.dds",
     "lightColor": [
         1.0,
         0.8566897511482239,
@@ -28734,9 +28734,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -136.0,
+                -137.78976440429688,
                 0.0,
-                -68.0,
+                -63.90159606933594,
                 1.0
             ],
             "rotation": [
@@ -28751,7 +28751,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -28892,9 +28892,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -128.0,
+                -139.40679931640625,
                 0.0,
-                -67.5,
+                -59.987613677978516,
                 1.0
             ],
             "rotation": [
@@ -28909,7 +28909,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -29050,9 +29050,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -120.0,
+                -139.62124633789063,
                 0.0,
-                -67.5,
+                -55.050601959228516,
                 1.0
             ],
             "rotation": [
@@ -29067,7 +29067,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -29208,9 +29208,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -114.0,
-                0.0,
-                -67.5,
+                -136.0253143310547,
+                3.815751824731706e-06,
+                -67.95623016357422,
                 1.0
             ],
             "rotation": [
@@ -29225,7 +29225,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -29366,9 +29366,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -136.0,
+                -137.9129180908203,
                 0.0,
-                -72.5,
+                -73.25232696533203,
                 1.0
             ],
             "rotation": [
@@ -29383,7 +29383,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -29524,9 +29524,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -128.5,
+                -131.06993103027344,
                 0.0,
-                -73.0,
+                -54.32356643676758,
                 1.0
             ],
             "rotation": [
@@ -29541,7 +29541,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -29682,9 +29682,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -120.0,
+                -129.76312255859375,
                 0.0,
-                -73.0,
+                -61.15046310424805,
                 1.0
             ],
             "rotation": [
@@ -29699,7 +29699,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -29840,9 +29840,9 @@
             "isTutorialDummy": false,
             "name": "Enemy",
             "position": [
-                -114.5,
-                0.0,
-                -73.0,
+                -127.56144714355469,
+                -3.7719100873800926e-06,
+                -70.0089340209961,
                 1.0
             ],
             "rotation": [
@@ -29857,7 +29857,7 @@
                 1.0,
                 0.0
             ],
-            "triggerColliderName": "",
+            "triggerColliderName": "Trigger1",
             "type": "Enemy"
         },
         {
@@ -38347,7 +38347,7 @@
             "name": "Fog",
             "position": [
                 -215.0,
-                -3.6361351013183594,
+                -18.82550048828125,
                 184.72300720214844,
                 1.0
             ],
@@ -38361,6 +38361,864 @@
                 370.0,
                 10.0,
                 480.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "boundingBoxes": [
+                        {
+                            "center": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "extents": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "boundingFrustums": [],
+                    "boundingOrientedBoxes": [],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "name": "Trigger1",
+            "position": [
+                -170.38296508789063,
+                0.0,
+                -89.19985961914063,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                17.31999969482422,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 2,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 0.0,
+                        "DissolveEdgeWidth": 0.0,
+                        "DissolveThreshold": 0.0
+                    },
+                    "hasShadow": true,
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "mob",
+                            "modelFileName": "mob_final_ani_2.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel_Dissolve.hlsl",
+                    "rasterState": 1,
+                    "type": "SkinnedModelComponent",
+                    "vsShaderName": "VSModelSkinAnim.hlsl"
+                },
+                {
+                    "current_state": "Idle",
+                    "start_state": "Idle",
+                    "type": "FSMComponentEnemy"
+                },
+                {
+                    "boundingBoxes": [],
+                    "boundingFrustums": [
+                        {
+                            "bottomSlope": -0.3269999921321869,
+                            "far": 1.3849999904632568,
+                            "leftSlope": -0.2840000092983246,
+                            "near": 0.5659999847412109,
+                            "orientation": [
+                                0.7071067094802856,
+                                6.743495077898842e-07,
+                                -6.743495646333031e-07,
+                                0.7071067690849304
+                            ],
+                            "origin": [
+                                -0.028999999165534973,
+                                2.0139999389648438,
+                                -0.06800000369548798
+                            ],
+                            "rightSlope": 0.36899998784065247,
+                            "topSlope": 0.3089999854564667
+                        }
+                    ],
+                    "boundingOrientedBoxes": [
+                        {
+                            "center": [
+                                0.010999999940395355,
+                                1.4179999828338623,
+                                -0.11599999666213989
+                            ],
+                            "extents": [
+                                0.1120000034570694,
+                                0.12300000339746475,
+                                0.11900000274181366
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                0.18400000035762787,
+                                0.2409999966621399,
+                                -0.0689999982714653
+                            ],
+                            "extents": [
+                                0.13500000536441803,
+                                0.28700000047683716,
+                                0.28600001335144043
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                -0.3019999861717224,
+                                0.28999999165534973,
+                                -0.02800000086426735
+                            ],
+                            "extents": [
+                                0.10499999672174454,
+                                0.27399998903274536,
+                                0.2709999978542328
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "isTutorialDummy": false,
+            "name": "Enemy",
+            "position": [
+                -121.31800842285156,
+                0.0,
+                -37.04277420043945,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "triggerColliderName": "",
+            "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 2,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 0.0,
+                        "DissolveEdgeWidth": 0.0,
+                        "DissolveThreshold": 0.0
+                    },
+                    "hasShadow": true,
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "mob",
+                            "modelFileName": "mob_final_ani_2.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel_Dissolve.hlsl",
+                    "rasterState": 1,
+                    "type": "SkinnedModelComponent",
+                    "vsShaderName": "VSModelSkinAnim.hlsl"
+                },
+                {
+                    "current_state": "Idle",
+                    "start_state": "Idle",
+                    "type": "FSMComponentEnemy"
+                },
+                {
+                    "boundingBoxes": [],
+                    "boundingFrustums": [
+                        {
+                            "bottomSlope": -0.3269999921321869,
+                            "far": 1.3849999904632568,
+                            "leftSlope": -0.2840000092983246,
+                            "near": 0.5659999847412109,
+                            "orientation": [
+                                0.7071067094802856,
+                                6.743495077898842e-07,
+                                -6.743495646333031e-07,
+                                0.7071067690849304
+                            ],
+                            "origin": [
+                                -0.028999999165534973,
+                                2.0139999389648438,
+                                -0.06800000369548798
+                            ],
+                            "rightSlope": 0.36899998784065247,
+                            "topSlope": 0.3089999854564667
+                        }
+                    ],
+                    "boundingOrientedBoxes": [
+                        {
+                            "center": [
+                                0.010999999940395355,
+                                1.4179999828338623,
+                                -0.11599999666213989
+                            ],
+                            "extents": [
+                                0.1120000034570694,
+                                0.12300000339746475,
+                                0.11900000274181366
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                0.18400000035762787,
+                                0.2409999966621399,
+                                -0.0689999982714653
+                            ],
+                            "extents": [
+                                0.13500000536441803,
+                                0.28700000047683716,
+                                0.28600001335144043
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                -0.3019999861717224,
+                                0.28999999165534973,
+                                -0.02800000086426735
+                            ],
+                            "extents": [
+                                0.10499999672174454,
+                                0.27399998903274536,
+                                0.2709999978542328
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "isTutorialDummy": false,
+            "name": "Enemy",
+            "position": [
+                -114.8338851928711,
+                6.523321644635871e-06,
+                -37.90419006347656,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "triggerColliderName": "",
+            "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 2,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 0.0,
+                        "DissolveEdgeWidth": 0.0,
+                        "DissolveThreshold": 0.0
+                    },
+                    "hasShadow": true,
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "mob",
+                            "modelFileName": "mob_final_ani_2.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel_Dissolve.hlsl",
+                    "rasterState": 1,
+                    "type": "SkinnedModelComponent",
+                    "vsShaderName": "VSModelSkinAnim.hlsl"
+                },
+                {
+                    "current_state": "Idle",
+                    "start_state": "Idle",
+                    "type": "FSMComponentEnemy"
+                },
+                {
+                    "boundingBoxes": [],
+                    "boundingFrustums": [
+                        {
+                            "bottomSlope": -0.3269999921321869,
+                            "far": 1.3849999904632568,
+                            "leftSlope": -0.2840000092983246,
+                            "near": 0.5659999847412109,
+                            "orientation": [
+                                0.7071067094802856,
+                                6.743495077898842e-07,
+                                -6.743495646333031e-07,
+                                0.7071067690849304
+                            ],
+                            "origin": [
+                                -0.028999999165534973,
+                                2.0139999389648438,
+                                -0.06800000369548798
+                            ],
+                            "rightSlope": 0.36899998784065247,
+                            "topSlope": 0.3089999854564667
+                        }
+                    ],
+                    "boundingOrientedBoxes": [
+                        {
+                            "center": [
+                                0.010999999940395355,
+                                1.4179999828338623,
+                                -0.11599999666213989
+                            ],
+                            "extents": [
+                                0.1120000034570694,
+                                0.12300000339746475,
+                                0.11900000274181366
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                0.18400000035762787,
+                                0.2409999966621399,
+                                -0.0689999982714653
+                            ],
+                            "extents": [
+                                0.13500000536441803,
+                                0.28700000047683716,
+                                0.28600001335144043
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                -0.3019999861717224,
+                                0.28999999165534973,
+                                -0.02800000086426735
+                            ],
+                            "extents": [
+                                0.10499999672174454,
+                                0.27399998903274536,
+                                0.2709999978542328
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "isTutorialDummy": false,
+            "name": "Enemy",
+            "position": [
+                -102.83863830566406,
+                0.0,
+                -37.90239715576172,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "triggerColliderName": "",
+            "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 2,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 0.0,
+                        "DissolveEdgeWidth": 0.0,
+                        "DissolveThreshold": 0.0
+                    },
+                    "hasShadow": true,
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "mob",
+                            "modelFileName": "mob_final_ani_2.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel_Dissolve.hlsl",
+                    "rasterState": 1,
+                    "type": "SkinnedModelComponent",
+                    "vsShaderName": "VSModelSkinAnim.hlsl"
+                },
+                {
+                    "current_state": "Idle",
+                    "start_state": "Idle",
+                    "type": "FSMComponentEnemy"
+                },
+                {
+                    "boundingBoxes": [],
+                    "boundingFrustums": [
+                        {
+                            "bottomSlope": -0.3269999921321869,
+                            "far": 1.3849999904632568,
+                            "leftSlope": -0.2840000092983246,
+                            "near": 0.5659999847412109,
+                            "orientation": [
+                                0.7071067094802856,
+                                6.743495077898842e-07,
+                                -6.743495646333031e-07,
+                                0.7071067690849304
+                            ],
+                            "origin": [
+                                -0.028999999165534973,
+                                2.0139999389648438,
+                                -0.06800000369548798
+                            ],
+                            "rightSlope": 0.36899998784065247,
+                            "topSlope": 0.3089999854564667
+                        }
+                    ],
+                    "boundingOrientedBoxes": [
+                        {
+                            "center": [
+                                0.010999999940395355,
+                                1.4179999828338623,
+                                -0.11599999666213989
+                            ],
+                            "extents": [
+                                0.1120000034570694,
+                                0.12300000339746475,
+                                0.11900000274181366
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                0.18400000035762787,
+                                0.2409999966621399,
+                                -0.0689999982714653
+                            ],
+                            "extents": [
+                                0.13500000536441803,
+                                0.28700000047683716,
+                                0.28600001335144043
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                -0.3019999861717224,
+                                0.28999999165534973,
+                                -0.02800000086426735
+                            ],
+                            "extents": [
+                                0.10499999672174454,
+                                0.27399998903274536,
+                                0.2709999978542328
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "isTutorialDummy": false,
+            "name": "Enemy",
+            "position": [
+                -107.80160522460938,
+                0.0,
+                -37.5716552734375,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "triggerColliderName": "",
+            "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 2,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 0.0,
+                        "DissolveEdgeWidth": 0.0,
+                        "DissolveThreshold": 0.0
+                    },
+                    "hasShadow": true,
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "mob",
+                            "modelFileName": "mob_final_ani_2.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel_Dissolve.hlsl",
+                    "rasterState": 1,
+                    "type": "SkinnedModelComponent",
+                    "vsShaderName": "VSModelSkinAnim.hlsl"
+                },
+                {
+                    "current_state": "Idle",
+                    "start_state": "Idle",
+                    "type": "FSMComponentEnemy"
+                },
+                {
+                    "boundingBoxes": [],
+                    "boundingFrustums": [
+                        {
+                            "bottomSlope": -0.3269999921321869,
+                            "far": 1.3849999904632568,
+                            "leftSlope": -0.2840000092983246,
+                            "near": 0.5659999847412109,
+                            "orientation": [
+                                0.7071067094802856,
+                                6.743495077898842e-07,
+                                -6.743495646333031e-07,
+                                0.7071067690849304
+                            ],
+                            "origin": [
+                                -0.028999999165534973,
+                                2.0139999389648438,
+                                -0.06800000369548798
+                            ],
+                            "rightSlope": 0.36899998784065247,
+                            "topSlope": 0.3089999854564667
+                        }
+                    ],
+                    "boundingOrientedBoxes": [
+                        {
+                            "center": [
+                                0.010999999940395355,
+                                1.4179999828338623,
+                                -0.11599999666213989
+                            ],
+                            "extents": [
+                                0.1120000034570694,
+                                0.12300000339746475,
+                                0.11900000274181366
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                0.18400000035762787,
+                                0.2409999966621399,
+                                -0.0689999982714653
+                            ],
+                            "extents": [
+                                0.13500000536441803,
+                                0.28700000047683716,
+                                0.28600001335144043
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        },
+                        {
+                            "center": [
+                                -0.3019999861717224,
+                                0.28999999165534973,
+                                -0.02800000086426735
+                            ],
+                            "extents": [
+                                0.10499999672174454,
+                                0.27399998903274536,
+                                0.2709999978542328
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "isTutorialDummy": false,
+            "name": "Enemy",
+            "position": [
+                -112.15831756591797,
+                0.0,
+                -31.948442459106445,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "triggerColliderName": "",
+            "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [],
+            "name": "Trigger2",
+            "position": [
+                -134.17105102539063,
+                -7.647681741218548e-06,
+                -64.00323486328125,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
                 0.0
             ],
             "type": "GameObjectBase"
@@ -38407,6 +39265,11 @@
             212.10000610351563,
             0.0,
             16.5
+        ],
+        [
+            -102.5999984741211,
+            0.0,
+            -78.5
         ]
     ]
 }
