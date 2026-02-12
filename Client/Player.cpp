@@ -42,18 +42,27 @@ void Player::Initialize()
 	m_gunTip = m_gunObject->GetChildGameObject("GunTip");
 	m_gunFSM = m_gunObject->GetComponent<FSMComponentGun2>();
 
+	m_playerHitPointExpressions[0] = resourceManager.GetTextureAndOffset("face_smile.png");
+	m_playerHitPointExpressions[1] = resourceManager.GetTextureAndOffset("face_default.png");
+	m_playerHitPointExpressions[2] = resourceManager.GetTextureAndOffset("Face_Sad.png");
+
 	m_playerHitPointTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP.png");
-	m_playerHitPointDecorationTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP_Deco.png");
 	m_deadEyeCoolDownTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_Energy.png");
 	m_deadEyeTextureAndOffset = resourceManager.GetTextureAndOffset("Crosshair.png");
 	m_enemyHitTextureAndOffset = resourceManager.GetTextureAndOffset("CrosshairHit.png");
 
-	m_bulletImgs = resourceManager.GetTextureAndOffset("bullet.png");
+	m_bulletImgs[0] = resourceManager.GetTextureAndOffset("UI_Bullet0.png");
+	m_bulletImgs[1] = resourceManager.GetTextureAndOffset("UI_Bullet1.png");
+	m_bulletImgs[2] = resourceManager.GetTextureAndOffset("UI_Bullet2.png");
+	m_bulletImgs[3] = resourceManager.GetTextureAndOffset("UI_Bullet3.png");
+	m_bulletImgs[4] = resourceManager.GetTextureAndOffset("UI_Bullet4.png");
+	m_bulletImgs[5] = resourceManager.GetTextureAndOffset("UI_Bullet5.png");
+	m_bulletImgs[6] = resourceManager.GetTextureAndOffset("UI_Bullet6.png");
 
 	m_DeadEyeCount = 4;
 	m_bulletCnt = 6;
 
-	m_bulletUIpos = { 0.82f,0.9f };
+	m_bulletUIpos = { 0.965f,0.85f };
 	m_bulletInterval = 0.03f;
 
 	SetAction(Action::All, true);
@@ -141,7 +150,7 @@ void Player::Render()
 	if (!m_lineBuffers.empty()) RenderLineBuffers(renderer);
 	if (!m_deadEyeTargets.empty()) RenderDeadEyeTargetsUI(renderer);
 	if (m_enemyHitTimer > 0.0f) RenderEnemyHitUI(renderer);
-	if (m_bulletCnt <= m_MaxBullet && m_bulletCnt != 0) RenderBullets(renderer);
+	RenderBullets(renderer);
 }
 
 void Player::Finalize()
@@ -309,7 +318,7 @@ void Player::PlayerShoot()
 
 	ParticleObject* muzzleFlash = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("MuzzleFlash.json"));
 	muzzleFlash->SetPosition(gunPos);
-	muzzleFlash->SetLifetime(0.5f);
+	muzzleFlash->SetLifetime(1.0f);
 
 	if (Enemy* enemy = dynamic_cast<Enemy*>(hit))
 	{
@@ -511,7 +520,7 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 
 		ParticleObject* muzzleFlash = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("MuzzleFlash.json"));
 		muzzleFlash->SetPosition(gunPos);
-		muzzleFlash->SetLifetime(0.5f);
+		muzzleFlash->SetLifetime(1.0f);
 
 		ParticleObject* gem = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Gem.json"));
 		gem->SetPosition(targetPos);
@@ -567,19 +576,28 @@ void Player::RenderPlayerHitPointUI(Renderer& renderer)
 
 			Renderer& renderer = Renderer::GetInstance();
 
+			int expressionIndex = min(static_cast<int>((1.0f - hitPointRatio) * 3.0f), 2);
+
+			renderer.RenderImageWrapScreenPosition
+			(
+				m_playerHitPointExpressions[expressionIndex].first,
+				{ 200.0f, -65.0f },
+				m_playerHitPointExpressions[expressionIndex].second,
+				0.5f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.5f
+			);
+
 			renderer.RenderImageWrapScreenPosition
 			(
 				m_playerHitPointTextureAndOffset.first,
-				{ 300.0f, -35.0f },
+				{ 350.0f, -65.0f },
 				m_playerHitPointTextureAndOffset.second,
 				1.0f,
-				{ 1.0f - hitPointRatio, hitPointRatio, 0.0f, 1.0f },
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				0.0f,
 				&hitPointSrcRect
 			);
-
-			// 체력 바 데코 // 지금 크기사 이상한 것 같음
-			//renderer.RenderImageNrmPosition(m_playerHitPointDecorationTextureAndOffset.first, { 0.25f, 0.9f }, m_playerHitPointDecorationTextureAndOffset.second);
 		}
 	);
 }
@@ -604,7 +622,7 @@ void Player::RenderDeadEyeCoolDownUI(Renderer& renderer)
 			Renderer::GetInstance().RenderImageWrapScreenPosition
 			(
 				m_deadEyeCoolDownTextureAndOffset.first,
-				{ 150.0f, -20.0f },
+				{ 200.0f, -50.0f },
 				m_deadEyeCoolDownTextureAndOffset.second,
 				1.0f,
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
@@ -673,12 +691,19 @@ void Player::RenderEnemyHitUI(Renderer& renderer)
 
 void Player::RenderBullets(class Renderer& renderer)
 {
-	float pos;
-	for (int i = 0; i < m_bulletCnt; i++)
-	{
-		pos = m_bulletUIpos.first + (m_bulletInterval * i);
-		renderer.UI_RENDER_FUNCTIONS().emplace_back([&,pos]() { Renderer::GetInstance().RenderImageNrmPosition(m_bulletImgs.first, { pos, m_bulletUIpos.second }, m_bulletImgs.second, 0.1f); });
-	}
+	renderer.UI_RENDER_FUNCTIONS().emplace_back
+	(
+		[&]()
+		{
+			Renderer::GetInstance().RenderImageNrmPosition
+			(
+				m_bulletImgs[m_bulletCnt].first,
+				{ m_bulletUIpos.first, m_bulletUIpos.second },
+				m_bulletImgs[m_bulletCnt].second,
+				1.0f
+			);
+		}
+	);
 }
 
 void Player::SetCameraSensitivity(float val)

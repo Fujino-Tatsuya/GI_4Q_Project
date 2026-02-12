@@ -12,6 +12,10 @@ void ParticleObject::Initialize()
 
 void ParticleObject::Update()
 {
-	m_lifetime -= TimeManager::GetInstance().GetDeltaTime();
+	float deltaTime = TimeManager::GetInstance().GetDeltaTime();
+
+	//MoveDirection((1.0f / m_lifetime) * deltaTime * 0.5f, Direction::Up);
+
+	m_lifetime -= deltaTime;
 	if (m_lifetime <= 0.0f) SetAlive(false);
 }

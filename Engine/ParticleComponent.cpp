@@ -105,7 +105,7 @@ void ParticleComponent::RenderImGui()
 		ImGui::DragFloat("Particle Total Time", &m_particleTotalTime, 0.01f, 0.1f, 100.0f);
 		ImGui::Checkbox("Restart On Finish", &m_restartOnFinish);
 		ImGui::ColorEdit4("Particle Color", &m_particleColor.baseColor.x);
-		ImGui::ColorEdit4("Particle Emission Color", &m_particleColor.emissionColor.x);
+		ImGui::DragFloat4("Particle Emission Color", &m_particleColor.emissionColor.x, 0.01f, 0.0f, 10.0f);
 
 		ImGui::Separator();
 	}

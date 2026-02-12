@@ -13,7 +13,7 @@
                         0.4264705777168274,
                         0.3999083936214447,
                         0.3700259327888489,
-                        0.9944725632667542
+                        0.31942176818847656
                     ],
                     "particleConstTime": 1.0,
                     "particleEmissionColor": [
@@ -22,7 +22,7 @@
                         0.0,
                         1.0
                     ],
-                    "particleTotalTime": 3.0,
+                    "particleTotalTime": 0.7200000286102295,
                     "psShaderName": "PSParticle.hlsl",
                     "rasterState": 2,
                     "spreadDistance": 1.5,
