@@ -35,7 +35,9 @@ class Player : public GameObjectBase
 	friend class GameManager;
 
 	std::array<std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2>, 3> m_playerHitPointExpressions = {};
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerProfileBGTextureAndOffset = {};
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointTextureAndOffset = {};
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointDecoTextureAndOffset = {};
 	int m_playerHitPoint = 10;
 	const int m_maxPlayerHitPoint = 10;
 	const float m_invincibilityDuration = 1.0f;

@@ -48,11 +48,13 @@ void Player::Initialize()
 	m_gunTip = m_gunObject->GetChildGameObject("GunTip");
 	m_gunFSM = m_gunObject->GetComponent<FSMComponentGun2>();
 
-	m_playerHitPointExpressions[0] = resourceManager.GetTextureAndOffset("face_smile.png");
-	m_playerHitPointExpressions[1] = resourceManager.GetTextureAndOffset("face_default.png");
-	m_playerHitPointExpressions[2] = resourceManager.GetTextureAndOffset("Face_Sad.png");
+	m_playerHitPointExpressions[0] = resourceManager.GetTextureAndOffset("UI_face_smile.png");
+	m_playerHitPointExpressions[1] = resourceManager.GetTextureAndOffset("UI_face_default.png");
+	m_playerHitPointExpressions[2] = resourceManager.GetTextureAndOffset("UI_Face_Sad.png");
 
+	m_playerProfileBGTextureAndOffset = resourceManager.GetTextureAndOffset("UI_profile_BG.png");
 	m_playerHitPointTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP.png");
+	m_playerHitPointDecoTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP_Deco.png");
 	m_deadEyeCoolDownTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_Energy.png");
 	m_deadEyeTextureAndOffset = resourceManager.GetTextureAndOffset("Crosshair.png");
 	m_enemyHitTextureAndOffset = resourceManager.GetTextureAndOffset("CrosshairHit.png");
@@ -70,6 +72,9 @@ void Player::Initialize()
 
 	m_bulletUIpos = { 0.965f,0.85f };
 	m_bulletInterval = 0.03f;
+
+
+
 
 	m_hasDashedForTutorial = false;
 	m_hasShotForTutorial = false;
@@ -644,6 +649,7 @@ void Player::RenderPlayerHitPointUI(Renderer& renderer)
 	(
 		[&]()
 		{
+			//const DirectX::XMFLOAT2 profileBgPos = { 275.0f, -65.0f };
 			const float hitPointRatio = static_cast<float>(m_playerHitPoint) / static_cast<float>(m_maxPlayerHitPoint);
 			LONG width = static_cast<LONG>(m_playerHitPointTextureAndOffset.second.x);
 
@@ -666,8 +672,18 @@ void Player::RenderPlayerHitPointUI(Renderer& renderer)
 
 			renderer.RenderImageWrapScreenPosition
 			(
+				m_playerProfileBGTextureAndOffset.first,
+				{ 205.0f, -80.0f },
+				m_playerProfileBGTextureAndOffset.second,
+				0.5f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.0f
+			);
+
+			renderer.RenderImageWrapScreenPosition
+			(
 				m_playerHitPointExpressions[expressionIndex].first,
-				{ 200.0f, -65.0f },
+				{ 200.0f, -80.0f },
 				m_playerHitPointExpressions[expressionIndex].second,
 				0.5f,
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
@@ -677,12 +693,22 @@ void Player::RenderPlayerHitPointUI(Renderer& renderer)
 			renderer.RenderImageWrapScreenPosition
 			(
 				m_playerHitPointTextureAndOffset.first,
-				{ 350.0f, -65.0f },
+				{ 392.0f, -86.0f },
 				m_playerHitPointTextureAndOffset.second,
 				1.0f,
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				0.0f,
 				&hitPointSrcRect
+			);
+
+			renderer.RenderImageWrapScreenPosition
+			(
+				m_playerHitPointDecoTextureAndOffset.first,
+				{ 212.0f, -86.0f },
+				m_playerHitPointDecoTextureAndOffset.second,
+				0.4f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.1f
 			);
 		}
 	);
@@ -708,7 +734,7 @@ void Player::RenderDeadEyeCoolDownUI(Renderer& renderer)
 			Renderer::GetInstance().RenderImageWrapScreenPosition
 			(
 				m_deadEyeCoolDownTextureAndOffset.first,
-				{ 200.0f, -50.0f },
+				{ 241.0f, -70.0f },
 				m_deadEyeCoolDownTextureAndOffset.second,
 				1.0f,
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
