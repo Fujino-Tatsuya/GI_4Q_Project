@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "TimeManager.h"
 #include "RNG.h"
+#include "Renderer.h"
 
 REGISTER_TYPE(Boss)
 
@@ -96,6 +97,19 @@ void Boss::Update()
 	default:
 		break;
 	}
+}
+
+void Boss::Render()
+{
+	if (!m_hasFoundPlayer) return;
+
+	Renderer::GetInstance().UI_RENDER_FUNCTIONS().emplace_back
+	(
+		[&]()
+		{
+			float healthRatio = static_cast<float>(m_hitPoints) / m_maxHitPoints;
+		}
+	);
 }
 
 #ifdef _DEBUG
