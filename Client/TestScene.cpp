@@ -47,8 +47,6 @@ void TestScene::Initialize()
 		enemy->SetPosition(XMVectorSet(RNG::GetInstance().Range(-10.0f, 10.0f), 0.0f, RNG::GetInstance().Range(-10.0f, 10.0f), 1.0f));
 		dynamic_cast<Enemy*>(enemy)->SetAsTutorialDummy();
 	}
-
-	IngameUI->SetActive(true);
 }
 
 void TestScene::Update()

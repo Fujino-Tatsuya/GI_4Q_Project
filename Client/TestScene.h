@@ -1,4 +1,4 @@
-// TestScene.h?ùò ?ãú?ûë
+// TestScene.h?ÏìΩ ?ÎñÜ?Ïòâ
 #pragma once
 #include "SceneBase.h"
 #include <array>
@@ -18,12 +18,6 @@ class TestScene : public SceneBase
 
 	class Panel* m_tutorialDark = nullptr;
 	class Panel* m_tutorialPopup = nullptr;
-	
-	class Text* m_curMasterVolume = nullptr;
-	class Text* m_curBGMVolume = nullptr;
-	class Text* m_curSFXVolume = nullptr;
-	class Text* m_curSensitivity = nullptr;
-
 
 	class Panel* IngameUI = nullptr;
 	class Panel* n1 = nullptr;
