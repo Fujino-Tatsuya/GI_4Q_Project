@@ -55,7 +55,13 @@ void TitleScene::Update()
 	{
 		Titles->UpdateFade(dt);
 	}
+	UpdateMenuTextColors();
 	
+}
+
+void TitleScene::Render()
+{
+	UpdateMenuTextColors();
 }
 
 void TitleScene::Finalize()
@@ -66,6 +72,15 @@ void TitleScene::Finalize()
 
 void TitleScene::BindUIActions()
 {
+	auto FindMenuItem = [&](const std::string& key) -> MenuItem*
+	{
+		for (auto& item : m_menuItems)
+		{
+			if (item.key == key) return &item;
+		}
+		return nullptr;
+	};
+
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
@@ -75,19 +90,21 @@ void TitleScene::BindUIActions()
 			else if (panel->GetName() == "Titles") Titles = panel;
 		} 
 		else if (auto* text = dynamic_cast<Text*>(uiPtr.get())) { 
-			if (text->GetName() == "start_game")	text_start_game = text;
-			else if (text->GetName() == "open_option")	text_option = text;
-			else if (text->GetName() == "open_credit")	text_credit = text;
-			else if (text->GetName() == "quit_game")	text_quit = text;
+			if (auto* item = FindMenuItem(text->GetName())) 
+			{
+				//cout << "[t] " << text->GetName() << endl;
+				item->text = text;
+
+			}
 		}
 		else if (auto* button = dynamic_cast<Button*>(uiPtr.get())) {
-			if (button->GetName() == "start_game")	Button_start_game = button;
-			else if (button->GetName() == "open_option")	Button_option = button;
-			else if (button->GetName() == "open_credit")	Button_credit = button;
-			else if (button->GetName() == "quit_game")	Button_quit = button;
+			if (auto* item = FindMenuItem(button->GetName())) 
+			{
+				//cout << "[b] " << button->GetName() << endl;
+				item->button = button;
+			}
 		}
 	}
-
 
 	for (auto& uiPtr : m_UIList) {
 		// -------------------------------------------------------
@@ -155,6 +172,24 @@ void TitleScene::BindUIActions()
 					});
 			}
 		}
+	}
+}
+
+void TitleScene::UpdateMenuTextColors()
+{
+	const DirectX::XMVECTOR kMenuIdleColor = { .0f, .0f, .0f, 1.0f };
+	const DirectX::XMVECTOR kMenuActiveColor = { 1.0f, 161.0f / 255.0f, 69.0f / 255.0f, 1.0f };
+	for (auto& item : m_menuItems)
+	{
+		if (!item.text || !item.button) continue;
+
+		const auto state = item.button->GetButtonState();
+		const bool isActive =
+			(state == Button::ButtonState::Hoverd) ||
+			(state == Button::ButtonState::Pressed) ||
+			(state == Button::ButtonState::Clicked);
+
+		item.text->SetColorIdle(isActive ? kMenuActiveColor : kMenuIdleColor);
 	}
 }
 

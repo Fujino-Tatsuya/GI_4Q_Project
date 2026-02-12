@@ -4,6 +4,7 @@ class Button : public UIBase
 {
 	friend class SceneBase;
 
+public:
 	enum class ButtonState
 	{
 		Idle,
@@ -12,6 +13,7 @@ class Button : public UIBase
 		Clicked
 	};
 
+private:
 	ButtonState m_ButtonState = ButtonState::Idle;
 
 	// --- [텍스처 리소스] ---
@@ -67,8 +69,10 @@ public:
 
 	void SetActionKey(const std::string& key) { m_onClickActionKey = key; }
 	std::string GetActionKey() const { return m_onClickActionKey; }
+	ButtonState GetButtonState() const { return m_ButtonState; }
 
 	void SetButtonTextures(const std::string& idle, const std::string& hover, const std::string& pressed, const std::string& clicked);
+	void SetStateColors(const DirectX::XMVECTOR& hover, const DirectX::XMVECTOR& pressed, const DirectX::XMVECTOR& clicked);
 
 	nlohmann::json Serialize() const override;
 	void Deserialize(const nlohmann::json& jsonData) override;

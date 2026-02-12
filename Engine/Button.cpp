@@ -183,6 +183,13 @@ void Button::SetButtonTextures(const std::string& idle, const std::string& hover
 	}
 }
 
+void Button::SetStateColors(const DirectX::XMVECTOR& hover, const DirectX::XMVECTOR& pressed, const DirectX::XMVECTOR& clicked)
+{
+	m_colorHover = hover;
+	m_colorPressed = pressed;
+	m_colorClicked = clicked;
+}
+
 nlohmann::json Button::Serialize() const
 {
 	nlohmann::json data = UIBase::Serialize();

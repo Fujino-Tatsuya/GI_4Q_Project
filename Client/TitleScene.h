@@ -2,7 +2,6 @@
 #include "SceneBase.h"
 #include <DirectXMath.h>
 
-
 class TitleScene : public SceneBase
 {
 	class Panel* optionPanel = nullptr;
@@ -11,15 +10,20 @@ class TitleScene : public SceneBase
 	class Panel* Title_letterrbox_down = nullptr;
 	class Panel* Title_letterrbox_up = nullptr;
 
-	class Text* text_start_game = nullptr;
-	class Text* text_option		= nullptr;
-	class Text* text_credit = nullptr;
-	class Text* text_quit = nullptr;
+	struct MenuItem
+	{
+		std::string key;
+		class Text* text = nullptr;
+		class Button* button = nullptr;
+	};
 
-	class Button* Button_start_game = nullptr;
-	class Button* Button_option = nullptr;
-	class Button* Button_credit = nullptr;
-	class Button* Button_quit = nullptr;
+	std::array<MenuItem, 4> m_menuItems =
+	{
+		MenuItem{ "start_game", nullptr, nullptr },
+		MenuItem{ "open_option", nullptr, nullptr },
+		MenuItem{ "open_credit", nullptr, nullptr },
+		MenuItem{ "quit_game", nullptr, nullptr }
+	};
 
 	bool m_isPanel = false;
 
@@ -41,11 +45,13 @@ class TitleScene : public SceneBase
 private:
 	void Initialize() override;
 	void Update() override;
+	void Render() override;
 	void Finalize() override;
 
 	void BindUIActions() override;
 	
 	void MovingPanel(float dt);
+	void UpdateMenuTextColors();
 
 public:
 	TitleScene() = default;
