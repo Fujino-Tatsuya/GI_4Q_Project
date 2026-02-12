@@ -107,7 +107,7 @@ class Player : public GameObjectBase
 
 	ControlState m_ControlState = { false, };
 
-	
+
 public:
 	Player() = default;
 	~Player() = default;
