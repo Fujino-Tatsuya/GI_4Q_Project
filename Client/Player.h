@@ -123,6 +123,7 @@ public:
 	float GetDeadEyeCooldownRatio() const;
 
 	void TakeHit();
+	void RestoreHitPoint();
 
 	static void SetCameraSensitivity(float val);
 	static float GetCameraSensitivity();

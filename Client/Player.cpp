@@ -243,6 +243,11 @@ void Player::TakeHit()
 	m_invincibilityTimer = m_invincibilityDuration;
 }
 
+void Player::RestoreHitPoint()
+{
+	m_playerHitPoint = m_maxPlayerHitPoint;
+}
+
 void Player::SetAction(Action state, bool enabled)
 {
 	switch (state)

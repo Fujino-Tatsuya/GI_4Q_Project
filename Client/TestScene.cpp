@@ -40,13 +40,6 @@ void TestScene::Initialize()
 	m_tutorialBox = GetRootGameObject("Box");
 	m_stage2Trigger = GetRootGameObject("Stage2Trigger");
 	m_stageBossTrigger = GetRootGameObject("StageBossTrigger");
-
-	for (size_t i = 0; i < 10; ++i)
-	{
-		GameObjectBase* enemy = CreatePrefabRootGameObject("Enemy.json");
-		enemy->SetPosition(XMVectorSet(RNG::GetInstance().Range(-10.0f, 10.0f), 0.0f, RNG::GetInstance().Range(-10.0f, 10.0f), 1.0f));
-		dynamic_cast<Enemy*>(enemy)->SetAsTutorialDummy();
-	}
 }
 
 void TestScene::Update()
@@ -71,7 +64,7 @@ void TestScene::Render()
 {
 	GameManager::GetInstance().OnSceneRender();
 
-	RenderSpawnPoints();
+	//RenderSpawnPoints();
 }
 
 #ifdef _DEBUG

@@ -58,7 +58,7 @@ void Boss::Update()
 	if (!m_player) return;
 	const XMVECTOR& playerPos = m_player->GetPosition();
 
-	if (m_triggerCollider && !m_hasFoundPlayer && m_triggerCollider->CheckCollisionPoint(playerPos)) m_hasFoundPlayer = true;
+	if (m_triggerCollider && !m_hasFoundPlayer && m_triggerCollider->CheckCollisionPoint(XMVectorSetY(playerPos, 0.0f))) m_hasFoundPlayer = true;
 
 	switch (m_state)
 	{

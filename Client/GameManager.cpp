@@ -443,17 +443,17 @@ void GameManager::TutorialControl()
 
 void GameManager::Stage1Control()
 {
-
+	m_Player->RestoreHitPoint();
 }
 
 void GameManager::Stage2Control()
 {
-
+	m_Player->RestoreHitPoint();
 }
 
 void GameManager::Stage3Control()
 {
-
+	m_Player->RestoreHitPoint();
 }
 
 void GameManager::OnStageExit(EMainState state)
