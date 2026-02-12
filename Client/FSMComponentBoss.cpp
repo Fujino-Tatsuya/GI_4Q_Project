@@ -8,6 +8,7 @@
 #include "SceneBase.h"
 #include "Boss.h"
 #include "Player.h"
+#include "ParticleObject.h"
 #include "../Engine/Animator.h"
 
 REGISTER_TYPE(FSMComponentBoss)
@@ -124,6 +125,10 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 		if (m_jump_timer >= kJumpAttackAnticipation - 0.5f && !m_jump_has_hit)
 		{
 			m_jump_has_hit = true;
+
+			ParticleObject* bossDust = dynamic_cast<ParticleObject*>(m_owner_boss_->CreatePrefabChildGameObject("BossDust.json"));
+			bossDust->SetPosition(m_owner_boss_->GetPosition());
+			bossDust->SetLifetime(1.0f);
 
 			if (!m_player)
 			{
