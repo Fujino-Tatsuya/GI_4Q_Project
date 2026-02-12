@@ -201,11 +201,6 @@ void Player::Finalize()
 
 void Player::TutorialStep() const
 {
-	if (GameManager::GetInstance().IsCheat())
-	{
-		return;
-	}
-
 	switch (GameManager::GetInstance().GetTutorialStep())
 	{
 	case ETutorialStep::Dash:

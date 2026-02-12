@@ -193,20 +193,6 @@ void GameManager::OnSceneEnter(EScene type)
 
 void GameManager::OnSceneUpdate()
 {
-	if (m_CurrentScene == EScene::Main)
-	{
-		auto& input = InputManager::GetInstance();
-		if (input.GetKeyDown(KeyCode::Num1)) CheatGotoByActionKey("goto_tutorial");
-		else if (input.GetKeyDown(KeyCode::Num2)) CheatGotoByActionKey("goto_stage1");
-		else if (input.GetKeyDown(KeyCode::Num3)) CheatGotoByActionKey("goto_stage2");
-		else if (input.GetKeyDown(KeyCode::Num4)) CheatGotoByActionKey("goto_boss");
-		else if (input.GetKeyDown(KeyCode::Num0))
-		{
-			SetSuccess(true);
-			SceneManager::GetInstance().ChangeScene("EndingScene");
-		}
-	}
-
 	switch (m_CurrentScene)
 	{
 	case EScene::Title:
@@ -219,66 +205,6 @@ void GameManager::OnSceneUpdate()
 
 	case EScene::Result:
 		break;
-	}
-}
-
-void GameManager::CheatGoto(EMainState state, bool forceTeleport)
-{
-	if (state == EMainState::None)
-	{
-		return;
-	}
-
-	if (m_CurrentScene == EScene::Main)
-	{
-		if (state == EMainState::Tutorial)
-		{
-			m_TutorialStep = ETutorialStep::WASD;
-		}
-		ChangeMainState(state);
-
-		if ((m_isCheat || forceTeleport) && m_Player)
-		{
-			CheatTransform transform = {};
-			if (TryGetCheatTransform(state, transform))
-			{
-				cout << transform.px << transform.py << transform.pz << endl;
-				cout << transform.rx << transform.ry << transform.rz << endl;
-
-				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
-				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
-				m_currentScore /= 2;
-			}
-		}
-		return;
-	}
-
-	m_QueuedMainState = state;
-	SceneManager::GetInstance().ChangeScene("TestScene");
-}
-
-void GameManager::CheatGotoByActionKey(const std::string& actionKey)
-{
-	if (actionKey == "goto_tutorial")
-	{
-		m_isCheat = false;
-		m_TutorialStep = ETutorialStep::WASD;
-		CheatGoto(EMainState::Tutorial, true);
-	}
-	else if (actionKey == "goto_stage1")
-	{
-		m_isCheat = true;
-		CheatGoto(EMainState::Stage1);
-	}
-	else if (actionKey == "goto_stage2")
-	{
-		m_isCheat = true;
-		CheatGoto(EMainState::Stage2);
-	}
-	else if (actionKey == "goto_boss")
-	{
-		m_isCheat = true;
-		CheatGoto(EMainState::StageBoss);
 	}
 }
 

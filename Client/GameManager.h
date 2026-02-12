@@ -94,9 +94,6 @@ public:
     void RegisterCheatPanel(Panel* panel) { m_cheatPanel = panel; }
     void ToggleOption();
     void ToggleCheatPanel();
-    void CheatGoto(EMainState state, bool forceTeleport = false);
-    void CheatGotoByActionKey(const std::string& actionKey);
-    bool IsCheat() const { return m_isCheat; }
     bool IsSuccess() const { return m_isSuccess; }
     void SetSuccess(bool v) { m_isSuccess = v; }
 
