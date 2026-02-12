@@ -43,13 +43,13 @@ private:
 	bool m_attack_has_hit = false;
 	bool m_jump_has_hit = false;
 
-	const float kAttackRange = 8.0f;
+	const float kAttackRange = 16.0f;
 	const float kAttackAnticipation = 32.5f / 24.0f;
 	const float kAttackTotalTime = 59.0f / 24.0f;
 	const float kJumpAttackAnticipation = 60.0f / 24.0f;
 	const float kJumpTotalTime = 76.0f / 24.0f;
 	const int kDamage = 1;
 
-	const float kFadeStartTime = 0.5f;
-	const float kFadeDuration = 1.5f;
+	const float kFadeStartTime = 0.25f;
+	const float kFadeDuration = 4.5f;
 };

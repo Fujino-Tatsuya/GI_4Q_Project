@@ -17,6 +17,14 @@ REGISTER_TYPE(FSMComponentBoss)
 using namespace std;
 using namespace DirectX;
 
+namespace
+{
+	DissolveBuffer kHP30 = { 0, 0, 0, 0, { 1.0f, 0.5f, 0.0f, 1.0f } };
+	DissolveBuffer kHP20 = { 0.23f, 0.27f, 6, 0, { 1.0f, 0.5f, 0.0f, 1.0f } };
+	DissolveBuffer kHP10 = { 0, 1, 6.7f, 0, { 1.0f, 0.5f, 0.0f, 1.0f } };
+	DissolveBuffer kHP0  = { 0.32f,  0.33f, 8.2f, 0, { 1.0f, 0.5f, 0.0f, 1.0f } };
+}
+
 void FSMComponentBoss::Initialize()
 {
 	m_model = GetOwner()->GetComponent<SkinnedModelComponent>();
@@ -88,6 +96,26 @@ void FSMComponentBoss::OnEnterState(StateID state)
 void FSMComponentBoss::OnUpdateState(StateID state)
 {
 	const float dt = TimeManager::GetInstance().GetDeltaTime();
+	if (m_model && m_owner_boss_ && state != EDead)
+	{
+		const int hp = m_owner_boss_->GetHitPoints();
+		if (hp <= 0)
+		{
+			m_model->SetDissolveData(kHP0);
+		}
+		else if (hp <= 10)
+		{
+			m_model->SetDissolveData(kHP10);
+		}
+		else if (hp <= 20)
+		{
+			m_model->SetDissolveData(kHP20);
+		}
+		else
+		{
+			m_model->SetDissolveData(kHP30);
+		}
+	}
 
 	switch (state)
 	{
@@ -160,10 +188,18 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 		if (m_death_timer >= kFadeStartTime)
 		{
 			float progress = (m_death_timer - kFadeStartTime) / kFadeDuration;
+
+			SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
+			SceneBase::SetVignettingIntensity(progress);
+			SceneBase::SetVignettingColor({ 0.0f, 0.0f, 0.0f });
+
 			if (progress > 1.0f)
 			{
 				GameManager::GetInstance().SetSuccess(true);
 				SceneManager::GetInstance().ChangeScene("EndingScene");
+
+				SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, false);
+				SceneBase::SetVignettingIntensity(0.0f);
 			};
 
 			if (m_model)

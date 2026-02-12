@@ -77,6 +77,8 @@ void GameManager::Finalize()
 
 void GameManager::Update()
 {
+	UpdateLutCrossfade(TimeManager::GetInstance().GetDeltaTime());
+
 	if (m_CurrentScene == EScene::Main)
 	{
 		if (!m_tutorialPopupOpen)
@@ -193,20 +195,6 @@ void GameManager::OnSceneEnter(EScene type)
 
 void GameManager::OnSceneUpdate()
 {
-	if (m_CurrentScene == EScene::Main)
-	{
-		auto& input = InputManager::GetInstance();
-		if (input.GetKeyDown(KeyCode::Num1)) CheatGotoByActionKey("goto_tutorial");
-		else if (input.GetKeyDown(KeyCode::Num2)) CheatGotoByActionKey("goto_stage1");
-		else if (input.GetKeyDown(KeyCode::Num3)) CheatGotoByActionKey("goto_stage2");
-		else if (input.GetKeyDown(KeyCode::Num4)) CheatGotoByActionKey("goto_boss");
-		else if (input.GetKeyDown(KeyCode::Num0))
-		{
-			SetSuccess(true);
-			SceneManager::GetInstance().ChangeScene("EndingScene");
-		}
-	}
-
 	switch (m_CurrentScene)
 	{
 	case EScene::Title:
@@ -219,66 +207,6 @@ void GameManager::OnSceneUpdate()
 
 	case EScene::Result:
 		break;
-	}
-}
-
-void GameManager::CheatGoto(EMainState state, bool forceTeleport)
-{
-	if (state == EMainState::None)
-	{
-		return;
-	}
-
-	if (m_CurrentScene == EScene::Main)
-	{
-		if (state == EMainState::Tutorial)
-		{
-			m_TutorialStep = ETutorialStep::WASD;
-		}
-		ChangeMainState(state);
-
-		if ((m_isCheat || forceTeleport) && m_Player)
-		{
-			CheatTransform transform = {};
-			if (TryGetCheatTransform(state, transform))
-			{
-				cout << transform.px << transform.py << transform.pz << endl;
-				cout << transform.rx << transform.ry << transform.rz << endl;
-
-				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
-				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
-				m_currentScore /= 2;
-			}
-		}
-		return;
-	}
-
-	m_QueuedMainState = state;
-	SceneManager::GetInstance().ChangeScene("TestScene");
-}
-
-void GameManager::CheatGotoByActionKey(const std::string& actionKey)
-{
-	if (actionKey == "goto_tutorial")
-	{
-		m_isCheat = false;
-		m_TutorialStep = ETutorialStep::WASD;
-		CheatGoto(EMainState::Tutorial, true);
-	}
-	else if (actionKey == "goto_stage1")
-	{
-		m_isCheat = true;
-		CheatGoto(EMainState::Stage1);
-	}
-	else if (actionKey == "goto_stage2")
-	{
-		m_isCheat = true;
-		CheatGoto(EMainState::Stage2);
-	}
-	else if (actionKey == "goto_boss")
-	{
-		m_isCheat = true;
-		CheatGoto(EMainState::StageBoss);
 	}
 }
 
@@ -364,11 +292,14 @@ void GameManager::OnStageEnter(EMainState state)
 	case EMainState::Tutorial:
 		std::cout << "Tutorial Enter\n";
 		sm.Main_BGM_Shot(Config::Tutori_BGM, 3.0f);
+		StartLutCrossfade(0);
+
 		break;
 
 	case EMainState::Stage1:
 		std::cout << "Stage1 Enter\n";
 		sm.Main_BGM_Shot(Config::Stage1_BGM, 3.0f);
+		StartLutCrossfade(4);
 
 		if (!m_Player)
 			m_Player = GetPlayerPtr();
@@ -389,15 +320,60 @@ void GameManager::OnStageEnter(EMainState state)
 	case EMainState::Stage2:
 		std::cout << "Stage2 Enter\n";
 		sm.Main_BGM_Shot(Config::Stage2_BGM, 3.0f);
+		StartLutCrossfade(0);
+
 		break;
 
 	case EMainState::StageBoss:
 		std::cout << "StageBoss Enter\n";
 		sm.Main_BGM_Shot(Config::Stage3_BGM, 3.0f);
+		StartLutCrossfade(4);
+
 		break;
 	}
 }
 
+void GameManager::StartLutCrossfade(int targetIndex)
+{
+	Renderer& renderer = Renderer::GetInstance();
+	const int currentIndex = renderer.GetSelectedLUTIndex();
+	if (currentIndex == targetIndex)
+	{
+		SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, false);
+		SceneBase::SetLutLerpFactor(0.0f);
+		m_lutCrossfadeActive = false;
+		return;
+	}
+
+	m_lutTargetIndex = targetIndex;
+	renderer.GetSelectedLUT2Index() = targetIndex;
+	m_lutCrossfadeElapsed = 0.0f;
+	m_lutCrossfadeActive = true;
+
+	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, true);
+	SceneBase::SetLutLerpFactor(0.0f);
+}
+
+void GameManager::UpdateLutCrossfade(float dt)
+{
+	if (!m_lutCrossfadeActive) return;
+
+	m_lutCrossfadeElapsed += dt;
+	float t = m_lutCrossfadeElapsed / m_lutCrossfadeDuration;
+	if (t > 1.0f) t = 1.0f;
+
+	const float smooth = t * t * (3.0f - 2.0f * t);
+	SceneBase::SetLutLerpFactor(smooth);
+
+	if (t >= 1.0f)
+	{
+		Renderer& renderer = Renderer::GetInstance();
+		renderer.GetSelectedLUTIndex() = m_lutTargetIndex;
+		SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, false);
+		SceneBase::SetLutLerpFactor(0.0f);
+		m_lutCrossfadeActive = false;
+	}
+}
 
 void GameManager::TutorialControl()
 {
@@ -490,17 +466,14 @@ void GameManager::TutorialControl()
 
 void GameManager::Stage1Control()
 {
-
 }
 
 void GameManager::Stage2Control()
 {
-
 }
 
 void GameManager::Stage3Control()
 {
-
 }
 
 void GameManager::OnStageExit(EMainState state)
@@ -512,19 +485,23 @@ void GameManager::OnStageExit(EMainState state)
 	case EMainState::Tutorial:
 		std::cout << "Tutorial Exit\n";
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 
 	case EMainState::Stage1:
 		std::cout << "Stage1 Exit\n";
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 
 	case EMainState::Stage2:
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 
 	case EMainState::StageBoss:
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 	}
 }

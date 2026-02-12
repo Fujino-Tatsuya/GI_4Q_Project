@@ -40,13 +40,6 @@ void TestScene::Initialize()
 	m_tutorialBox = GetRootGameObject("Box");
 	m_stage2Trigger = GetRootGameObject("Stage2Trigger");
 	m_stageBossTrigger = GetRootGameObject("StageBossTrigger");
-
-	for (size_t i = 0; i < 10; ++i)
-	{
-		GameObjectBase* enemy = CreatePrefabRootGameObject("Enemy.json");
-		enemy->SetPosition(XMVectorSet(RNG::GetInstance().Range(-10.0f, 10.0f), 0.0f, RNG::GetInstance().Range(-10.0f, 10.0f), 1.0f));
-		dynamic_cast<Enemy*>(enemy)->SetAsTutorialDummy();
-	}
 }
 
 void TestScene::Update()
@@ -71,7 +64,7 @@ void TestScene::Render()
 {
 	GameManager::GetInstance().OnSceneRender();
 
-	RenderSpawnPoints();
+	//RenderSpawnPoints();
 }
 
 #ifdef _DEBUG
@@ -126,11 +119,6 @@ void TestScene::Deserialize(const nlohmann::json& jsonData)
 
 void TestScene::TutorialStep()
 {
-	if (GameManager::GetInstance().IsCheat())
-	{
-		return;
-	}
-
 	switch (GameManager::GetInstance().GetTutorialStep())
 	{
 	case ETutorialStep::WASD:
@@ -147,13 +135,13 @@ void TestScene::TutorialStep()
 void TestScene::CheckStageTrigger()
 {
 	const XMVECTOR& playerPos = m_player->GetWorldPosition();
-	if (m_stage2Trigger && m_stage2Trigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	if (m_stage2Trigger && m_stage2Trigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(XMVectorSetY(playerPos, 0.0f)))
 	{
 		GameManager::GetInstance().ChangeMainState(EMainState::Stage2);
 		m_stage2Trigger->SetAlive(false);
 		m_stage2Trigger = nullptr;
 	}
-	if (m_stageBossTrigger && m_stageBossTrigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	if (m_stageBossTrigger && m_stageBossTrigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(XMVectorSetY(playerPos, 0.0f)))
 	{
 		GameManager::GetInstance().ChangeMainState(EMainState::StageBoss);
 		m_stageBossTrigger->SetAlive(false);
