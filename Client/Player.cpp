@@ -500,6 +500,8 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 
 	const XMVECTOR& targetPos = XMVectorAdd(m_deadEyeTargets.back().second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f });
 	m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(targetPos);
+	m_gunObject->LookAt(targetPos);
+	m_gunObject->Rotate({ 0.0f, 90.0f, 0.0f, 0.0f });
 
 	if (input.GetKeyDown(KeyCode::MouseLeft))
 	{
@@ -540,6 +542,8 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 void Player::PlayerDeadEyeEnd()
 {
 	if (m_gunObject) if (m_gunFSM) m_gunFSM->Fire();
+	
+	m_gunObject->SetRotation({ 0.0f, 90.0f, 0.0f, 0.0f });
 
 	m_isDeadEyeActive = false;
 
