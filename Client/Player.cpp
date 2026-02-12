@@ -16,6 +16,7 @@
 #include "SceneManager.h"
 #include "GameManager.h"
 #include "ParticleComponent.h"
+#include "Boss.h"
 
 #include "FSMComponentGun2.h"
 
@@ -371,6 +372,17 @@ void Player::PlayerShoot()
 	if (Enemy* enemy = dynamic_cast<Enemy*>(hit))
 	{
 		enemy->Die();
+		ParticleObject* gem = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Gem.json"));
+		gem->SetPosition(hitPosition);
+		gem->SetLifetime(5.0f);
+
+		m_enemyHitTimer = m_enemyHitDisplayTime;
+
+		TriggerLUT();
+	}
+	if (Boss* boss = dynamic_cast<Boss*>(hit))
+	{
+		boss->Hit();
 		ParticleObject* gem = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Gem.json"));
 		gem->SetPosition(hitPosition);
 		gem->SetLifetime(5.0f);
