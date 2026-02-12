@@ -8,8 +8,8 @@ class Boss : public GameObjectBase
 	int m_hitPoints = 30;
 	int m_maxHitPoints = 30;
 
-	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bossHitPointTextureAndOffset = {};
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bossHealthBarTextureAndOffset = {};
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bossHealthBarDecoTextureAndOffset = {};
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bossHealthBarBackgroundTextureAndOffset = {};
 
 	float m_moveSpeed = 5.0f;

@@ -42832,6 +42832,107 @@
             ],
             "triggerColliderName": "Trigger11",
             "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "NoiseIndex": 0,
+                    "blendState": 0,
+                    "dissolveData": {
+                        "DissolveEdgeColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "DissolveEdgeIntensity": 1.0,
+                        "DissolveEdgeWidth": 1.0,
+                        "DissolveThreshold": 0.20000000298023224
+                    },
+                    "hasShadow": true,
+                    "materialFactor": [
+                        {
+                            "ambientOcclusionFactor": 1.0,
+                            "baseColorFactor": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "emissionFactor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "metallicFactor": 1.0,
+                            "normalScale": 1.0,
+                            "roughnessFactor": 1.0
+                        }
+                    ],
+                    "modelAndMaterialFileNames": [
+                        {
+                            "materialFileName": "Boss",
+                            "modelFileName": "boss_final_ani_2.fbx"
+                        }
+                    ],
+                    "psShaderName": "PSModel.hlsl",
+                    "rasterState": 1,
+                    "type": "SkinnedModelComponent",
+                    "vsShaderName": "VSModelSkinAnim.hlsl"
+                },
+                {
+                    "current_state": "Chase",
+                    "start_state": "Chase",
+                    "type": "FSMComponentBoss"
+                },
+                {
+                    "boundingBoxes": [],
+                    "boundingFrustums": [],
+                    "boundingOrientedBoxes": [
+                        {
+                            "center": [
+                                0.01600000075995922,
+                                1.6790000200271606,
+                                -0.6700000166893005
+                            ],
+                            "extents": [
+                                1.8580000400543213,
+                                1.6200000047683716,
+                                0.8069999814033508
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "type": "ColliderComponent"
+                }
+            ],
+            "name": "Boss",
+            "position": [
+                -173.2710418701172,
+                0.0,
+                -92.61740112304688,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "triggerColliderName": "",
+            "type": "Boss"
         }
     ],
     "skyboxFileName": "Skybox_day_1.dds",
