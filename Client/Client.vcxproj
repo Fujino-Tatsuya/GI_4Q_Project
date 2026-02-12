@@ -237,7 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Asset\Prefab\Enemy.json" />
-    <None Include="..\Asset\Prefab\Gun.json" />
+    <None Include="..\Asset\Prefab\EnemySpawned.json" />
     <None Include="..\Asset\Prefab\Gun2.json" />
     <None Include="..\Asset\Prefab\Player.json" />
     <None Include="..\Asset\Scene\EndingScene.json" />

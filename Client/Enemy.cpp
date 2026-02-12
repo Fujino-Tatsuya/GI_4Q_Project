@@ -38,7 +38,16 @@ void Enemy::Initialize()
 	m_pathFindIntervalRandomOffset = RANDOM(0.0f, m_pathFindInterval);
 	m_pathFindTimer = -m_pathFindIntervalRandomOffset;
 
-	if (m_state == AIState::Chase && m_fsm) { m_fsm->ChangeState(FSMComponentEnemy::EChase); }
+	if (m_fsm)
+	{
+		switch (m_state)
+		{
+		case AIState::Idle:   m_fsm->ChangeState(FSMComponentEnemy::EIdle); break;
+		case AIState::Chase:  m_fsm->ChangeState(FSMComponentEnemy::EChase); break;
+		case AIState::Attack: m_fsm->ChangeState(FSMComponentEnemy::EAttack); break;
+		case AIState::Dead:   m_fsm->ChangeState(FSMComponentEnemy::EDead); break;
+		}
+	}
 }
 
 void Enemy::Die()
@@ -136,9 +145,15 @@ void Enemy::MoveAlongPath(float dt)
 	// 경로 따라 이동
 	XMVECTOR toTarget = XMVectorSubtract(m_path.front(), GetPosition());
 	float distanceSquared = XMVectorGetX(XMVector3LengthSq(toTarget));
-	if (distanceSquared < 0.1f * 0.1f) m_path.pop_front();
+	if (distanceSquared < 0.1f * 0.1f)
+	{
+		m_fsm->ChangeState(FSMComponentEnemy::EIdle);
+		m_path.pop_front();
+	}
 	else
 	{
+		m_fsm->ChangeState(FSMComponentEnemy::EChase);
+
 		XMVECTOR direction = XMVector3Normalize(toTarget);
 
 		//회전 - 모델이 돌아가 있을 것이라고 추정함
