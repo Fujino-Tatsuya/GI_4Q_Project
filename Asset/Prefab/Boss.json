@@ -33,23 +33,6 @@
                     "metallicFactor": 1.0,
                     "normalScale": 1.0,
                     "roughnessFactor": 1.0
-                },
-                {
-                    "ambientOcclusionFactor": 1.0,
-                    "baseColorFactor": [
-                        1.0,
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "emissionFactor": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "metallicFactor": 1.0,
-                    "normalScale": 1.0,
-                    "roughnessFactor": 1.0
                 }
             ],
             "modelAndMaterialFileNames": [
@@ -62,6 +45,31 @@
             "rasterState": 1,
             "type": "SkinnedModelComponent",
             "vsShaderName": "VSModelSkinAnim.hlsl"
+        },
+        {
+            "boundingBoxes": [],
+            "boundingFrustums": [],
+            "boundingOrientedBoxes": [
+                {
+                    "center": [
+                        0.01600000075995922,
+                        1.6790000200271606,
+                        -0.6700000166893005
+                    ],
+                    "extents": [
+                        1.8580000400543213,
+                        1.6200000047683716,
+                        0.8069999814033508
+                    ],
+                    "orientation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                }
+            ],
+            "type": "ColliderComponent"
         },
         {
             "current_state": "Chase",
