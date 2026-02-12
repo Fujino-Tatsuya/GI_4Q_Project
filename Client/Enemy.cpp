@@ -26,7 +26,6 @@ vector<Enemy*> Enemy::s_enemies = {};
 void Enemy::Initialize()
 {
 	m_fsm = GetComponent<FSMComponentEnemy>();
-	m_collider = GetComponent<ColliderComponent>();
 
 	s_enemies.push_back(this);
 
@@ -49,8 +48,6 @@ void Enemy::Die()
 	m_state = AIState::Dead;
 	m_deathTimer = 0.0f;
 
-	if (m_collider) m_collider->SetAlive(false);
-
 	if (m_fsm) m_fsm->ChangeState(FSMComponentEnemy::EDead);
 	
 	GameManager::GetInstance().AddKill();
@@ -67,7 +64,7 @@ void Enemy::Update()
 
 	if (!m_player) return;
 	const XMVECTOR& playerPos = m_player->GetPosition();
-	if (m_triggerCollider && !m_hasFoundPlayer) if (m_triggerCollider->CheckCollisionPoint(playerPos)) m_hasFoundPlayer = true;
+	if (m_triggerCollider && !m_hasFoundPlayer && m_triggerCollider->CheckCollisionPoint(playerPos)) m_hasFoundPlayer = true;
 
 	switch (m_state) {
 	case Enemy::AIState::Idle: 

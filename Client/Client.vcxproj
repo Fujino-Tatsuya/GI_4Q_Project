@@ -191,6 +191,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="CamRotObject.cpp" />
     <ClCompile Include="CrossHairAndNode.cpp" />
     <ClCompile Include="EndingScene.cpp" />
@@ -215,6 +216,7 @@
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="CamRotObject.h" />
     <ClInclude Include="CrossHairAndNode.h" />
     <ClInclude Include="EndingScene.h" />

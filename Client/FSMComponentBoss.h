@@ -3,6 +3,8 @@
 
 class FSMComponentBoss : public FSMComponent
 {
+	class Boss* m_owner_boss_ = nullptr;
+
 public:
 	enum EState
 	{
@@ -42,7 +44,7 @@ private:
 	bool m_jump_has_hit = false;
 
 	const float kAttackRange = 3.2f;
-	const float kAttackAnticipation = 40.0f / 24.0f;
+	const float kAttackAnticipation = 32.5f / 24.0f;
 	const float kAttackTotalTime = 59.0f / 24.0f;
 	const float kJumpAttackAnticipation = 60.0f / 24.0f;
 	const float kJumpTotalTime = 76.0f / 24.0f;

@@ -48,6 +48,9 @@
     <ClCompile Include="FSMComponentBoss.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -96,6 +99,9 @@
     </ClInclude>
     <ClInclude Include="FSMComponentBoss.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

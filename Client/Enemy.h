@@ -16,7 +16,6 @@ class Enemy : public GameObjectBase
 	float m_pathFindIntervalRandomOffset = 0.0f;
 
 	class FSMComponentEnemy* m_fsm = nullptr;
-	class ColliderComponent* m_collider = nullptr;
 
 	float m_deathTimer = 0.0f;
 	const float m_deathDuration = 2.0f;
@@ -24,7 +23,7 @@ class Enemy : public GameObjectBase
 	bool m_hasFoundPlayer = false;
 	const float m_attackRangeSquare = 5.0f;
 
-	std::string m_triggerColliderName = "";
+	std::string m_triggerColliderName;
 	class ColliderComponent* m_triggerCollider = nullptr;
 
 	float m_rotationSpeed = 10.0f;
