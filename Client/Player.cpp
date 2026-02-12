@@ -42,8 +42,11 @@ void Player::Initialize()
 	m_gunTip = m_gunObject->GetChildGameObject("GunTip");
 	m_gunFSM = m_gunObject->GetComponent<FSMComponentGun2>();
 
+	m_playerHitPointExpressions[0] = resourceManager.GetTextureAndOffset("face_smile.png");
+	m_playerHitPointExpressions[1] = resourceManager.GetTextureAndOffset("face_default.png");
+	m_playerHitPointExpressions[2] = resourceManager.GetTextureAndOffset("Face_Sad.png");
+
 	m_playerHitPointTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP.png");
-	m_playerHitPointDecorationTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_HP_Deco.png");
 	m_deadEyeCoolDownTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Gauge_Energy.png");
 	m_deadEyeTextureAndOffset = resourceManager.GetTextureAndOffset("Crosshair.png");
 	m_enemyHitTextureAndOffset = resourceManager.GetTextureAndOffset("CrosshairHit.png");
@@ -573,19 +576,28 @@ void Player::RenderPlayerHitPointUI(Renderer& renderer)
 
 			Renderer& renderer = Renderer::GetInstance();
 
+			int expressionIndex = min(static_cast<int>((1.0f - hitPointRatio) * 3.0f), 2);
+
+			renderer.RenderImageWrapScreenPosition
+			(
+				m_playerHitPointExpressions[expressionIndex].first,
+				{ 200.0f, -65.0f },
+				m_playerHitPointExpressions[expressionIndex].second,
+				0.5f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.5f
+			);
+
 			renderer.RenderImageWrapScreenPosition
 			(
 				m_playerHitPointTextureAndOffset.first,
-				{ 300.0f, -35.0f },
+				{ 350.0f, -65.0f },
 				m_playerHitPointTextureAndOffset.second,
 				1.0f,
-				{ 1.0f - hitPointRatio, hitPointRatio, 0.0f, 1.0f },
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
 				0.0f,
 				&hitPointSrcRect
 			);
-
-			// 체력 바 데코 // 지금 크기사 이상한 것 같음
-			//renderer.RenderImageNrmPosition(m_playerHitPointDecorationTextureAndOffset.first, { 0.25f, 0.9f }, m_playerHitPointDecorationTextureAndOffset.second);
 		}
 	);
 }
@@ -610,7 +622,7 @@ void Player::RenderDeadEyeCoolDownUI(Renderer& renderer)
 			Renderer::GetInstance().RenderImageWrapScreenPosition
 			(
 				m_deadEyeCoolDownTextureAndOffset.first,
-				{ 150.0f, -20.0f },
+				{ 200.0f, -50.0f },
 				m_deadEyeCoolDownTextureAndOffset.second,
 				1.0f,
 				{ 1.0f, 1.0f, 1.0f, 1.0f },
