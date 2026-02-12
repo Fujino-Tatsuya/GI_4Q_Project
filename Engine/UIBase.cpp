@@ -51,6 +51,10 @@ json UIBase::Serialize() const
 
 	data["depth"] = m_depth;
 	data["pathIdle"] = m_pathIdle;
+	if (m_useSrcRect)
+	{
+		data["srcRect"] = { m_srcRect.left, m_srcRect.top, m_srcRect.right, m_srcRect.bottom };
+	}
 
 	DirectX::XMFLOAT4 color;
 	DirectX::XMStoreFloat4(&color, m_colorIdle);
@@ -75,6 +79,18 @@ void UIBase::Deserialize(const json& data)
 		m_pathIdle = data.value("pathIdle", "");
 		if (!m_pathIdle.empty())
 			SetTextureAndOffset(m_pathIdle);
+	}
+	if (data.contains("srcRect"))
+	{
+		m_srcRect.left = data["srcRect"][0];
+		m_srcRect.top = data["srcRect"][1];
+		m_srcRect.right = data["srcRect"][2];
+		m_srcRect.bottom = data["srcRect"][3];
+		m_useSrcRect = true;
+	}
+	else
+	{
+		m_useSrcRect = false;
 	}
 
 	if (data.contains("colorIdle"))

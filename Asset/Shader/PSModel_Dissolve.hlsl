@@ -29,6 +29,16 @@ float3 CalcDissolveEdge(float noiseVal, float threshold, float width, float3 col
 
 PS_SCENE_OUTPUT main(PS_INPUT_STD input)
 {
+    float noiseVal = noiseTexture.Sample(SamplerLinearWrap, input.UV).r;
+
+    float3 dissolveEdgeColor = CalcDissolveEdge(
+        noiseVal,
+        DissolveThreshold,
+        DissolveEdgeWidth,
+        DissolveEdgeColor.rgb,
+        DissolveEdgeIntensity
+    );
+    
     // 텍스처 샘플링
     // 베이스 컬러 텍스처
     float4 baseColor = baseColorTexture.Sample(SamplerLinearWrap, input.UV) * BaseColorFactor;
@@ -92,7 +102,8 @@ PS_SCENE_OUTPUT main(PS_INPUT_STD input)
     float3 ibl = (indirectDiffuse + indirectSpecular) * baseColor.rgb * iblShadow * LightColor.w;
     
     PS_SCENE_OUTPUT output;
-    output.Color = float4(Lo + ibl + emission, baseColor.a);
+    //output.Color = float4(Lo + ibl + emission, baseColor.a);
+    output.Color = float4(Lo + ibl + emission + dissolveEdgeColor, baseColor.a);
     output.ThresholdColor = float4(output.Color.rgb - 0.75f, baseColor.a);
    
     return output;

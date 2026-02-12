@@ -54,7 +54,7 @@ class GameManager : public Singleton<GameManager>
 ///GameFlowEnd
 
 ///SCORE
-    //ì ìˆ˜ ê´€ë ¨ ë³€ìˆ˜
+    //? ?ˆ˜ ê´?? ¨ ë³??ˆ˜
 	int     m_currentScore = 0;
 	int     m_multiplier = 1;         // 1, 2, 4, 8
 	int     m_killCountForNextLevel = 0;
@@ -62,7 +62,7 @@ class GameManager : public Singleton<GameManager>
 	bool    m_isCombatStarted = false;
 	float   m_decayTimer = 0.0f;
 
-    void TempPrint();   // UIì— ë„£ê¸° ì „ì— ì €ì¥í•  ìœ„ì¹˜
+    void TempPrint();   // UI?— ?„£ê¸? ? „?— ????¥?•  ?œ„ì¹?
 ///SCORE END
 
 ///RANKING -> LOG
@@ -93,8 +93,9 @@ public:
     void RegisterCheatPanel(Panel* panel) { m_cheatPanel = panel; }
     void ToggleOption();
     void ToggleCheatPanel();
-    void CheatGoto(EMainState state);
+    void CheatGoto(EMainState state, bool forceTeleport = false);
     void CheatGotoByActionKey(const std::string& actionKey);
+    bool IsCheat() const { return m_isCheat; }
     bool IsSuccess() const { return m_isSuccess; }
     void SetSuccess(bool v) { m_isSuccess = v; }
 
@@ -116,8 +117,8 @@ public:
     void ScoreUpdate();
     void AddKill();             // Enemy.cpp - Die()
     void OnPlayerHit();         // Player.cpp - ë­ì„
-    void OnRhythmMiss();        // ë¦¬ë“¬ ë¯¸ìŠ¤ ì‹œ í˜¸ì¶œ (ìŠ¤íƒ ì´ˆê¸°í™”)
-    void ScoreReset();          // ì”¬ ë°”ë€”ë•Œ?
+    void OnRhythmMiss();        // ë¦¬ë“¬ ë¯¸ìŠ¤ ?‹œ ?˜¸ì¶? (?Š¤?ƒ ì´ˆê¸°?™”)
+    void ScoreReset();          // ?”¬ ë°”ë?”ë•Œ?
 
     ETutorialStep GetTutorialStep() const { return m_TutorialStep; }
     void SetTutorialStep(ETutorialStep step);

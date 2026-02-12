@@ -47,6 +47,8 @@ void TestScene::Initialize()
 		enemy->SetPosition(XMVectorSet(RNG::GetInstance().Range(-10.0f, 10.0f), 0.0f, RNG::GetInstance().Range(-10.0f, 10.0f), 1.0f));
 		dynamic_cast<Enemy*>(enemy)->SetAsTutorialDummy();
 	}
+
+	IngameUI->SetActive(true);
 }
 
 void TestScene::Update()
@@ -58,6 +60,13 @@ void TestScene::Update()
 	TutorialStep();
 
 	CheckStageTrigger();
+	SetScoreUI(GameManager::GetInstance().GetScore());
+	if (m_player)
+	{
+		UpdateHPUI(m_player->GetHPRatio());
+		UpdateDeadEyeUI(m_player->GetDeadEyeCooldownRatio());
+		UpdateBulletUI(m_player->GetBulletCount());
+	}
 }
 
 void TestScene::Render()
@@ -119,6 +128,11 @@ void TestScene::Deserialize(const nlohmann::json& jsonData)
 
 void TestScene::TutorialStep()
 {
+	if (GameManager::GetInstance().IsCheat())
+	{
+		return;
+	}
+
 	switch (GameManager::GetInstance().GetTutorialStep())
 	{
 	case ETutorialStep::WASD:
@@ -216,18 +230,27 @@ void TestScene::RenderSpawnPoints()
 
 void TestScene::BindUIActions()
 {
-	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
-			else if (panel->GetName() == "cheat") sceneCheatPanel = panel;
+			else if (panel->GetName() == "1") n1 = panel;
+			else if (panel->GetName() == "10") n10 = panel;
+			else if (panel->GetName() == "100") n100 = panel;
+			else if (panel->GetName() == "1000") n1000 = panel;
+			else if (panel->GetName() == "10000") n10000 = panel;
+			else if (panel->GetName() == "100000") n100000 = panel;
+			else if (panel->GetName() == "combo") combo = panel;
+			else if (panel->GetName() == "IngameUI") IngameUI = panel;
+			else if (panel->GetName() == "HP_Bar") hpBar = panel;
+			else if (panel->GetName() == "HP_Deco") hpDeco = panel;
+			else if (panel->GetName() == "DeadEye") deadEye = panel;
+			else if (panel->GetName() == "bullet") bullet = panel;
 		}
 	}
 	if (optionPanel)
 	{
 		GameManager::GetInstance().RegisterOptionPanel(optionPanel);
 	}
-	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {
@@ -238,20 +261,7 @@ void TestScene::BindUIActions()
 		{
 			std::string key = btn->GetActionKey();
 
-			if (key == "goto_tutorial" || key == "goto_stage1" || key == "goto_stage2" || key == "goto_boss")
-			{
-				btn->SetOnClick([key]() {
-					GameManager::GetInstance().CheatGotoByActionKey(key);
-					});
-			}
-
-			if (key == "cheat") {
-				btn->SetOnClick([this]() {
-					GameManager::GetInstance().SetSuccess(true);
-					SceneManager::GetInstance().ChangeScene("EndingScene");
-				});
-			}
-			else if (key == "close_option") {
+			if (key == "close_option") {
 				if (optionPanel) btn->SetOnClick([this]()
 					{
 						optionPanel->SetActive(false);
@@ -311,4 +321,97 @@ void TestScene::BindUIActions()
 	{
 		GameManager::GetInstance().RegisterTutorialUI(m_tutorialDark, m_tutorialPopup);
 	}
+}
+
+void TestScene::SetScoreUI(int score)
+{
+	if (score < 0) score = 0;
+	if (score > 999999) score = 999999;
+
+	int d1 = score % 10;
+	int d10 = (score / 10) % 10;
+	int d100 = (score / 100) % 10;
+	int d1000 = (score / 1000) % 10;
+	int d10000 = (score / 10000) % 10;
+	int d100000 = (score / 100000) % 10;
+
+	if (n1)      n1->SetTextureAndOffset("UI_n" + std::to_string(d1) + ".png");
+	if (n10)     n10->SetTextureAndOffset("UI_n" + std::to_string(d10) + ".png");
+	if (n100)    n100->SetTextureAndOffset("UI_n" + std::to_string(d100) + ".png");
+	if (n1000)   n1000->SetTextureAndOffset("UI_n" + std::to_string(d1000) + ".png");
+	if (n10000)  n10000->SetTextureAndOffset("UI_n" + std::to_string(d10000) + ".png");
+	if (n100000) n100000->SetTextureAndOffset("UI_n" + std::to_string(d100000) + ".png");
+
+	if (combo)
+	{
+		const int multiplier = GameManager::GetInstance().GetMultiplier();
+		switch (multiplier)
+		{
+		case 2:
+			combo->SetTextureAndOffset("UI_Combo2.png");
+			break;
+		case 4:
+			combo->SetTextureAndOffset("UI_Combo4.png");
+			break;
+		case 8:
+			combo->SetTextureAndOffset("UI_Combo8.png");
+			break;
+		default:
+			combo->SetTextureAndOffset("UI_Combo1.png");
+			break;
+		}
+	}
+}
+
+void TestScene::UpdateBulletUI(int bulletCount)
+{
+	if (bullet)  bullet->SetTextureAndOffset("UI_Bullet0" + std::to_string(bulletCount) + ".png");
+}
+
+
+void TestScene::UpdateHPUI(float hpRatio)
+{
+	if (!hpBar)
+		return;
+
+	hpRatio = std::clamp(hpRatio, 0.0f, 1.0f);
+
+	const auto offset = hpBar->GetTextureOffset();
+	const float texWidth = offset.x * 2.0f;
+	const float texHeight = offset.y * 2.0f;
+	if (texWidth <= 0.0f || texHeight <= 0.0f)
+		return;
+
+	RECT src = {};
+	src.left = 0;
+	src.top = 0;
+	src.right = static_cast<LONG>(texWidth * hpRatio);
+	src.bottom = static_cast<LONG>(texHeight);
+
+	hpBar->SetSourceRect(src);
+
+	if (hpDeco)
+		hpDeco->ClearSourceRect();
+}
+
+void TestScene::UpdateDeadEyeUI(float ratio)
+{
+	if (!deadEye)
+		return;
+
+	ratio = std::clamp(ratio, 0.0f, 1.0f);
+
+	const auto offset = deadEye->GetTextureOffset();
+	const float texWidth = offset.x * 2.0f;
+	const float texHeight = offset.y * 2.0f;
+	if (texWidth <= 0.0f || texHeight <= 0.0f)
+		return;
+
+	RECT src = {};
+	src.left = 0;
+	src.top = 0;
+	src.right = static_cast<LONG>(texWidth * ratio);
+	src.bottom = static_cast<LONG>(texHeight);
+
+	deadEye->SetSourceRect(src);
 }

@@ -71,8 +71,6 @@ void FSMComponentEnemy::OnEnterState(StateID state)
 
 		model_->GetAnimator()->SetPlaybackSpeed(1.0f);
 		model_->GetAnimator()->RestartCurrentAnimation(false);
-		//model_->GetAnimator()->PlayAnimation("Attack", true);
-		//model_->GetAnimator()->PlayAnimation(1, true);
 		model_->GetAnimator()->PlayAnimation(0, false);
 		break;
 
@@ -130,6 +128,8 @@ void FSMComponentEnemy::OnUpdateState(StateID state)
 			{
 				model_->SetAlpha(1.0f - progress);
 				model_->SetDissolveThreshold(progress);
+				model_->SetDissolveIntensity(progress/2.f);
+
 			}
 		}
 	}

@@ -74,6 +74,7 @@ public:
 	void SetBlendState(BlendState blendState) { m_blendState = blendState; }
 	void SetAlpha(const float& alpha) { for (auto& [model, material] : m_modelsAndMaterials) material.m_materialFactor.baseColorFactor.w = alpha; }
 	void SetDissolveThreshold(float threshold) { m_dissolveData.DissolveThreshold = threshold; }
+	void SetDissolveIntensity(float intensity) { m_dissolveData.DissolveEdgeIntensity = intensity; }
 
 	bool NeedsFixedUpdate() const override { return false; }
 	bool NeedsUpdate() const override { return true; }

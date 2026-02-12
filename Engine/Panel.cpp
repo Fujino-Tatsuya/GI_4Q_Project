@@ -32,12 +32,13 @@ void Panel::RenderUI(Renderer& renderer)
 	auto scale = GetFinalScale();
 	auto color = GetFinalColor(m_colorIdle);
 	auto depth = m_depth;
+	auto srcRect = GetSourceRectPtr();
 
 	renderer.UI_RENDER_FUNCTIONS().emplace_back(
-		[tex, pos, offset, scale, color, depth]()
+		[tex, pos, offset, scale, color, depth, srcRect]()
 		{
 			Renderer::GetInstance().RenderImageUIPosition(
-				tex, pos, offset, scale, color, depth
+				tex, pos, offset, scale, color, depth, srcRect
 			);
 		});
 

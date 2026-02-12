@@ -969,5 +969,6 @@ void ResourceManager::LoadNoiseTexture()
 {
 	m_noises[0].srv = GetTexture("noise\\00_CELL.png", TextureType::Normal);
 	m_noises[1].srv = GetTexture("noise\\01_JJEOJEOJEOK.png", TextureType::Normal);
+	m_noises[2].srv = GetTexture("noise\\02_distortion.dds", TextureType::Normal);
 }
 

@@ -1,6 +1,7 @@
-// TestScene.hÏùò ÏãúÏûë
+// TestScene.h?ùò ?ãú?ûë
 #pragma once
 #include "SceneBase.h"
+#include <array>
 
 class TestScene : public SceneBase
 {
@@ -17,6 +18,26 @@ class TestScene : public SceneBase
 
 	class Panel* m_tutorialDark = nullptr;
 	class Panel* m_tutorialPopup = nullptr;
+	
+	class Text* m_curMasterVolume = nullptr;
+	class Text* m_curBGMVolume = nullptr;
+	class Text* m_curSFXVolume = nullptr;
+	class Text* m_curSensitivity = nullptr;
+
+
+	class Panel* IngameUI = nullptr;
+	class Panel* n1 = nullptr;
+	class Panel* n10 = nullptr;
+	class Panel* n100 = nullptr;
+	class Panel* n1000 = nullptr;
+	class Panel* n10000 = nullptr;
+	class Panel* n100000 = nullptr;
+	class Panel* combo = nullptr;
+	class Panel* hpBar = nullptr;
+	class Panel* hpDeco = nullptr;
+	class Panel* deadEye = nullptr;
+	class Panel* bullet = nullptr;
+
 public:
 	TestScene() = default;
 	~TestScene() override = default;
@@ -45,4 +66,8 @@ private:
 	void SpawnEnemy(float deltaTime);
 
 	void RenderSpawnPoints();
+	void SetScoreUI(int score);
+	void UpdateHPUI(float hpRatio);
+	void UpdateDeadEyeUI(float ratio);
+	void UpdateBulletUI(int bulletCount);
 };

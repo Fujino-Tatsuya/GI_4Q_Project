@@ -193,23 +193,17 @@ void GameManager::OnSceneEnter(EScene type)
 
 void GameManager::OnSceneUpdate()
 {
-	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
-		if (m_CurrentScene == EScene::Main)
+	if (m_CurrentScene == EScene::Main)
+	{
+		auto& input = InputManager::GetInstance();
+		if (input.GetKeyDown(KeyCode::Num1)) CheatGotoByActionKey("goto_tutorial");
+		else if (input.GetKeyDown(KeyCode::Num2)) CheatGotoByActionKey("goto_stage1");
+		else if (input.GetKeyDown(KeyCode::Num3)) CheatGotoByActionKey("goto_stage2");
+		else if (input.GetKeyDown(KeyCode::Num4)) CheatGotoByActionKey("goto_boss");
+		else if (input.GetKeyDown(KeyCode::Num0))
 		{
-			if (!m_Pause)
-			{
-				ToggleOption();
-			}
-			else
-			{
-				if (m_optionPanel && !m_optionPanel->GetActive()) m_optionPanel->SetActive(true);
-				ForceShowCursor(true);
-			}
-
-			if (m_cheatPanel)
-			{
-				m_cheatPanel->SetActive(true);
-			}
+			SetSuccess(true);
+			SceneManager::GetInstance().ChangeScene("EndingScene");
 		}
 	}
 
@@ -228,7 +222,7 @@ void GameManager::OnSceneUpdate()
 	}
 }
 
-void GameManager::CheatGoto(EMainState state)
+void GameManager::CheatGoto(EMainState state, bool forceTeleport)
 {
 	if (state == EMainState::None)
 	{
@@ -243,11 +237,14 @@ void GameManager::CheatGoto(EMainState state)
 		}
 		ChangeMainState(state);
 
-		if (m_isCheat && m_Player)
+		if ((m_isCheat || forceTeleport) && m_Player)
 		{
 			CheatTransform transform = {};
 			if (TryGetCheatTransform(state, transform))
 			{
+				cout << transform.px << transform.py << transform.pz << endl;
+				cout << transform.rx << transform.ry << transform.rz << endl;
+
 				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
 				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
 				m_currentScore /= 2;
@@ -262,22 +259,25 @@ void GameManager::CheatGoto(EMainState state)
 
 void GameManager::CheatGotoByActionKey(const std::string& actionKey)
 {
-	m_isCheat = true;
-
 	if (actionKey == "goto_tutorial")
 	{
-		CheatGoto(EMainState::Tutorial);
+		m_isCheat = false;
+		m_TutorialStep = ETutorialStep::WASD;
+		CheatGoto(EMainState::Tutorial, true);
 	}
 	else if (actionKey == "goto_stage1")
 	{
+		m_isCheat = true;
 		CheatGoto(EMainState::Stage1);
 	}
 	else if (actionKey == "goto_stage2")
 	{
+		m_isCheat = true;
 		CheatGoto(EMainState::Stage2);
 	}
 	else if (actionKey == "goto_boss")
 	{
+		m_isCheat = true;
 		CheatGoto(EMainState::StageBoss);
 	}
 }
@@ -388,7 +388,15 @@ void GameManager::OnStageEnter(EMainState state)
 
 void GameManager::TutorialControl()
 {
+	if (!m_Player)
+		return;
+
 	auto& p = m_Player;
+	if (m_isCheat)
+	{
+		p->SetAction(Action::All, true);
+		return;
+	}
 
 	p->SetAction(Action::All, false);
 
@@ -540,6 +548,11 @@ void GameManager::SetTutorialStep(ETutorialStep step)
 
 function<void()> GameManager::RenderInfo()
 {
+	if (m_isCheat)
+	{
+		return [&]() { Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(GameManager::GetInstance().GetScore())).c_str(), XMFLOAT2(0.45f, 0.1f)); };
+	}
+
 	switch (m_TutorialStep)
 	{
 	case ETutorialStep::WASD:
@@ -567,7 +580,10 @@ function<void()> GameManager::RenderInfo()
 		break;
 
 	case ETutorialStep::End:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(GameManager::GetInstance().GetScore())).c_str(), XMFLOAT2(0.45f, 0.1f)); };
+		return [&]()
+			{
+				Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(m_currentScore)).c_str(), XMFLOAT2(0.45f, 0.1f));
+			};
 		break;
 
 	default:
