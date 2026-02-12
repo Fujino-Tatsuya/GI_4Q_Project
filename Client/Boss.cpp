@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "TimeManager.h"
 #include "RNG.h"
+#include "Renderer.h"
+#include "ResourceManager.h"
 
 REGISTER_TYPE(Boss)
 
@@ -42,6 +44,11 @@ void Boss::Initialize()
 	if (triggerObj) m_triggerCollider = triggerObj->GetComponent<ColliderComponent>();
 
 	if (m_state == AIState::Chase && m_fsm) { m_fsm->ChangeState(FSMComponentBoss::EChase); }
+
+	ResourceManager& resourceManager = ResourceManager::GetInstance();
+	m_bossHealthBarTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Boss_GaugeBar.png");
+	m_bossHealthBarDecoTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Boss_GaugeDeco.png");
+	m_bossHealthBarBackgroundTextureAndOffset = resourceManager.GetTextureAndOffset("UI_Boss_GaugeBG.png");
 }
 
 void Boss::Update()
@@ -96,6 +103,63 @@ void Boss::Update()
 	default:
 		break;
 	}
+}
+
+void Boss::Render()
+{
+	if (!m_hasFoundPlayer) return;
+
+	Renderer::GetInstance().UI_RENDER_FUNCTIONS().emplace_back
+	(
+		[&]()
+		{
+			float healthRatio = static_cast<float>(m_hitPoints) / static_cast<float>(m_maxHitPoints);
+
+			RECT hitPointRect =
+			{
+				0,
+				0,
+				static_cast<LONG>(m_bossHealthBarTextureAndOffset.second.x * healthRatio * 2.0f),
+				static_cast<LONG>(m_bossHealthBarTextureAndOffset.second.y * 2.0f)
+			};
+
+			Renderer& renderer = Renderer::GetInstance();
+
+			// 배경
+			renderer.RenderImageNrmPosition
+			(
+				m_bossHealthBarBackgroundTextureAndOffset.first,
+				{ 0.5f, 0.15f },
+				m_bossHealthBarBackgroundTextureAndOffset.second,
+				0.75f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.0f
+			);
+
+			// 체력 바
+			renderer.RenderImageNrmPosition
+			(
+				m_bossHealthBarTextureAndOffset.first,
+				{ 0.5f, 0.1525f },
+				m_bossHealthBarTextureAndOffset.second,
+				0.75f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.25f,
+				&hitPointRect
+			);
+
+			// 데코
+			renderer.RenderImageNrmPosition
+			(
+				m_bossHealthBarDecoTextureAndOffset.first,
+				{ 0.5f, 0.1525f },
+				m_bossHealthBarDecoTextureAndOffset.second,
+				0.75f,
+				{ 1.0f, 1.0f, 1.0f, 1.0f },
+				0.5f
+			);
+		}
+	);
 }
 
 #ifdef _DEBUG

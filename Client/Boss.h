@@ -6,6 +6,11 @@ class Boss : public GameObjectBase
 	class Player* m_player = nullptr;
 
 	int m_hitPoints = 30;
+	int m_maxHitPoints = 30;
+
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bossHealthBarTextureAndOffset = {};
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bossHealthBarDecoTextureAndOffset = {};
+	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bossHealthBarBackgroundTextureAndOffset = {};
 
 	float m_moveSpeed = 5.0f;
 
@@ -38,12 +43,14 @@ public:
 	Boss& operator=(Boss&&) = default;
 
 	void Hit() { m_hitPoints--; if (m_hitPoints <= 0) Die(); }
+	int GetHitPoints() const { return m_hitPoints; }
 	void Die();
 	void OnAttackFinished();
 
 private:
 	void Initialize() override;
 	void Update() override;
+	void Render() override;
 	#ifdef _DEBUG
 	void RenderImGui() override;
 	#endif

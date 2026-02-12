@@ -67,6 +67,7 @@ namespace
 
 void GameManager::Initialize()
 {
+	LoadRankings();
 }
 
 void GameManager::Finalize()
@@ -729,10 +730,19 @@ void GameManager::LoadRankings()
 	file >> data;
 	file.close();
 
-	if (!data.contains("rankings") || !data["rankings"].is_array())
+	const nlohmann::json* rankings = nullptr;
+	if (data.is_array())
+	{
+		rankings = &data;
+	}
+	else if (data.contains("rankings") && data["rankings"].is_array())
+	{
+		rankings = &data["rankings"];
+	}
+	if (!rankings)
 		return;
 
-	for (const auto& entry : data["rankings"]) {
+	for (const auto& entry : *rankings) {
 		if (!entry.is_object())
 			continue;
 
@@ -797,11 +807,10 @@ bool GameManager::AnyInputDown()
 
 void GameManager::SaveRankings() const
 {
-	nlohmann::json data = nlohmann::json::object();
-	data["rankings"] = nlohmann::json::array();
+	nlohmann::json data = nlohmann::json::array();
 
 	for (const auto& [playedAt, score] : m_rankings) {
-		data["rankings"].push_back({ { "played_at", playedAt }, { "score", score } });
+		data.push_back({ { "played_at", playedAt }, { "score", score } });
 	}
 
 	ofstream file(kRankingsFile);
