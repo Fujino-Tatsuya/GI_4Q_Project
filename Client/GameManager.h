@@ -74,8 +74,6 @@ class GameManager : public Singleton<GameManager>
 	bool   m_tutorialPopupOpen = false;
 	bool   m_stepPopupShown = false;   
 
-	
-
 public:
     void Initialize();
     void Finalize();
@@ -122,8 +120,7 @@ public:
     void ScoreReset();          // 씬 바뀔때?
 
     ETutorialStep GetTutorialStep() const { return m_TutorialStep; }
-	void SetTutorialStep(ETutorialStep step) { m_TutorialStep = step; }
-
+    void SetTutorialStep(ETutorialStep step);
     //void RenderInfo();
 	std::function<void()> RenderInfo();
 
@@ -148,6 +145,8 @@ public:
     std::string GetGradeTextureName(int score) const;
     const std::vector<std::pair<std::string, int>>& GetTopScores() const { return m_rankings; }
 ///RANKING END
+
+	void RegisterTutorialUI(Panel* dark, Panel* popup);
 
 	void ShowTutorialPopup();
 	void CloseTutorialPopup();

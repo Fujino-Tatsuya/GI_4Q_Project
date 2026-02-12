@@ -847,6 +847,7 @@
             "type": "Text"
         },
         {
+            "actionKey": "Master_Volume",
             "active": true,
             "colorIdle": [
                 1.0,

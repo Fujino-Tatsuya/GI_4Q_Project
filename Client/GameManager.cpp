@@ -78,9 +78,12 @@ void GameManager::Update()
 {
 	if (m_CurrentScene == EScene::Main)
 	{
-		if (InputManager::GetInstance().GetKeyDown(KeyCode::Escape))
+		if (!m_tutorialPopupOpen)
 		{
-			ToggleOption();
+			if (InputManager::GetInstance().GetKeyDown(KeyCode::Escape))
+			{
+				ToggleOption();
+			}
 		}
 
 		SceneManager::GetInstance().SetPaused(m_Pause);
@@ -109,6 +112,9 @@ void GameManager::ToggleOption()
 		m_Pause = !m_Pause;
 		return;
 	}
+
+	if (m_tutorialPopupOpen)
+		return;
 
 	const bool opening = !m_Pause;
 	m_Pause = opening;
@@ -419,6 +425,22 @@ void GameManager::TutorialControl()
 		ChangeMainState(EMainState::Stage1);
 		break;
 	}
+
+	if (m_tutorialPopupOpen)
+	{
+		if (AnyInputDown())
+		{
+			CloseTutorialPopup();
+		}
+		return;
+	}
+
+	if (!m_stepPopupShown)
+	{
+		ShowTutorialPopup();
+		m_stepPopupShown = true;
+		return;
+	}
 }
 
 void GameManager::Stage1Control()
@@ -504,6 +526,16 @@ void GameManager::ScoreReset()
 	m_lastKillTime = 0.0f;
 	m_isCombatStarted = false;
 	m_decayTimer = 0.0f;
+}
+
+void GameManager::SetTutorialStep(ETutorialStep step)
+{
+	if (m_TutorialStep == step)
+		return;
+
+	m_TutorialStep = step;
+
+	m_stepPopupShown = false;
 }
 
 function<void()> GameManager::RenderInfo()
@@ -640,24 +672,42 @@ void GameManager::LoadRankings()
 		});
 }
 
+void GameManager::RegisterTutorialUI(Panel* dark, Panel* popup)
+{
+	m_tutorialPanel = dark;
+	m_tutorialPopup = popup;
+
+	std::cout << m_tutorialPanel << " " << m_tutorialPopup << std::endl;
+}
+
 void GameManager::ShowTutorialPopup()
 {
+	m_tutorialPopupOpen = true;
 
+	TimeManager::GetInstance().SetTimeScale(0.0f);
+
+	if (m_tutorialPanel) m_tutorialPanel->SetActive(true);
+	if (m_tutorialPopup) m_tutorialPopup->SetActive(true);
+
+	ForceShowCursor(true);
 }
 
 void GameManager::CloseTutorialPopup()
 {
+	m_tutorialPopupOpen = false;
+	m_Pause = false;
 
-}
+	if (m_tutorialPanel) m_tutorialPanel->SetActive(false);
+	if (m_tutorialPopup) m_tutorialPopup->SetActive(false);
 
-void GameManager::NextTutorialStep()
-{
-
+	ForceShowCursor(false);
 }
 
 bool GameManager::AnyInputDown()
 {
-	return false;
+	auto& in = InputManager::GetInstance();
+
+	return in.GetKeyDown(KeyCode::MouseLeft);
 }
 
 void GameManager::SaveRankings() const

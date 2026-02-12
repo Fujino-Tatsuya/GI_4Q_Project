@@ -298,25 +298,17 @@ void TestScene::BindUIActions()
 					});
 			}
 		}
-		else if (auto* text = dynamic_cast<Text*>(uiPtr.get()))
+		else if (auto* panel = dynamic_cast<Panel*>(uiPtr.get()))
 		{
-			std::string name = text->GetName();
-
-			if (name == "Cur_Master_Volume")
-			{
-				m_curMasterVolume = text;
-			}
-			else if (name == "Cur_BGM_Volume")
-			{
-				m_curBGMVolume = text;
-			}
-			else if (name == "Cur_SFX_Volume") {
-				m_curSFXVolume = text;
-			}
-			else if (name == "Cur_Set_Sensitivity")
-			{
-				m_curSensitivity = text;
-			}
+			if (panel->GetName() == "BlackPannel")
+				m_tutorialDark = panel;
+			else if (panel->GetName() == "TutorialPopUp")
+				m_tutorialPopup = panel;
 		}
+	}
+
+	if (m_tutorialDark && m_tutorialPopup)
+	{
+		GameManager::GetInstance().RegisterTutorialUI(m_tutorialDark, m_tutorialPopup);
 	}
 }
