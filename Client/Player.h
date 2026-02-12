@@ -36,7 +36,7 @@ class Player : public GameObjectBase
 
 	std::array<std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2>, 3> m_playerHitPointExpressions = {};
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointTextureAndOffset = {};
-	int m_playerHitPoint = 1000;
+	int m_playerHitPoint = 3;
 	const int m_maxPlayerHitPoint = 1000;
 	const float m_invincibilityDuration = 1.0f;
 	float m_invincibilityTimer = 0.0f;
