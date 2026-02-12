@@ -3,6 +3,7 @@
 #include "FSMComponentGun2.h"
 #include "GameObjectBase.h"
 #include "TimeManager.h"
+#include "Player.h"
 
 REGISTER_TYPE(FSMComponentGun2)
 
@@ -121,6 +122,7 @@ void FSMComponentGun2::OnUpdateState(StateID state)
             gun->SetRotation(currentRecoil);
         } else {
             gun->SetRotation(m_originRotGun); // 반동 끝
+            Player::SetShotEndForTutorial();
         }
 
 

@@ -27,6 +27,11 @@ using namespace std;
 using namespace DirectX;
 
 float Player::m_cameraSensitivity = 0.05f;
+bool Player::m_hasDashedForTutorial = false;
+bool Player::m_hasShotForTutorial = false;
+bool Player::m_hasReloadedForTutorial = false;
+bool Player::m_hasAutoReloadedForTutorial = false;
+bool Player::m_hasUsedDeadEyeForTutorial = false;
 
 void Player::Initialize()
 {
@@ -64,6 +69,12 @@ void Player::Initialize()
 
 	m_bulletUIpos = { 0.965f,0.85f };
 	m_bulletInterval = 0.03f;
+
+	m_hasDashedForTutorial = false;
+	m_hasShotForTutorial = false;
+	m_hasReloadedForTutorial = false;
+	m_hasAutoReloadedForTutorial = false;
+	m_hasUsedDeadEyeForTutorial = false;
 
 	SetAction(Action::All, true);
 }
@@ -168,23 +179,26 @@ void Player::TutorialStep() const
 	switch (GameManager::GetInstance().GetTutorialStep())
 	{
 	case ETutorialStep::Dash:
-		if (m_isDashing) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Shoot);
+		if (m_hasDashedForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Shoot);
 		break;
 
 	case ETutorialStep::Shoot:
-		if (m_bulletCnt < m_MaxBullet) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Reload);
+		if (m_bulletCnt < m_MaxBullet-2 && m_hasShotForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Reload);
 		break;
 
 	case ETutorialStep::Reload:
-		if (m_bulletCnt == m_MaxBullet) GameManager::GetInstance().SetTutorialStep(ETutorialStep::AutoReload);
+		if (m_bulletCnt == m_MaxBullet && m_hasReloadedForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::AutoReload);
 		break;
 
 	case ETutorialStep::AutoReload:
-		if (m_bulletCnt == 0) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadEye);
+		if (m_hasAutoReloadedForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadEye);
 		break;
 
 	case ETutorialStep::DeadEye:
-		if (m_isDeadEyeActive) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
+		if (InputManager::GetInstance().GetKeyDown(KeyCode::MouseLeft)) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadTwo);
+
+	case ETutorialStep::DeadTwo:
+		if (m_hasUsedDeadEyeForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
 		break;
 	}
 }
@@ -289,6 +303,7 @@ void Player::PlayerDash(float deltaTime)
 	if (m_dashTimer <= 0.0f)
 	{
 		m_isDashing = false;
+		m_hasDashedForTutorial = true;
 		SceneBase::SetRadialBlurStrength(0.0f);
 		SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::RadialBlur, false);
 	}
@@ -371,6 +386,7 @@ void Player::PlayerReload(int cnt)
 					m_ControlState.CanShoot = true;
 					m_ControlState.CanReload = true;
 					m_ControlState.CanAutoReload = true;
+					m_hasReloadedForTutorial = true;
 
 					return true;
 				});
@@ -428,6 +444,7 @@ void Player::PlayerAutoReload(int cnt)
 				{					
 					m_ControlState.CanAutoReload = true;
 					m_ControlState.CanShoot = true;
+					m_hasAutoReloadedForTutorial = true;
 					//std::cout << "WaitEnableShoot" << std::endl;
 					return true;
 				}
@@ -554,6 +571,7 @@ void Player::PlayerDeadEyeEnd()
 
 	SoundManager::GetInstance().ChangeLowpass();
 
+	m_hasUsedDeadEyeForTutorial = true;
 	//TriggerLUT();
 }
 

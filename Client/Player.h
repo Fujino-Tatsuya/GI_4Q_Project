@@ -102,6 +102,7 @@ class Player : public GameObjectBase
 
 	ControlState m_ControlState = { false, };
 
+	
 public:
 	Player() = default;
 	~Player() = default;
@@ -120,6 +121,14 @@ public:
 
 	static void SetCameraSensitivity(float val);
 	static float GetCameraSensitivity();
+
+	static void SetShotEndForTutorial() { m_hasShotForTutorial = true; }
+
+	static bool m_hasDashedForTutorial;
+	static bool m_hasShotForTutorial;
+	static bool m_hasReloadedForTutorial;
+	static bool m_hasAutoReloadedForTutorial;
+	static bool m_hasUsedDeadEyeForTutorial;
 
 private:
 	void Initialize() override;
@@ -151,4 +160,5 @@ private:
 
 	void UpdateLutCrossfade(float deltaTime);
 	void TriggerLUT();
+
 };
