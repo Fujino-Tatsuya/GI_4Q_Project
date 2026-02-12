@@ -4,48 +4,36 @@
         {
             "RestartOnFinish": false,
             "billboardType": 1,
-            "blendState": 1,
-            "flipbookAutoPlay": true,
-            "flipbookColumns": 40,
-            "flipbookCurrentFrame": 7,
-            "flipbookDestroyOnFinish": false,
-            "flipbookEndFrame": 40,
-            "flipbookFPS": 8.0,
-            "flipbookLoop": true,
-            "flipbookPlaybackSpeed": 1.7999999523162842,
-            "flipbookPlaying": true,
-            "flipbookRandomStart": true,
-            "flipbookRows": 24,
-            "flipbookStartFrame": 240,
-            "imageScale": 0.25999999046325684,
-            "particleAmount": 23,
+            "blendState": 2,
+            "imageScale": 1.0,
+            "particleAmount": 37,
             "particleColor": [
-                0.30392158031463623,
-                0.30392158031463623,
-                0.30392158031463623,
-                0.96533203125
+                0.7058823108673096,
+                0.430694043636322,
+                0.12110726535320282,
+                0.07836532592773438
             ],
             "particleConstTime": -1.0,
             "particleEmissionColor": [
-                4.0,
-                4.0,
-                4.0,
+                2.0,
+                2.0,
+                2.0,
                 1.0
             ],
-            "particleTotalTime": 0.49000000953674316,
+            "particleTotalTime": 0.5099999904632568,
             "psShaderName": "PSParticle.hlsl",
             "rasterState": 2,
-            "spreadDistance": 1.2000000476837158,
+            "spreadDistance": 1.100000023841858,
             "spreadRadius": 0.0,
-            "textureFileName": "Gem.png",
-            "type": "FlipbookParticleComponent",
+            "textureFileName": "Smoke.png",
+            "type": "ParticleComponent",
             "uvOffset": [
-                0.17499999701976776,
-                0.25
+                0.0,
+                0.0
             ],
             "uvScale": [
-                0.02500000037252903,
-                0.0416666679084301
+                1.0,
+                1.0
             ],
             "vsShaderName": "VSParticle.hlsl"
         }
