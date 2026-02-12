@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "UI": [
         {
             "active": false,
@@ -611,10 +610,6 @@
         }
     ],
     "environmentMapFileName": "Skybox.dds",
-=======
-    "UI": [],
-    "environmentMapFileName": "Skybox0.dds",
->>>>>>> origin/JuneDev260212_hyoje
     "lightColor": [
         1.0,
         0.8566897511482239,

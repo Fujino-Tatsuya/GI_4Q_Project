@@ -186,7 +186,6 @@ void GameManager::OnSceneEnter(EScene type)
 		{
 			AddScore(GetCurrentDateTime(), m_currentScore);
 		}
-		sm.Sub_BGM_Shot(Config::Ending_BGM, 0.0f);
 		break;
 	}
 }
