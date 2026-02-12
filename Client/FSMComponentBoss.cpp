@@ -17,6 +17,11 @@ REGISTER_TYPE(FSMComponentBoss)
 using namespace std;
 using namespace DirectX;
 
+namespace
+{
+
+}
+
 void FSMComponentBoss::Initialize()
 {
 	m_model = GetOwner()->GetComponent<SkinnedModelComponent>();
