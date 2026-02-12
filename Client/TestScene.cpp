@@ -135,13 +135,13 @@ void TestScene::TutorialStep()
 void TestScene::CheckStageTrigger()
 {
 	const XMVECTOR& playerPos = m_player->GetWorldPosition();
-	if (m_stage2Trigger && m_stage2Trigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	if (m_stage2Trigger && m_stage2Trigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(XMVectorSetY(playerPos, 0.0f)))
 	{
 		GameManager::GetInstance().ChangeMainState(EMainState::Stage2);
 		m_stage2Trigger->SetAlive(false);
 		m_stage2Trigger = nullptr;
 	}
-	if (m_stageBossTrigger && m_stageBossTrigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(playerPos))
+	if (m_stageBossTrigger && m_stageBossTrigger->GetComponent<ColliderComponent>()->CheckCollisionPoint(XMVectorSetY(playerPos, 0.0f)))
 	{
 		GameManager::GetInstance().ChangeMainState(EMainState::StageBoss);
 		m_stageBossTrigger->SetAlive(false);
