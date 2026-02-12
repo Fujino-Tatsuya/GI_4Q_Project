@@ -37,11 +37,6 @@ void FSMComponentGun2::Fire()
 
 	if (current_state_ == EAttack)
 	{
-		//m_timer = 0.0f;
-		ChangeState(EAttack);
-	}
-	else
-	{
 		ChangeState(EAttack);
 	}
 }

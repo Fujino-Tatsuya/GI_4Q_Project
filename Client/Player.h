@@ -48,7 +48,8 @@ class Player : public GameObjectBase
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_deadEyeCoolDownTextureAndOffset = {};
 	float m_deadEyeCoolDownTimer = 5.0f;
-	const float m_deadEyeCoolDownDuration = 5.0f;
+	//const float m_deadEyeCoolDownDuration = 5.0f;
+	const float m_deadEyeCoolDownDuration = 1.0f;
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_deadEyeTextureAndOffset = {};
 	std::vector<std::pair<float, class Enemy*>> m_deadEyeTargets = {};

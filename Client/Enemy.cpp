@@ -147,7 +147,6 @@ void Enemy::MoveAlongPath(float dt)
 	float distanceSquared = XMVectorGetX(XMVector3LengthSq(toTarget));
 	if (distanceSquared < 0.1f * 0.1f)
 	{
-		m_fsm->ChangeState(FSMComponentEnemy::EIdle);
 		m_path.pop_front();
 	}
 	else

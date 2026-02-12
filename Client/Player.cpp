@@ -184,7 +184,44 @@ void Player::TutorialStep() const
 		break;
 
 	case ETutorialStep::DeadEye:
-		if (m_isDeadEyeActive) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
+		if (m_isDeadEyeActive)
+		{
+			GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
+		}
+		else
+		{
+			static float noEnemyTimer = 0.0f;
+			const float dt = TimeManager::GetInstance().GetDeltaTime();
+
+			bool hasEnemyNear = false;
+			const XMVECTOR myPos = GetPosition();
+			constexpr float DEAD_EYE_HELP_DISTANCE_SQ = 25.0f * 25.0f;
+			for (Enemy* enemy : Enemy::GetEnemies())
+			{
+				if (!enemy || !enemy->GetAlive()) continue;
+				if (enemy->m_state == Enemy::AIState::Dead) continue;
+				const XMVECTOR diff = XMVectorSubtract(enemy->GetPosition(), myPos);
+				if (XMVectorGetX(XMVector3LengthSq(diff)) <= DEAD_EYE_HELP_DISTANCE_SQ)
+				{
+					hasEnemyNear = true;
+					break;
+				}
+			}
+
+			if (hasEnemyNear)
+			{
+				noEnemyTimer = 0.0f;
+			}
+			else
+			{
+				noEnemyTimer += dt;
+				if (noEnemyTimer >= 2.0f)
+				{
+					GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
+					noEnemyTimer = 0.0f;
+				}
+			}
+		}
 		break;
 	}
 }
@@ -450,7 +487,6 @@ void Player::PlayerDeadEyeStart()
 	{
 		if (Enemy* enemy = dynamic_cast<Enemy*>(hit))
 		{
-			// ?��?��?�� ?��?��물이 ?��?���? ?��?��
 			float distance = 0.0f;
 			const XMVECTOR& origin = GetPosition();
 			const XMVECTOR& targetPos = XMVectorAdd(enemy->GetWorldPosition(), { 0.0f, 1.0f, 0.0f, 0.0f }); // ?�� 충심?�� y = 0.0f?��?�� ?���? ?���?
@@ -541,9 +577,12 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 
 void Player::PlayerDeadEyeEnd()
 {
-	if (m_gunObject) if (m_gunFSM) m_gunFSM->Fire();
-	
-	m_gunObject->SetRotation({ 0.0f, 90.0f, 0.0f, 0.0f });
+	if (m_gunObject)
+	{
+		m_gunObject->SetRotation({ 0.0f, 90.0f, 0.0f, 0.0f });
+		if (m_gunFSM) m_gunFSM->Fire();
+		
+	}
 
 	m_isDeadEyeActive = false;
 

@@ -40,6 +40,7 @@ public:
 		Dead
 	};
 	AIState m_state = AIState::Chase;
+	static const std::vector<Enemy*>& GetEnemies() { return s_enemies; }
 
 	Enemy() = default;
 	~Enemy() override = default;
