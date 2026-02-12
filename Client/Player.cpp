@@ -721,6 +721,34 @@ float Player::GetCameraSensitivity()
 	return m_cameraSensitivity;
 }
 
+int Player::GetBulletCount() const
+{
+	return m_bulletCnt;
+}
+
+int Player::GetMaxBullet() const
+{
+	return m_MaxBullet;
+}
+
+float Player::GetHPRatio() const
+{
+	if (m_maxPlayerHitPoint <= 0) return 0.0f;
+	float ratio = static_cast<float>(m_playerHitPoint) / static_cast<float>(m_maxPlayerHitPoint);
+	if (ratio < 0.0f) ratio = 0.0f;
+	if (ratio > 1.0f) ratio = 1.0f;
+	return ratio;
+}
+
+float Player::GetDeadEyeCooldownRatio() const
+{
+	if (m_deadEyeCoolDownDuration <= 0.0f) return 0.0f;
+	float ratio = m_deadEyeCoolDownTimer / m_deadEyeCoolDownDuration;
+	if (ratio < 0.0f) ratio = 0.0f;
+	if (ratio > 1.0f) ratio = 1.0f;
+	return ratio;
+}
+
 void Player::UpdateLutCrossfade(float deltaTime)
 {
 	if (!m_lutCrossfadeActive) return;

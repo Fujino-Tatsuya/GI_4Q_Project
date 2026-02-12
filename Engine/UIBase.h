@@ -58,6 +58,12 @@ public:
 	// --- Rect (Read Only) ---
 	const RECT& GetRect() const { return m_UIRect; }
 
+	// --- Source Rect (Texture Crop) ---
+	void SetSourceRect(const RECT& rect) { m_srcRect = rect; m_useSrcRect = true; UpdateRect(); }
+	void ClearSourceRect() { m_useSrcRect = false; UpdateRect(); }
+	bool HasSourceRect() const { return m_useSrcRect; }
+	const RECT* GetSourceRectPtr() const { return m_useSrcRect ? &m_srcRect : nullptr; }
+
 	// --- Texture & Offset ---
 	void SetTextureAndOffset(const std::string& idle);
 
@@ -111,5 +117,7 @@ protected:
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_textureIdle = {};
 	std::string m_pathIdle = "UI_IDLE.png";
+	bool m_useSrcRect = false;
+	RECT m_srcRect = {};
 
 };

@@ -61,6 +61,12 @@ void TestScene::Update()
 
 	CheckStageTrigger();
 	SetScoreUI(GameManager::GetInstance().GetScore());
+	if (m_player)
+	{
+		UpdateHPUI(m_player->GetHPRatio());
+		UpdateDeadEyeUI(m_player->GetDeadEyeCooldownRatio());
+		UpdateBulletUI(m_player->GetBulletCount());
+	}
 }
 
 void TestScene::Render()
@@ -235,6 +241,10 @@ void TestScene::BindUIActions()
 			else if (panel->GetName() == "100000") n100000 = panel;
 			else if (panel->GetName() == "combo") combo = panel;
 			else if (panel->GetName() == "IngameUI") IngameUI = panel;
+			else if (panel->GetName() == "HP_Bar") hpBar = panel;
+			else if (panel->GetName() == "HP_Deco") hpDeco = panel;
+			else if (panel->GetName() == "DeadEye") deadEye = panel;
+			else if (panel->GetName() == "bullet") bullet = panel;
 		}
 	}
 	if (optionPanel)
@@ -359,4 +369,57 @@ void TestScene::SetScoreUI(int score)
 			break;
 		}
 	}
+}
+
+void TestScene::UpdateBulletUI(int bulletCount)
+{
+	if (bullet)  bullet->SetTextureAndOffset("UI_Bullet0" + std::to_string(bulletCount) + ".png");
+}
+
+
+void TestScene::UpdateHPUI(float hpRatio)
+{
+	if (!hpBar)
+		return;
+
+	hpRatio = std::clamp(hpRatio, 0.0f, 1.0f);
+
+	const auto offset = hpBar->GetTextureOffset();
+	const float texWidth = offset.x * 2.0f;
+	const float texHeight = offset.y * 2.0f;
+	if (texWidth <= 0.0f || texHeight <= 0.0f)
+		return;
+
+	RECT src = {};
+	src.left = 0;
+	src.top = 0;
+	src.right = static_cast<LONG>(texWidth * hpRatio);
+	src.bottom = static_cast<LONG>(texHeight);
+
+	hpBar->SetSourceRect(src);
+
+	if (hpDeco)
+		hpDeco->ClearSourceRect();
+}
+
+void TestScene::UpdateDeadEyeUI(float ratio)
+{
+	if (!deadEye)
+		return;
+
+	ratio = std::clamp(ratio, 0.0f, 1.0f);
+
+	const auto offset = deadEye->GetTextureOffset();
+	const float texWidth = offset.x * 2.0f;
+	const float texHeight = offset.y * 2.0f;
+	if (texWidth <= 0.0f || texHeight <= 0.0f)
+		return;
+
+	RECT src = {};
+	src.left = 0;
+	src.top = 0;
+	src.right = static_cast<LONG>(texWidth * ratio);
+	src.bottom = static_cast<LONG>(texHeight);
+
+	deadEye->SetSourceRect(src);
 }

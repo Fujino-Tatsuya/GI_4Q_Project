@@ -111,6 +111,10 @@ public:
 	Player& operator=(Player&&) = default;
 
 	bool GetActiveDeadEye() const { return m_isDeadEyeActive; }
+	int GetBulletCount() const;
+	int GetMaxBullet() const;
+	float GetHPRatio() const;
+	float GetDeadEyeCooldownRatio() const;
 
 	void TakeHit();
 

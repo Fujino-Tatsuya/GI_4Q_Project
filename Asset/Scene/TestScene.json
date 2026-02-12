@@ -754,10 +754,10 @@
             "parentIdx": 24,
             "pathIdle": "UI_n9.png",
             "pos": [
-                0.07500000298023224,
+                0.06499999761581421,
                 0.0
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "type": "Panel"
         },
         {
@@ -773,10 +773,10 @@
             "parentIdx": 24,
             "pathIdle": "UI_n9.png",
             "pos": [
-                0.04500000178813934,
+                0.039000000804662704,
                 0.0
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "type": "Panel"
         },
         {
@@ -792,10 +792,10 @@
             "parentIdx": 24,
             "pathIdle": "UI_n9.png",
             "pos": [
-                0.014999999664723873,
+                0.013000000268220901,
                 0.0
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "type": "Panel"
         },
         {
@@ -811,10 +811,10 @@
             "parentIdx": 24,
             "pathIdle": "UI_n9.png",
             "pos": [
-                -0.014999999664723873,
+                -0.013000000268220901,
                 0.0
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "type": "Panel"
         },
         {
@@ -830,10 +830,10 @@
             "parentIdx": 24,
             "pathIdle": "UI_n9.png",
             "pos": [
-                -0.04500000178813934,
+                -0.039000000804662704,
                 0.0
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "type": "Panel"
         },
         {
@@ -849,14 +849,14 @@
             "parentIdx": 24,
             "pathIdle": "UI_n9.png",
             "pos": [
-                -0.07500000298023224,
+                -0.06499999761581421,
                 0.0
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "type": "Panel"
         },
         {
-            "active": false,
+            "active": true,
             "colorIdle": [
                 1.0,
                 1.0,
@@ -887,10 +887,10 @@
             "parentIdx": 24,
             "pathIdle": "UI_WGold.png",
             "pos": [
-                -0.10400000214576721,
+                -0.09399999678134918,
                 0.0020000000949949026
             ],
-            "scale": 0.7099999785423279,
+            "scale": 0.5,
             "type": "Panel"
         },
         {
@@ -906,10 +906,94 @@
             "parentIdx": 24,
             "pathIdle": "UI_Combo1.png",
             "pos": [
-                0.0949999988079071,
+                0.08500000089406967,
                 0.02500000037252903
             ],
-            "scale": 0.699999988079071,
+            "scale": 0.5,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "HP_Bar",
+            "parentIdx": 31,
+            "pathIdle": "UI_Gauge_HP.png",
+            "pos": [
+                0.20000000298023224,
+                0.8799999952316284
+            ],
+            "scale": 0.46000000834465027,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "bullet",
+            "parentIdx": 31,
+            "pathIdle": "UI_Bullet6.png",
+            "pos": [
+                0.9300000071525574,
+                0.8600000143051147
+            ],
+            "scale": 0.6200000047683716,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "fontName": "SuperCrawler72",
+            "name": "bullet",
+            "parentIdx": 35,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                0.0,
+                0.05999999865889549
+            ],
+            "scale": 0.30000001192092896,
+            "text": "6",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.0,
+            "name": "face",
+            "parentIdx": 31,
+            "pathIdle": "UI_face_default.png",
+            "pos": [
+                0.0,
+                0.0
+            ],
+            "scale": 0.10000000149011612,
             "type": "Panel"
         }
     ],

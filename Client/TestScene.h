@@ -1,6 +1,7 @@
 // TestScene.h의 시작
 #pragma once
 #include "SceneBase.h"
+#include <array>
 
 class TestScene : public SceneBase
 {
@@ -29,6 +30,10 @@ class TestScene : public SceneBase
 	class Panel* n10000 = nullptr;
 	class Panel* n100000 = nullptr;
 	class Panel* combo = nullptr;
+	class Panel* hpBar = nullptr;
+	class Panel* hpDeco = nullptr;
+	class Panel* deadEye = nullptr;
+	class Panel* bullet = nullptr;
 
 public:
 	TestScene() = default;
@@ -59,4 +64,7 @@ private:
 
 	void RenderSpawnPoints();
 	void SetScoreUI(int score);
+	void UpdateHPUI(float hpRatio);
+	void UpdateDeadEyeUI(float ratio);
+	void UpdateBulletUI(int bulletCount);
 };
