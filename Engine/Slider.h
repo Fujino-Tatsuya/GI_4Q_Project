@@ -1,4 +1,5 @@
 #pragma once
+#include "Text.h"
 
 class Slider : public UIBase
 {
@@ -15,6 +16,7 @@ public:
 	float& GetMin() { return m_min; }
 	float& GetMax() { return m_max; }
 
+	void AttachText(Text* textBox) { m_valueText = textBox; }
 
 	void SetHandleTexture(const std::string& tex);
 	void SetHandleTextures(const std::string& idle, const std::string& hover, const std::string& pressed);
@@ -43,6 +45,17 @@ public:
 	DirectX::XMVECTOR m_handleColorIdle = { 1.0f, 1.0f, 1.0f, 1.0f };
 	DirectX::XMVECTOR m_handleColorHover = { 0.9f, 0.9f, 0.9f, 1.0f };
 	DirectX::XMVECTOR m_handleColorPressed = { 0.7f, 0.7f, 0.7f, 1.0f };
+
+	Text* m_valueText = nullptr;
+
+	bool m_showValueText = true;
+	float m_valueTextScale = 0.21f;
+	DirectX::XMFLOAT2 m_valueTextOffset = { -2.0f, -16.0f };
+	DirectX::XMVECTOR m_valueTextColor = { powf(0.15686274f, 2.2f),
+	powf(0.07843137f, 2.2f),
+	powf(0.05490196f, 2.2f), 1 };
+
+	DirectX::XMFLOAT2 m_cachedHandleCenter = { 0.f, 0.f };
 
 private:
 	enum class HandleState

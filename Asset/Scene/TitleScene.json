@@ -243,7 +243,7 @@
             ],
             "depth": 0.0,
             "name": "Title_temp_img",
-            "parentIdx": 13,
+            "parentIdx": -1,
             "pathIdle": "UI_Title_temp_img.png",
             "pos": [
                 0.5,
@@ -301,12 +301,12 @@
             "depth": 0.30000001192092896,
             "name": "option",
             "parentIdx": -1,
-            "pathIdle": "UI__.png",
+            "pathIdle": "UI_OptionBG.png",
             "pos": [
                 0.5,
                 0.5
             ],
-            "scale": 1.0,
+            "scale": 0.6700000166893005,
             "type": "Panel"
         },
         {
@@ -317,7 +317,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.30000001192092896,
+            "depth": 0.8999999761581421,
             "handleColorHover": [
                 0.8999999761581421,
                 0.8999999761581421,
@@ -339,21 +339,33 @@
             "handlePathHover": "UI_Slider.png",
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
-            "handleScalePressed": 1.0,
+            "handleScaleHover": 0.7400000095367432,
+            "handleScaleIdle": 0.7400000095367432,
+            "handleScalePressed": 0.7400000095367432,
             "max": 1.0,
             "min": 0.0,
             "name": "SFX",
             "parentIdx": 10,
             "pathIdle": "",
             "pos": [
-                0.03999999910593033,
-                -0.23000000417232513
+                -0.1599999964237213,
+                0.05999999865889549
             ],
-            "scale": 0.699999988079071,
+            "scale": 0.550000011920929,
+            "showValueText": true,
             "type": "Slider",
-            "value": 0.3837803304195404
+            "value": 1.0,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -10.0
+            ],
+            "valueTextScale": 0.12999999523162842
         },
         {
             "actionKey": "close_option",
@@ -390,10 +402,10 @@
             "pathIdle": "",
             "pathPressed": "UI_Button_hover.png",
             "pos": [
-                0.25,
-                -0.3400000035762787
+                0.0,
+                0.36000001430511475
             ],
-            "scale": 0.20999999344348907,
+            "scale": 0.6600000262260437,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
@@ -405,7 +417,7 @@
                 1.0,
                 1.0,
                 1.0,
-                1.0
+                0.0
             ],
             "depth": 0.0,
             "name": "titles",
@@ -486,13 +498,13 @@
             "depth": 0.3100000023841858,
             "name": "close_credit",
             "parentIdx": 14,
-            "pathClicked": "UI_Clicked.png",
-            "pathHover": "UI_Hovered.png",
-            "pathIdle": "UI_IDLE.png",
-            "pathPressed": "UI_Pressed.png",
+            "pathClicked": "UI_Button_hover.png",
+            "pathHover": "UI_Button_hover.png",
+            "pathIdle": "UI_Button.png",
+            "pathPressed": "UI_Button_hover.png",
             "pos": [
                 0.38999998569488525,
-                -0.38999998569488525
+                -0.4099999964237213
             ],
             "scale": 0.38999998569488525,
             "scaleClicked": 1.0,
@@ -508,35 +520,16 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.28999999165534973,
-            "name": "optionBG",
-            "parentIdx": 10,
-            "pathIdle": "UI_OptionBG.png",
-            "pos": [
-                0.0,
-                0.0
-            ],
-            "scale": 0.6700000166893005,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
             "depth": 0.3799999952316284,
             "fontName": "SuperCrawler72",
             "name": "SFX_Volume",
             "parentIdx": 11,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.33000001311302185,
-                -0.019999999552965164
+                -0.14499999582767487,
+                -0.07999999821186066
             ],
-            "scale": 0.36000001430511475,
+            "scale": 0.33000001311302185,
             "text": "SFX",
             "textColor": [
                 1.0,
@@ -560,11 +553,11 @@
             "parentIdx": 1,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                0.0,
-                0.0
+                -0.05000000074505806,
+                -0.02500000037252903
             ],
-            "scale": 0.30000001192092896,
-            "text": "start_game",
+            "scale": 0.44999998807907104,
+            "text": "Start",
             "textColor": [
                 1.0,
                 1.0,
@@ -587,11 +580,11 @@
             "parentIdx": 4,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                0.0,
-                0.0
+                -0.05000000074505806,
+                -0.02500000037252903
             ],
-            "scale": 0.30000001192092896,
-            "text": "open_option",
+            "scale": 0.44999998807907104,
+            "text": "Option",
             "textColor": [
                 1.0,
                 1.0,
@@ -614,11 +607,11 @@
             "parentIdx": 5,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                0.0,
-                0.0
+                -0.05000000074505806,
+                -0.02500000037252903
             ],
-            "scale": 0.30000001192092896,
-            "text": "open_credit",
+            "scale": 0.44999998807907104,
+            "text": "Credit",
             "textColor": [
                 1.0,
                 1.0,
@@ -641,11 +634,11 @@
             "parentIdx": 6,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                0.0,
-                0.0
+                -0.05000000074505806,
+                -0.02500000037252903
             ],
-            "scale": 0.30000001192092896,
-            "text": "quit_game",
+            "scale": 0.44999998807907104,
+            "text": "Quit",
             "textColor": [
                 1.0,
                 1.0,
@@ -665,13 +658,13 @@
             "depth": 0.3199999928474426,
             "fontName": "SuperCrawler72",
             "name": "BGM",
-            "parentIdx": 24,
+            "parentIdx": 23,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.33000001311302185,
-                -0.019999999552965164
+                -0.14499999582767487,
+                -0.07999999821186066
             ],
-            "scale": 0.36000001430511475,
+            "scale": 0.3100000023841858,
             "text": "BGM",
             "textColor": [
                 1.0,
@@ -690,7 +683,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.30000001192092896,
+            "depth": 0.8999999761581421,
             "handleColorHover": [
                 0.8999999761581421,
                 0.8999999761581421,
@@ -712,21 +705,33 @@
             "handlePathHover": "UI_Slider.png",
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
-            "handleScalePressed": 1.0,
+            "handleScaleHover": 0.7400000095367432,
+            "handleScaleIdle": 0.7400000095367432,
+            "handleScalePressed": 0.7400000095367432,
             "max": 1.0,
             "min": 0.0,
             "name": "BGM",
             "parentIdx": 10,
             "pathIdle": "UI_Slider_box.png",
             "pos": [
-                0.03999999910593033,
+                -0.1599999964237213,
                 -0.05999999865889549
             ],
-            "scale": 0.699999988079071,
+            "scale": 0.550000011920929,
+            "showValueText": true,
             "type": "Slider",
-            "value": 0.22030651569366455
+            "value": 1.0,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -10.0
+            ],
+            "valueTextScale": 0.12999999523162842
         },
         {
             "active": true,
@@ -734,50 +739,23 @@
                 1.0,
                 1.0,
                 1.0,
-                1.0
-            ],
-            "depth": 0.33000001311302185,
-            "fontName": "SuperCrawler72",
-            "name": "Options1",
-            "parentIdx": 10,
-            "pathIdle": "UI_IDLE.png",
-            "pos": [
-                -0.05999999865889549,
-                -0.4000000059604645
-            ],
-            "scale": 0.5099999904632568,
-            "text": "Options",
-            "textColor": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "type": "Text"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                0.0,
-                0.0,
-                0.0,
                 1.0
             ],
             "depth": 0.3100000023841858,
             "fontName": "SuperCrawler72",
-            "name": "Options2",
+            "name": "Options",
             "parentIdx": 10,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.09000000357627869,
-                -0.4099999964237213
+                -0.12999999523162842,
+                -0.4000000059604645
             ],
-            "scale": 0.6499999761581421,
+            "scale": 0.9200000166893005,
             "text": "Options",
             "textColor": [
-                0.0,
-                0.0,
-                0.0,
+                1.0,
+                1.0,
+                1.0,
                 1.0
             ],
             "type": "Text"
@@ -791,7 +769,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.3100000023841858,
+            "depth": 0.8999999761581421,
             "handleColorHover": [
                 0.8999999761581421,
                 0.8999999761581421,
@@ -813,21 +791,33 @@
             "handlePathHover": "UI_Slider.png",
             "handlePathIdle": "UI_Slider.png",
             "handlePathPressed": "UI_Slider.png",
-            "handleScaleHover": 1.0,
-            "handleScaleIdle": 1.0,
-            "handleScalePressed": 1.0,
+            "handleScaleHover": 0.7400000095367432,
+            "handleScaleIdle": 0.7400000095367432,
+            "handleScalePressed": 0.7400000095367432,
             "max": 30.0,
-            "min": 0.0,
+            "min": 5.0,
             "name": "Sensitivity",
             "parentIdx": 10,
             "pathIdle": "UI_Slider_box.png",
             "pos": [
-                0.03999999910593033,
-                0.14000000059604645
+                0.1599999964237213,
+                -0.07000000029802322
             ],
-            "scale": 0.699999988079071,
+            "scale": 0.550000011920929,
+            "showValueText": true,
             "type": "Slider",
-            "value": 8.984674453735352
+            "value": 9.266292572021484,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -10.0
+            ],
+            "valueTextScale": 0.12999999523162842
         },
         {
             "active": true,
@@ -840,14 +830,191 @@
             "depth": 0.3199999928474426,
             "fontName": "SuperCrawler72",
             "name": "Sensitivity",
+            "parentIdx": 25,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.14499999582767487,
+                -0.07999999821186066
+            ],
+            "scale": 0.33000001311302185,
+            "text": "Sensitivity",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "handleColorHover": [
+                0.8999999761581421,
+                0.8999999761581421,
+                0.8999999761581421,
+                1.0
+            ],
+            "handleColorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "handleColorPressed": [
+                0.699999988079071,
+                0.699999988079071,
+                0.699999988079071,
+                1.0
+            ],
+            "handlePathHover": "UI_Slider.png",
+            "handlePathIdle": "UI_Slider.png",
+            "handlePathPressed": "UI_Slider.png",
+            "handleScaleHover": 0.7400000095367432,
+            "handleScaleIdle": 0.7400000095367432,
+            "handleScalePressed": 0.7400000095367432,
+            "max": 1.0,
+            "min": 0.0,
+            "name": "Master",
+            "parentIdx": 10,
+            "pathIdle": "UI_Slider_box.png",
+            "pos": [
+                -0.1599999964237213,
+                -0.18000000715255737
+            ],
+            "scale": 0.5600000023841858,
+            "showValueText": true,
+            "type": "Slider",
+            "value": 1.0,
+            "valueTextColor": [
+                0.01698804832994938,
+                0.003697238629683852,
+                0.0016869150567799807,
+                1.0
+            ],
+            "valueTextOffset": [
+                -2.0,
+                -10.0
+            ],
+            "valueTextScale": 0.12999999523162842
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.33000001311302185,
+            "fontName": "SuperCrawler72",
+            "name": "Master_Text",
             "parentIdx": 27,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.36000001430511475,
+                -0.14499999582767487,
+                -0.08500000089406967
+            ],
+            "scale": 0.3199999928474426,
+            "text": "Master",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.41999998688697815,
+            "fontName": "Paperlogy",
+            "name": "Close_Text",
+            "parentIdx": 12,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.03999999910593033,
+                -0.019999999552965164
+            ],
+            "scale": 0.36000001430511475,
+            "text": "Close",
+            "textColor": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "type": "Text"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.5799999833106995,
+            "name": "Key",
+            "parentIdx": 10,
+            "pathIdle": "UI_Key.png",
+            "pos": [
+                0.0,
+                0.20000000298023224
+            ],
+            "scale": 0.5600000023841858,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.3499999940395355,
+            "name": "New Panel",
+            "parentIdx": 10,
+            "pathIdle": "UI_Line.png",
+            "pos": [
+                0.0,
+                -0.07999999821186066
+            ],
+            "scale": 0.6000000238418579,
+            "type": "Panel"
+        },
+        {
+            "active": true,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.8999999761581421,
+            "fontName": "Paperlogy",
+            "name": "CreditCloseText",
+            "parentIdx": 16,
+            "pathIdle": "UI_IDLE.png",
+            "pos": [
+                -0.02500000037252903,
                 -0.009999999776482582
             ],
-            "scale": 0.2800000011920929,
-            "text": "Sensitivity",
+            "scale": 0.20999999344348907,
+            "text": "Close",
             "textColor": [
                 1.0,
                 1.0,

@@ -87,7 +87,7 @@ void Slider::RenderUI(Renderer& renderer)
 	auto barPos = GetWorldPosition();
 	auto barOff = m_textureIdle.second;
 	auto scale = GetFinalScale();
-	auto color = m_colorIdle;
+	auto color = GetFinalColor(m_colorIdle);
 	auto depth = m_depth;
 
 	renderer.UI_RENDER_FUNCTIONS().emplace_back(
@@ -98,18 +98,15 @@ void Slider::RenderUI(Renderer& renderer)
 			);
 		});
 
+	UpdateHandleRect();
+
+	DirectX::XMFLOAT2 handlePos = m_cachedHandleCenter;
+
 	float range = m_max - m_min;
 	float t = (range != 0.0f) ? (m_rendervalue - m_min) / range : 0.0f;
 	t = std::clamp(t, 0.0f, 1.0f);
 
 	auto pos = GetWorldPosition();
-
-	DirectX::XMFLOAT2 handlePos =
-	{
-		(m_handleRect.left + m_handleRect.right) * 0.5f,
-		(m_handleRect.top + m_handleRect.bottom) * 0.5f
-	};
-
 
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> currentTexPair;
 	float currentHandleScaleMult = 1.0f;
@@ -155,6 +152,50 @@ void Slider::RenderUI(Renderer& renderer)
 				depth + 0.01f
 			);
 		});
+
+	if (m_showValueText)
+	{
+		int percent = (int)std::round((m_rendervalue / m_max) * 100.0f);
+		std::wstring valueText = std::to_wstring(percent);
+
+		DirectX::XMFLOAT2 textPos =
+		{
+			handlePos.x + m_valueTextOffset.x,
+			handlePos.y + m_valueTextOffset.y
+		};
+
+		auto textColor = m_valueTextColor;
+		float textScale = m_valueTextScale;
+		
+		auto* font = ResourceManager::GetInstance().GetSpriteFont(L"Paperlogy");
+
+		DirectX::XMFLOAT2 finalTextPos = textPos;
+
+		if (font)
+		{
+			DirectX::XMVECTOR sizeVec = font->MeasureString(valueText.c_str());
+			DirectX::XMFLOAT2 size;
+			DirectX::XMStoreFloat2(&size, sizeVec);
+
+			float scaledWidth = size.x * textScale;
+			float scaledHeight = size.y * textScale;
+
+			finalTextPos.x -= scaledWidth * 0.5f;
+		}
+
+		renderer.UI_RENDER_FUNCTIONS().emplace_back(
+			[valueText, finalTextPos, depth, textColor, textScale]()
+			{
+				Renderer::GetInstance().RenderTextScreenPosition(
+					valueText.c_str(),
+					finalTextPos,
+					depth + 0.1f,
+					textColor,
+					textScale,
+					L"Paperlogy"
+				);
+			});
+	}
 }
 
 void Slider::UpdateRect()
@@ -177,15 +218,14 @@ void Slider::UpdateRect()
 
 void Slider::UpdateHandleRect()
 {
-	float t = (m_rendervalue - m_min) / (m_max - m_min);
+	float denom = (m_max - m_min);
+	float t = (fabs(denom) > 0.0001f) ? (m_rendervalue - m_min) / denom : 0.0f;
 	t = std::clamp(t, 0.0f, 1.0f);
 
 	float barLeft = m_UIRect.left - m_textureIdle.second.x * 0.5f * GetFinalScale();
 	float barRight = m_UIRect.right + m_textureIdle.second.x * 0.5f * GetFinalScale();
 
-
 	float scale = GetFinalScale() * m_handleScaleIdle;
-
 	float halfW = m_handleTexIdle.second.x * 0.5f * scale;
 	float halfH = m_handleTexIdle.second.y * 0.5f * scale;
 
@@ -202,6 +242,8 @@ void Slider::UpdateHandleRect()
 		(LONG)(handleX + halfW),
 		(LONG)(handleY + halfH)
 	};
+
+	m_cachedHandleCenter = { handleX, handleY };
 }
 
 bool Slider::CheckInput(const POINT& mousePos, bool isMousePressed)
@@ -283,6 +325,17 @@ nlohmann::json Slider::Serialize() const
 	if (!m_onValueChangedActionKey.empty())
 		data["actionKey"] = m_onValueChangedActionKey;
 
+	data["showValueText"] = m_showValueText;
+	data["valueTextScale"] = m_valueTextScale;
+	data["valueTextOffset"] = { m_valueTextOffset.x, m_valueTextOffset.y };
+
+	DirectX::XMFLOAT4 tc;
+	DirectX::XMStoreFloat4(&tc, m_valueTextColor);
+	data["valueTextColor"] = { tc.x, tc.y, tc.z, tc.w };
+
+	if (!m_onValueChangedActionKey.empty())
+		data["actionKey"] = m_onValueChangedActionKey;
+
 	return data;
 }
 
@@ -330,6 +383,17 @@ void Slider::Deserialize(const nlohmann::json& jsonData)
 	ReadColor("handleColorIdle", m_handleColorIdle);
 	ReadColor("handleColorHover", m_handleColorHover);
 	ReadColor("handleColorPressed", m_handleColorPressed);
+
+	m_showValueText = jsonData.value("showValueText", m_showValueText);
+	m_valueTextScale = jsonData.value("valueTextScale", m_valueTextScale);
+
+	if (jsonData.contains("valueTextOffset"))
+	{
+		m_valueTextOffset.x = jsonData["valueTextOffset"][0];
+		m_valueTextOffset.y = jsonData["valueTextOffset"][1];
+	}
+
+	ReadColor("valueTextColor", m_valueTextColor);
 
 	if (jsonData.contains("actionKey")) {m_onValueChangedActionKey = jsonData["actionKey"];	}
 }

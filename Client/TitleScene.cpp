@@ -25,54 +25,17 @@ void TitleScene::Initialize()
 
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
+	for (const auto& uiPtr : m_UIList) {
+		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
+			if (panel->GetName() == "titles") Titles = panel;
+		}
+	}
+
 	if (optionPanel) optionPanel->SetActive(false);
 	if (creditPanel) creditPanel->SetActive(false);
-	if (Titles) Titles->SetActive(true);
+	if (Titles) Titles->SetActive(false);
 	if (Title_letterrbox_down) Title_letterrbox_down->SetActive(true);
 	if (Title_letterrbox_up) Title_letterrbox_up->SetActive(true);
-
-
-	//float buttonX = 0.85f;
-
-	//Panel* logo = CreateUI<Panel>();
-	//logo->SetTextureAndOffset("UI_logo.png");
-	//logo->SetLocalPosition({ 0.5f, 0.3f });
-	//logo->SetScale(0.5f);
-
-	//Panel* OptionPanel = CreateUI<Panel>();
-	//OptionPanel->SetTextureAndOffset("UI_Panel.png");
-	//OptionPanel->SetLocalPosition({ 0.5f, 0.5f });
-	//OptionPanel->SetScale(1);
-
-	//Button* OptionClose = CreateUI<Button>();
-	//OptionClose->SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
-	//OptionClose->SetParent(OptionPanel);
-	//OptionClose->SetLocalPosition({ 0.0f, 0.0f });
-	//OptionClose->SetOnClick([OptionPanel]() { OptionPanel->SetActive(false); });
-	//OptionClose->SetScale(0.3f);
-
-	//Button* startButton = CreateUI<Button>();
-	//startButton->SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
-	//startButton->SetLocalPosition({ buttonX, 0.3f });
-	//startButton->SetOnClick([]() { SceneManager::GetInstance().ChangeScene("TaehyeonTestScene"); });	//fade in 로직 추가 및 fade 종료시 Scene 종료로 변경
-	//startButton->SetScale(0.3f);
-
-	//Button* optionButton = CreateUI<Button>();
-	//optionButton->SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
-	//optionButton->SetLocalPosition({ buttonX, 0.5f });
-	//optionButton->SetOnClick([OptionPanel]() { OptionPanel->SetActive(true); });
-	//optionButton->SetScale(0.3f);
-
-	//Button* creditbutton = CreateUI<Button>();
-	//creditbutton->SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
-	//creditbutton->SetLocalPosition({ buttonX, 0.7f });
-	//creditbutton->SetScale(0.3f);
-
-	//Button* exitbutton = CreateUI<Button>();
-	//exitbutton->SetTextureAndOffset("UI_IDLE.png", "UI_Hovered.png", "UI_Pressed.png", "UI_Clicked.png");
-	//exitbutton->SetLocalPosition({ buttonX, 0.9f });
-	//exitbutton->SetScale(0.3f);
-
 }
 
 void TitleScene::Update()
@@ -81,7 +44,24 @@ void TitleScene::Update()
 
 	float dt = TimeManager::GetInstance().GetDeltaTime();
 
-	MovingPanel(dt);
+	m_startTimeForMove += dt;
+
+	if (m_startTimeForMove > 0)
+	{
+		MovingPanel(dt);
+	}
+	
+	if (m_PanelAnimationEnd)
+	{
+		Titles->UpdateFade(dt);
+	}
+	
+}
+
+void TitleScene::Finalize()
+{
+	m_startTimeForMove = -1.0f;
+	m_PanelAnimationEnd = false;
 }
 
 void TitleScene::BindUIActions()
@@ -143,7 +123,12 @@ void TitleScene::BindUIActions()
 		else if (auto* slider = dynamic_cast<Slider*>(uiPtr.get())) {
 			std::string key = slider->GetActionKey();
 
-			if (key == "BGM_Volume") {
+			if (key == "Master_Volume") {
+				slider->AddListener([](float val) {
+					SoundManager::GetInstance().SetVolume_Main(val);
+					});
+			}
+			else if (key == "BGM_Volume") {
 				slider->AddListener([](float val) {
 					SoundManager::GetInstance().SetVolume_BGM(val);
 					});
@@ -168,6 +153,10 @@ void TitleScene::MovingPanel(float dt)
 {
 	if (!Title_letterrbox_down || !Title_letterrbox_up) return;
 
+	if (m_PanelAnimationEnd) return;
+
+	if (m_time4MovingPanel >= kTime4MovingPanel) return;
+	
 	if (!m_letterboxInit)
 	{
 		m_letterboxUpStartPos = Title_letterrbox_up->GetLocalPosition();
@@ -177,7 +166,6 @@ void TitleScene::MovingPanel(float dt)
 		m_letterboxInit = true;
 	}
 
-	if (m_time4MovingPanel >= kTime4MovingPanel) return;
 
 	m_time4MovingPanel += dt;
 	if (m_time4MovingPanel > kTime4MovingPanel) m_time4MovingPanel = kTime4MovingPanel;
@@ -193,4 +181,14 @@ void TitleScene::MovingPanel(float dt)
 	Title_letterrbox_up->SetDepth(Lerp(m_letterboxUpStartDepth, targetDepth, t));
 	Title_letterrbox_down->SetDepth(Lerp(m_letterboxDownStartDepth, targetDepth, t));
 
+	if (t > 0.99f && !m_PanelAnimationEnd)
+	{
+		if (Titles)
+		{
+			Titles->StartFadeIn(1.5f);
+			Titles->SetActive(true);
+		}
+
+		m_PanelAnimationEnd = true;
+	}
 }

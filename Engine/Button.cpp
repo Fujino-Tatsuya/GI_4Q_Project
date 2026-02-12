@@ -73,7 +73,7 @@ void Button::RenderUI(class Renderer& renderer)
 	auto scale_hoverd = GetFinalScale() * m_scaleHover  ;
 	auto scale_pressed = GetFinalScale() *m_scalePressed;
 	auto scale_clicked = GetFinalScale() *m_scaleClicked;
-	auto color_idle	   = m_colorIdle;
+	auto color_idle = GetFinalColor(m_colorIdle);
 	auto color_hoverd  =  m_colorHover ;
 	auto color_pressed =  m_colorPressed;
 	auto color_clicked =  m_colorClicked;

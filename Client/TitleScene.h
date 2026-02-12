@@ -25,9 +25,14 @@ class TitleScene : public SceneBase
 	const DirectX::XMFLOAT2 downTargetPos = { 0.5f, 1.39f };
 	const float targetDepth = 0.0f;
 
+	float m_startTimeForMove = -2.0f;
+	bool m_PanelAnimationEnd = false;
+
 private:
 	void Initialize() override;
 	void Update() override;
+	void Finalize() override;
+
 	void BindUIActions() override;
 	
 	void MovingPanel(float dt);

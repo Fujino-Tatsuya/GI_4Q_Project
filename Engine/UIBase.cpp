@@ -100,3 +100,48 @@ UIBase* UIBase::CreateFactory(const std::string& typeName)
 
 	return nullptr;
 }
+
+void UIBase::StartFadeIn(float duration)
+{
+	m_useFade = true;
+	m_fadeIn = true;
+	m_fadeTimer = 0.0f;
+	m_fadeDuration = duration;
+	m_alpha = 0.0f;
+	SetActive(true);
+}
+
+void UIBase::UpdateFade(float dt)
+{
+	if (!m_useFade) return;
+
+	m_fadeTimer += dt;
+	float t = std::clamp(m_fadeTimer / m_fadeDuration, 0.0f, 1.0f);
+
+	if (m_fadeIn)
+		m_alpha = t;
+	else
+		m_alpha = 1.0f - t;
+
+	if (t >= 1.0f)
+		m_useFade = false;
+}
+
+float UIBase::GetFinalAlpha() const
+{
+	float parentAlpha = 1.0f;
+	if (m_parent)
+		parentAlpha = m_parent->GetFinalAlpha();
+
+	return m_alpha * parentAlpha;
+}
+
+DirectX::XMVECTOR UIBase::GetFinalColor(const DirectX::XMVECTOR& baseColor) const
+{
+	DirectX::XMFLOAT4 c;
+	XMStoreFloat4(&c, baseColor);
+
+	c.w *= GetFinalAlpha();
+
+	return XMLoadFloat4(&c);
+}

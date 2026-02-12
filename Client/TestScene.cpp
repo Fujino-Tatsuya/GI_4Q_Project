@@ -58,24 +58,6 @@ void TestScene::Update()
 	TutorialStep();
 
 	CheckStageTrigger();
-
-	auto& sm = SoundManager::GetInstance();
-
-	float mastervolume = sm.GetVolume_Main();
-	float bgmvolume = sm.GetVolume_BGM();
-	float sfxvolume = sm.GetVolume_SFX();
-	float sensitivity = m_player->GetCameraSensitivity();
-
-	string masterstr = format("{:.2f}", mastervolume);
-	string bgmstr = format("{:.2f}", mastervolume);
-	string sfxstr = format("{:.2f}", mastervolume);
-	string sensestr = format("{:.2f}", mastervolume);
-
-	
-	//m_curMasterVolume->SetText(masterstr);
-	//m_curBGMVolume->SetText(bgmstr);
-	//m_curSFXVolume->SetText(sfxstr);
-	//m_curSensitivity->SetText(sensestr);
 }
 
 void TestScene::Render()
