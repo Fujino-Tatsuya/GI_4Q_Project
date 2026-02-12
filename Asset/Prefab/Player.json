@@ -41,7 +41,7 @@
                             ],
                             "modelAndMaterialFileNames": [
                                 {
-                                    "materialFileName": "",
+                                    "materialFileName": "gun_low_gun",
                                     "modelFileName": "gb.fbx"
                                 }
                             ],
@@ -111,7 +111,7 @@
                             ],
                             "modelAndMaterialFileNames": [
                                 {
-                                    "materialFileName": "",
+                                    "materialFileName": "gun_low_gun",
                                     "modelFileName": "gc.fbx"
                                 }
                             ],
@@ -181,7 +181,7 @@
                             ],
                             "modelAndMaterialFileNames": [
                                 {
-                                    "materialFileName": "",
+                                    "materialFileName": "gun_low_gun",
                                     "modelFileName": "gf.fbx"
                                 }
                             ],
