@@ -31,11 +31,7 @@ int main()
 
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	sceneManager.Initialize();
-<<<<<<< HEAD
 	sceneManager.ChangeScene("TestScene");
-=======
-	sceneManager.ChangeScene("HyojeTestScene");
->>>>>>> origin/Hyoje260212
 
 	RNG::GetInstance().Initialize();
 
