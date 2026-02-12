@@ -7,6 +7,7 @@
 #include "SceneBase.h"
 #include "Player.h"
 #include "TimeManager.h"
+#include "RNG.h"
 
 REGISTER_TYPE(Boss)
 
@@ -67,7 +68,11 @@ void Boss::Update()
 		if (distSq <= m_attackRangeSquare)
 		{
 			m_state = AIState::Attack;
-			if (m_fsm) m_fsm->ChangeState(FSMComponentBoss::EAttack);
+			if (m_fsm)
+			{
+				if (RANDOM(0, 1)) m_fsm->ChangeState(FSMComponentBoss::EAttack);
+				else m_fsm->ChangeState(FSMComponentBoss::EJump);
+			}
 		}
 		else
 		{

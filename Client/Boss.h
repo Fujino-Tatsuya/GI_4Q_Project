@@ -5,14 +5,14 @@ class Boss : public GameObjectBase
 {
 	class Player* m_player = nullptr;
 
-	float m_moveSpeed = 4.0f;
+	float m_moveSpeed = 5.0f;
 
 	class FSMComponentBoss* m_fsm = nullptr;
 
 	float m_deathTimer = 0.0f;
 	const float m_deathDuration = 2.0f;
 
-	bool m_hasFoundPlayer = true;
+	bool m_hasFoundPlayer = false;
 	const float m_attackRangeSquare = 5.0f;
 
 	std::string m_triggerColliderName;
