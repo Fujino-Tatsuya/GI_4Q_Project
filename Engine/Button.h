@@ -15,6 +15,7 @@ public:
 
 private:
 	ButtonState m_ButtonState = ButtonState::Idle;
+	ButtonState m_prevState = ButtonState::Idle;
 
 	// --- [텍스처 리소스] ---
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_textureHoverd = {};

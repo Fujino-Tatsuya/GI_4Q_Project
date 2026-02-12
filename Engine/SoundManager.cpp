@@ -95,6 +95,11 @@ void SoundManager::Initialize()
 		m_CurrentTrackName = "";
 		m_CurrentNodeDataName = "";
 
+
+#ifdef _DEBUG
+		SoundManager::GetInstance().Main_BGM_Shot(Config::Tutori_BGM, 0.0f);
+#endif
+
 		m_CoreSystem->update();
 	}
 }

@@ -40,6 +40,7 @@ void TestScene::Initialize()
 	m_tutorialBox = GetRootGameObject("Box");
 	m_stage2Trigger = GetRootGameObject("Stage2Trigger");
 	m_stageBossTrigger = GetRootGameObject("StageBossTrigger");
+
 }
 
 void TestScene::Update()

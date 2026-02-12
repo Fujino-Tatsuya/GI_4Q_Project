@@ -4,6 +4,7 @@
 
 #include "ResourceManager.h"
 #include "Renderer.h"
+#include "SoundManager.h"
 
 using namespace DirectX;
 
@@ -151,6 +152,24 @@ bool Button::CheckInput(const POINT& mousePosition, bool isMousePressed, bool is
 		return false;
 	}
 
+	if (m_ButtonState != m_prevState)
+	{
+		auto& sm = SoundManager::GetInstance();
+
+		switch (m_ButtonState)
+		{
+		case ButtonState::Hoverd:
+			sm.UI_Shot("3. UI_ButtonMouseover");
+			break;
+
+		case ButtonState::Clicked:
+			if(this->GetName() != "start_game")
+			sm.UI_Shot("2. UI_ButtonClick");
+			break;
+		}
+	}
+		
+	m_prevState = m_ButtonState;
 	return true;
 }
 

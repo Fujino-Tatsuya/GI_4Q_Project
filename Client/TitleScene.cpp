@@ -114,7 +114,7 @@ void TitleScene::BindUIActions()
 			std::string key = btn->GetActionKey();
 
 			 if (key == "start_game") {
-				btn->SetOnClick([this]() { if (m_isPanel) return; SceneManager::GetInstance().ChangeScene("TestScene");  });
+				 btn->SetOnClick([this]() { SoundManager::GetInstance().UI_Shot("1. UI_GameStart"); if(m_isPanel) return; SceneManager::GetInstance().ChangeScene("TestScene");  });
 			} else if (key == "quit_game") {
 				btn->SetOnClick([this]() {
 					if (m_isPanel) return;
