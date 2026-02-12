@@ -224,6 +224,14 @@ void TestScene::BindUIActions()
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
+			else if (panel->GetName() == "1") n1 = panel;
+			else if (panel->GetName() == "10") n10 = panel;
+			else if (panel->GetName() == "100") n100 = panel;
+			else if (panel->GetName() == "1000") n1000 = panel;
+			else if (panel->GetName() == "10000") n10000 = panel;
+			else if (panel->GetName() == "100000") n100000 = panel;
+			else if (panel->GetName() == "combo") combo = panel;
+
 		}
 	}
 	if (optionPanel)

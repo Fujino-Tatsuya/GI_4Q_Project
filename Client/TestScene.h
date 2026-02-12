@@ -20,6 +20,15 @@ class TestScene : public SceneBase
 	class Text* m_curSFXVolume = nullptr;
 	class Text* m_curSensitivity = nullptr;
 
+
+	class Panel* n1 = nullptr;
+	class Panel* n10 = nullptr;
+	class Panel* n100 = nullptr;
+	class Panel* n1000 = nullptr;
+	class Panel* n10000 = nullptr;
+	class Panel* n100000 = nullptr;
+	class Panel* combo = nullptr;
+
 public:
 	TestScene() = default;
 	~TestScene() override = default;
