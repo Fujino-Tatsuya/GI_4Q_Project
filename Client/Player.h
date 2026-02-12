@@ -34,10 +34,10 @@ class Player : public GameObjectBase
 {
 	friend class GameManager;
 
+	std::array<std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2>, 3> m_playerHitPointExpressions = {};
 	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointTextureAndOffset = {};
-	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_playerHitPointDecorationTextureAndOffset = {};
-	int m_playerHitPoint = 3;
-	const int m_maxPlayerHitPoint = 3;
+	int m_playerHitPoint = 10;
+	const int m_maxPlayerHitPoint = 10;
 	const float m_invincibilityDuration = 1.0f;
 	float m_invincibilityTimer = 0.0f;
 	float m_redVignetteIntensity = 0.0f;
@@ -61,7 +61,7 @@ class Player : public GameObjectBase
 	const float m_enemyHitDisplayTime = 0.2f;
 	float m_enemyHitTimer = 0.0f;
 
-	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bulletImgs = {};
+	std::array<std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2>, 7> m_bulletImgs = {};
 
 	DirectX::XMVECTOR m_inputDirection = {};
 	DirectX::XMVECTOR m_normalizedMoveDirection = {};

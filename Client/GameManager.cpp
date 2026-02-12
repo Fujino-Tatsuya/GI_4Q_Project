@@ -548,7 +548,10 @@ function<void()> GameManager::RenderInfo()
 		break;
 
 	case ETutorialStep::End:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(GameManager::GetInstance().GetScore())).c_str(), XMFLOAT2(0.45f, 0.1f)); };
+		return [&]()
+			{
+				Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(m_currentScore)).c_str(), XMFLOAT2(0.45f, 0.1f));
+			};
 		break;
 
 	default:
