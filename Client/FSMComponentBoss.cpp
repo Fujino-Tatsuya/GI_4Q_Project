@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "ParticleObject.h"
 #include "../Engine/Animator.h"
+#include "GameManager.h"
 
 REGISTER_TYPE(FSMComponentBoss)
 
@@ -159,7 +160,11 @@ void FSMComponentBoss::OnUpdateState(StateID state)
 		if (m_death_timer >= kFadeStartTime)
 		{
 			float progress = (m_death_timer - kFadeStartTime) / kFadeDuration;
-			if (progress > 1.0f) progress = 1.0f;
+			if (progress > 1.0f)
+			{
+				GameManager::GetInstance().SetSuccess(true);
+				SceneManager::GetInstance().ChangeScene("EndingScene");
+			};
 
 			if (m_model)
 			{
