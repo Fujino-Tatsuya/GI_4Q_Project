@@ -33,16 +33,29 @@
                     "metallicFactor": 1.0,
                     "normalScale": 1.0,
                     "roughnessFactor": 1.0
+                },
+                {
+                    "ambientOcclusionFactor": 1.0,
+                    "baseColorFactor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "emissionFactor": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "metallicFactor": 1.0,
+                    "normalScale": 1.0,
+                    "roughnessFactor": 1.0
                 }
             ],
             "modelAndMaterialFileNames": [
                 {
-                    "materialFileName": "test5",
+                    "materialFileName": "Boss",
                     "modelFileName": "boss_final_ani_2.fbx"
-                },
-                {
-                    "materialFileName": "",
-                    "modelFileName": "box.fbx"
                 }
             ],
             "psShaderName": "PSModel.hlsl",
@@ -75,5 +88,6 @@
         1.0,
         1.0
     ],
+    "triggerColliderName": "",
     "type": "Boss"
 }
