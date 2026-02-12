@@ -29,23 +29,23 @@ void EndingScene::Initialize()
 
 	GetRootGameObject("MainCam")->GetComponent<class CameraComponent>()->SetAsMainCamera();
 
-	const int finalScore = 9356;
-	//const int finalScore = GameManager::GetInstance().GetScore();
+	const int finalScore = GameManager::GetInstance().GetScore();
 	SetScoreUI(finalScore);
 	SetGradeUI(finalScore);
 
-	const bool isSuccess = true;
-	//const bool isSuccess = GameManager::GetInstance().IsSuccess();
+	const bool isSuccess = GameManager::GetInstance().IsSuccess();
 	SetSucessUI(isSuccess);
 
 }
 
 void EndingScene::Update()
 {
+	GameManager::GetInstance().OnSceneUpdate();
 }
 
 void EndingScene::BindUIActions()
 {
+	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "1") n1 = panel;
@@ -58,6 +58,7 @@ void EndingScene::BindUIActions()
 			else if (panel->GetName() == "Grade") Grade = panel;
 		}
 	}
+	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {
@@ -105,24 +106,7 @@ void EndingScene::SetGradeUI(int score)
 {
 	if (Grade == nullptr) return;
 
-	std::string gradeTextureName = "UI_Grade_F.png"; 
-
-	if (score >= 90000) {
-		gradeTextureName = "UI_Grade_S.png";
-	} else if (score >= 70000) {
-		gradeTextureName = "UI_Grade_A.png";
-	} else if (score >= 50000) {
-		gradeTextureName = "UI_Grade_B.png";
-	} else if (score >= 30000) {
-		gradeTextureName = "UI_Grade_C.png";
-	} else if (score >= 10000) {
-		gradeTextureName = "UI_Grade_D.png";
-	} else if (score >= 5000) {
-		gradeTextureName = "UI_Grade_E.png";
-	} else {
-		gradeTextureName = "UI_Grade_F.png";
-	}
-
+	const std::string gradeTextureName = GameManager::GetInstance().GetGradeTextureName(score);
 	Grade->SetTextureAndOffset(gradeTextureName);
 }
 

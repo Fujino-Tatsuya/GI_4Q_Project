@@ -14,7 +14,6 @@ class TestScene : public SceneBase
 	std::vector<DirectX::XMVECTOR> m_spawnPoints = {};
 
 	class Panel* optionPanel = nullptr;
-	class Panel* cheatPanel = nullptr;
 
 	class Text* m_curMasterVolume = nullptr;
 	class Text* m_curBGMVolume = nullptr;

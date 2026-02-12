@@ -711,9 +711,9 @@ void Renderer::RenderXTKSpriteBatch()
 
 	// XTK SpriteBatch 렌더링 
 	// depth로 그리게끔 : SpriteSortMode_Deferred -> SpriteSortMode_FrontToBack (슬라이더 우선순위를 위해서)
-	// 알파 블랜딩 적용하게끔 : auto* blend 
+	// 알파 블랜딩 적용하게끔 : auto* blend : AlphaBlendPremultiplied으로 수정
 	auto* sampl = ResourceManager::GetInstance().GetSamplerState(SamplerState::UI).Get();
-	auto* blend = ResourceManager::GetInstance().GetBlendState(BlendState::AlphaBlend).Get();
+	auto* blend = ResourceManager::GetInstance().GetBlendState(BlendState::AlphaBlendPremultiplied).Get();
 	m_spriteBatch->Begin(SpriteSortMode_FrontToBack, blend, sampl, nullptr, nullptr, nullptr, XMMatrixIdentity());
 	for (function<void()>& uiRenderFunction : m_UIRenderFunctions) uiRenderFunction();
 	m_UIRenderFunctions.clear();

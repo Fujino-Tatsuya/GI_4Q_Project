@@ -75,6 +75,8 @@ void FSMComponentGun2::OnEnterState(StateID state)
 
 	case EAttack:
 		m_targetCylinderAngleX = m_originRotCylinder.m128_f32[0] + 60.0f;
+        break;
+
 	case EReload:
 		//m_originRotation = GetOwner()->GetRotation();
 		break;

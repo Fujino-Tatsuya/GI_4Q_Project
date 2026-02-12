@@ -56,13 +56,13 @@ void FSMComponentEnemy::OnEnterState(StateID state)
 	{
 	case EIdle:
 		model_->GetAnimator()->SetPlaybackSpeed(1.0f);
-		model_->GetAnimator()->PlayAnimation();
+		model_->GetAnimator()->PlayAnimation(1);
 		model_->SetBlendState(BlendState::Opaque);
 		break;
 
 	case EChase:
 		model_->GetAnimator()->SetPlaybackSpeed(1.0f);
-		model_->GetAnimator()->PlayAnimation(1, true);
+		model_->GetAnimator()->PlayAnimation(2, true);
 		break;
 
 	case EAttack: 
@@ -73,7 +73,7 @@ void FSMComponentEnemy::OnEnterState(StateID state)
 		model_->GetAnimator()->RestartCurrentAnimation(false);
 		//model_->GetAnimator()->PlayAnimation("Attack", true);
 		//model_->GetAnimator()->PlayAnimation(1, true);
-		model_->GetAnimator()->PlayAnimation();
+		model_->GetAnimator()->PlayAnimation(0, false);
 		break;
 
 	case EDead:

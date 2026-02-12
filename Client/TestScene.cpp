@@ -59,12 +59,32 @@ void TestScene::Update()
 
 	CheckStageTrigger();
 
+<<<<<<< HEAD
 	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
 		if (cheatPanel)
 		{
 			cheatPanel->SetActive(true);
 		}
 	}
+=======
+	auto& sm = SoundManager::GetInstance();
+
+	float mastervolume = sm.GetVolume_Main();
+	float bgmvolume = sm.GetVolume_BGM();
+	float sfxvolume = sm.GetVolume_SFX();
+	float sensitivity = m_player->GetCameraSensitivity();
+
+	string masterstr = format("{:.2f}", mastervolume);
+	string bgmstr = format("{:.2f}", mastervolume);
+	string sfxstr = format("{:.2f}", mastervolume);
+	string sensestr = format("{:.2f}", mastervolume);
+
+	
+	//m_curMasterVolume->SetText(masterstr);
+	//m_curBGMVolume->SetText(bgmstr);
+	//m_curSFXVolume->SetText(sfxstr);
+	//m_curSensitivity->SetText(sensestr);
+>>>>>>> origin/Hyoje260212
 }
 
 void TestScene::Render()
@@ -223,16 +243,18 @@ void TestScene::RenderSpawnPoints()
 
 void TestScene::BindUIActions()
 {
+	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
-			else if (panel->GetName() == "cheat") cheatPanel = panel;
+			else if (panel->GetName() == "cheat") sceneCheatPanel = panel;
 		}
 	}
 	if (optionPanel)
 	{
 		GameManager::GetInstance().RegisterOptionPanel(optionPanel);
 	}
+	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {
@@ -243,15 +265,21 @@ void TestScene::BindUIActions()
 		{
 			std::string key = btn->GetActionKey();
 
-
-				if (key == "cheat") {
-					btn->SetOnClick([this]() {
-						GameManager::GetInstance().SetSuccess(true);
-						SceneManager::GetInstance().ChangeScene("EndingScene");
+			if (key == "goto_tutorial" || key == "goto_stage1" || key == "goto_stage2" || key == "goto_boss")
+			{
+				btn->SetOnClick([key]() {
+					GameManager::GetInstance().CheatGotoByActionKey(key);
 					});
-				}
-				else if (key == "close_option") {
-					if (optionPanel) btn->SetOnClick([this]()
+			}
+
+			if (key == "cheat") {
+				btn->SetOnClick([this]() {
+					GameManager::GetInstance().SetSuccess(true);
+					SceneManager::GetInstance().ChangeScene("EndingScene");
+				});
+			}
+			else if (key == "close_option") {
+				if (optionPanel) btn->SetOnClick([this]()
 					{
 						optionPanel->SetActive(false);
 						GameManager::GetInstance().SetPaused(false);

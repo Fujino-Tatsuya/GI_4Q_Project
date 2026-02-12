@@ -4,6 +4,38 @@
 using namespace std;
 using namespace DirectX;
 
+namespace
+{
+	string ToLowerAscii(string text)
+	{
+		for (char& c : text)
+		{
+			c = static_cast<char>(tolower(static_cast<unsigned char>(c)));
+		}
+		return text;
+	}
+
+	bool IsRootMotionChannel(const string& boneName, const string& rootNodeName)
+	{
+		if (boneName == rootNodeName) return true;
+
+		const string lower = ToLowerAscii(boneName);
+		if (lower.find("root") != string::npos) return true;
+		if (lower == "hips" || lower.find("hip") != string::npos) return true;
+
+		return false;
+	}
+
+	void RemoveHorizontalRootMotion(BoneAnimationChannel& channel)
+	{
+		for (auto& key : channel.position_keys)
+		{
+			key.value.x = 0.0f;
+			key.value.z = 0.0f;
+		}
+	}
+}
+
 XMFLOAT4X4 ResourceManager::ToXMFLOAT4X4(const aiMatrix4x4& matrix)
 {
 	return XMFLOAT4X4(
@@ -798,6 +830,7 @@ void ResourceManager::LoadAnimations(const aiScene* scene, Model& model)
 {
 	model.animations.clear();
 	if (!scene || scene->mNumAnimations == 0) return;
+	const string rootNodeName = scene->mRootNode ? scene->mRootNode->mName.C_Str() : "";
 
 	model.animations.reserve(scene->mNumAnimations);
 
@@ -839,6 +872,10 @@ void ResourceManager::LoadAnimations(const aiScene* scene, Model& model)
 				key.time_position = static_cast<float>(node_anim->mPositionKeys[i].mTime);
 				key.value = ToXMFLOAT3(node_anim->mPositionKeys[i].mValue);
 				channel.position_keys.push_back(key);
+			}
+			if (IsRootMotionChannel(channel.boneName, rootNodeName))
+			{
+				RemoveHorizontalRootMotion(channel);
 			}
 			if (!channel.position_keys.empty()) {
 				last_keyframe_time = max(last_keyframe_time, channel.position_keys.back().time_position);

@@ -19,6 +19,49 @@ using namespace DirectX;
 namespace
 {
 	const char* kRankingsFile = "rankings.json";
+
+	std::string GetCurrentDateTime()
+	{
+		const auto now = std::chrono::system_clock::now();
+		const std::time_t nowTime = std::chrono::system_clock::to_time_t(now);
+		std::tm localTime = {};
+		localtime_s(&localTime, &nowTime);
+
+		std::ostringstream oss;
+		oss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S");
+		return oss.str();
+	}
+
+	struct CheatTransform
+	{
+		float px;
+		float py;
+		float pz;
+		float rx;
+		float ry;
+		float rz;
+	};
+
+	bool TryGetCheatTransform(EMainState state, CheatTransform& out)
+	{
+		switch (state)
+		{
+		case EMainState::Tutorial:
+			out = { -176.27f, 0.0f, -184.939f, 0.0f, 0.0f, 0.0f };
+			return true;
+		case EMainState::Stage1:
+			out = { -176.27f, 0.0f, -84.939f, 0.0f, 90.0f, 0.0f };
+			return true;
+		case EMainState::Stage2:
+			out = { -11.234f, 0.0f, 54.962f, 0.0f, 90.0f, 0.0f };
+			return true;
+		case EMainState::StageBoss:
+			out = { 194.865f, 0.0f, 108.356f, 0.0f, 0.0f, 0.0f };
+			return true;
+		default:
+			return false;
+		}
+	}
 }
 
 
@@ -56,6 +99,7 @@ void GameManager::Update()
 		SceneManager::GetInstance().SetPaused(false);
 		SoundManager::GetInstance().Resume();
 	}
+
 }
 
 void GameManager::ToggleOption()
@@ -69,7 +113,21 @@ void GameManager::ToggleOption()
 	const bool opening = !m_Pause;
 	m_Pause = opening;
 	m_optionPanel->SetActive(opening);
+	if (!opening && m_cheatPanel)
+	{
+		m_cheatPanel->SetActive(false);
+	}
 	ForceShowCursor(opening);
+}
+
+void GameManager::ToggleCheatPanel()
+{
+	if (!m_cheatPanel)
+	{
+		return;
+	}
+
+	m_cheatPanel->SetActive(!m_cheatPanel->GetActive());
 }
 
 
@@ -80,6 +138,7 @@ void GameManager::OnSceneEnter(EScene type)
 	m_CurrentScene = type;
 	m_Pause = false;
 	if (type != EScene::Main) m_optionPanel = nullptr;
+	if (type != EScene::Main) m_cheatPanel = nullptr;
 	if (type == EScene::Title || type == EScene::Main) m_isSuccess = false;
 
 	switch (type)
@@ -94,11 +153,33 @@ void GameManager::OnSceneEnter(EScene type)
 
 	case EScene::Main:
 		m_Player = GetPlayerPtr();
-
-		ChangeMainState(EMainState::Tutorial);
+		if (m_QueuedMainState == EMainState::None)
+		{
+			m_QueuedMainState = EMainState::Tutorial;
+		}
+		if (m_QueuedMainState == EMainState::Tutorial)
+		{
+			m_TutorialStep = ETutorialStep::WASD;
+		}
+		ChangeMainState(m_QueuedMainState);
+		if (m_isCheat && m_Player)
+		{
+			CheatTransform transform = {};
+			if (TryGetCheatTransform(m_MainState, transform))
+			{
+				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
+				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
+				m_currentScore /= 2;
+			}
+		}
+		m_QueuedMainState = EMainState::None;
 		break;
 
 	case EScene::Result:
+		if (m_currentScore > 0)
+		{
+			AddScore(GetCurrentDateTime(), m_currentScore);
+		}
 		sm.Sub_BGM_Shot(Config::Ending_BGM, 0.0f);
 		break;
 	}
@@ -106,6 +187,26 @@ void GameManager::OnSceneEnter(EScene type)
 
 void GameManager::OnSceneUpdate()
 {
+	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
+		if (m_CurrentScene == EScene::Main)
+		{
+			if (!m_Pause)
+			{
+				ToggleOption();
+			}
+			else
+			{
+				if (m_optionPanel && !m_optionPanel->GetActive()) m_optionPanel->SetActive(true);
+				ForceShowCursor(true);
+			}
+
+			if (m_cheatPanel)
+			{
+				m_cheatPanel->SetActive(true);
+			}
+		}
+	}
+
 	switch (m_CurrentScene)
 	{
 	case EScene::Title:
@@ -118,6 +219,60 @@ void GameManager::OnSceneUpdate()
 
 	case EScene::Result:
 		break;
+	}
+}
+
+void GameManager::CheatGoto(EMainState state)
+{
+	if (state == EMainState::None)
+	{
+		return;
+	}
+
+	if (m_CurrentScene == EScene::Main)
+	{
+		if (state == EMainState::Tutorial)
+		{
+			m_TutorialStep = ETutorialStep::WASD;
+		}
+		ChangeMainState(state);
+
+		if (m_isCheat && m_Player)
+		{
+			CheatTransform transform = {};
+			if (TryGetCheatTransform(state, transform))
+			{
+				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
+				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
+				m_currentScore /= 2;
+			}
+		}
+		return;
+	}
+
+	m_QueuedMainState = state;
+	SceneManager::GetInstance().ChangeScene("TestScene");
+}
+
+void GameManager::CheatGotoByActionKey(const std::string& actionKey)
+{
+	m_isCheat = true;
+
+	if (actionKey == "goto_tutorial")
+	{
+		CheatGoto(EMainState::Tutorial);
+	}
+	else if (actionKey == "goto_stage1")
+	{
+		CheatGoto(EMainState::Stage1);
+	}
+	else if (actionKey == "goto_stage2")
+	{
+		CheatGoto(EMainState::Stage2);
+	}
+	else if (actionKey == "goto_boss")
+	{
+		CheatGoto(EMainState::StageBoss);
 	}
 }
 
@@ -470,22 +625,19 @@ void GameManager::LoadRankings()
 		if (!entry.is_object())
 			continue;
 
-		const auto nameIt = entry.find("name");
+		const auto playedAtIt = entry.find("played_at");
 		const auto scoreIt = entry.find("score");
-		if (nameIt == entry.end() || scoreIt == entry.end())
+		if (playedAtIt == entry.end() || scoreIt == entry.end())
 			continue;
-		if (!nameIt->is_string() || !scoreIt->is_number_integer())
+		if (!playedAtIt->is_string() || !scoreIt->is_number_integer())
 			continue;
 
-		m_rankings.emplace_back(nameIt->get<string>(), scoreIt->get<int>());
+		m_rankings.emplace_back(playedAtIt->get<string>(), scoreIt->get<int>());
 	}
 
 	sort(m_rankings.begin(), m_rankings.end(), [](const auto& left, const auto& right) {
 		return left.second > right.second;
 		});
-
-	if (m_rankings.size() > 10)
-		m_rankings.resize(10);
 }
 
 void GameManager::ShowTutorialPopup()
@@ -513,11 +665,55 @@ void GameManager::SaveRankings() const
 	nlohmann::json data = nlohmann::json::object();
 	data["rankings"] = nlohmann::json::array();
 
-	for (const auto& [name, score] : m_rankings) {
-		data["rankings"].push_back({ { "name", name }, { "score", score } });
+	for (const auto& [playedAt, score] : m_rankings) {
+		data["rankings"].push_back({ { "played_at", playedAt }, { "score", score } });
 	}
 
 	ofstream file(kRankingsFile);
 	file << data.dump(4);
 	file.close();
+}
+
+void GameManager::AddScore(const std::string& playedAt, int score)
+{
+	if (score <= 0)
+		return;
+
+	m_rankings.emplace_back(playedAt, score);
+
+	sort(m_rankings.begin(), m_rankings.end(), [](const auto& left, const auto& right) {
+		return left.second > right.second;
+		});
+
+	SaveRankings();
+}
+
+std::string GameManager::GetGradeTextureName(int score) const
+{
+	if (m_rankings.empty())
+		return "UI_Grade_F.png";
+	if (m_rankings.size() == 1)
+		return "UI_Grade_S.png";
+
+	size_t index = m_rankings.size() - 1;
+	for (size_t i = 0; i < m_rankings.size(); ++i)
+	{
+		if (m_rankings[i].second == score)
+		{
+			index = i;
+			break;
+		}
+	}
+
+	const float rank = static_cast<float>(index + 1);
+	const float total = static_cast<float>(m_rankings.size());
+	const float topPercent = (rank / total) * 100.0f;
+
+	if (topPercent <= 10.0f) return "UI_Grade_S.png";
+	if (topPercent <= 20.0f) return "UI_Grade_A.png";
+	if (topPercent <= 30.0f) return "UI_Grade_B.png";
+	if (topPercent <= 50.0f) return "UI_Grade_C.png";
+	if (topPercent <= 70.0f) return "UI_Grade_D.png";
+	if (topPercent <= 90.0f) return "UI_Grade_E.png";
+	return "UI_Grade_F.png";
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include <string>
 
 class Panel;
 
@@ -36,16 +37,19 @@ class GameManager : public Singleton<GameManager>
 	friend class Singleton<GameManager>;
 
     Panel* m_optionPanel = nullptr;
+    Panel* m_cheatPanel = nullptr;
 
 ///GameFlow
     Player* m_Player = nullptr;
 
     bool m_Pause = false;
     bool m_isSuccess = false;
+    bool m_isCheat = false;
 
     EScene m_CurrentScene = EScene::Title;
     EMainState m_MainState = EMainState::None;
 	EMainState m_PrevMainState = EMainState::None;
+    EMainState m_QueuedMainState = EMainState::None;
     ETutorialStep m_TutorialStep = ETutorialStep::WASD;
 ///GameFlowEnd
 
@@ -88,7 +92,11 @@ public:
     bool IsPaused() const { return m_Pause; }
     void SetPaused(bool v) { m_Pause = v; }
     void RegisterOptionPanel(Panel* panel) { m_optionPanel = panel; }
+    void RegisterCheatPanel(Panel* panel) { m_cheatPanel = panel; }
     void ToggleOption();
+    void ToggleCheatPanel();
+    void CheatGoto(EMainState state);
+    void CheatGotoByActionKey(const std::string& actionKey);
     bool IsSuccess() const { return m_isSuccess; }
     void SetSuccess(bool v) { m_isSuccess = v; }
 
@@ -136,7 +144,8 @@ public:
 ///RANKING -> LOG
     void SaveRankings() const;
     void LoadRankings();
-    void AddScore(const std::string& name, int score);
+    void AddScore(const std::string& playedAt, int score);
+    std::string GetGradeTextureName(int score) const;
     const std::vector<std::pair<std::string, int>>& GetTopScores() const { return m_rankings; }
 ///RANKING END
 

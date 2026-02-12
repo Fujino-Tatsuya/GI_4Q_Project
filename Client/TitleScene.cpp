@@ -40,6 +40,8 @@ void TitleScene::Initialize()
 
 void TitleScene::Update()
 {
+	GameManager::GetInstance().OnSceneUpdate();
+
 	float dt = TimeManager::GetInstance().GetDeltaTime();
 
 	m_startTimeForMove += dt;
@@ -64,6 +66,7 @@ void TitleScene::Finalize()
 
 void TitleScene::BindUIActions()
 {
+	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
@@ -75,6 +78,7 @@ void TitleScene::BindUIActions()
 			//if (text->GetName() == "result_time") resultTime = text;
 		}
 	}
+	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {
@@ -84,7 +88,7 @@ void TitleScene::BindUIActions()
 		if (auto* btn = dynamic_cast<Button*>(uiPtr.get())) {
 			std::string key = btn->GetActionKey();
 
-			if (key == "start_game") {
+			 if (key == "start_game") {
 				btn->SetOnClick([this]() { if (m_isPanel) return; SceneManager::GetInstance().ChangeScene("TestScene");  });
 			} else if (key == "quit_game") {
 				btn->SetOnClick([this]() {
