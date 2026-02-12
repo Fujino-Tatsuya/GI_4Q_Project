@@ -119,6 +119,11 @@ void TestScene::Deserialize(const nlohmann::json& jsonData)
 
 void TestScene::TutorialStep()
 {
+	if (GameManager::GetInstance().IsCheat())
+	{
+		return;
+	}
+
 	switch (GameManager::GetInstance().GetTutorialStep())
 	{
 	case ETutorialStep::WASD:

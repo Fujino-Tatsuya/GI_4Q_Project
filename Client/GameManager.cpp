@@ -216,7 +216,7 @@ void GameManager::OnSceneUpdate()
 	}
 }
 
-void GameManager::CheatGoto(EMainState state)
+void GameManager::CheatGoto(EMainState state, bool forceTeleport)
 {
 	if (state == EMainState::None)
 	{
@@ -231,11 +231,14 @@ void GameManager::CheatGoto(EMainState state)
 		}
 		ChangeMainState(state);
 
-		if (m_isCheat && m_Player)
+		if ((m_isCheat || forceTeleport) && m_Player)
 		{
 			CheatTransform transform = {};
 			if (TryGetCheatTransform(state, transform))
 			{
+				cout << transform.px << transform.py << transform.pz << endl;
+				cout << transform.rx << transform.ry << transform.rz << endl;
+
 				m_Player->SetPosition(XMVectorSet(transform.px, transform.py, transform.pz, 1.0f));
 				m_Player->SetRotation(XMVectorSet(transform.rx, transform.ry, transform.rz, 0.0f));
 				m_currentScore /= 2;
@@ -250,22 +253,25 @@ void GameManager::CheatGoto(EMainState state)
 
 void GameManager::CheatGotoByActionKey(const std::string& actionKey)
 {
-	m_isCheat = true;
-
 	if (actionKey == "goto_tutorial")
 	{
-		CheatGoto(EMainState::Tutorial);
+		m_isCheat = false;
+		m_TutorialStep = ETutorialStep::WASD;
+		CheatGoto(EMainState::Tutorial, true);
 	}
 	else if (actionKey == "goto_stage1")
 	{
+		m_isCheat = true;
 		CheatGoto(EMainState::Stage1);
 	}
 	else if (actionKey == "goto_stage2")
 	{
+		m_isCheat = true;
 		CheatGoto(EMainState::Stage2);
 	}
 	else if (actionKey == "goto_boss")
 	{
+		m_isCheat = true;
 		CheatGoto(EMainState::StageBoss);
 	}
 }
@@ -376,7 +382,15 @@ void GameManager::OnStageEnter(EMainState state)
 
 void GameManager::TutorialControl()
 {
+	if (!m_Player)
+		return;
+
 	auto& p = m_Player;
+	if (m_isCheat)
+	{
+		p->SetAction(Action::All, true);
+		return;
+	}
 
 	p->SetAction(Action::All, false);
 
@@ -502,6 +516,11 @@ void GameManager::ScoreReset()
 
 function<void()> GameManager::RenderInfo()
 {
+	if (m_isCheat)
+	{
+		return [&]() { Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(GameManager::GetInstance().GetScore())).c_str(), XMFLOAT2(0.45f, 0.1f)); };
+	}
+
 	switch (m_TutorialStep)
 	{
 	case ETutorialStep::WASD:
