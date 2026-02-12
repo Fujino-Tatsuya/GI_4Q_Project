@@ -88,19 +88,19 @@ void TitleScene::BindUIActions()
 			else if (panel->GetName() == "UI_Title_letterrbox_up") Title_letterrbox_up = panel;
 			else if (panel->GetName() == "credit") creditPanel = panel;
 			else if (panel->GetName() == "Titles") Titles = panel;
+			if (auto* item = FindMenuItem(panel->GetName())) {
+				item->panel = panel;
+			}
 		} 
 		else if (auto* text = dynamic_cast<Text*>(uiPtr.get())) { 
 			if (auto* item = FindMenuItem(text->GetName())) 
 			{
-				//cout << "[t] " << text->GetName() << endl;
 				item->text = text;
-
 			}
 		}
 		else if (auto* button = dynamic_cast<Button*>(uiPtr.get())) {
 			if (auto* item = FindMenuItem(button->GetName())) 
 			{
-				//cout << "[b] " << button->GetName() << endl;
 				item->button = button;
 			}
 		}
@@ -190,6 +190,7 @@ void TitleScene::UpdateMenuTextColors()
 			(state == Button::ButtonState::Clicked);
 
 		item.text->SetColorIdle(isActive ? kMenuActiveColor : kMenuIdleColor);
+		if (item.panel) item.panel->SetActive(isActive);
 	}
 }
 

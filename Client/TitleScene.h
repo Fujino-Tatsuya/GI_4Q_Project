@@ -15,14 +15,15 @@ class TitleScene : public SceneBase
 		std::string key;
 		class Text* text = nullptr;
 		class Button* button = nullptr;
+		class Panel* panel = nullptr;
 	};
 
 	std::array<MenuItem, 4> m_menuItems =
 	{
-		MenuItem{ "start_game", nullptr, nullptr },
-		MenuItem{ "open_option", nullptr, nullptr },
-		MenuItem{ "open_credit", nullptr, nullptr },
-		MenuItem{ "quit_game", nullptr, nullptr }
+		MenuItem{ "start_game", nullptr, nullptr , nullptr },
+		MenuItem{ "open_option", nullptr, nullptr, nullptr  },
+		MenuItem{ "open_credit", nullptr, nullptr, nullptr  },
+		MenuItem{ "quit_game", nullptr, nullptr, nullptr  }
 	};
 
 	bool m_isPanel = false;
