@@ -35231,49 +35231,40 @@
             "childGameObjects": [],
             "components": [
                 {
-                    "NoiseIndex": 0,
-                    "blendState": 0,
-                    "dissolveData": {
-                        "DissolveEdgeColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "DissolveEdgeIntensity": 1.0,
-                        "DissolveEdgeWidth": 1.0,
-                        "DissolveThreshold": 0.20000000298023224
-                    },
-                    "hasShadow": true,
-                    "materialFactor": [
-                        {
-                            "ambientOcclusionFactor": 1.0,
-                            "baseColorFactor": [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "emissionFactor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "metallicFactor": 1.0,
-                            "normalScale": 1.0,
-                            "roughnessFactor": 1.0
-                        }
+                    "RestartOnFinish": true,
+                    "billboardType": 7,
+                    "blendState": 2,
+                    "imageScale": 1.0,
+                    "particleAmount": 137,
+                    "particleColor": [
+                        0.2946901023387909,
+                        0.6029411554336548,
+                        0.02068920060992241,
+                        1.0
                     ],
-                    "modelAndMaterialFileNames": [
-                        {
-                            "materialFileName": "",
-                            "modelFileName": "box.fbx"
-                        }
+                    "particleConstTime": -1.0,
+                    "particleEmissionColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
                     ],
-                    "psShaderName": "PSModel.hlsl",
-                    "rasterState": 1,
-                    "type": "ModelComponent",
-                    "vsShaderName": "VSModel.hlsl"
+                    "particleTotalTime": 3.4200000762939453,
+                    "psShaderName": "PSParticle.hlsl",
+                    "rasterState": 2,
+                    "spreadDistance": 8.600000381469727,
+                    "spreadRadius": 0.0,
+                    "textureFileName": "Smoke.png",
+                    "type": "ParticleComponent",
+                    "uvOffset": [
+                        0.0,
+                        0.0
+                    ],
+                    "uvScale": [
+                        1.0,
+                        1.0
+                    ],
+                    "vsShaderName": "VSParticleCube.hlsl"
                 }
             ],
             "name": "Box",
@@ -35284,15 +35275,15 @@
                 1.0
             ],
             "rotation": [
-                -0.0,
+                -0.6979228854179382,
                 0.0,
                 -0.0,
-                1.0
+                0.7161729335784912
             ],
             "scale": [
                 1.0,
-                1.0,
-                1.0,
+                1.0000003576278687,
+                6.944818496704102,
                 0.0
             ],
             "type": "GameObjectBase"
@@ -44740,6 +44731,11 @@
                     "vsShaderName": "VSModelSkinAnim.hlsl"
                 },
                 {
+                    "current_state": "Chase",
+                    "start_state": "Chase",
+                    "type": "FSMComponentBoss"
+                },
+                {
                     "boundingBoxes": [],
                     "boundingFrustums": [],
                     "boundingOrientedBoxes": [
@@ -44763,11 +44759,6 @@
                         }
                     ],
                     "type": "ColliderComponent"
-                },
-                {
-                    "current_state": "Chase",
-                    "start_state": "Chase",
-                    "type": "FSMComponentBoss"
                 }
             ],
             "name": "Boss",
