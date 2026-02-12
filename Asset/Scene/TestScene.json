@@ -37684,6 +37684,67 @@
             ],
             "triggerColliderName": "",
             "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "RestartOnFinish": true,
+                    "billboardType": 7,
+                    "blendState": 2,
+                    "imageScale": 13.0,
+                    "particleAmount": 5000,
+                    "particleColor": [
+                        1.0,
+                        0.7960784435272217,
+                        0.48235294222831726,
+                        0.7333333492279053
+                    ],
+                    "particleConstTime": -0.18000000715255737,
+                    "particleEmissionColor": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "particleTotalTime": 300.0,
+                    "psShaderName": "PSParticle.hlsl",
+                    "rasterState": 2,
+                    "spreadDistance": 0.0,
+                    "spreadRadius": 10.0,
+                    "textureFileName": "Smoke.png",
+                    "type": "ParticleComponent",
+                    "uvOffset": [
+                        0.0,
+                        0.0
+                    ],
+                    "uvScale": [
+                        1.0,
+                        1.0
+                    ],
+                    "vsShaderName": "VSParticleCube.hlsl"
+                }
+            ],
+            "name": "Fog",
+            "position": [
+                -215.0,
+                -3.6361351013183594,
+                184.72300720214844,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.7071066498756409,
+                -0.0,
+                0.7071069478988647
+            ],
+            "scale": [
+                370.0,
+                10.0,
+                480.0,
+                0.0
+            ],
+            "type": "GameObjectBase"
         }
     ],
     "skyboxFileName": "Skybox_day_1.dds",
