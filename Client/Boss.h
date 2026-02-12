@@ -38,6 +38,7 @@ public:
 	Boss& operator=(Boss&&) = default;
 
 	void Hit() { m_hitPoints--; if (m_hitPoints <= 0) Die(); }
+	int GetHitPoints() const { return m_hitPoints; }
 	void Die();
 	void OnAttackFinished();
 

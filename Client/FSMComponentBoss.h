@@ -3,7 +3,6 @@
 
 class FSMComponentBoss : public FSMComponent
 {
-	friend class Boss;
 	class Boss* m_owner_boss_ = nullptr;
 
 public:

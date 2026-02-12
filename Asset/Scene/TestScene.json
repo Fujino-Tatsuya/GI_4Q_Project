@@ -1213,7 +1213,7 @@
         ]
     ],
     "postProcessing": {
-        "bloomIntensity": 1.0,
+        "bloomIntensity": 6.599999904632568,
         "flags": 1,
         "gammaIntensity": 1.0,
         "grayScaleIntensity": 0.0,
@@ -42832,6 +42832,62 @@
             ],
             "triggerColliderName": "Trigger11",
             "type": "Enemy"
+        },
+        {
+            "childGameObjects": [],
+            "components": [
+                {
+                    "boundingBoxes": [],
+                    "boundingFrustums": [],
+                    "boundingOrientedBoxes": [
+                        {
+                            "center": [
+                                0.01600000075995922,
+                                1.6790000200271606,
+                                -0.6700000166893005
+                            ],
+                            "extents": [
+                                1.8580000400543213,
+                                1.6200000047683716,
+                                0.8069999814033508
+                            ],
+                            "orientation": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "type": "ColliderComponent"
+                },
+                {
+                    "current_state": "Chase",
+                    "start_state": "Chase",
+                    "type": "FSMComponentBoss"
+                }
+            ],
+            "name": "Boss",
+            "position": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "rotation": [
+                -0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            "triggerColliderName": "",
+            "type": "Boss"
         }
     ],
     "skyboxFileName": "Skybox_day_1.dds",
