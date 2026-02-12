@@ -47,7 +47,7 @@ public:
 	bool NeedsFixedUpdate() const override { return true; }
 	bool NeedsUpdate() const override { return true; }
 	#ifdef _DEBUG
-	bool NeedsRender() const override { return true; }
+	bool NeedsRender() const override { return false; }
 	#else
 	bool NeedsRender() const override { return false; }
 	#endif
