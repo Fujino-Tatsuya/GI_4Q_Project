@@ -15,6 +15,7 @@
                 "DissolveEdgeWidth": 1.0,
                 "DissolveThreshold": 0.20000000298023224
             },
+            "hasShadow": true,
             "materialFactor": [
                 {
                     "ambientOcclusionFactor": 1.0,
@@ -48,10 +49,10 @@
     ],
     "name": "Box",
     "position": [
+        -177.29562377929688,
         0.0,
-        0.0,
-        0.0,
-        0.0
+        -178.9854736328125,
+        1.0
     ],
     "rotation": [
         -0.0,
@@ -60,10 +61,10 @@
         1.0
     ],
     "scale": [
-        0.4099999964237213,
-        0.4000000059604645,
-        0.4699999988079071,
-        1.0
+        1.0,
+        1.0,
+        1.0,
+        0.0
     ],
     "type": "GameObjectBase"
 }

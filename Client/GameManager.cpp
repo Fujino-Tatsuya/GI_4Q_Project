@@ -187,7 +187,6 @@ void GameManager::OnSceneEnter(EScene type)
 		{
 			AddScore(GetCurrentDateTime(), m_currentScore);
 		}
-		sm.Sub_BGM_Shot(Config::Ending_BGM, 0.0f);
 		break;
 	}
 }
@@ -291,7 +290,7 @@ void GameManager::OnSceneRender()
 		break;
 
 	case EScene::Main:
-		Renderer::GetInstance().UI_RENDER_FUNCTIONS().emplace_back(RenderInfo());
+		//Renderer::GetInstance().UI_RENDER_FUNCTIONS().emplace_back(RenderInfo());
 		break;
 
 	case EScene::Result:
@@ -408,24 +407,40 @@ void GameManager::TutorialControl()
 		break;
 
 	case ETutorialStep::Dash:
-		p->SetAction(Action::Move, true);
-		p->SetAction(Action::Dash, true);
+		if (m_tutorialPopupOpen == false)
+		{
+			p->SetAction(Action::Move, true);
+			p->SetAction(Action::Dash, true);
+		}		
 		break;
 
 	case ETutorialStep::Reload:
-		p->SetAction(Action::Reload, true);
+		if (m_tutorialPopupOpen == false)
+		{
+			p->SetAction(Action::Reload, true);
+		}
 		break;
 
 	case ETutorialStep::Shoot:
-		p->SetAction(Action::Shoot, true);
+		if (m_tutorialPopupOpen == false)
+		{
+			p->SetAction(Action::Shoot, true);
+		}
 		break;
 
 	case ETutorialStep::AutoReload:
-		p->SetAction(Action::Shoot, true);
-		p->SetAction(Action::AutoReload, true);
+		if (m_tutorialPopupOpen == false)
+		{
+			p->SetAction(Action::Shoot, true);
+			p->SetAction(Action::AutoReload, true);
+		}
 		break;
 
 	case ETutorialStep::DeadEye:
+		p->SetAction(Action::All, false);
+		break;
+
+	case ETutorialStep::DeadTwo:
 		p->SetAction(Action::DeadEye, true);
 		break;
 
@@ -444,7 +459,7 @@ void GameManager::TutorialControl()
 		return;
 	}
 
-	if (!m_stepPopupShown)
+	if (!m_stepPopupShown && m_TutorialStep != ETutorialStep::End)
 	{
 		ShowTutorialPopup();
 		m_stepPopupShown = true;
@@ -547,6 +562,54 @@ void GameManager::SetTutorialStep(ETutorialStep step)
 	m_stepPopupShown = false;
 }
 
+void GameManager::UpdateTutorialPopupImage()
+{
+	if (!m_tutorialPopup)
+		return;
+
+	std::string path = "";
+
+	switch (m_TutorialStep)
+	{
+	case ETutorialStep::WASD:
+		path = "1.Tuto_Move.png";
+		break;
+
+	case ETutorialStep::Dash:
+		path = "2.Tuto_Dash.png";
+		break;
+
+	case ETutorialStep::Reload:
+		path = "5.Tuto_Reload.png";
+		break;
+
+	case ETutorialStep::Shoot:
+		path = "3.Tuto_Shoot.png";
+		break;
+
+	case ETutorialStep::AutoReload:
+		path = "4.Tuto_AutoReload.png";
+		break;
+
+	case ETutorialStep::DeadEye:
+		path = "6.Tuto_DeadEye1.png";
+		break;
+
+	case ETutorialStep::DeadTwo:
+		path = "7.Tuto_DeadEye2.png";
+		break;
+
+	default:
+		path = "";
+		break;
+	}
+
+	if (!path.empty())
+	{
+		m_tutorialPopup->SetTextureAndOffset(path);
+	}
+}
+
 function<void()> GameManager::RenderInfo()
 {
 	if (m_isCheat)
@@ -554,7 +617,7 @@ function<void()> GameManager::RenderInfo()
 		return [&]() { Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(GameManager::GetInstance().GetScore())).c_str(), XMFLOAT2(0.45f, 0.1f)); };
 	}
 
-	switch (m_TutorialStep)
+	/*switch (m_TutorialStep)
 	{
 	case ETutorialStep::WASD:
 		return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Use WASD to Move Towards the Box", XMFLOAT2(0.35f, 0.1f)); };
@@ -590,7 +653,7 @@ function<void()> GameManager::RenderInfo()
 	default:
 		return []() {};
 		break;
-	}
+	}*/
 }
 
 void GameManager::TempPrint()
@@ -711,6 +774,9 @@ void GameManager::ShowTutorialPopup()
 	m_tutorialPopupOpen = true;
 
 	TimeManager::GetInstance().SetTimeScale(0.0f);
+	Player::SetCameraSensitivity(0.0f);
+
+	UpdateTutorialPopupImage();
 
 	if (m_tutorialPanel) m_tutorialPanel->SetActive(true);
 	if (m_tutorialPopup) m_tutorialPopup->SetActive(true);
@@ -722,6 +788,9 @@ void GameManager::CloseTutorialPopup()
 {
 	m_tutorialPopupOpen = false;
 	m_Pause = false;
+
+	TimeManager::GetInstance().SetTimeScale(1.0f);
+	Player::SetCameraSensitivity(30.0f);
 
 	if (m_tutorialPanel) m_tutorialPanel->SetActive(false);
 	if (m_tutorialPopup) m_tutorialPopup->SetActive(false);

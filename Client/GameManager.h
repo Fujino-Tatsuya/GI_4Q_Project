@@ -28,6 +28,7 @@ enum class ETutorialStep
 	Shoot,
 	AutoReload,
 	DeadEye,
+    DeadTwo,
     End
 };
 
@@ -54,7 +55,7 @@ class GameManager : public Singleton<GameManager>
 ///GameFlowEnd
 
 ///SCORE
-    //? ?ˆ˜ ê´?? ¨ ë³??ˆ˜
+    //?ì ?ë‹” æ„¿??ì ´ è¹‚??ë‹”
 	int     m_currentScore = 0;
 	int     m_multiplier = 1;         // 1, 2, 4, 8
 	int     m_killCountForNextLevel = 0;
@@ -62,7 +63,7 @@ class GameManager : public Singleton<GameManager>
 	bool    m_isCombatStarted = false;
 	float   m_decayTimer = 0.0f;
 
-    void TempPrint();   // UI?— ?„£ê¸? ? „?— ????¥?•  ?œ„ì¹?
+    void TempPrint();   // UI?ë¿‰ ?ê½”æ¹²? ?ìŸ¾?ë¿‰ ????ì˜£?ë¸· ?ìç§»?
 ///SCORE END
 
 ///RANKING -> LOG
@@ -116,12 +117,13 @@ public:
 ///SCORE
     void ScoreUpdate();
     void AddKill();             // Enemy.cpp - Die()
-    void OnPlayerHit();         // Player.cpp - ë­ì„
-    void OnRhythmMiss();        // ë¦¬ë“¬ ë¯¸ìŠ¤ ?‹œ ?˜¸ì¶? (?Š¤?ƒ ì´ˆê¸°?™”)
-    void ScoreReset();          // ?”¬ ë°”ë?”ë•Œ?
+    void OnPlayerHit();         // Player.cpp - è¸ë¨¯ì—«
+    void OnRhythmMiss();        // ç”±Ñ‰ë²‰ èª˜ëª„ë’ª ?ë–† ?ìƒ‡ç•°? (?ë’ª?ê¹® ç¥ë‡ë¦°?ì†•)
+    void ScoreReset();          // ?ëµ® è«›ë¶¾?ë¶¾ë¸£?
 
     ETutorialStep GetTutorialStep() const { return m_TutorialStep; }
     void SetTutorialStep(ETutorialStep step);
+    void UpdateTutorialPopupImage();
     //void RenderInfo();
 	std::function<void()> RenderInfo();
 

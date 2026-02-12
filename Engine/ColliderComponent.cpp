@@ -246,6 +246,8 @@ void ColliderComponent::Update()
 #ifdef _DEBUG
 void ColliderComponent::Render()
 {
+	if (!m_renderBoundingShapes) return;
+
 	Renderer& renderer = Renderer::GetInstance();
 
 	renderer.RENDER_FUNCTION(RenderStage::Scene, BlendState::Opaque).emplace_back
@@ -320,6 +322,8 @@ void ColliderComponent::Render()
 #ifdef _DEBUG
 void ColliderComponent::RenderImGui()
 {
+	ImGui::Checkbox("Render Bounding Shapes", &m_renderBoundingShapes);
+
 	if ((ImGui::TreeNode("Bounding Boxes")))
 	{
 		for (auto& [box, transformedBox] : m_boundingBoxes)

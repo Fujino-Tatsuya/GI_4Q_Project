@@ -38,12 +38,13 @@ namespace Config
 	//BGM
 		inline constexpr const char* Ambience = "1.DOB_AMB";
 		
-		inline constexpr const char* Title_BGM  = "0.DOB_TutorialBGM_1";
+		inline constexpr const char* Title_BGM  = "4.DOB_TltleBGM";
 		inline constexpr const char* Tutori_BGM = "0.DOB_TutorialBGM_1";
-		inline constexpr const char* Stage1_BGM = "1.DOB_IngameBGM_1";									//Node 생성은(Main_BGM + "_Beat")으로 자동 결정 ex) DOB Music_test2_Beat 
-		inline constexpr const char* Stage2_BGM = "2.DOB_IngameBGM_2";
-		inline constexpr const char* Stage3_BGM = "3.DOB_IngameBGM_3";
-		inline constexpr const char* Ending_BGM = "0.DOB_TutorialBGM_1";
+		inline constexpr const char* Stage1_BGM = "3.DOB_IngameBGM_3";									//Node 생성은(Main_BGM + "_Beat")으로 자동 결정 ex) DOB Music_test2_Beat 
+		inline constexpr const char* Stage2_BGM = "1.DOB_IngameBGM_1";
+		inline constexpr const char* Stage3_BGM = "2.DOB_IngameBGM_2";
+		inline constexpr const char* Win_BGM = "5.DOB_Score_Clear";
+		inline constexpr const char* Lose_BGM = "6.DOB_Score_Gameover";
 
 	//SFX
 		//Player

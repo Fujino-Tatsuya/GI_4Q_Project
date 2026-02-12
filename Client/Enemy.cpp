@@ -26,7 +26,6 @@ vector<Enemy*> Enemy::s_enemies = {};
 void Enemy::Initialize()
 {
 	m_fsm = GetComponent<FSMComponentEnemy>();
-	m_collider = GetComponent<ColliderComponent>();
 
 	s_enemies.push_back(this);
 
@@ -39,7 +38,16 @@ void Enemy::Initialize()
 	m_pathFindIntervalRandomOffset = RANDOM(0.0f, m_pathFindInterval);
 	m_pathFindTimer = -m_pathFindIntervalRandomOffset;
 
-	if (m_state == AIState::Chase && m_fsm) { m_fsm->ChangeState(FSMComponentEnemy::EChase); }
+	if (m_fsm)
+	{
+		switch (m_state)
+		{
+		case AIState::Idle:   m_fsm->ChangeState(FSMComponentEnemy::EIdle); break;
+		case AIState::Chase:  m_fsm->ChangeState(FSMComponentEnemy::EChase); break;
+		case AIState::Attack: m_fsm->ChangeState(FSMComponentEnemy::EAttack); break;
+		case AIState::Dead:   m_fsm->ChangeState(FSMComponentEnemy::EDead); break;
+		}
+	}
 }
 
 void Enemy::Die()
@@ -48,8 +56,6 @@ void Enemy::Die()
 
 	m_state = AIState::Dead;
 	m_deathTimer = 0.0f;
-
-	if (m_collider) m_collider->SetAlive(false);
 
 	if (m_fsm) m_fsm->ChangeState(FSMComponentEnemy::EDead);
 	
@@ -67,7 +73,7 @@ void Enemy::Update()
 
 	if (!m_player) return;
 	const XMVECTOR& playerPos = m_player->GetPosition();
-	if (m_triggerCollider && !m_hasFoundPlayer) if (m_triggerCollider->CheckCollisionPoint(playerPos)) m_hasFoundPlayer = true;
+	if (m_triggerCollider && !m_hasFoundPlayer && m_triggerCollider->CheckCollisionPoint(playerPos)) m_hasFoundPlayer = true;
 
 	switch (m_state) {
 	case Enemy::AIState::Idle: 
@@ -139,9 +145,14 @@ void Enemy::MoveAlongPath(float dt)
 	// 경로 따라 이동
 	XMVECTOR toTarget = XMVectorSubtract(m_path.front(), GetPosition());
 	float distanceSquared = XMVectorGetX(XMVector3LengthSq(toTarget));
-	if (distanceSquared < 0.1f * 0.1f) m_path.pop_front();
+	if (distanceSquared < 0.1f * 0.1f)
+	{
+		m_path.pop_front();
+	}
 	else
 	{
+		m_fsm->ChangeState(FSMComponentEnemy::EChase);
+
 		XMVECTOR direction = XMVector3Normalize(toTarget);
 
 		//회전 - 모델이 돌아가 있을 것이라고 추정함

@@ -615,7 +615,7 @@ InputType SoundManager::CheckRhythm(float correction)
 
 void SoundManager::UpdateUINodeDestroyed()
 {
-	if (m_CurrentNodeDataName.empty() || m_CurrentNodeDataName == "" && m_rhythmDestroyIndex < m_NodeData[m_CurrentNodeDataName].size()) return;
+	if (m_CurrentNodeDataName.empty() || m_CurrentNodeDataName == "" && m_rhythmDestroyIndex > m_NodeData[m_CurrentNodeDataName].size() -1) return;
 
 	if (m_NodeData[m_CurrentNodeDataName][m_rhythmDestroyIndex].first + m_RhythmOffSet < GetAudioTime())
 	{
@@ -638,7 +638,7 @@ void SoundManager::Main_BGM_Shot(const std::string filename, float delay)
 	}
 
 	m_CurrentTrackName = it->first;
-	m_CurrentNodeDataName = it->first + "_Beat";
+	m_CurrentNodeDataName = it->first;
 	m_rhythmTimerIndex = 0;
 	m_rhythmUIIndex = 0;
 	m_rhythmDestroyIndex = 0;

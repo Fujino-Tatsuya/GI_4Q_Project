@@ -25,11 +25,11 @@ void CrossHairAndNode::Initialize()
 	m_NodeDataPtr = SoundManager::GetInstance().GetNodeDataPtr();
 
 	m_CrossHairSize = m_prevCrossHairSize = 0.04f;
-	m_NodeStartSize = m_prevNodeStartSize = 0.04f;
-	m_NodeEndSize = m_prevNodeEndSize = 0.04f;
+	m_NodeStartSize = m_prevNodeStartSize = 0.104f;
+	m_NodeEndSize = m_prevNodeEndSize = 0.176f;
 
-	m_NodeStart = 0.25f;
-	m_NodeEnd = 0.5f;
+	m_NodeStart = 0.1f;
+	m_NodeEnd = 0.45f;
 
 	m_linePos = 0.45f;
 	m_lineScl = 0.04f;
@@ -85,13 +85,45 @@ void CrossHairAndNode::Finalize()
 nlohmann::json CrossHairAndNode::Serialize()
 {
 	nlohmann::json jsonData;
+
+	jsonData["CrossHairSize"] = m_CrossHairSize;
+
+	jsonData["NodeStartSize"] = m_NodeStartSize;
+	jsonData["NodeEndSize"] = m_NodeEndSize;
+
+	jsonData["NodeStart"] = m_NodeStart;
+	jsonData["NodeEnd"] = m_NodeEnd;
+
+	jsonData["LinePos"] = m_linePos;
+	jsonData["LineScl"] = m_lineScl;
+
 	return jsonData;
 }
 
 void CrossHairAndNode::Deserialize(const nlohmann::json& jsonData)
 {
+	if (jsonData.contains("CrossHairSize"))
+		m_CrossHairSize = jsonData["CrossHairSize"];
 
+	if (jsonData.contains("NodeStartSize"))
+		m_NodeStartSize = jsonData["NodeStartSize"];
+
+	if (jsonData.contains("NodeEndSize"))
+		m_NodeEndSize = jsonData["NodeEndSize"];
+
+	if (jsonData.contains("NodeStart"))
+		m_NodeStart = jsonData["NodeStart"];
+
+	if (jsonData.contains("NodeEnd"))
+		m_NodeEnd = jsonData["NodeEnd"];
+
+	if (jsonData.contains("LinePos"))
+		m_linePos = jsonData["LinePos"];
+
+	if (jsonData.contains("LineScl"))
+		m_lineScl = jsonData["LineScl"];
 }
+
 
 void CrossHairAndNode::RenderUINode(Renderer& renderer)
 {

@@ -17,6 +17,7 @@
                         "DissolveEdgeWidth": 1.0,
                         "DissolveThreshold": 0.20000000298023224
                     },
+                    "hasShadow": true,
                     "materialFactor": [
                         {
                             "ambientOcclusionFactor": 1.0,
@@ -38,7 +39,7 @@
                     ],
                     "modelAndMaterialFileNames": [
                         {
-                            "materialFileName": "",
+                            "materialFileName": "gun_low_gun",
                             "modelFileName": "gb.fbx"
                         }
                     ],
@@ -86,6 +87,7 @@
                         "DissolveEdgeWidth": 1.0,
                         "DissolveThreshold": 0.20000000298023224
                     },
+                    "hasShadow": true,
                     "materialFactor": [
                         {
                             "ambientOcclusionFactor": 1.0,
@@ -107,7 +109,7 @@
                     ],
                     "modelAndMaterialFileNames": [
                         {
-                            "materialFileName": "",
+                            "materialFileName": "gun_low_gun",
                             "modelFileName": "gc.fbx"
                         }
                     ],
@@ -125,10 +127,10 @@
                 0.0
             ],
             "rotation": [
-                -0.5108444690704346,
+                -0.9999950528144836,
                 0.0,
                 0.0,
-                0.8596731424331665
+                -0.003141863038763404
             ],
             "scale": [
                 1.0,
@@ -155,6 +157,7 @@
                         "DissolveEdgeWidth": 1.0,
                         "DissolveThreshold": 0.20000000298023224
                     },
+                    "hasShadow": true,
                     "materialFactor": [
                         {
                             "ambientOcclusionFactor": 1.0,
@@ -176,7 +179,7 @@
                     ],
                     "modelAndMaterialFileNames": [
                         {
-                            "materialFileName": "",
+                            "materialFileName": "gun_low_gun",
                             "modelFileName": "gf.fbx"
                         }
                     ],
@@ -212,9 +215,9 @@
             "components": [],
             "name": "GunTip",
             "position": [
-                -0.6720123291015625,
-                0.40651601552963257,
-                1.52587890625e-05,
+                -0.672210693359375,
+                0.4122568964958191,
+                -0.0063629150390625,
                 1.0
             ],
             "rotation": [
@@ -241,21 +244,21 @@
     ],
     "name": "Gun",
     "position": [
-        0.6410369873046875,
-        -0.7863332033157349,
+        0.4683837890625,
+        -0.7796590328216553,
         1.6152801513671875,
         1.0
     ],
     "rotation": [
         0.0,
-        0.7071064710617065,
+        0.7071065902709961,
         0.0,
-        0.7071070671081543
+        0.7071069478988647
     ],
     "scale": [
-        0.9999995827674866,
+        0.9999998211860657,
         1.0,
-        0.9999995827674866,
+        0.9999998211860657,
         0.0
     ],
     "type": "GameObjectBase"

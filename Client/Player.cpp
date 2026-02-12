@@ -27,6 +27,11 @@ using namespace std;
 using namespace DirectX;
 
 float Player::m_cameraSensitivity = 0.05f;
+bool Player::m_hasDashedForTutorial = false;
+bool Player::m_hasShotForTutorial = false;
+bool Player::m_hasReloadedForTutorial = false;
+bool Player::m_hasAutoReloadedForTutorial = false;
+bool Player::m_hasUsedDeadEyeForTutorial = false;
 
 void Player::Initialize()
 {
@@ -65,6 +70,13 @@ void Player::Initialize()
 	m_bulletUIpos = { 0.965f,0.85f };
 	m_bulletInterval = 0.03f;
 
+	m_hasDashedForTutorial = false;
+	m_hasShotForTutorial = false;
+	m_hasReloadedForTutorial = false;
+	m_hasAutoReloadedForTutorial = false;
+	m_hasUsedDeadEyeForTutorial = false;
+	m_originalHeight = XMVectorGetY(GetPosition());
+
 	SetAction(Action::All, true);
 }
 
@@ -93,10 +105,35 @@ void Player::Update()
 	
 	if (m_isDeadEyeActive)				PlayerDeadEye(deltaTime, input);	
 	if (m_isDashing)					PlayerDash(deltaTime);
-	else if (m_ControlState.CanMove)	MovePosition(m_normalizedMoveDirection * m_moveSpeed * deltaTime);
+	else if (m_ControlState.CanMove)
+	{
+		MovePosition(m_normalizedMoveDirection * m_moveSpeed * deltaTime);
+
+		float moveDirLength = XMVectorGetX(XMVector3LengthSq(m_normalizedMoveDirection));
+
+		if (moveDirLength > 0.1f)
+		{
+			m_headBobTimer += deltaTime * 10.0f;
+			SetPosition(XMVectorSetY(GetPosition(), m_originalHeight + (cosf(m_headBobTimer) - 1.0f) * 0.1f));
+		}
+		else
+		{
+			// 硫덉텧 �븣 �썝�옒 �넂�씠濡� 泥쒖쿇�엳 蹂듦��
+			m_headBobTimer = 0.0f;
+			float currentHeight = XMVectorGetY(GetPosition());
+			float heightDiff = m_originalHeight - currentHeight;
+			if (fabsf(heightDiff) > 0.01f)
+			{
+				float adjustSpeed = 5.0f; // 議곗젙 �냽�룄
+				float newY = currentHeight + heightDiff * adjustSpeed * deltaTime;
+				SetPosition(XMVectorSetY(GetPosition(), newY));
+			}
+			else SetPosition(XMVectorSetY(GetPosition(), m_originalHeight));
+		}
+	};
 	
-	// 만약 이동한 위치가 네비게이션 메시 밖이면 이전 위치로 되돌림 // 월드 좌표계는 나중에 업데이트 됨으로 로컬 좌표계로 해햐함
-	if (NavigationManager::GetInstance().FindNearestPoly(GetPosition(), 3.0f) < 0) SetPosition(previousPosition);
+	// 留뚯빟 �씠�룞�븳 �쐞移섍�� �꽕鍮꾧쾶�씠�뀡 硫붿떆 諛뽰씠硫� �씠�쟾 �쐞移섎줈 �릺�룎由� // �썡�뱶 醫뚰몴怨꾨뒗 �굹以묒뿉 �뾽�뜲�씠�듃 �맖�쑝濡� 濡쒖뺄 醫뚰몴怨꾨줈 �빐�뼆�븿
+	if (NavigationManager::GetInstance().FindNearestPoly(XMVectorSetY(GetPosition(), 0.0f), 3.0f) < 0) SetPosition(previousPosition);
 
 	if (input.GetKeyDown(KeyCode::R) && m_ControlState.CanReload && m_bulletCnt > 0)
 	{
@@ -129,7 +166,7 @@ void Player::Update()
 
 	if (m_redVignetteIntensity > 0.0f)
 	{
-		m_redVignetteIntensity -= deltaTime * 0.25f;
+		m_redVignetteIntensity -= deltaTime * 0.05f;
 		SceneBase::SetVignettingIntensity(m_redVignetteIntensity);
 		if (m_redVignetteIntensity <= 0.0f) SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, false);
 	}
@@ -168,23 +205,26 @@ void Player::TutorialStep() const
 	switch (GameManager::GetInstance().GetTutorialStep())
 	{
 	case ETutorialStep::Dash:
-		if (m_isDashing) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Shoot);
+		if (m_hasDashedForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Shoot);
 		break;
 
 	case ETutorialStep::Shoot:
-		if (m_bulletCnt < m_MaxBullet) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Reload);
+		if (m_bulletCnt < m_MaxBullet-2 && m_hasShotForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::Reload);
 		break;
 
 	case ETutorialStep::Reload:
-		if (m_bulletCnt == m_MaxBullet) GameManager::GetInstance().SetTutorialStep(ETutorialStep::AutoReload);
+		if (m_bulletCnt == m_MaxBullet && m_hasReloadedForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::AutoReload);
 		break;
 
 	case ETutorialStep::AutoReload:
-		if (m_bulletCnt == 0) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadEye);
+		if (m_hasAutoReloadedForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadEye);
 		break;
 
 	case ETutorialStep::DeadEye:
-		if (m_isDeadEyeActive) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
+		if (InputManager::GetInstance().GetKeyDown(KeyCode::MouseLeft)) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadTwo);
+
+	case ETutorialStep::DeadTwo:
+		if (m_hasUsedDeadEyeForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
 		break;
 	}
 }
@@ -198,7 +238,7 @@ void Player::TakeHit()
 
 	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
 	SceneBase::SetVignettingColor({ 1.0f, 0.0f, 0.0f });
-	m_redVignetteIntensity = 0.25f;
+	m_redVignetteIntensity = 0.02f;
 	m_invincibilityTimer = m_invincibilityDuration;
 }
 
@@ -263,16 +303,16 @@ void Player::PlayerTriggerDash()
 	m_dashDirection = m_normalizedMoveDirection;
 	const float inputX = XMVectorGetX(XMVector3Normalize(m_inputDirection));
 
-	// 카메?�� ?��?��
+	// 移대찓?占쏙옙 ?占쏙옙?占쏙옙
 	m_playerRotation.z = -Config::Player_Dash_Tilt * inputX;
 
-	// Radial Blur ?��?��
+	// Radial Blur ?占쏙옙?占쏙옙
 	SceneBase::SetRadialBlurCenter({ inputX * 0.5f + 0.5f, 0.5f });
 	SceneBase::SetRadialBlurDist(0.33f);
 	SceneBase::SetRadialBlurStrength(1.7f);
 	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::RadialBlur, true);
 
-	// ?��?��?�� ?��기다 ?��?��?�� ?��
+	// ?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙湲곕떎 ?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙
 	SoundManager::GetInstance().SFX_Shot(GetPosition(), Config::Player_Dash);
 }
 
@@ -284,11 +324,12 @@ void Player::PlayerDash(float deltaTime)
 
 	float t = 1.0f - (m_dashTimer / m_kDashDuration); // 0->1
 	float smooth = t * t * (3.0f - 2.0f * t); // smoothstep
-	SceneBase::SetRadialBlurStrength(8.0f * (1.0f - smooth)); // ?��?�� ?��?���?
+	SceneBase::SetRadialBlurStrength(8.0f * (1.0f - smooth)); // ?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙占�?
 
 	if (m_dashTimer <= 0.0f)
 	{
 		m_isDashing = false;
+		m_hasDashedForTutorial = true;
 		SceneBase::SetRadialBlurStrength(0.0f);
 		SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::RadialBlur, false);
 	}
@@ -371,6 +412,7 @@ void Player::PlayerReload(int cnt)
 					m_ControlState.CanShoot = true;
 					m_ControlState.CanReload = true;
 					m_ControlState.CanAutoReload = true;
+					m_hasReloadedForTutorial = true;
 
 					return true;
 				});
@@ -428,6 +470,7 @@ void Player::PlayerAutoReload(int cnt)
 				{					
 					m_ControlState.CanAutoReload = true;
 					m_ControlState.CanShoot = true;
+					m_hasAutoReloadedForTutorial = true;
 					//std::cout << "WaitEnableShoot" << std::endl;
 					return true;
 				}
@@ -450,10 +493,9 @@ void Player::PlayerDeadEyeStart()
 	{
 		if (Enemy* enemy = dynamic_cast<Enemy*>(hit))
 		{
-			// ?��?��?�� ?��?��물이 ?��?���? ?��?��
 			float distance = 0.0f;
 			const XMVECTOR& origin = GetPosition();
-			const XMVECTOR& targetPos = XMVectorAdd(enemy->GetWorldPosition(), { 0.0f, 1.0f, 0.0f, 0.0f }); // ?�� 충심?�� y = 0.0f?��?�� ?���? ?���?
+			const XMVECTOR& targetPos = XMVectorAdd(enemy->GetWorldPosition(), { 0.0f, 1.0f, 0.0f, 0.0f }); // ?占쏙옙 異⑹떖?占쏙옙 y = 0.0f?占쏙옙?占쏙옙 ?占쏙옙占�? ?占쏙옙占�?
 			if (!dynamic_cast<Enemy*>(ColliderComponent::CheckCollision(origin, XMVectorSubtract(targetPos, origin), distance))) continue;
 
 			hasEnemy = true;
@@ -500,6 +542,25 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 
 	const XMVECTOR& targetPos = XMVectorAdd(m_deadEyeTargets.back().second->GetWorldPosition(), { 0.0f, 1.2f, 0.0f, 0.0f });
 	m_nextDeadEyePos = m_cameraComponent->WorldToScreenPosition(targetPos);
+	//m_gunObject->LookAt(targetPos);
+	//m_gunObject->Rotate({ 0.0f, 90.0f, 0.0f, 0.0f });
+	//�씠寃� 留욌깘..
+	// UPvector瑜� 諛붽퓭�빞 �븯�뒗�뜲 �씠�쑀瑜� 紐⑤Ⅴ寃좎쓬
+	const XMVECTOR gunPos = m_gunObject->GetWorldPosition();
+	XMVECTOR dir = XMVectorSubtract(targetPos, gunPos);
+	dir = XMVector3Normalize(dir);
+
+	const float dx = XMVectorGetX(dir);
+	const float dy = XMVectorGetY(dir);
+	const float dz = XMVectorGetZ(dir);
+	const float yaw = XMConvertToDegrees(atan2f(dx, dz));
+	const float pitch = XMConvertToDegrees(-atan2f(dy, sqrtf(dx * dx + dz * dz)));
+
+	const float localYaw = yaw - m_playerRotation.y;
+	const float localPitch = pitch - m_playerRotation.x;
+
+	constexpr float kGunForwardYawOffset = 90.0f;
+	m_gunObject->SetRotation({ localPitch, localYaw + kGunForwardYawOffset, 0.0f, 0.0f });
 
 	if (input.GetKeyDown(KeyCode::MouseLeft))
 	{
@@ -539,7 +600,12 @@ void Player::PlayerDeadEye(float deltaTime, InputManager& input)
 
 void Player::PlayerDeadEyeEnd()
 {
-	if (m_gunObject) if (m_gunFSM) m_gunFSM->Fire();
+	if (m_gunObject)
+	{
+		m_gunObject->SetRotation({ 0.0f, 90.0f, 0.0f, 0.0f });
+		if (m_gunFSM) m_gunFSM->Fire();
+		
+	}
 
 	m_isDeadEyeActive = false;
 
@@ -554,6 +620,7 @@ void Player::PlayerDeadEyeEnd()
 
 	SoundManager::GetInstance().ChangeLowpass();
 
+	m_hasUsedDeadEyeForTutorial = true;
 	//TriggerLUT();
 }
 
@@ -757,7 +824,7 @@ void Player::UpdateLutCrossfade(float deltaTime)
 	float t = m_lutCrossfadeElapsed / m_lutCrossfadeDuration;
 	if (t > 1.0f) t = 1.0f;
 
-	// smoothstep (깔끔/감속)
+	// smoothstep (源붾걫/媛먯냽)
 	float smooth = t * t * (3.0f - 2.0f * t);
 	float factor = m_lutCrossfadeReverse ? (1.0f - smooth) : smooth;
 
@@ -767,13 +834,13 @@ void Player::UpdateLutCrossfade(float deltaTime)
 	{
 		if (!m_lutCrossfadeReverse)
 		{
-			// 방향 
+			// 諛⑺뼢 
 			m_lutCrossfadeReverse = true;
 			m_lutCrossfadeElapsed = 0.0f;
 		}
 		else
 		{
-			// 종료: flag off + 
+			// 醫낅즺: flag off + 
 			m_lutCrossfadeActive = false;
 			m_lutCrossfadeReverse = false;
 			SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, false);

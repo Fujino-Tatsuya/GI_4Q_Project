@@ -91,6 +91,12 @@
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -125,6 +131,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(SolutionDir)\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -172,6 +179,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(SolutionDir)\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -191,6 +199,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="CamRotObject.cpp" />
     <ClCompile Include="CrossHairAndNode.cpp" />
     <ClCompile Include="EndingScene.cpp" />
@@ -215,6 +224,7 @@
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="CamRotObject.h" />
     <ClInclude Include="CrossHairAndNode.h" />
     <ClInclude Include="EndingScene.h" />
@@ -235,7 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Asset\Prefab\Enemy.json" />
-    <None Include="..\Asset\Prefab\Gun.json" />
+    <None Include="..\Asset\Prefab\EnemySpawned.json" />
     <None Include="..\Asset\Prefab\Gun2.json" />
     <None Include="..\Asset\Prefab\Player.json" />
     <None Include="..\Asset\Scene\EndingScene.json" />

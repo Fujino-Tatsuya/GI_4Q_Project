@@ -1,9 +1,9 @@
 #include "CommonVS.hlsli"
 #include "CommonMath.hlsli"
 
-VS_OUTPUT_POS_UV main(VS_INPUT_POS_UV input, uint instanceID : SV_InstanceID)
+VS_OUTPUT_POS_WORLD_UV main(VS_INPUT_POS_UV input, uint instanceID : SV_InstanceID)
 {
-    VS_OUTPUT_POS_UV output;
+    VS_OUTPUT_POS_WORLD_UV output;
     
     float3 centerWorldPos = float3(WorldMatrix._41, WorldMatrix._42, WorldMatrix._43);
     
@@ -22,6 +22,7 @@ VS_OUTPUT_POS_UV main(VS_INPUT_POS_UV input, uint instanceID : SV_InstanceID)
     worldPos.xyz += mul(pos, (float3x3) WorldMatrix);
     
     output.Position = mul(worldPos, VPMatrix);
+    output.WorldPosition = worldPos;
     output.UV = (input.UV * UVScale) + UVOffset;
 
     return output;
