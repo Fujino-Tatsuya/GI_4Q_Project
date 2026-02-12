@@ -609,7 +609,7 @@
             "type": "Panel"
         }
     ],
-    "environmentMapFileName": "Skybox.dds",
+    "environmentMapFileName": "Skybox0.dds",
     "lightColor": [
         1.0,
         0.8566897511482239,
@@ -26984,7 +26984,7 @@
                 {
                     "CrossHairSize": 0.03999999910593033,
                     "LinePos": 0.44999998807907104,
-                    "LineScl": 0.07900000363588333,
+                    "LineScl": 0.03999999910593033,
                     "NodeEnd": 0.44999998807907104,
                     "NodeEndSize": 0.17599999904632568,
                     "NodeStart": 0.10000000149011612,
