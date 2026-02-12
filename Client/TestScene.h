@@ -21,6 +21,7 @@ class TestScene : public SceneBase
 	class Text* m_curSensitivity = nullptr;
 
 
+	class Panel* IngameUI = nullptr;
 	class Panel* n1 = nullptr;
 	class Panel* n10 = nullptr;
 	class Panel* n100 = nullptr;
@@ -57,4 +58,5 @@ private:
 	void SpawnEnemy(float deltaTime);
 
 	void RenderSpawnPoints();
+	void SetScoreUI(int score);
 };

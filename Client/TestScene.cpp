@@ -47,6 +47,8 @@ void TestScene::Initialize()
 		enemy->SetPosition(XMVectorSet(RNG::GetInstance().Range(-10.0f, 10.0f), 0.0f, RNG::GetInstance().Range(-10.0f, 10.0f), 1.0f));
 		dynamic_cast<Enemy*>(enemy)->SetAsTutorialDummy();
 	}
+
+	IngameUI->SetActive(true);
 }
 
 void TestScene::Update()
@@ -58,6 +60,7 @@ void TestScene::Update()
 	TutorialStep();
 
 	CheckStageTrigger();
+	SetScoreUI(GameManager::GetInstance().GetScore());
 }
 
 void TestScene::Render()
@@ -231,7 +234,7 @@ void TestScene::BindUIActions()
 			else if (panel->GetName() == "10000") n10000 = panel;
 			else if (panel->GetName() == "100000") n100000 = panel;
 			else if (panel->GetName() == "combo") combo = panel;
-
+			else if (panel->GetName() == "IngameUI") IngameUI = panel;
 		}
 	}
 	if (optionPanel)
@@ -314,6 +317,46 @@ void TestScene::BindUIActions()
 			{
 				m_curSensitivity = text;
 			}
+		}
+	}
+}
+
+void TestScene::SetScoreUI(int score)
+{
+	if (score < 0) score = 0;
+	if (score > 999999) score = 999999;
+
+	int d1 = score % 10;
+	int d10 = (score / 10) % 10;
+	int d100 = (score / 100) % 10;
+	int d1000 = (score / 1000) % 10;
+	int d10000 = (score / 10000) % 10;
+	int d100000 = (score / 100000) % 10;
+
+	if (n1)      n1->SetTextureAndOffset("UI_n" + std::to_string(d1) + ".png");
+	if (n10)     n10->SetTextureAndOffset("UI_n" + std::to_string(d10) + ".png");
+	if (n100)    n100->SetTextureAndOffset("UI_n" + std::to_string(d100) + ".png");
+	if (n1000)   n1000->SetTextureAndOffset("UI_n" + std::to_string(d1000) + ".png");
+	if (n10000)  n10000->SetTextureAndOffset("UI_n" + std::to_string(d10000) + ".png");
+	if (n100000) n100000->SetTextureAndOffset("UI_n" + std::to_string(d100000) + ".png");
+
+	if (combo)
+	{
+		const int multiplier = GameManager::GetInstance().GetMultiplier();
+		switch (multiplier)
+		{
+		case 2:
+			combo->SetTextureAndOffset("UI_Combo2.png");
+			break;
+		case 4:
+			combo->SetTextureAndOffset("UI_Combo4.png");
+			break;
+		case 8:
+			combo->SetTextureAndOffset("UI_Combo8.png");
+			break;
+		default:
+			combo->SetTextureAndOffset("UI_Combo1.png");
+			break;
 		}
 	}
 }
