@@ -234,18 +234,15 @@ void TestScene::RenderSpawnPoints()
 
 void TestScene::BindUIActions()
 {
-	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
-			else if (panel->GetName() == "cheat") sceneCheatPanel = panel;
 		}
 	}
 	if (optionPanel)
 	{
 		GameManager::GetInstance().RegisterOptionPanel(optionPanel);
 	}
-	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {
@@ -256,20 +253,7 @@ void TestScene::BindUIActions()
 		{
 			std::string key = btn->GetActionKey();
 
-			if (key == "goto_tutorial" || key == "goto_stage1" || key == "goto_stage2" || key == "goto_boss")
-			{
-				btn->SetOnClick([key]() {
-					GameManager::GetInstance().CheatGotoByActionKey(key);
-					});
-			}
-
-			if (key == "cheat") {
-				btn->SetOnClick([this]() {
-					GameManager::GetInstance().SetSuccess(true);
-					SceneManager::GetInstance().ChangeScene("EndingScene");
-				});
-			}
-			else if (key == "close_option") {
+			if (key == "close_option") {
 				if (optionPanel) btn->SetOnClick([this]()
 					{
 						optionPanel->SetActive(false);

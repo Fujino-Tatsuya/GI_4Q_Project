@@ -86,7 +86,6 @@ void TitleScene::Update()
 
 void TitleScene::BindUIActions()
 {
-	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "option") optionPanel = panel;
@@ -98,7 +97,6 @@ void TitleScene::BindUIActions()
 			//if (text->GetName() == "result_time") resultTime = text;
 		}
 	}
-	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {

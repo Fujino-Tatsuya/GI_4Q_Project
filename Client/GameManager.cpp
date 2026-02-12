@@ -186,23 +186,17 @@ void GameManager::OnSceneEnter(EScene type)
 
 void GameManager::OnSceneUpdate()
 {
-	if (InputManager::GetInstance().GetKeyDown(KeyCode::K)) {
-		if (m_CurrentScene == EScene::Main)
+	if (m_CurrentScene == EScene::Main)
+	{
+		auto& input = InputManager::GetInstance();
+		if (input.GetKeyDown(KeyCode::Num1)) CheatGotoByActionKey("goto_tutorial");
+		else if (input.GetKeyDown(KeyCode::Num2)) CheatGotoByActionKey("goto_stage1");
+		else if (input.GetKeyDown(KeyCode::Num3)) CheatGotoByActionKey("goto_stage2");
+		else if (input.GetKeyDown(KeyCode::Num4)) CheatGotoByActionKey("goto_boss");
+		else if (input.GetKeyDown(KeyCode::Num0))
 		{
-			if (!m_Pause)
-			{
-				ToggleOption();
-			}
-			else
-			{
-				if (m_optionPanel && !m_optionPanel->GetActive()) m_optionPanel->SetActive(true);
-				ForceShowCursor(true);
-			}
-
-			if (m_cheatPanel)
-			{
-				m_cheatPanel->SetActive(true);
-			}
+			SetSuccess(true);
+			SceneManager::GetInstance().ChangeScene("EndingScene");
 		}
 	}
 

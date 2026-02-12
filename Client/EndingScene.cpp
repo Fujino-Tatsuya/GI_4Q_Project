@@ -45,7 +45,6 @@ void EndingScene::Update()
 
 void EndingScene::BindUIActions()
 {
-	Panel* sceneCheatPanel = nullptr;
 	for (const auto& uiPtr : m_UIList) {
 		if (auto* panel = dynamic_cast<Panel*>(uiPtr.get())) {
 			if (panel->GetName() == "1") n1 = panel;
@@ -58,7 +57,6 @@ void EndingScene::BindUIActions()
 			else if (panel->GetName() == "Grade") Grade = panel;
 		}
 	}
-	GameManager::GetInstance().RegisterCheatPanel(sceneCheatPanel);
 
 
 	for (auto& uiPtr : m_UIList) {
