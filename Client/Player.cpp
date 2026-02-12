@@ -98,8 +98,28 @@ void Player::Update()
 	else if (m_ControlState.CanMove)
 	{
 		MovePosition(m_normalizedMoveDirection * m_moveSpeed * deltaTime);
-		m_headBobTimer += deltaTime * 10.0f * XMVectorGetX(XMVector3LengthSq(m_normalizedMoveDirection));
-		SetPosition(XMVectorSetY(GetPosition(), m_originalHeight + sinf(m_headBobTimer) * 0.1f));
+
+		float moveDirLength = XMVectorGetX(XMVector3LengthSq(m_normalizedMoveDirection));
+
+		if (moveDirLength > 0.1f)
+		{
+			m_headBobTimer += deltaTime * 10.0f;
+			SetPosition(XMVectorSetY(GetPosition(), m_originalHeight + (cosf(m_headBobTimer) - 1.0f) * 0.1f));
+		}
+		else
+		{
+			// 멈출 때 원래 높이로 천천히 복귀
+			m_headBobTimer = 0.0f;
+			float currentHeight = XMVectorGetY(GetPosition());
+			float heightDiff = m_originalHeight - currentHeight;
+			if (fabsf(heightDiff) > 0.01f)
+			{
+				float adjustSpeed = 5.0f; // 조정 속도
+				float newY = currentHeight + heightDiff * adjustSpeed * deltaTime;
+				SetPosition(XMVectorSetY(GetPosition(), newY));
+			}
+			else SetPosition(XMVectorSetY(GetPosition(), m_originalHeight));
+		}
 	};
 	
 	// 만약 이동한 위치가 네비게이션 메시 밖이면 이전 위치로 되돌림 // 월드 좌표계는 나중에 업데이트 됨으로 로컬 좌표계로 해햐함
