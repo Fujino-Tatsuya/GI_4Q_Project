@@ -8,6 +8,7 @@
 #include "Panel.h"
 #include "InputManager.h"
 #include "SoundManager.h"
+#include "UIBase.h"
 
 #include "Shared/Config/Option.h"
 
@@ -485,6 +486,26 @@ void GameManager::LoadRankings()
 
 	if (m_rankings.size() > 10)
 		m_rankings.resize(10);
+}
+
+void GameManager::ShowTutorialPopup()
+{
+
+}
+
+void GameManager::CloseTutorialPopup()
+{
+
+}
+
+void GameManager::NextTutorialStep()
+{
+
+}
+
+bool GameManager::AnyInputDown()
+{
+	return false;
 }
 
 void GameManager::SaveRankings() const

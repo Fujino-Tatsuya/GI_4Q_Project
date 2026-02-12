@@ -65,6 +65,13 @@ class GameManager : public Singleton<GameManager>
     std::vector<std::pair<std::string, int>> m_rankings;
 ///RANKING END
 
+	Panel* m_tutorialPanel = nullptr;  
+	Panel* m_tutorialPopup = nullptr;  
+	bool   m_tutorialPopupOpen = false;
+	bool   m_stepPopupShown = false;   
+
+	
+
 public:
     void Initialize();
     void Finalize();
@@ -132,6 +139,11 @@ public:
     void AddScore(const std::string& name, int score);
     const std::vector<std::pair<std::string, int>>& GetTopScores() const { return m_rankings; }
 ///RANKING END
+
+	void ShowTutorialPopup();
+	void CloseTutorialPopup();
+	void NextTutorialStep();
+	bool AnyInputDown();
 
 	std::string ToString(EMainState state)
 	{

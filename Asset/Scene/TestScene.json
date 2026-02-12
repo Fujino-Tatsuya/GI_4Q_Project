@@ -8,7 +8,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.0,
+            "depth": 0.5,
             "name": "option",
             "parentIdx": -1,
             "pathIdle": "UI_OptionBG.png",
@@ -46,7 +46,7 @@
                 0.699999988079071,
                 1.0
             ],
-            "depth": 0.4000000059604645,
+            "depth": 0.5099999904632568,
             "name": "Title_Button",
             "parentIdx": 0,
             "pathClicked": "UI_Button_hover.png",
@@ -71,7 +71,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.3199999928474426,
+            "depth": 0.5099999904632568,
             "fontName": "SuperCrawler72",
             "name": "BGM",
             "parentIdx": 3,
@@ -99,7 +99,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.30000001192092896,
+            "depth": 0.5099999904632568,
             "handleColorHover": [
                 0.8999999761581421,
                 0.8999999761581421,
@@ -157,7 +157,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.33000001311302185,
+            "depth": 0.5099999904632568,
             "fontName": "SuperCrawler72",
             "name": "PauseText",
             "parentIdx": 0,
@@ -185,7 +185,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.3100000023841858,
+            "depth": 0.5099999904632568,
             "handleColorHover": [
                 0.8999999761581421,
                 0.8999999761581421,
@@ -243,7 +243,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.3199999928474426,
+            "depth": 0.5099999904632568,
             "fontName": "SuperCrawler72",
             "name": "Sensitivity",
             "parentIdx": 5,
@@ -271,7 +271,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.3100000023841858,
+            "depth": 0.5099999904632568,
             "handleColorHover": [
                 0.8999999761581421,
                 0.8999999761581421,
@@ -329,7 +329,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.4300000071525574,
+            "depth": 0.5099999904632568,
             "fontName": "SuperCrawler72",
             "name": "SFX",
             "parentIdx": 7,
@@ -356,7 +356,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.4099999964237213,
+            "depth": 0.5099999904632568,
             "fontName": "Paperlogy",
             "name": "TitleText",
             "parentIdx": 1,
@@ -402,7 +402,7 @@
                 0.699999988079071,
                 1.0
             ],
-            "depth": 0.4000000059604645,
+            "depth": 0.5099999904632568,
             "name": "Resume_Button",
             "parentIdx": 0,
             "pathClicked": "UI_Button_hover.png",
@@ -427,7 +427,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.4099999964237213,
+            "depth": 0.5099999904632568,
             "fontName": "Paperlogy",
             "name": "Resume_Text",
             "parentIdx": 10,
@@ -455,7 +455,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.0,
+            "depth": 0.5099999904632568,
             "handleColorHover": [
                 0.8999999761581421,
                 0.8999999761581421,
@@ -513,7 +513,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.0,
+            "depth": 0.5099999904632568,
             "fontName": "SuperCrawler72",
             "name": "MasterText",
             "parentIdx": 12,
@@ -559,7 +559,7 @@
                 1.0,
                 1.0
             ],
-            "depth": 0.0,
+            "depth": 0.5099999904632568,
             "name": "MiddleLine",
             "parentIdx": 0,
             "pathIdle": "UI_Line.png",
@@ -568,6 +568,158 @@
                 -0.07000000029802322
             ],
             "scale": 0.6499999761581421,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                0.7058823704719543
+            ],
+            "depth": 0.28999999165534973,
+            "name": "BlackPannel",
+            "parentIdx": -1,
+            "pathIdle": "black16.png",
+            "pos": [
+                0.5,
+                0.5
+            ],
+            "scale": 0.6700000166893005,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "MovePopUp",
+            "parentIdx": -1,
+            "pathIdle": "1.Tuto_Move.png",
+            "pos": [
+                0.8100000023841858,
+                0.25999999046325684
+            ],
+            "scale": 0.800000011920929,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "DashPopUp",
+            "parentIdx": -1,
+            "pathIdle": "2.Tuto_Dash.png",
+            "pos": [
+                0.8100000023841858,
+                0.25999999046325684
+            ],
+            "scale": 0.800000011920929,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "ShotPopUp",
+            "parentIdx": -1,
+            "pathIdle": "3.Tuto_Shoot.png",
+            "pos": [
+                0.8100000023841858,
+                0.25999999046325684
+            ],
+            "scale": 0.800000011920929,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "AutoPopUp",
+            "parentIdx": -1,
+            "pathIdle": "4.Tuto_AutoReload.png",
+            "pos": [
+                0.8100000023841858,
+                0.25999999046325684
+            ],
+            "scale": 0.800000011920929,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "ReloadPopUp",
+            "parentIdx": -1,
+            "pathIdle": "5.Tuto_Reload.png",
+            "pos": [
+                0.8100000023841858,
+                0.25999999046325684
+            ],
+            "scale": 0.800000011920929,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "SkillPopUp1",
+            "parentIdx": -1,
+            "pathIdle": "6.Tuto_DeadEye1.png",
+            "pos": [
+                0.8100000023841858,
+                0.25999999046325684
+            ],
+            "scale": 0.800000011920929,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.30000001192092896,
+            "name": "SkillPopUp2",
+            "parentIdx": -1,
+            "pathIdle": "7.Tuto_DeadEye2.png",
+            "pos": [
+                0.8100000023841858,
+                0.25999999046325684
+            ],
+            "scale": 0.800000011920929,
             "type": "Panel"
         }
     ],
