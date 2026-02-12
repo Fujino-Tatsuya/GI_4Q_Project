@@ -5,6 +5,8 @@ class ColliderComponent : public ComponentBase
 {
 	static std::vector<ColliderComponent*> s_colliders; // 모든 콜라이더 컴포넌트 배열
 
+	bool m_renderBoundingShapes = false; // 경계 상자 렌더링 여부
+
 	// 로컬 좌표계 기준 경계 상자, 방향 상자, 절두체 쌍 배열 (로컬, 월드)
 	std::vector<std::pair<DirectX::BoundingBox, DirectX::BoundingBox>> m_boundingBoxes = {};
 	std::vector<std::pair<DirectX::BoundingOrientedBox, DirectX::BoundingOrientedBox>> m_boundingOrientedBoxes = {};
@@ -47,7 +49,7 @@ public:
 	bool NeedsFixedUpdate() const override { return true; }
 	bool NeedsUpdate() const override { return true; }
 	#ifdef _DEBUG
-	bool NeedsRender() const override { return false; }
+	bool NeedsRender() const override { return true; }
 	#else
 	bool NeedsRender() const override { return false; }
 	#endif
