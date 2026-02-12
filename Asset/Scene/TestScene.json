@@ -26990,9 +26990,6 @@
                     "NodeStart": 0.10000000149011612,
                     "NodeStartSize": 0.10400000214576721,
                     "type": "CrossHairAndNode"
-                },
-                {
-                    "type": "ListenerComponent"
                 }
             ],
             "name": "Player",
@@ -38391,11 +38388,7 @@
             "name": "Trigger1",
             "position": [
                 -170.38296508789063,
-<<<<<<< Updated upstream
-                0.0,
-=======
                 1.7212824821472168,
->>>>>>> Stashed changes
                 -89.19985961914063,
                 1.0
             ],
@@ -39205,14 +39198,6 @@
         },
         {
             "childGameObjects": [],
-<<<<<<< Updated upstream
-            "components": [],
-            "name": "Trigger2",
-            "position": [
-                -134.17105102539063,
-                -7.647681741218548e-06,
-                -64.00323486328125,
-=======
             "components": [
                 {
                     "boundingBoxes": [
@@ -39801,7 +39786,6 @@
                 -54.576560974121094,
                 0.49173831939697266,
                 54.79145050048828,
->>>>>>> Stashed changes
                 1.0
             ],
             "rotation": [
@@ -39817,8 +39801,6 @@
                 0.0
             ],
             "type": "GameObjectBase"
-<<<<<<< Updated upstream
-=======
         },
         {
             "childGameObjects": [],
@@ -40873,7 +40855,6 @@
                 0.0
             ],
             "type": "GameObjectBase"
->>>>>>> Stashed changes
         }
     ],
     "skyboxFileName": "Skybox_day_1.dds",
