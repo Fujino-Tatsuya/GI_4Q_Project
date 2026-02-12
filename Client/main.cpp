@@ -25,7 +25,7 @@ int main()
 	#endif
 
 	WindowManager& windowManager = WindowManager::GetInstance();
-	windowManager.Initialize(L"Aurora");
+	windowManager.Initialize(L"DeadOnBeat");
 
 	NavigationManager::GetInstance().Initialize();
 
