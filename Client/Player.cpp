@@ -16,6 +16,7 @@
 #include "SceneManager.h"
 #include "GameManager.h"
 #include "ParticleComponent.h"
+#include "Boss.h"
 
 #include "FSMComponentGun2.h"
 
@@ -222,6 +223,7 @@ void Player::TutorialStep() const
 
 	case ETutorialStep::DeadEye:
 		if (InputManager::GetInstance().GetKeyDown(KeyCode::MouseLeft)) GameManager::GetInstance().SetTutorialStep(ETutorialStep::DeadTwo);
+		break;
 
 	case ETutorialStep::DeadTwo:
 		if (m_hasUsedDeadEyeForTutorial) GameManager::GetInstance().SetTutorialStep(ETutorialStep::End);
@@ -235,6 +237,7 @@ void Player::TakeHit()
 
 	m_playerHitPoint--;
 	GameManager::GetInstance().OnPlayerHit();
+	SoundManager::GetInstance().UI_Shot(Config::Player_Hit);
 
 	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
 	SceneBase::SetVignettingColor({ 1.0f, 0.0f, 0.0f });
@@ -369,6 +372,17 @@ void Player::PlayerShoot()
 	if (Enemy* enemy = dynamic_cast<Enemy*>(hit))
 	{
 		enemy->Die();
+		ParticleObject* gem = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Gem.json"));
+		gem->SetPosition(hitPosition);
+		gem->SetLifetime(5.0f);
+
+		m_enemyHitTimer = m_enemyHitDisplayTime;
+
+		TriggerLUT();
+	}
+	if (Boss* boss = dynamic_cast<Boss*>(hit))
+	{
+		boss->Hit();
 		ParticleObject* gem = dynamic_cast<ParticleObject*>(CreatePrefabChildGameObject("Gem.json"));
 		gem->SetPosition(hitPosition);
 		gem->SetLifetime(5.0f);

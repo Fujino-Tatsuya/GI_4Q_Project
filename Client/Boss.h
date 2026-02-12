@@ -5,6 +5,8 @@ class Boss : public GameObjectBase
 {
 	class Player* m_player = nullptr;
 
+	int m_hitPoints = 30;
+
 	float m_moveSpeed = 5.0f;
 
 	class FSMComponentBoss* m_fsm = nullptr;
@@ -13,7 +15,7 @@ class Boss : public GameObjectBase
 	const float m_deathDuration = 2.0f;
 
 	bool m_hasFoundPlayer = false;
-	const float m_attackRangeSquare = 5.0f;
+	const float m_attackRangeSquare = 8.0f;
 
 	std::string m_triggerColliderName;
 	class ColliderComponent* m_triggerCollider = nullptr;
@@ -35,6 +37,7 @@ public:
 	Boss(Boss&&) = default;
 	Boss& operator=(Boss&&) = default;
 
+	void Hit() { m_hitPoints--; if (m_hitPoints <= 0) Die(); }
 	void Die();
 	void OnAttackFinished();
 

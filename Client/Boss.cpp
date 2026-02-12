@@ -117,4 +117,5 @@ nlohmann::json Boss::Serialize()
 void Boss::Deserialize(const nlohmann::json& jsonData)
 {
 	if (jsonData.find("triggerColliderName") != jsonData.end()) m_triggerColliderName = jsonData["triggerColliderName"].get<string>();
+	else m_triggerColliderName = "StageBossTrigger";
 }

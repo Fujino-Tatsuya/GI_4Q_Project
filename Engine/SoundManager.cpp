@@ -7,6 +7,8 @@
 #include "TimeManager.h"
 
 #include "Shared/Config/Option.h"
+#include "SceneManager.h"
+#include "SceneBase.h"
 
 constexpr size_t ChannelCount = 64; //profiling
 
@@ -638,7 +640,7 @@ void SoundManager::Main_BGM_Shot(const std::string filename, float delay)
 	}
 
 	m_CurrentTrackName = it->first;
-	m_CurrentNodeDataName = it->first+"_Beat";
+	m_CurrentNodeDataName = it->first + "_Beat";
 	m_rhythmTimerIndex = 0;
 	m_rhythmUIIndex = 0;
 	m_rhythmDestroyIndex = 0;
@@ -921,7 +923,16 @@ void SoundManager::AddNodeDestroyedListenerOnce(std::function<bool()> cb)
 void SoundManager::NotifyNodeGenerated()
 {
 	for (auto& cb : m_NodeGeneratedListenerOnce)
-		cb();
+	{
+		if (SceneManager::GetInstance().GetCurrentScene()->GetType() == "TestScene")
+		{
+			cb();
+		}
+		else
+		{
+			m_NodeGeneratedListenerOnce.clear();
+		}
+	}
 
 	m_NodeGeneratedListenerOnce.clear();
 }
