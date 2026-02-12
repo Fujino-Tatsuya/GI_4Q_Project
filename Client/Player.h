@@ -91,7 +91,7 @@ class Player : public GameObjectBase
 	int m_MaxBullet = 6;
 	int m_bulletCnt = 0;
 
-	std::pair<float, float> m_bulletUIpos{ 0.0f,0.0f };
+	std::pair<float, float> m_bulletUIpos{ 100.0f,100.0f };
 	float m_bulletInterval = 0.0f;
 
 	bool m_isDashing = false;
