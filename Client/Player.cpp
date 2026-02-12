@@ -65,6 +65,8 @@ void Player::Initialize()
 	m_bulletUIpos = { 0.965f,0.85f };
 	m_bulletInterval = 0.03f;
 
+	m_originalHeight = XMVectorGetY(GetPosition());
+
 	SetAction(Action::All, true);
 }
 
@@ -93,10 +95,15 @@ void Player::Update()
 	
 	if (m_isDeadEyeActive)				PlayerDeadEye(deltaTime, input);	
 	if (m_isDashing)					PlayerDash(deltaTime);
-	else if (m_ControlState.CanMove)	MovePosition(m_normalizedMoveDirection * m_moveSpeed * deltaTime);
+	else if (m_ControlState.CanMove)
+	{
+		MovePosition(m_normalizedMoveDirection * m_moveSpeed * deltaTime);
+		m_headBobTimer += deltaTime * 10.0f * XMVectorGetX(XMVector3LengthSq(m_normalizedMoveDirection));
+		SetPosition(XMVectorSetY(GetPosition(), m_originalHeight + sinf(m_headBobTimer) * 0.1f));
+	};
 	
 	// 만약 이동한 위치가 네비게이션 메시 밖이면 이전 위치로 되돌림 // 월드 좌표계는 나중에 업데이트 됨으로 로컬 좌표계로 해햐함
-	if (NavigationManager::GetInstance().FindNearestPoly(GetPosition(), 3.0f) < 0) SetPosition(previousPosition);
+	if (NavigationManager::GetInstance().FindNearestPoly(XMVectorSetY(GetPosition(), 0.0f), 3.0f) < 0) SetPosition(previousPosition);
 
 	if (input.GetKeyDown(KeyCode::R) && m_ControlState.CanReload && m_bulletCnt > 0)
 	{
@@ -129,7 +136,7 @@ void Player::Update()
 
 	if (m_redVignetteIntensity > 0.0f)
 	{
-		m_redVignetteIntensity -= deltaTime * 0.25f;
+		m_redVignetteIntensity -= deltaTime * 0.05f;
 		SceneBase::SetVignettingIntensity(m_redVignetteIntensity);
 		if (m_redVignetteIntensity <= 0.0f) SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, false);
 	}
@@ -235,7 +242,7 @@ void Player::TakeHit()
 
 	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::Vignetting, true);
 	SceneBase::SetVignettingColor({ 1.0f, 0.0f, 0.0f });
-	m_redVignetteIntensity = 0.25f;
+	m_redVignetteIntensity = 0.02f;
 	m_invincibilityTimer = m_invincibilityDuration;
 }
 
