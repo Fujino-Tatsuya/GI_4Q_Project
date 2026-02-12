@@ -124,13 +124,12 @@ void Player::Update()
 		}
 		else
 		{
-			// 硫덉텧 �븣 �썝�옒 �넂�씠濡� 泥쒖쿇�엳 蹂듦��
 			m_headBobTimer = 0.0f;
 			float currentHeight = XMVectorGetY(GetPosition());
 			float heightDiff = m_originalHeight - currentHeight;
 			if (fabsf(heightDiff) > 0.01f)
 			{
-				float adjustSpeed = 5.0f; // 議곗젙 �냽�룄
+				float adjustSpeed = 5.0f;
 				float newY = currentHeight + heightDiff * adjustSpeed * deltaTime;
 				SetPosition(XMVectorSetY(GetPosition(), newY));
 			}
@@ -138,7 +137,6 @@ void Player::Update()
 		}
 	};
 	
-	// 留뚯빟 �씠�룞�븳 �쐞移섍�� �꽕鍮꾧쾶�씠�뀡 硫붿떆 諛뽰씠硫� �씠�쟾 �쐞移섎줈 �릺�룎由� // �썡�뱶 醫뚰몴怨꾨뒗 �굹以묒뿉 �뾽�뜲�씠�듃 �맖�쑝濡� 濡쒖뺄 醫뚰몴怨꾨줈 �빐�뼆�븿
 	if (NavigationManager::GetInstance().FindNearestPoly(XMVectorSetY(GetPosition(), 0.0f), 3.0f) < 0) SetPosition(previousPosition);
 
 	if (input.GetKeyDown(KeyCode::R) && m_ControlState.CanReload && m_bulletCnt > 0)
@@ -203,11 +201,6 @@ void Player::Finalize()
 
 void Player::TutorialStep() const
 {
-	if (GameManager::GetInstance().IsCheat())
-	{
-		return;
-	}
-
 	switch (GameManager::GetInstance().GetTutorialStep())
 	{
 	case ETutorialStep::Dash:
@@ -812,7 +805,7 @@ void Player::RenderBullets(class Renderer& renderer)
 				m_bulletImgs[m_bulletCnt].first,
 				{ m_bulletUIpos.first, m_bulletUIpos.second },
 				m_bulletImgs[m_bulletCnt].second,
-				1.0f
+				0.6f
 			);
 		}
 	);

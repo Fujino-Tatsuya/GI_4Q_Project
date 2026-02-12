@@ -1023,6 +1023,82 @@
                 1.0
             ],
             "type": "Text"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.017999999225139618,
+            "name": "open_option",
+            "parentIdx": 4,
+            "pathIdle": "UI_Icon_gun.png",
+            "pos": [
+                -0.15000000596046448,
+                0.0
+            ],
+            "scale": 0.7799999713897705,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.017999999225139618,
+            "name": "start_game",
+            "parentIdx": 1,
+            "pathIdle": "UI_Icon_gun.png",
+            "pos": [
+                -0.15000000596046448,
+                0.0
+            ],
+            "scale": 0.7799999713897705,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.017999999225139618,
+            "name": "open_credit",
+            "parentIdx": 5,
+            "pathIdle": "UI_Icon_gun.png",
+            "pos": [
+                -0.15000000596046448,
+                0.0
+            ],
+            "scale": 0.7799999713897705,
+            "type": "Panel"
+        },
+        {
+            "active": false,
+            "colorIdle": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "depth": 0.017999999225139618,
+            "name": "quit_game",
+            "parentIdx": 6,
+            "pathIdle": "UI_Icon_gun.png",
+            "pos": [
+                -0.15000000596046448,
+                0.0
+            ],
+            "scale": 0.7799999713897705,
+            "type": "Panel"
         }
     ],
     "environmentMapFileName": "Skybox0.dds",
@@ -1077,6 +1153,7 @@
                         "DissolveEdgeWidth": 1.0,
                         "DissolveThreshold": 0.20000000298023224
                     },
+                    "hasShadow": true,
                     "materialFactor": [],
                     "modelAndMaterialFileNames": [],
                     "psShaderName": "PSModel.hlsl",
