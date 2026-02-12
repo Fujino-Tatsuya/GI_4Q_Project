@@ -607,177 +607,6 @@
             ],
             "scale": 0.800000011920929,
             "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "numbers",
-            "parentIdx": -1,
-            "pathIdle": "UI__.png",
-            "pos": [
-                0.5,
-                0.05000000074505806
-            ],
-            "scale": 0.10000000149011612,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "1",
-            "parentIdx": 18,
-            "pathIdle": "UI_n9.png",
-            "pos": [
-                0.06499999761581421,
-                0.0
-            ],
-            "scale": 0.5,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "10",
-            "parentIdx": 18,
-            "pathIdle": "UI_n9.png",
-            "pos": [
-                0.039000000804662704,
-                0.0
-            ],
-            "scale": 0.5,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "100",
-            "parentIdx": 18,
-            "pathIdle": "UI_n9.png",
-            "pos": [
-                0.013000000268220901,
-                0.0
-            ],
-            "scale": 0.5,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "1000",
-            "parentIdx": 18,
-            "pathIdle": "UI_n9.png",
-            "pos": [
-                -0.013000000268220901,
-                0.0
-            ],
-            "scale": 0.5,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "10000",
-            "parentIdx": 18,
-            "pathIdle": "UI_n9.png",
-            "pos": [
-                -0.039000000804662704,
-                0.0
-            ],
-            "scale": 0.5,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "100000",
-            "parentIdx": 18,
-            "pathIdle": "UI_n9.png",
-            "pos": [
-                -0.06499999761581421,
-                0.0
-            ],
-            "scale": 0.5,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "Gem",
-            "parentIdx": 18,
-            "pathIdle": "UI_WGold.png",
-            "pos": [
-                -0.09399999678134918,
-                0.0020000000949949026
-            ],
-            "scale": 0.5,
-            "type": "Panel"
-        },
-        {
-            "active": true,
-            "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "depth": 0.0,
-            "name": "Combo",
-            "parentIdx": 18,
-            "pathIdle": "UI_Combo1.png",
-            "pos": [
-                0.08500000089406967,
-                0.02500000037252903
-            ],
-            "scale": 0.5,
-            "type": "Panel"
         }
     ],
     "environmentMapFileName": "Skybox0.dds",
@@ -27161,9 +26990,6 @@
                     "NodeStart": 0.10000000149011612,
                     "NodeStartSize": 0.10400000214576721,
                     "type": "CrossHairAndNode"
-                },
-                {
-                    "type": "ListenerComponent"
                 }
             ],
             "name": "Player",
@@ -38562,11 +38388,7 @@
             "name": "Trigger1",
             "position": [
                 -170.38296508789063,
-<<<<<<< Updated upstream
-                0.0,
-=======
                 1.7212824821472168,
->>>>>>> Stashed changes
                 -89.19985961914063,
                 1.0
             ],
@@ -39376,14 +39198,6 @@
         },
         {
             "childGameObjects": [],
-<<<<<<< Updated upstream
-            "components": [],
-            "name": "Trigger2",
-            "position": [
-                -134.17105102539063,
-                -7.647681741218548e-06,
-                -64.00323486328125,
-=======
             "components": [
                 {
                     "boundingBoxes": [
@@ -39972,7 +39786,6 @@
                 -54.576560974121094,
                 0.49173831939697266,
                 54.79145050048828,
->>>>>>> Stashed changes
                 1.0
             ],
             "rotation": [
@@ -39988,8 +39801,6 @@
                 0.0
             ],
             "type": "GameObjectBase"
-<<<<<<< Updated upstream
-=======
         },
         {
             "childGameObjects": [],
@@ -41044,7 +40855,6 @@
                 0.0
             ],
             "type": "GameObjectBase"
->>>>>>> Stashed changes
         }
     ],
     "skyboxFileName": "Skybox_day_1.dds",
