@@ -167,7 +167,7 @@ void SoundManager::ConvertBGMSource()
 			FMOD::Sound* temp;
 			std::string fullPath = dirEntry.path().string();
 			m_CoreSystem->createSound(fullPath.c_str(), FMOD_CREATESAMPLE |
-				FMOD_LOOP_OFF |
+				FMOD_LOOP_NORMAL |
 				FMOD_2D |
 				FMOD_ACCURATETIME, nullptr, &temp);
 
@@ -638,6 +638,9 @@ void SoundManager::Main_BGM_Shot(const std::string filename, float delay)
 		std::cerr << "Cannot play: invalid track name." << filename << std::endl;
 		CheckResult(-1, "invalid track name");
 	}
+
+	it->second->setMode(FMOD_LOOP_NORMAL);
+	it->second->setLoopCount(-1);
 
 	m_CurrentTrackName = it->first;
 	m_CurrentNodeDataName = it->first + "_Beat";

@@ -290,7 +290,7 @@ void GameManager::OnSceneRender()
 		break;
 
 	case EScene::Main:
-		//Renderer::GetInstance().UI_RENDER_FUNCTIONS().emplace_back(RenderInfo());
+		Renderer::GetInstance().UI_RENDER_FUNCTIONS().emplace_back(RenderInfo());
 		break;
 
 	case EScene::Result:
@@ -358,36 +358,57 @@ void GameManager::ChangeMainState(EMainState next)
 void GameManager::OnStageEnter(EMainState state)
 {
 	auto& sm = SoundManager::GetInstance();
+
 	switch (state)
 	{
 	case EMainState::Tutorial:
 		std::cout << "Tutorial Enter\n";
 		sm.Main_BGM_Shot(Config::Tutori_BGM, 3.0f);
-
 		break;
 
 	case EMainState::Stage1:
 		std::cout << "Stage1 Enter\n";
 		sm.Main_BGM_Shot(Config::Stage1_BGM, 3.0f);
 
+		if (!m_Player)
+			m_Player = GetPlayerPtr();
+
+		if (m_Player)
+		{
+			m_Player->SetAction(Action::All, true);
+		}
+		if (m_tutorialPopupOpen)
+			CloseTutorialPopup();
+
+		TimeManager::GetInstance().SetTimeScale(1.0f);
+		Player::SetCameraSensitivity(30.0f);
+		ForceShowCursor(false);
+
 		break;
 
 	case EMainState::Stage2:
 		std::cout << "Stage2 Enter\n";
 		sm.Main_BGM_Shot(Config::Stage2_BGM, 3.0f);
-
 		break;
 
 	case EMainState::StageBoss:
 		std::cout << "StageBoss Enter\n";
 		sm.Main_BGM_Shot(Config::Stage3_BGM, 3.0f);
-
 		break;
 	}
 }
 
+
 void GameManager::TutorialControl()
 {
+	if (m_MainState == EMainState::Tutorial && InputManager::GetInstance().GetKeyDown(KeyCode::F7))
+	{
+		if (!m_Player)
+			m_Player = GetPlayerPtr();
+		ChangeMainState(EMainState::Stage1);
+		return;
+	}
+
 	if (!m_Player)
 		return;
 
@@ -411,7 +432,7 @@ void GameManager::TutorialControl()
 		{
 			p->SetAction(Action::Move, true);
 			p->SetAction(Action::Dash, true);
-		}		
+		}
 		break;
 
 	case ETutorialStep::Reload:
@@ -508,11 +529,10 @@ void GameManager::OnStageExit(EMainState state)
 	}
 }
 
-
-
 Player* GameManager::GetPlayerPtr()
 {
 	Player* temp = dynamic_cast<Player*>(SceneManager::GetInstance().GetCurrentScene()->GetRootGameObject("Player"));
+	std::cout << "GM Player Get" << temp << std::endl;
 	return temp;
 }
 
@@ -555,6 +575,9 @@ void GameManager::ScoreReset()
 void GameManager::SetTutorialStep(ETutorialStep step)
 {
 	if (m_TutorialStep == step)
+		return;
+
+	if (m_MainState != EMainState::Tutorial)
 		return;
 
 	m_TutorialStep = step;
@@ -617,44 +640,56 @@ function<void()> GameManager::RenderInfo()
 		return [&]() { Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(GameManager::GetInstance().GetScore())).c_str(), XMFLOAT2(0.45f, 0.1f)); };
 	}
 
-	/*switch (m_TutorialStep)
+	if (m_MainState == EMainState::Tutorial)
 	{
-	case ETutorialStep::WASD:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Use WASD to Move Towards the Box", XMFLOAT2(0.35f, 0.1f)); };
-		break;
+		return [&]() {
+			Renderer::GetInstance().RenderTextUIPosition(
+				L"Press F7 to Skip Tutorial",
+				XMFLOAT2(.8f, 0.01f)
+			);
+		};
+	}
 
-	case ETutorialStep::Dash:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Press WASD And Space to Dash", XMFLOAT2(0.4f, 0.1f)); };
-		break;
-
-	case ETutorialStep::Reload:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Press R to Reload", XMFLOAT2(0.4f, 0.1f)); };
-		break;
-
-	case ETutorialStep::Shoot:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Left Click to Shoot", XMFLOAT2(0.4f, 0.1f)); };
-		break;
-
-	case ETutorialStep::AutoReload:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Auto Reload Is Done When You Use All Bullets", XMFLOAT2(0.25f, 0.1f)); };
-		break;
-
-	case ETutorialStep::DeadEye:
-		return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Right Click to Activate Dead Eye", XMFLOAT2(0.35f, 0.1f)); };
-		break;
-
-	case ETutorialStep::End:
-		return [&]()
-			{
-				Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(m_currentScore)).c_str(), XMFLOAT2(0.45f, 0.1f));
-			};
-		break;
-
-	default:
-		return []() {};
-		break;
-	}*/
+	return []() {};
 }
+
+/*switch (m_TutorialStep)
+{
+case ETutorialStep::WASD:
+	return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Use WASD to Move Towards the Box", XMFLOAT2(0.35f, 0.1f)); };
+	break;
+
+case ETutorialStep::Dash:
+	return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Press WASD And Space to Dash", XMFLOAT2(0.4f, 0.1f)); };
+	break;
+
+case ETutorialStep::Reload:
+	return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Press R to Reload", XMFLOAT2(0.4f, 0.1f)); };
+	break;
+
+case ETutorialStep::Shoot:
+	return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Left Click to Shoot", XMFLOAT2(0.4f, 0.1f)); };
+	break;
+
+case ETutorialStep::AutoReload:
+	return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Auto Reload Is Done When You Use All Bullets", XMFLOAT2(0.25f, 0.1f)); };
+	break;
+
+case ETutorialStep::DeadEye:
+	return [&]() { Renderer::GetInstance().RenderTextUIPosition(L"Right Click to Activate Dead Eye", XMFLOAT2(0.35f, 0.1f)); };
+	break;
+
+case ETutorialStep::End:
+	return [&]()
+		{
+			Renderer::GetInstance().RenderTextUIPosition((L"Score: " + to_wstring(m_currentScore)).c_str(), XMFLOAT2(0.45f, 0.1f));
+		};
+	break;
+
+default:
+	return []() {};
+	break;
+}*/
 
 void GameManager::TempPrint()
 {
@@ -760,6 +795,7 @@ void GameManager::LoadRankings()
 		return left.second > right.second;
 		});
 }
+
 
 void GameManager::RegisterTutorialUI(Panel* dark, Panel* popup)
 {

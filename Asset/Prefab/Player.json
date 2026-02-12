@@ -274,7 +274,17 @@
             "type": "CameraComponent"
         },
         {
+            "CrossHairSize": 0.03999999910593033,
+            "LinePos": 0.44999998807907104,
+            "LineScl": 0.03999999910593033,
+            "NodeEnd": 0.44999998807907104,
+            "NodeEndSize": 0.17599999904632568,
+            "NodeStart": 0.10000000149011612,
+            "NodeStartSize": 0.10400000214576721,
             "type": "CrossHairAndNode"
+        },
+        {
+            "type": "ListenerComponent"
         }
     ],
     "name": "Player",
