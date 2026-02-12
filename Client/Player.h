@@ -61,7 +61,9 @@ class Player : public GameObjectBase
 	const float m_enemyHitDisplayTime = 0.2f;
 	float m_enemyHitTimer = 0.0f;
 
-	std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bulletImgs = {};
+	//std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bulletImgs = {};
+	//std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2> m_bulletImgs[7] = {};
+	std::array<std::pair<com_ptr<ID3D11ShaderResourceView>, DirectX::XMFLOAT2>, 7> m_bulletImgs = {};
 
 	DirectX::XMVECTOR m_inputDirection = {};
 	DirectX::XMVECTOR m_normalizedMoveDirection = {};
