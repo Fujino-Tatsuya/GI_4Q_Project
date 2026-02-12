@@ -15,6 +15,7 @@
                 "DissolveEdgeWidth": 0.0,
                 "DissolveThreshold": 0.0
             },
+            "hasShadow": true,
             "materialFactor": [
                 {
                     "ambientOcclusionFactor": 1.0,
@@ -135,9 +136,9 @@
     "isTutorialDummy": false,
     "name": "Enemy",
     "position": [
-        0.0,
-        0.0,
-        0.0,
+        118.86835479736328,
+        -1.52587890625e-05,
+        10.127440452575684,
         1.0
     ],
     "rotation": [
