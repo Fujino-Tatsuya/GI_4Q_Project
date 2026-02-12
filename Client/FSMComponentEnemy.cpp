@@ -128,6 +128,8 @@ void FSMComponentEnemy::OnUpdateState(StateID state)
 			{
 				model_->SetAlpha(1.0f - progress);
 				model_->SetDissolveThreshold(progress);
+				model_->SetDissolveIntensity(progress/2.f);
+
 			}
 		}
 	}
