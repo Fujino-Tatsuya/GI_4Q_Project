@@ -13,8 +13,8 @@
             "parentIdx": 13,
             "pathIdle": "UI__.png",
             "pos": [
-                0.0,
-                0.0
+                0.029999999329447746,
+                -0.03999999910593033
             ],
             "scale": 0.10000000149011612,
             "type": "Panel"
@@ -35,10 +35,10 @@
                 1.0
             ],
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
+                0.0,
+                0.0,
+                0.0,
+                0.0
             ],
             "colorPressed": [
                 0.699999988079071,
@@ -49,15 +49,15 @@
             "depth": 0.009999999776482582,
             "name": "start_game",
             "parentIdx": 0,
-            "pathClicked": "UI_Button_hover.png",
-            "pathHover": "UI_Button_hover.png",
-            "pathIdle": "UI_Button.png",
-            "pathPressed": "UI_Button_hover.png",
+            "pathClicked": "UI_Line_Black.png",
+            "pathHover": "UI_Line_Black.png",
+            "pathIdle": "UI_Line_Black.png",
+            "pathPressed": "UI_Line_Black.png",
             "pos": [
                 0.6000000238418579,
-                0.4399999976158142
+                0.49000000953674316
             ],
-            "scale": 0.6899999976158142,
+            "scale": 0.8999999761581421,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
@@ -117,10 +117,10 @@
                 1.0
             ],
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
+                0.0,
+                0.0,
+                0.0,
+                0.0
             ],
             "colorPressed": [
                 0.699999988079071,
@@ -132,14 +132,14 @@
             "name": "open_option",
             "parentIdx": 0,
             "pathClicked": "UI_Button_hover.png",
-            "pathHover": "UI_Button_hover.png",
-            "pathIdle": "UI_Button.png",
-            "pathPressed": "UI_Button_hover.png",
+            "pathHover": "UI_Line_Black.png",
+            "pathIdle": "UI_Line_Black.png",
+            "pathPressed": "UI_Line_Black.png",
             "pos": [
                 0.6000000238418579,
-                0.5600000023841858
+                0.5899999737739563
             ],
-            "scale": 0.6899999976158142,
+            "scale": 0.8999999761581421,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
@@ -161,10 +161,10 @@
                 1.0
             ],
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
+                0.0,
+                0.0,
+                0.0,
+                0.0
             ],
             "colorPressed": [
                 0.699999988079071,
@@ -175,15 +175,15 @@
             "depth": 0.009999999776482582,
             "name": "open_credit",
             "parentIdx": 0,
-            "pathClicked": "UI_Button_hover.png",
-            "pathHover": "UI_Button_hover.png",
-            "pathIdle": "UI_Button.png",
-            "pathPressed": "UI_Button_hover.png",
+            "pathClicked": "UI_Line_Black.png",
+            "pathHover": "UI_Line_Black.png",
+            "pathIdle": "UI_Line_Black.png",
+            "pathPressed": "UI_Line_Black.png",
             "pos": [
                 0.6000000238418579,
-                0.6800000071525574
+                0.6899999976158142
             ],
-            "scale": 0.6899999976158142,
+            "scale": 0.8999999761581421,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
@@ -208,7 +208,7 @@
                 1.0,
                 1.0,
                 1.0,
-                1.0
+                0.0
             ],
             "colorPressed": [
                 0.699999988079071,
@@ -219,15 +219,15 @@
             "depth": 0.009999999776482582,
             "name": "quit_game",
             "parentIdx": 0,
-            "pathClicked": "UI_Button_hover.png",
-            "pathHover": "UI_Button_hover.png",
-            "pathIdle": "UI_Button.png",
-            "pathPressed": "UI_Button_hover.png",
+            "pathClicked": "UI_Line_Black.png",
+            "pathHover": "UI_Line_Black.png",
+            "pathIdle": "UI_Line_Black.png",
+            "pathPressed": "UI_Line_Black.png",
             "pos": [
                 0.6000000238418579,
-                0.800000011920929
+                0.7900000214576721
             ],
-            "scale": 0.6899999976158142,
+            "scale": 0.8999999761581421,
             "scaleClicked": 1.0,
             "scaleHover": 1.0,
             "scalePressed": 0.949999988079071,
@@ -542,26 +542,26 @@
         {
             "active": true,
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler72",
+            "fontName": "Paperlogy",
             "name": "start_game",
             "parentIdx": 1,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.05000000074505806,
-                -0.02500000037252903
+                -0.10000000149011612,
+                -0.029999999329447746
             ],
-            "scale": 0.44999998807907104,
-            "text": "Start",
+            "scale": 0.4000000059604645,
+            "text": "Game Start",
             "textColor": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "type": "Text"
@@ -569,26 +569,26 @@
         {
             "active": true,
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler72",
+            "fontName": "Paperlogy",
             "name": "open_option",
             "parentIdx": 4,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.05000000074505806,
-                -0.02500000037252903
+                -0.10000000149011612,
+                -0.029999999329447746
             ],
-            "scale": 0.44999998807907104,
+            "scale": 0.4000000059604645,
             "text": "Option",
             "textColor": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "type": "Text"
@@ -596,26 +596,26 @@
         {
             "active": true,
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler72",
+            "fontName": "Paperlogy",
             "name": "open_credit",
             "parentIdx": 5,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.05000000074505806,
-                -0.02500000037252903
+                -0.10000000149011612,
+                -0.029999999329447746
             ],
-            "scale": 0.44999998807907104,
+            "scale": 0.4000000059604645,
             "text": "Credit",
             "textColor": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "type": "Text"
@@ -623,26 +623,26 @@
         {
             "active": true,
             "colorIdle": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "depth": 0.014999999664723873,
-            "fontName": "SuperCrawler72",
+            "fontName": "Paperlogy",
             "name": "quit_game",
             "parentIdx": 6,
             "pathIdle": "UI_IDLE.png",
             "pos": [
-                -0.05000000074505806,
-                -0.02500000037252903
+                -0.10000000149011612,
+                -0.029999999329447746
             ],
-            "scale": 0.44999998807907104,
+            "scale": 0.4000000059604645,
             "text": "Quit",
             "textColor": [
-                1.0,
-                1.0,
-                1.0,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ],
             "type": "Text"
