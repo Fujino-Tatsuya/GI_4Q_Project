@@ -77,6 +77,8 @@ void GameManager::Finalize()
 
 void GameManager::Update()
 {
+	UpdateLutCrossfade(TimeManager::GetInstance().GetDeltaTime());
+
 	if (m_CurrentScene == EScene::Main)
 	{
 		if (!m_tutorialPopupOpen)
@@ -289,26 +291,72 @@ void GameManager::OnStageEnter(EMainState state)
 	case EMainState::Tutorial:
 		std::cout << "Tutorial Enter\n";
 		sm.Main_BGM_Shot(Config::Tutori_BGM, 3.0f);
+		StartLutCrossfade(0);
 
 		break;
 
 	case EMainState::Stage1:
 		std::cout << "Stage1 Enter\n";
 		sm.Main_BGM_Shot(Config::Stage1_BGM, 3.0f);
+		StartLutCrossfade(4);
 
 		break;
 
 	case EMainState::Stage2:
 		std::cout << "Stage2 Enter\n";
 		sm.Main_BGM_Shot(Config::Stage2_BGM, 3.0f);
+		StartLutCrossfade(0);
 
 		break;
 
 	case EMainState::StageBoss:
 		std::cout << "StageBoss Enter\n";
 		sm.Main_BGM_Shot(Config::Stage3_BGM, 3.0f);
+		StartLutCrossfade(4);
 
 		break;
+	}
+}
+
+void GameManager::StartLutCrossfade(int targetIndex)
+{
+	Renderer& renderer = Renderer::GetInstance();
+	const int currentIndex = renderer.GetSelectedLUTIndex();
+	if (currentIndex == targetIndex)
+	{
+		SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, false);
+		SceneBase::SetLutLerpFactor(0.0f);
+		m_lutCrossfadeActive = false;
+		return;
+	}
+
+	m_lutTargetIndex = targetIndex;
+	renderer.GetSelectedLUT2Index() = targetIndex;
+	m_lutCrossfadeElapsed = 0.0f;
+	m_lutCrossfadeActive = true;
+
+	SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, true);
+	SceneBase::SetLutLerpFactor(0.0f);
+}
+
+void GameManager::UpdateLutCrossfade(float dt)
+{
+	if (!m_lutCrossfadeActive) return;
+
+	m_lutCrossfadeElapsed += dt;
+	float t = m_lutCrossfadeElapsed / m_lutCrossfadeDuration;
+	if (t > 1.0f) t = 1.0f;
+
+	const float smooth = t * t * (3.0f - 2.0f * t);
+	SceneBase::SetLutLerpFactor(smooth);
+
+	if (t >= 1.0f)
+	{
+		Renderer& renderer = Renderer::GetInstance();
+		renderer.GetSelectedLUTIndex() = m_lutTargetIndex;
+		SceneBase::SetPostProcessingFlag(PostProcessingBuffer::PostProcessingFlag::LUT_CROSSFADE, false);
+		SceneBase::SetLutLerpFactor(0.0f);
+		m_lutCrossfadeActive = false;
 	}
 }
 

@@ -75,6 +75,11 @@ class GameManager : public Singleton<GameManager>
 	bool   m_tutorialPopupOpen = false;
 	bool   m_stepPopupShown = false;   
 
+	bool  m_lutCrossfadeActive = false;
+	float m_lutCrossfadeElapsed = 0.0f;
+	float m_lutCrossfadeDuration = 0.18f;
+	int   m_lutTargetIndex = 0;
+
 public:
     void Initialize();
     void Finalize();
@@ -108,6 +113,9 @@ public:
     void Stage1Control();
     void Stage2Control();
     void Stage3Control();
+
+	void StartLutCrossfade(int targetIndex);
+	void UpdateLutCrossfade(float dt);
 
 ///GameFlowEND
 
