@@ -443,17 +443,14 @@ void GameManager::TutorialControl()
 
 void GameManager::Stage1Control()
 {
-	m_Player->RestoreHitPoint();
 }
 
 void GameManager::Stage2Control()
 {
-	m_Player->RestoreHitPoint();
 }
 
 void GameManager::Stage3Control()
 {
-	m_Player->RestoreHitPoint();
 }
 
 void GameManager::OnStageExit(EMainState state)
@@ -465,19 +462,23 @@ void GameManager::OnStageExit(EMainState state)
 	case EMainState::Tutorial:
 		std::cout << "Tutorial Exit\n";
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 
 	case EMainState::Stage1:
 		std::cout << "Stage1 Exit\n";
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 
 	case EMainState::Stage2:
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 
 	case EMainState::StageBoss:
 		sm.FadeOut(sm.GetBGMCh1(), 1.0f, true);
+		m_Player->RestoreHitPoint();
 		break;
 	}
 }
