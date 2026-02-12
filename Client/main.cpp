@@ -31,7 +31,7 @@ int main()
 
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	sceneManager.Initialize();
-	sceneManager.ChangeScene("TitleScene");
+	sceneManager.ChangeScene("HyojeTestScene");
 
 	RNG::GetInstance().Initialize();
 

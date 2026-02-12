@@ -876,7 +876,8 @@ struct LUTData
 
 #define Noise_LIST \
     X(CELL) \
-    X(JJEOJEOJEOK) 
+    X(JJEOJEOJEOK) \
+	X(DISTORTION) 
 
 struct NoiseData
 {
