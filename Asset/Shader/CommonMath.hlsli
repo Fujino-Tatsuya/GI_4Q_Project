@@ -79,22 +79,38 @@ float3 UnpackNormal(float3 packedNormal, float3x3 TBN, float intensity = 1.0f)
 
 float SampleShadowPCF(Texture2D shadowMap, SamplerComparisonState cmpSampler, float2 shadowUV, float depth)
 {
+    static const float2 poissonDisk[16] =
+    {
+        float2(-0.94201624f, -0.39906216f),
+        float2(0.94558609f, -0.76890725f),
+        float2(-0.094184101f, -0.92938870f),
+        float2(0.34495938f, 0.29387760f),
+        float2(-0.91588581f, 0.45771432f),
+        float2(-0.81544232f, -0.87912464f),
+        float2(-0.38277543f, 0.27676845f),
+        float2(0.97484398f, 0.75648379f),
+        float2(0.44323325f, -0.97511554f),
+        float2(0.53742981f, -0.47373420f),
+        float2(-0.26496911f, -0.41893023f),
+        float2(0.79197514f, 0.19090188f),
+        float2(-0.24188840f, 0.99706507f),
+        float2(-0.81409955f, 0.91437590f),
+        float2(0.19984126f, 0.78641367f),
+        float2(0.14383161f, -0.14100790f)
+    };
+    static const float2 MAP_SIZE = 1.0f / float2(float(1 << 13), float(1 << 13)); // 섀도우 맵 크기
+    static const float RADIUS = 2.0f; // 샘플링 반경
+    
     float shadow = 0.0f;
     
     [unroll]
-    for (int x = -1; x <= 1; ++x)
+    for (int i = 0; i < 16; ++i)
     {
-        [unroll]
-        for (int y = -1; y <= 1; ++y)
-        {
-            static const float2 MAP_SIZE = 1.0f / float2(float(1 << 13), float(1 << 13)); // 섀도우 맵 크기
-            float2 offset = float2(x, y) * MAP_SIZE;
-            
-            shadow += shadowMap.SampleCmpLevelZero(cmpSampler, shadowUV + offset, depth);
-        }
+        float2 offset = poissonDisk[i] * MAP_SIZE * RADIUS;
+        shadow += shadowMap.SampleCmpLevelZero(cmpSampler, shadowUV + offset, depth);
     }
     
-    return shadow / 9.0f;
+    return shadow / 16.0f;
 }
 
 // PBR 관련 수학 함수
